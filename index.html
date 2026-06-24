@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cocina en Casa - Recetas del Mundo + Postres</title>
-    <meta name="description" content="Descubre recetas de platos principales y postres de todo el mundo. Ingredientes, pasos, imágenes y videos." />
+    <meta name="description" content="Descubre recetas de platos principales y postres de todo el mundo con imágenes reales." />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -562,7 +562,7 @@
 <section class="hero">
     <div class="container">
         <h1>🍽️ Platos & <span>Postres</span> del Mundo</h1>
-        <p>Descubre recetas tradicionales de todo el mundo con ingredientes y pasos detallados.</p>
+        <p>Descubre recetas tradicionales de todo el mundo con imágenes reales y videos.</p>
         <div class="stats">
             <div class="stat"><strong>18</strong> Países</div>
             <div class="stat"><strong>126</strong> Platos</div>
@@ -1648,11 +1648,10 @@
                         "Mezclar con el pollo y cocinar a fuego bajo."
                     ]
                 }
-                // ... (faltan más recetas de Perú, pero son las que proporcionó)
+                // ... otros platos de Perú si los tienes
             ]
         }
-        // Aquí puedes agregar los demás países que tengas (España, Francia, etc.)
-        // siguiendo el mismo formato. Por ahora solo están los que mandaste.
+        // Aquí puedes agregar más países (España, Francia, etc.)
     };
 
     // ================================================================
@@ -1782,7 +1781,7 @@
                 ingredients: postre.ingredients,
                 steps: postre.steps,
                 pais: pais,
-                bandera: '', // se puede buscar después
+                bandera: '',
                 tipo: 'postre'
             });
         });
@@ -1843,8 +1842,9 @@
         let html = '';
         filtradas.forEach(r => {
             const tipoEtiqueta = r.tipo === 'plato' ? '🍽️ Plato' : '🍰 Postre';
-            const imagen = `https://picsum.photos/seed/${r.name.replace(/\s/g,'')}/400/300`;
-            const video = `https://www.youtube.com/results?search_query=${r.name.replace(/\s/g,'+')}+receta`;
+            // IMAGEN REAL usando Unsplash con búsqueda del nombre
+            const imagen = `https://source.unsplash.com/featured/?${encodeURIComponent(r.name)}`;
+            const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(r.name)}+receta`;
             html += `
                 <div class="tarjeta" data-id="${r.name}">
                     <img class="imagen-tarjeta" src="${imagen}" alt="${r.name}" loading="lazy" />
@@ -1871,8 +1871,9 @@
         const receta = todasRecetas.find(r => r.name === nombre);
         if (!receta) return;
 
-        const imagen = `https://picsum.photos/seed/${receta.name.replace(/\s/g,'')}/800/600`;
-        const video = `https://www.youtube.com/results?search_query=${receta.name.replace(/\s/g,'+')}+receta`;
+        // IMAGEN REAL en el modal
+        const imagen = `https://source.unsplash.com/featured/?${encodeURIComponent(receta.name)}`;
+        const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(receta.name)}+receta`;
 
         document.getElementById('modalImagen').src = imagen;
         document.getElementById('modalTitulo').textContent = receta.name;
