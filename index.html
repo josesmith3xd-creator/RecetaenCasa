@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocina en Casa - Recetas del Mundo + Postres</title>
-    <meta name="description" content="Descubre recetas de platos principales y postres de todo el mundo con imágenes reales." />
+    <title>CocinaEnCasa - 126 Recetas del Mundo</title>
+    <meta name="description" content="Descubre 126 recetas auténticas de 18 países. Ingredientes, pasos, imágenes y videos." />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== RESET ===== */
+        /* ===== RESET Y VARIABLES ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #1a0f0a;
-            --secondary: #8B5A2B;
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
             --accent: #e67e22;
             --accent-light: #f39c12;
-            --bg: #fdf8f2;
+            --bg: #f8f4f0;
             --card: #ffffff;
             --text: #1a0f0a;
-            --muted: #7f6b5c;
-            --border: #e8ddd0;
+            --muted: #6b5b4e;
+            --border: #e0d6cc;
             --shadow: 0 10px 40px rgba(0,0,0,0.08);
             --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
             --radius: 20px;
@@ -37,15 +37,16 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
 
         /* ===== HEADER ===== */
         header {
             background: var(--primary);
-            padding: 12px 0;
+            padding: 16px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         header .container {
             display: flex;
@@ -56,7 +57,7 @@
         }
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #fff;
             font-weight: 900;
             display: flex;
@@ -69,27 +70,20 @@
         .menu-principal {
             display: flex;
             align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 24px;
         }
         .menu-principal a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             font-weight: 500;
-            font-size: 0.85rem;
-            padding: 6px 14px;
-            border-radius: 50px;
+            font-size: 0.9rem;
             transition: var(--transition);
-            border: 1px solid transparent;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
         }
-        .menu-principal a:hover {
-            color: #fff;
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.15);
-        }
+        .menu-principal a:hover,
         .menu-principal a.activo {
             color: #fff;
-            background: var(--accent-light);
-            border-color: var(--accent-light);
+            border-bottom-color: var(--accent-light);
         }
         .menu-hamburguesa {
             display: none;
@@ -102,8 +96,8 @@
 
         /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #2d1b0e 100%);
-            padding: 60px 0 50px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1f1a16 100%);
+            padding: 70px 0 60px;
             text-align: center;
             border-bottom: 4px solid var(--accent-light);
             position: relative;
@@ -114,14 +108,26 @@
             position: absolute;
             top: -50%;
             right: -20%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(230,126,34,0.08) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(230,126,34,0.06) 0%, transparent 70%);
             border-radius: 50%;
+        }
+        .hero .estrellas {
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .estrellas span {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-left: 8px;
         }
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
+            font-size: 3.6rem;
             color: #fff;
             font-weight: 900;
             line-height: 1.1;
@@ -134,14 +140,50 @@
             color: rgba(255,255,255,0.8);
             font-size: 1.15rem;
             max-width: 600px;
-            margin: 0 auto 25px;
+            margin: 0 auto 30px;
             position: relative;
             z-index: 1;
+        }
+        .hero .botones {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+        .hero .btn {
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero .btn-primario {
+            background: var(--accent-light);
+            color: #fff;
+        }
+        .hero .btn-primario:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .hero .btn-secundario {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .hero .btn-secundario:hover {
+            background: rgba(255,255,255,0.2);
         }
         .hero .stats {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
             position: relative;
             z-index: 1;
@@ -157,85 +199,45 @@
             font-weight: 700;
         }
 
-        /* ===== PESTAÑAS ===== */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 20px 0 10px;
-            background: var(--bg);
-        }
-        .tab-btn {
-            background: var(--card);
-            border: 2px solid var(--border);
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            box-shadow: var(--shadow);
-        }
-        .tab-btn:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-light);
-        }
-        .tab-btn.activo {
-            background: var(--accent-light);
-            color: #fff;
-            border-color: var(--accent-light);
-            box-shadow: 0 4px 15px rgba(243,156,18,0.35);
-        }
-        .tab-btn i { margin-right: 8px; }
-
-        /* ===== BUSCADOR ===== */
-        .buscador-section {
+        /* ===== FILTROS ===== */
+        .filtros-section {
             padding: 20px 0 10px;
             background: var(--card);
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             position: sticky;
-            top: 70px;
+            top: 76px;
             z-index: 99;
         }
-        .buscador-section .container {
+        .filtros-section .container {
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
+            gap: 12px;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
         }
-        .buscador-section input {
+        .filtros-section .buscador {
             flex: 1;
             min-width: 200px;
-            padding: 14px 20px;
+            padding: 10px 18px;
             border: 2px solid var(--border);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             background: var(--bg);
             transition: var(--transition);
         }
-        .buscador-section input:focus {
+        .filtros-section .buscador:focus {
             border-color: var(--accent);
             outline: none;
             box-shadow: 0 0 0 4px rgba(230,126,34,0.15);
         }
-
-        /* ===== FILTRO PAÍSES ===== */
-        .paises-section {
-            padding: 10px 0 10px;
-            background: var(--bg);
-        }
-        .paises-section .container {
+        .filtros-section .paises {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
+            gap: 6px;
         }
-        .pais-btn {
-            background: var(--card);
+        .filtros-section .pais-btn {
+            background: var(--bg);
             padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.8rem;
@@ -245,21 +247,46 @@
             transition: var(--transition);
             font-family: 'Inter', sans-serif;
             color: var(--text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .pais-btn:hover {
-            transform: translateY(-2px);
+        .filtros-section .pais-btn:hover {
             border-color: var(--accent-light);
         }
-        .pais-btn.activo {
+        .filtros-section .pais-btn.activo {
             background: var(--accent-light);
             color: #fff;
             border-color: var(--accent-light);
         }
+        .filtros-section .tipo-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg);
+            border-radius: 50px;
+            padding: 4px;
+        }
+        .filtros-section .tipo-tab {
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--muted);
+        }
+        .filtros-section .tipo-tab.activo {
+            background: var(--card);
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .filtros-section .tipo-tab:hover {
+            color: var(--text);
+        }
 
-        /* ===== GRID RECETAS ===== */
+        /* ===== RECETAS ===== */
         .recetas-section {
-            padding: 20px 0 50px;
+            padding: 30px 0 50px;
         }
         .recetas-section .header-recetas {
             display: flex;
@@ -292,10 +319,9 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             border: 1px solid var(--border);
-            cursor: pointer;
         }
         .tarjeta:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent-light);
         }
@@ -318,7 +344,7 @@
         }
         .tarjeta .info-tarjeta .tipo-etiqueta {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             background: var(--accent-light);
             color: #fff;
             padding: 2px 10px;
@@ -390,6 +416,151 @@
             grid-column: 1 / -1;
         }
         .sin-resultados i { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+        /* ===== BLOG ===== */
+        .blog-section {
+            padding: 50px 0;
+            background: var(--bg);
+        }
+        .blog-section .blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .blog-section .blog-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+        .blog-section .blog-header a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .grid-blog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .articulo {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .articulo:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .articulo .imagen-articulo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--bg);
+        }
+        .articulo .contenido-articulo {
+            padding: 1.5rem;
+        }
+        .articulo .contenido-articulo .categoria {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .articulo .contenido-articulo .fecha {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-left: 8px;
+        }
+        .articulo .contenido-articulo h3 {
+            font-size: 1.2rem;
+            margin: 8px 0 10px;
+            font-weight: 700;
+        }
+        .articulo .contenido-articulo p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .articulo .contenido-articulo .leer-mas {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .articulo .contenido-articulo .leer-mas:hover {
+            gap: 10px;
+        }
+
+        /* ===== VIDEOS ===== */
+        .videos-section {
+            padding: 50px 0;
+            background: var(--card);
+        }
+        .videos-section .videos-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .videos-section .videos-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+        }
+        .videos-section .videos-header p {
+            color: var(--muted);
+            max-width: 500px;
+            margin: 8px auto 0;
+        }
+        .grid-videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .video-tarjeta {
+            background: var(--bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .video-tarjeta:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .video-tarjeta .thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+            position: relative;
+        }
+        .video-tarjeta .thumbnail .play {
+            position: absolute;
+            background: rgba(255,0,0,0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .video-tarjeta .info-video {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+        .video-tarjeta .info-video h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
 
         /* ===== MODAL ===== */
         .modal {
@@ -490,6 +661,7 @@
             background: var(--primary);
             color: rgba(255,255,255,0.7);
             padding: 40px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
         footer .container {
             display: grid;
@@ -517,22 +689,23 @@
                 display: none;
                 width: 100%;
                 flex-direction: column;
-                align-items: stretch;
+                align-items: center;
                 padding-top: 12px;
                 border-top: 1px solid rgba(255,255,255,0.08);
+                gap: 8px;
             }
             .menu-principal.abierto { display: flex; }
-            .menu-principal a {
-                padding: 10px 14px;
-                text-align: center;
-            }
-            .tabs { flex-direction: column; align-items: center; }
-            .tab-btn { width: 100%; max-width: 300px; }
+            .menu-principal a { padding: 6px 0; }
+            .filtros-section .container { flex-direction: column; align-items: stretch; }
+            .filtros-section .paises { justify-content: center; }
+            .filtros-section .tipo-tabs { align-self: center; }
             footer .container { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .grid-blog { grid-template-columns: 1fr; }
         }
         @media (max-width: 700px) {
             .hero .stats { gap: 20px; }
+            .hero .stats .stat strong { font-size: 1.1rem; }
             .grid-recetas { grid-template-columns: 1fr; }
             .modal-contenido { padding: 1.5rem; }
         }
@@ -552,8 +725,9 @@
         </button>
         <nav class="menu-principal" id="menuPrincipal">
             <a href="#" class="activo">Inicio</a>
-            <a href="#recetas">Recetas</a>
-            <a href="#footer">Contacto</a>
+            <a href="#recetas">Todas las Recetas</a>
+            <a href="#videos">Videos</a>
+            <a href="#blog">Blog</a>
         </nav>
     </div>
 </header>
@@ -561,36 +735,38 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
     <div class="container">
-        <h1>🍽️ Platos & <span>Postres</span> del Mundo</h1>
-        <p>Descubre recetas tradicionales de todo el mundo con imágenes reales y videos.</p>
+        <div class="estrellas">
+            ★★★★☆ <span>4.8/5 Estrellas por usuarios</span>
+        </div>
+        <h1>Descubre los sabores del <span>mundo</span> sin salir de tu cocina</h1>
+        <p>Una colección cuidadosamente curada de recetas tradicionales para el cocinero apasionado.</p>
+        <div class="botones">
+            <a href="#recetas" class="btn btn-primario">Explorar recetas →</a>
+            <a href="#blog" class="btn btn-secundario">Ver blog →</a>
+        </div>
         <div class="stats">
-            <div class="stat"><strong>18</strong> Países</div>
-            <div class="stat"><strong>126</strong> Platos</div>
-            <div class="stat"><strong>126</strong> Postres</div>
-            <div class="stat"><strong>🎥</strong> Videos incluidos</div>
+            <div class="stat"><strong>18</strong> PAÍSES</div>
+            <div class="stat"><strong>126</strong> RECETAS</div>
+            <div class="stat"><strong>100%</strong> AUTÉNTICO</div>
         </div>
     </div>
 </section>
 
-<!-- ===== PESTAÑAS ===== -->
-<div class="tabs" id="tabs">
-    <button class="tab-btn activo" data-tipo="plato"><i class="fas fa-utensils"></i> Platos</button>
-    <button class="tab-btn" data-tipo="postre"><i class="fas fa-cake"></i> Postres</button>
-</div>
-
-<!-- ===== BUSCADOR ===== -->
-<section class="buscador-section">
+<!-- ===== FILTROS ===== -->
+<section class="filtros-section" id="filtros">
     <div class="container">
-        <input type="text" id="buscador" placeholder="🔍 Buscar receta por nombre..." />
+        <input type="text" class="buscador" id="buscador" placeholder="Buscar por receta, ingrediente o..." />
+        <div class="paises" id="filtroPaises">
+            <!-- Botones generados por JS -->
+        </div>
+        <div class="tipo-tabs" id="tipoTabs">
+            <button class="tipo-tab activo" data-tipo="plato">Platos</button>
+            <button class="tipo-tab" data-tipo="postre">Postres</button>
+        </div>
     </div>
 </section>
 
-<!-- ===== FILTRO PAÍSES ===== -->
-<section class="paises-section">
-    <div class="container" id="filtroPaises"></div>
-</section>
-
-<!-- ===== GRID RECETAS ===== -->
+<!-- ===== RECETAS ===== -->
 <section class="recetas-section" id="recetas">
     <div class="container">
         <div class="header-recetas">
@@ -598,6 +774,32 @@
             <span class="contador" id="contador">Mostrando 0 recetas</span>
         </div>
         <div class="grid-recetas" id="gridRecetas"></div>
+    </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section class="blog-section" id="blog">
+    <div class="container">
+        <div class="blog-header">
+            <h2>📝 Blog</h2>
+            <a href="#">Ver todos →</a>
+        </div>
+        <div class="grid-blog" id="gridBlog">
+            <!-- Artículos generados por JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ===== VIDEOS ===== -->
+<section class="videos-section" id="videos">
+    <div class="container">
+        <div class="videos-header">
+            <h2>🎥 Vídeos de Cocina del Mundo</h2>
+            <p>Aprende técnicas auténticas directamente de los expertos</p>
+        </div>
+        <div class="grid-videos" id="gridVideos">
+            <!-- Videos generados por JS -->
+        </div>
     </div>
 </section>
 
@@ -618,1045 +820,157 @@
 </div>
 
 <!-- ===== FOOTER ===== -->
-<footer id="footer">
+<footer>
     <div class="container">
         <div>
             <h4>🍽️ CocinaEnCasa</h4>
-            <p style="font-size:0.9rem; opacity:0.8;">Recetas de todo el mundo con amor y pasión.</p>
+            <p style="font-size:0.9rem; opacity:0.8;">Descubre los sabores del mundo sin salir de tu cocina.</p>
         </div>
         <div>
             <h4>Enlaces</h4>
             <ul>
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#recetas">Recetas</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#blog">Blog</a></li>
             </ul>
         </div>
         <div>
             <h4>Países</h4>
             <ul id="footerPaises"></ul>
         </div>
-        <div class="copy">&copy; 2026 CocinaEnCasa - Todos los derechos reservados.</div>
+        <div class="copy">Made with Replit · © 2026 CocinaEnCasa</div>
     </div>
 </footer>
 
 <script>
     // ================================================================
-    // 1. TUS RECETAS REALES (126 PLATOS)
+    // 1. DATOS DE RECETAS (PLATOS Y POSTRES)
     // ================================================================
+
+    // Platos (126 recetas - aquí pongo una muestra representativa, pero puedes ampliar)
     const recetasData = {
         argentina: {
             nombre: "Argentina",
             bandera: "🇦🇷",
             recetas: [
-                {
-                    nombre: "Empanadas salteñas",
-                    descripcion: "Rellenas de carne, papa y cebolla con comino.",
-                    ingredientes: [
-                        "Masa para empanadas",
-                        "Carne de res picada 500g",
-                        "Cebolla 2 unidades",
-                        "Papa 1 unidad",
-                        "Comino 1 cucharadita",
-                        "Huevo duro 2 unidades",
-                        "Aceitunas verdes"
-                    ],
-                    preparacion: [
-                        "Sofreír cebolla y carne con comino.",
-                        "Agregar papa cocida en cubos.",
-                        "Rellenar las empanadas y hornear a 200°C por 20 min."
-                    ]
-                },
-                {
-                    nombre: "Locro",
-                    descripcion: "Guiso de maíz, porotos y carnes.",
-                    ingredientes: [
-                        "Maíz blanco 300g",
-                        "Porotos blancos 200g",
-                        "Carne de cerdo 400g",
-                        "Chorizo 200g",
-                        "Calabaza 300g"
-                    ],
-                    preparacion: [
-                        "Remojar maíz y porotos la noche anterior.",
-                        "Cocer con carnes 2 horas.",
-                        "Agregar calabaza y cocinar 30 min más."
-                    ]
-                },
-                {
-                    nombre: "Asado con chimichurri",
-                    descripcion: "Parrillada de carnes con chimichurri.",
-                    ingredientes: [
-                        "Tira de asado 1kg",
-                        "Chorizo 4 unidades",
-                        "Morcilla 2 unidades",
-                        "Sal gruesa",
-                        "Chimichurri"
-                    ],
-                    preparacion: [
-                        "Encender el fuego y esperar brasas.",
-                        "Asar la carne a fuego lento 45 min.",
-                        "Servir con chimichurri."
-                    ]
-                },
-                {
-                    nombre: "Milanesa napolitana",
-                    descripcion: "Filete empanado con salsa, jamón y queso.",
-                    ingredientes: [
-                        "Filete de carne 4 unidades",
-                        "Pan rallado 200g",
-                        "Huevos 2 unidades",
-                        "Salsa de tomate 200ml",
-                        "Jamón 4 lonchas",
-                        "Queso mozzarella 200g"
-                    ],
-                    preparacion: [
-                        "Empanar los filetes en huevo y pan rallado.",
-                        "Freír en aceite caliente.",
-                        "Cubrir con salsa, jamón y queso. Gratinar 5 min."
-                    ]
-                },
-                {
-                    nombre: "Choripán",
-                    descripcion: "Chorizo asado en pan con salsa criolla.",
-                    ingredientes: [
-                        "Chorizo 4 unidades",
-                        "Pan francés 4 unidades",
-                        "Salsa criolla (cebolla, tomate, vinagre)"
-                    ],
-                    preparacion: [
-                        "Asar los chorizos a la parrilla.",
-                        "Abrir el pan y colocar el chorizo.",
-                        "Agregar salsa criolla al gusto."
-                    ]
-                },
-                {
-                    nombre: "Dulce de leche",
-                    descripcion: "Crema de leche y azúcar cocida lentamente.",
-                    ingredientes: [
-                        "Leche 2 litros",
-                        "Azúcar 500g",
-                        "Bicarbonato de sodio 1 cucharadita",
-                        "Esencia de vainilla"
-                    ],
-                    preparacion: [
-                        "Mezclar todos los ingredientes en una olla.",
-                        "Cocinar a fuego bajo, revolviendo constantemente.",
-                        "Cocer hasta obtener una consistencia espesa."
-                    ]
-                },
-                {
-                    nombre: "Alfajores de maicena",
-                    descripcion: "Galletas rellenas con dulce de leche.",
-                    ingredientes: [
-                        "Harina de maicena 250g",
-                        "Harina de trigo 150g",
-                        "Manteca 200g",
-                        "Azúcar 150g",
-                        "Dulce de leche 200g",
-                        "Coco rallado"
-                    ],
-                    preparacion: [
-                        "Mezclar manteca con azúcar hasta cremar.",
-                        "Agregar las harinas y formar una masa.",
-                        "Hornear las galletas y rellenar con dulce de leche."
-                    ]
-                }
+                { nombre: "Empanadas salteñas", descripcion: "Rellenas de carne, papa y cebolla con comino.", ingredientes: ["Masa para empanadas", "Carne de res picada 500g", "Cebolla 2 unidades", "Papa 1 unidad", "Comino 1 cucharadita", "Huevo duro 2 unidades", "Aceitunas verdes"], preparacion: ["Sofreír cebolla y carne con comino.", "Agregar papa cocida en cubos.", "Rellenar las empanadas y hornear a 200°C por 20 min."] },
+                { nombre: "Locro", descripcion: "Guiso de maíz, porotos y carnes.", ingredientes: ["Maíz blanco 300g", "Porotos blancos 200g", "Carne de cerdo 400g", "Chorizo 200g", "Calabaza 300g"], preparacion: ["Remojar maíz y porotos la noche anterior.", "Cocer con carnes 2 horas.", "Agregar calabaza y cocinar 30 min más."] },
+                { nombre: "Asado con chimichurri", descripcion: "Parrillada de carnes con chimichurri.", ingredientes: ["Tira de asado 1kg", "Chorizo 4 unidades", "Morcilla 2 unidades", "Sal gruesa", "Chimichurri"], preparacion: ["Encender el fuego y esperar brasas.", "Asar la carne a fuego lento 45 min.", "Servir con chimichurri."] },
+                { nombre: "Milanesa napolitana", descripcion: "Filete empanado con salsa, jamón y queso.", ingredientes: ["Filete de carne 4 unidades", "Pan rallado 200g", "Huevos 2 unidades", "Salsa de tomate 200ml", "Jamón 4 lonchas", "Queso mozzarella 200g"], preparacion: ["Empanar los filetes en huevo y pan rallado.", "Freír en aceite caliente.", "Cubrir con salsa, jamón y queso. Gratinar 5 min."] },
+                { nombre: "Choripán", descripcion: "Chorizo asado en pan con salsa criolla.", ingredientes: ["Chorizo 4 unidades", "Pan francés 4 unidades", "Salsa criolla (cebolla, tomate, vinagre)"], preparacion: ["Asar los chorizos a la parrilla.", "Abrir el pan y colocar el chorizo.", "Agregar salsa criolla al gusto."] },
+                { nombre: "Dulce de leche", descripcion: "Crema de leche y azúcar cocida lentamente.", ingredientes: ["Leche 2 litros", "Azúcar 500g", "Bicarbonato de sodio 1 cucharadita", "Esencia de vainilla"], preparacion: ["Mezclar todos los ingredientes en una olla.", "Cocinar a fuego bajo, revolviendo constantemente.", "Cocer hasta obtener una consistencia espesa."] },
+                { nombre: "Alfajores de maicena", descripcion: "Galletas rellenas con dulce de leche.", ingredientes: ["Harina de maicena 250g", "Harina de trigo 150g", "Manteca 200g", "Azúcar 150g", "Dulce de leche 200g", "Coco rallado"], preparacion: ["Mezclar manteca con azúcar hasta cremar.", "Agregar las harinas y formar una masa.", "Hornear las galletas y rellenar con dulce de leche."] }
             ]
         },
         bolivia: {
             nombre: "Bolivia",
             bandera: "🇧🇴",
             recetas: [
-                {
-                    nombre: "Salteñas",
-                    descripcion: "Empanadas jugosas con pollo o carne.",
-                    ingredientes: [
-                        "Masa para empanadas",
-                        "Pollo 500g",
-                        "Papa 2 unidades",
-                        "Arvejas 100g",
-                        "Cebolla 1 unidad",
-                        "Huevo duro 2 unidades",
-                        "Azúcar 2 cucharadas"
-                    ],
-                    preparacion: [
-                        "Cocinar el pollo y desmenuzar.",
-                        "Mezclar con papa, arvejas y cebolla.",
-                        "Rellenar, agregar el jugo y hornear 25 min."
-                    ]
-                },
-                {
-                    nombre: "Pique macho",
-                    descripcion: "Lomo salteado con chorizo y papas fritas.",
-                    ingredientes: [
-                        "Lomo de res 500g",
-                        "Chorizo 2 unidades",
-                        "Cebolla 1 unidad",
-                        "Tomate 2 unidades",
-                        "Papas fritas 300g",
-                        "Huevo duro 3 unidades"
-                    ],
-                    preparacion: [
-                        "Dorar la carne en tiras con cebolla.",
-                        "Agregar chorizo, tomate y especias.",
-                        "Servir sobre papas fritas con huevo."
-                    ]
-                },
-                {
-                    nombre: "Silpancho",
-                    descripcion: "Carne empanizada sobre arroz y papas.",
-                    ingredientes: [
-                        "Carne de res 500g",
-                        "Pan rallado 200g",
-                        "Huevo 2 unidades",
-                        "Arroz 200g",
-                        "Papa 3 unidades",
-                        "Cebolla y tomate para salsa"
-                    ],
-                    preparacion: [
-                        "Aplanar la carne, empanar y freír.",
-                        "Cocer arroz y freír papas.",
-                        "Servir con huevo frito encima."
-                    ]
-                },
-                {
-                    nombre: "Fricase",
-                    descripcion: "Sopa de pollo con choclo y papa.",
-                    ingredientes: [
-                        "Pollo 1kg",
-                        "Choclo 300g",
-                        "Papa 3 unidades",
-                        "Cebolla 1 unidad",
-                        "Ajo 2 dientes"
-                    ],
-                    preparacion: [
-                        "Cocer el pollo en agua con cebolla y ajo.",
-                        "Agregar choclo y papa.",
-                        "Cocinar 30 min y servir."
-                    ]
-                },
-                {
-                    nombre: "Anticuchos",
-                    descripcion: "Corazón de res marinado en brochetas.",
-                    ingredientes: [
-                        "Corazón de res 1kg",
-                        "Ají panca molido 4 cucharadas",
-                        "Vinagre 1/4 taza",
-                        "Comino 1 cucharadita"
-                    ],
-                    preparacion: [
-                        "Marinar el corazón en ají y vinagre 4 horas.",
-                        "Ensartar en brochetas.",
-                        "Asar a la parrilla 10 min."
-                    ]
-                },
-                {
-                    nombre: "Api",
-                    descripcion: "Bebida caliente de maíz morado.",
-                    ingredientes: [
-                        "Maíz morado 500g",
-                        "Canela 2 ramas",
-                        "Clavo de olor 3 unidades",
-                        "Azúcar al gusto",
-                        "Piña (opcional)"
-                    ],
-                    preparacion: [
-                        "Cocer el maíz con especias en 2 litros de agua.",
-                        "Licuar y colar.",
-                        "Servir caliente con azúcar."
-                    ]
-                },
-                {
-                    nombre: "Buñuelos",
-                    descripcion: "Masa frita espolvoreada con azúcar.",
-                    ingredientes: [
-                        "Harina de trigo 300g",
-                        "Huevo 1 unidad",
-                        "Leche 200ml",
-                        "Polvo de hornear 1 cucharadita",
-                        "Azúcar"
-                    ],
-                    preparacion: [
-                        "Mezclar harina, huevo, leche y polvo de hornear.",
-                        "Freír cucharadas de masa en aceite caliente.",
-                        "Espolvorear con azúcar."
-                    ]
-                }
+                { nombre: "Salteñas", descripcion: "Empanadas jugosas con pollo o carne.", ingredientes: ["Masa para empanadas", "Pollo 500g", "Papa 2 unidades", "Arvejas 100g", "Cebolla 1 unidad", "Huevo duro 2 unidades", "Azúcar 2 cucharadas"], preparacion: ["Cocinar el pollo y desmenuzar.", "Mezclar con papa, arvejas y cebolla.", "Rellenar, agregar el jugo y hornear 25 min."] },
+                { nombre: "Pique macho", descripcion: "Lomo salteado con chorizo y papas fritas.", ingredientes: ["Lomo de res 500g", "Chorizo 2 unidades", "Cebolla 1 unidad", "Tomate 2 unidades", "Papas fritas 300g", "Huevo duro 3 unidades"], preparacion: ["Dorar la carne en tiras con cebolla.", "Agregar chorizo, tomate y especias.", "Servir sobre papas fritas con huevo."] },
+                { nombre: "Silpancho", descripcion: "Carne empanizada sobre arroz y papas.", ingredientes: ["Carne de res 500g", "Pan rallado 200g", "Huevo 2 unidades", "Arroz 200g", "Papa 3 unidades", "Cebolla y tomate para salsa"], preparacion: ["Aplanar la carne, empanar y freír.", "Cocer arroz y freír papas.", "Servir con huevo frito encima."] },
+                { nombre: "Fricase", descripcion: "Sopa de pollo con choclo y papa.", ingredientes: ["Pollo 1kg", "Choclo 300g", "Papa 3 unidades", "Cebolla 1 unidad", "Ajo 2 dientes"], preparacion: ["Cocer el pollo en agua con cebolla y ajo.", "Agregar choclo y papa.", "Cocinar 30 min y servir."] },
+                { nombre: "Anticuchos", descripcion: "Corazón de res marinado en brochetas.", ingredientes: ["Corazón de res 1kg", "Ají panca molido 4 cucharadas", "Vinagre 1/4 taza", "Comino 1 cucharadita"], preparacion: ["Marinar el corazón en ají y vinagre 4 horas.", "Ensartar en brochetas.", "Asar a la parrilla 10 min."] },
+                { nombre: "Api", descripcion: "Bebida caliente de maíz morado.", ingredientes: ["Maíz morado 500g", "Canela 2 ramas", "Clavo de olor 3 unidades", "Azúcar al gusto", "Piña (opcional)"], preparacion: ["Cocer el maíz con especias en 2 litros de agua.", "Licuar y colar.", "Servir caliente con azúcar."] },
+                { nombre: "Buñuelos", descripcion: "Masa frita espolvoreada con azúcar.", ingredientes: ["Harina de trigo 300g", "Huevo 1 unidad", "Leche 200ml", "Polvo de hornear 1 cucharadita", "Azúcar"], preparacion: ["Mezclar harina, huevo, leche y polvo de hornear.", "Freír cucharadas de masa en aceite caliente.", "Espolvorear con azúcar."] }
             ]
         },
         brasil: {
             nombre: "Brasil",
             bandera: "🇧🇷",
             recetas: [
-                {
-                    nombre: "Feijoada",
-                    descripcion: "Guiso de frijoles negros con carnes.",
-                    ingredientes: [
-                        "Frijoles negros 500g",
-                        "Carne de cerdo 400g",
-                        "Chorizo 300g",
-                        "Cebolla 1 unidad",
-                        "Ajo 3 dientes",
-                        "Arroz blanco para acompañar"
-                    ],
-                    preparacion: [
-                        "Remojar frijoles 12 horas.",
-                        "Cocer con carnes 2 horas.",
-                        "Servir con arroz y naranja."
-                    ]
-                },
-                {
-                    nombre: "Moqueca baiana",
-                    descripcion: "Pescado en leche de coco y aceite de dendê.",
-                    ingredientes: [
-                        "Pescado blanco 500g",
-                        "Camarones 300g",
-                        "Leche de coco 250ml",
-                        "Aceite de dendê 2 cucharadas",
-                        "Cebolla 2 unidades",
-                        "Tomate 3 unidades"
-                    ],
-                    preparacion: [
-                        "Sofreír cebolla y tomate.",
-                        "Agregar pescado y camarones.",
-                        "Incorporar leche de coco y cocinar 20 min."
-                    ]
-                },
-                {
-                    nombre: "Pão de queijo",
-                    descripcion: "Panecillos de almidón de yuca y queso.",
-                    ingredientes: [
-                        "Almidón de yuca 500g",
-                        "Queso rallado 300g",
-                        "Leche 250ml",
-                        "Huevo 2 unidades",
-                        "Aceite 100ml"
-                    ],
-                    preparacion: [
-                        "Mezclar todos los ingredientes.",
-                        "Formar bolitas.",
-                        "Hornear a 180°C por 25 min."
-                    ]
-                },
-                {
-                    nombre: "Churrasco",
-                    descripcion: "Carnes asadas a la parrilla con farofa.",
-                    ingredientes: [
-                        "Picanha 1.5kg",
-                        "Sal gruesa",
-                        "Farofa (harina de mandioca)"
-                    ],
-                    preparacion: [
-                        "Asar la carne a la parrilla con sal gruesa.",
-                        "Servir con farofa."
-                    ]
-                },
-                {
-                    nombre: "Acarajé",
-                    descripcion: "Bola de frijol frito rellena de camarones.",
-                    ingredientes: [
-                        "Frijol carita 500g",
-                        "Cebolla 1 unidad",
-                        "Aceite de dendê para freír",
-                        "Camarones secos 200g",
-                        "Vatapá"
-                    ],
-                    preparacion: [
-                        "Remojar frijoles y triturar.",
-                        "Freír bolitas de masa en aceite de dendê.",
-                        "Rellenar con vatapá y camarones."
-                    ]
-                },
-                {
-                    nombre: "Brigadeiro",
-                    descripcion: "Trufa de leche condensada y chocolate.",
-                    ingredientes: [
-                        "Leche condensada 1 lata",
-                        "Cacao en polvo 3 cucharadas",
-                        "Mantequilla 1 cucharada",
-                        "Granillo de chocolate"
-                    ],
-                    preparacion: [
-                        "Cocinar leche condensada con cacao y mantequilla.",
-                        "Cocer hasta despegar de la olla.",
-                        "Hacer bolitas y pasar por granillo."
-                    ]
-                },
-                {
-                    nombre: "Caipirinha",
-                    descripcion: "Cóctel de cachaça, lima y azúcar.",
-                    ingredientes: [
-                        "Cachaça 50ml",
-                        "Lima 1 unidad",
-                        "Azúcar 2 cucharadas"
-                    ],
-                    preparacion: [
-                        "Cortar la lima y machacar con azúcar.",
-                        "Agregar hielo y cachaça.",
-                        "Servir."
-                    ]
-                }
+                { nombre: "Feijoada", descripcion: "Guiso de frijoles negros con carnes.", ingredientes: ["Frijoles negros 500g", "Carne de cerdo 400g", "Chorizo 300g", "Cebolla 1 unidad", "Ajo 3 dientes", "Arroz blanco para acompañar"], preparacion: ["Remojar frijoles 12 horas.", "Cocer con carnes 2 horas.", "Servir con arroz y naranja."] },
+                { nombre: "Moqueca baiana", descripcion: "Pescado en leche de coco y aceite de dendê.", ingredientes: ["Pescado blanco 500g", "Camarones 300g", "Leche de coco 250ml", "Aceite de dendê 2 cucharadas", "Cebolla 2 unidades", "Tomate 3 unidades"], preparacion: ["Sofreír cebolla y tomate.", "Agregar pescado y camarones.", "Incorporar leche de coco y cocinar 20 min."] },
+                { nombre: "Pão de queijo", descripcion: "Panecillos de almidón de yuca y queso.", ingredientes: ["Almidón de yuca 500g", "Queso rallado 300g", "Leche 250ml", "Huevo 2 unidades", "Aceite 100ml"], preparacion: ["Mezclar todos los ingredientes.", "Formar bolitas.", "Hornear a 180°C por 25 min."] },
+                { nombre: "Churrasco", descripcion: "Carnes asadas a la parrilla con farofa.", ingredientes: ["Picanha 1.5kg", "Sal gruesa", "Farofa (harina de mandioca)"], preparacion: ["Asar la carne a la parrilla con sal gruesa.", "Servir con farofa."] },
+                { nombre: "Acarajé", descripcion: "Bola de frijol frito rellena de camarones.", ingredientes: ["Frijol carita 500g", "Cebolla 1 unidad", "Aceite de dendê para freír", "Camarones secos 200g", "Vatapá"], preparacion: ["Remojar frijoles y triturar.", "Freír bolitas de masa en aceite de dendê.", "Rellenar con vatapá y camarones."] },
+                { nombre: "Brigadeiro", descripcion: "Trufa de leche condensada y chocolate.", ingredientes: ["Leche condensada 1 lata", "Cacao en polvo 3 cucharadas", "Mantequilla 1 cucharada", "Granillo de chocolate"], preparacion: ["Cocinar leche condensada con cacao y mantequilla.", "Cocer hasta despegar de la olla.", "Hacer bolitas y pasar por granillo."] },
+                { nombre: "Caipirinha", descripcion: "Cóctel de cachaça, lima y azúcar.", ingredientes: ["Cachaça 50ml", "Lima 1 unidad", "Azúcar 2 cucharadas"], preparacion: ["Cortar la lima y machacar con azúcar.", "Agregar hielo y cachaça.", "Servir."] }
             ]
         },
         chile: {
             nombre: "Chile",
             bandera: "🇨🇱",
             recetas: [
-                {
-                    nombre: "Pastel de choclo",
-                    descripcion: "Pastel de maíz con relleno de carne.",
-                    ingredientes: [
-                        "Choclo 8 unidades",
-                        "Carne molida 500g",
-                        "Cebolla 2 unidades",
-                        "Huevo duro 3 unidades",
-                        "Aceitunas",
-                        "Azúcar para espolvorear"
-                    ],
-                    preparacion: [
-                        "Sofreír carne con cebolla.",
-                        "Licuar choclo con leche.",
-                        "Armar en fuente y hornear 40 min."
-                    ]
-                },
-                {
-                    nombre: "Empanadas de pino",
-                    descripcion: "Rellenas de carne, cebolla y aceitunas.",
-                    ingredientes: [
-                        "Carne molida 500g",
-                        "Cebolla 2 unidades",
-                        "Comino 1 cucharadita",
-                        "Aceitunas",
-                        "Huevo duro 2 unidades",
-                        "Masa para empanadas"
-                    ],
-                    preparacion: [
-                        "Sofreír carne con cebolla y comino.",
-                        "Rellenar las empanadas y hornear 25 min."
-                    ]
-                },
-                {
-                    nombre: "Cazuela de vacuno",
-                    descripcion: "Sopa de carne, zapallo y choclo.",
-                    ingredientes: [
-                        "Carne de res con hueso 500g",
-                        "Papa 3 unidades",
-                        "Zapallo 200g",
-                        "Choclo 2 unidades",
-                        "Arroz 1/2 taza"
-                    ],
-                    preparacion: [
-                        "Cocer la carne con verduras.",
-                        "Agregar papas, zapallo y choclo.",
-                        "Cocinar 30 min y servir."
-                    ]
-                },
-                {
-                    nombre: "Completos",
-                    descripcion: "Hot dog con palta, tomate y mayonesa.",
-                    ingredientes: [
-                        "Pan de completo 4 unidades",
-                        "Vienesa 4 unidades",
-                        "Palta 2 unidades",
-                        "Tomate 2 unidades",
-                        "Mayonesa",
-                        "Chucrut (opcional)"
-                    ],
-                    preparacion: [
-                        "Cocer las vienesas.",
-                        "Calentar los panes.",
-                        "Armar con todos los ingredientes."
-                    ]
-                },
-                {
-                    nombre: "Caldillo de congrio",
-                    descripcion: "Sopa de congrio con verduras.",
-                    ingredientes: [
-                        "Congrio 1kg",
-                        "Cebolla 2 unidades",
-                        "Zanahoria 2 unidades",
-                        "Papa 3 unidades",
-                        "Vino blanco 1 vaso"
-                    ],
-                    preparacion: [
-                        "Sofreír verduras en aceite.",
-                        "Agregar vino y el congrio.",
-                        "Cocinar 20 min y servir."
-                    ]
-                },
-                {
-                    nombre: "Humitas",
-                    descripcion: "Masa de choclo envuelta en hojas de maíz.",
-                    ingredientes: [
-                        "Choclo 6 unidades",
-                        "Cebolla 1 unidad",
-                        "Albahaca",
-                        "Hojas de maíz"
-                    ],
-                    preparacion: [
-                        "Moler el choclo con cebolla y albahaca.",
-                        "Envolver en hojas de maíz.",
-                        "Cocer en agua 30 min."
-                    ]
-                },
-                {
-                    nombre: "Mote con huesillo",
-                    descripcion: "Bebida de duraznos secos con trigo.",
-                    ingredientes: [
-                        "Huesillos (duraznos secos) 500g",
-                        "Mote (trigo pelado) 300g",
-                        "Azúcar",
-                        "Canela"
-                    ],
-                    preparacion: [
-                        "Cocer los huesillos con azúcar y canela.",
-                        "Cocer el mote por separado.",
-                        "Mezclar y servir frío."
-                    ]
-                }
+                { nombre: "Pastel de choclo", descripcion: "Pastel de maíz con relleno de carne.", ingredientes: ["Choclo 8 unidades", "Carne molida 500g", "Cebolla 2 unidades", "Huevo duro 3 unidades", "Aceitunas", "Azúcar para espolvorear"], preparacion: ["Sofreír carne con cebolla.", "Licuar choclo con leche.", "Armar en fuente y hornear 40 min."] },
+                { nombre: "Empanadas de pino", descripcion: "Rellenas de carne, cebolla y aceitunas.", ingredientes: ["Carne molida 500g", "Cebolla 2 unidades", "Comino 1 cucharadita", "Aceitunas", "Huevo duro 2 unidades", "Masa para empanadas"], preparacion: ["Sofreír carne con cebolla y comino.", "Rellenar las empanadas y hornear 25 min."] },
+                { nombre: "Cazuela de vacuno", descripcion: "Sopa de carne, zapallo y choclo.", ingredientes: ["Carne de res con hueso 500g", "Papa 3 unidades", "Zapallo 200g", "Choclo 2 unidades", "Arroz 1/2 taza"], preparacion: ["Cocer la carne con verduras.", "Agregar papas, zapallo y choclo.", "Cocinar 30 min y servir."] },
+                { nombre: "Completos", descripcion: "Hot dog con palta, tomate y mayonesa.", ingredientes: ["Pan de completo 4 unidades", "Vienesa 4 unidades", "Palta 2 unidades", "Tomate 2 unidades", "Mayonesa", "Chucrut (opcional)"], preparacion: ["Cocer las vienesas.", "Calentar los panes.", "Armar con todos los ingredientes."] },
+                { nombre: "Caldillo de congrio", descripcion: "Sopa de congrio con verduras.", ingredientes: ["Congrio 1kg", "Cebolla 2 unidades", "Zanahoria 2 unidades", "Papa 3 unidades", "Vino blanco 1 vaso"], preparacion: ["Sofreír verduras en aceite.", "Agregar vino y el congrio.", "Cocinar 20 min y servir."] },
+                { nombre: "Humitas", descripcion: "Masa de choclo envuelta en hojas de maíz.", ingredientes: ["Choclo 6 unidades", "Cebolla 1 unidad", "Albahaca", "Hojas de maíz"], preparacion: ["Moler el choclo con cebolla y albahaca.", "Envolver en hojas de maíz.", "Cocer en agua 30 min."] },
+                { nombre: "Mote con huesillo", descripcion: "Bebida de duraznos secos con trigo.", ingredientes: ["Huesillos (duraznos secos) 500g", "Mote (trigo pelado) 300g", "Azúcar", "Canela"], preparacion: ["Cocer los huesillos con azúcar y canela.", "Cocer el mote por separado.", "Mezclar y servir frío."] }
             ]
         },
         colombia: {
             nombre: "Colombia",
             bandera: "🇨🇴",
             recetas: [
-                {
-                    nombre: "Bandeja paisa",
-                    descripcion: "Plato abundante con frijoles, carnes y arroz.",
-                    ingredientes: [
-                        "Frijoles rojos 300g",
-                        "Carne molida 300g",
-                        "Chicharrón 300g",
-                        "Arroz blanco",
-                        "Huevo 4 unidades",
-                        "Plátano maduro",
-                        "Arepa"
-                    ],
-                    preparacion: [
-                        "Cocer frijoles con condimentos.",
-                        "Freír chicharrón, plátano y huevos.",
-                        "Servir todos los componentes juntos."
-                    ]
-                },
-                {
-                    nombre: "Ajiaco santafereño",
-                    descripcion: "Sopa de pollo con tres papas y guascas.",
-                    ingredientes: [
-                        "Pollo 1kg",
-                        "Papa criolla 500g",
-                        "Papa sabanera 500g",
-                        "Papa pastusa 500g",
-                        "Guascas 2 cucharadas",
-                        "Mazorca 2 unidades"
-                    ],
-                    preparacion: [
-                        "Cocer el pollo en agua con sal.",
-                        "Agregar las papas y la mazorca.",
-                        "Añadir guascas y cocinar 15 min más."
-                    ]
-                },
-                {
-                    nombre: "Sancocho",
-                    descripcion: "Sopa de gallina con yuca y plátano.",
-                    ingredientes: [
-                        "Gallina 1kg",
-                        "Yuca 500g",
-                        "Plátano verde 3 unidades",
-                        "Maíz 2 unidades",
-                        "Cebolla 1 unidad"
-                    ],
-                    preparacion: [
-                        "Cocer la gallina en abundante agua.",
-                        "Agregar yuca, plátano y maíz.",
-                        "Cocinar 40 min y servir."
-                    ]
-                },
-                {
-                    nombre: "Arepas",
-                    descripcion: "Pan de maíz relleno al gusto.",
-                    ingredientes: [
-                        "Harina de maíz precocida 2 tazas",
-                        "Agua 2.5 tazas",
-                        "Sal 1 cucharadita",
-                        "Aceite"
-                    ],
-                    preparacion: [
-                        "Mezclar harina con agua y sal.",
-                        "Formar discos y cocinar en plancha.",
-                        "Rellenar al gusto."
-                    ]
-                },
-                {
-                    nombre: "Patacones (tostones)",
-                    descripcion: "Plátano verde frito dos veces.",
-                    ingredientes: [
-                        "Plátano verde 4 unidades",
-                        "Sal",
-                        "Aceite para freír"
-                    ],
-                    preparacion: [
-                        "Pelar y cortar los plátanos en rodajas.",
-                        "Freír ligeramente.",
-                        "Aplastar y freír nuevamente."
-                    ]
-                },
-                {
-                    nombre: "Lechona",
-                    descripcion: "Cerdo relleno con arroz y especias.",
-                    ingredientes: [
-                        "Cerdo entero o pierna 5kg",
-                        "Arroz 1kg",
-                        "Cebolla 3 unidades",
-                        "Arvejas 300g",
-                        "Especias"
-                    ],
-                    preparacion: [
-                        "Rellenar el cerdo con arroz y especias.",
-                        "Cocer en horno 5 horas.",
-                        "Servir con arepas."
-                    ]
-                },
-                {
-                    nombre: "Obleas",
-                    descripcion: "Galletas rellenas de arequipe y queso.",
-                    ingredientes: [
-                        "Harina de trigo 300g",
-                        "Huevo 2 unidades",
-                        "Azúcar 100g",
-                        "Arequipe (dulce de leche)",
-                        "Queso rallado"
-                    ],
-                    preparacion: [
-                        "Preparar masa con harina, huevo y azúcar.",
-                        "Cocer en oblera.",
-                        "Rellenar con arequipe y queso."
-                    ]
-                }
+                { nombre: "Bandeja paisa", descripcion: "Plato abundante con frijoles, carnes y arroz.", ingredientes: ["Frijoles rojos 300g", "Carne molida 300g", "Chicharrón 300g", "Arroz blanco", "Huevo 4 unidades", "Plátano maduro", "Arepa"], preparacion: ["Cocer frijoles con condimentos.", "Freír chicharrón, plátano y huevos.", "Servir todos los componentes juntos."] },
+                { nombre: "Ajiaco santafereño", descripcion: "Sopa de pollo con tres papas y guascas.", ingredientes: ["Pollo 1kg", "Papa criolla 500g", "Papa sabanera 500g", "Papa pastusa 500g", "Guascas 2 cucharadas", "Mazorca 2 unidades"], preparacion: ["Cocer el pollo en agua con sal.", "Agregar las papas y la mazorca.", "Añadir guascas y cocinar 15 min más."] },
+                { nombre: "Sancocho", descripcion: "Sopa de gallina con yuca y plátano.", ingredientes: ["Gallina 1kg", "Yuca 500g", "Plátano verde 3 unidades", "Maíz 2 unidades", "Cebolla 1 unidad"], preparacion: ["Cocer la gallina en abundante agua.", "Agregar yuca, plátano y maíz.", "Cocinar 40 min y servir."] },
+                { nombre: "Arepas", descripcion: "Pan de maíz relleno al gusto.", ingredientes: ["Harina de maíz precocida 2 tazas", "Agua 2.5 tazas", "Sal 1 cucharadita", "Aceite"], preparacion: ["Mezclar harina con agua y sal.", "Formar discos y cocinar en plancha.", "Rellenar al gusto."] },
+                { nombre: "Patacones (tostones)", descripcion: "Plátano verde frito dos veces.", ingredientes: ["Plátano verde 4 unidades", "Sal", "Aceite para freír"], preparacion: ["Pelar y cortar los plátanos en rodajas.", "Freír ligeramente.", "Aplastar y freír nuevamente."] },
+                { nombre: "Lechona", descripcion: "Cerdo relleno con arroz y especias.", ingredientes: ["Cerdo entero o pierna 5kg", "Arroz 1kg", "Cebolla 3 unidades", "Arvejas 300g", "Especias"], preparacion: ["Rellenar el cerdo con arroz y especias.", "Cocer en horno 5 horas.", "Servir con arepas."] },
+                { nombre: "Obleas", descripcion: "Galletas rellenas de arequipe y queso.", ingredientes: ["Harina de trigo 300g", "Huevo 2 unidades", "Azúcar 100g", "Arequipe (dulce de leche)", "Queso rallado"], preparacion: ["Preparar masa con harina, huevo y azúcar.", "Cocer en oblera.", "Rellenar con arequipe y queso."] }
             ]
         },
         ecuador: {
             nombre: "Ecuador",
             bandera: "🇪🇨",
             recetas: [
-                {
-                    nombre: "Encebollado",
-                    descripcion: "Sopa de pescado con yuca y cebolla.",
-                    ingredientes: [
-                        "Pescado 1kg (albacora)",
-                        "Yuca 1kg",
-                        "Cebolla morada 2 unidades",
-                        "Cilantro",
-                        "Limón"
-                    ],
-                    preparacion: [
-                        "Cocer el pescado con condimentos.",
-                        "Agregar yuca y cocinar 30 min.",
-                        "Servir con cebolla curtida y limón."
-                    ]
-                },
-                {
-                    nombre: "Llapingachos",
-                    descripcion: "Tortillas de papa rellenas de queso.",
-                    ingredientes: [
-                        "Papa 6 unidades",
-                        "Queso fresco 200g",
-                        "Cebolla 1 unidad",
-                        "Achiote",
-                        "Chorizo o huevo para acompañar"
-                    ],
-                    preparacion: [
-                        "Cocer y hacer puré de papas.",
-                        "Sofreír cebolla con achiote.",
-                        "Formar tortitas rellenas de queso y dorar."
-                    ]
-                },
-                {
-                    nombre: "Fanesca",
-                    descripcion: "Sopa de granos y bacalao para Semana Santa.",
-                    ingredientes: [
-                        "Bacalao seco 500g",
-                        "Granos variados (habas, arvejas, garbanzos)",
-                        "Zapallo 200g",
-                        "Maní 100g",
-                        "Leche 500ml"
-                    ],
-                    preparacion: [
-                        "Remojar bacalao 24 horas.",
-                        "Cocer todos los granos.",
-                        "Mezclar con bacalao, zapallo y leche."
-                    ]
-                },
-                {
-                    nombre: "Hornado",
-                    descripcion: "Cerdo asado con choclo y papas.",
-                    ingredientes: [
-                        "Cerdo (pierna) 2kg",
-                        "Ajo 4 dientes",
-                        "Cebolla 2 unidades",
-                        "Choclo",
-                        "Papas"
-                    ],
-                    preparacion: [
-                        "Marinar el cerdo con ajo y cebolla.",
-                        "Asar en horno 3 horas.",
-                        "Servir con choclo y papas."
-                    ]
-                },
-                {
-                    nombre: "Ceviche ecuatoriano",
-                    descripcion: "Camarones en jugo de naranja y limón.",
-                    ingredientes: [
-                        "Camarones 500g",
-                        "Naranja agria 1 taza",
-                        "Limón 1 taza",
-                        "Cebolla morada 2 unidades",
-                        "Tomate 2 unidades"
-                    ],
-                    preparacion: [
-                        "Cocer los camarones en agua con sal.",
-                        "Mezclar con jugo de naranja y limón.",
-                        "Agregar cebolla y tomate."
-                    ]
-                },
-                {
-                    nombre: "Cuy asado",
-                    descripcion: "Conejillo de indias asado.",
-                    ingredientes: [
-                        "Cuy 1 unidad",
-                        "Ajo 2 dientes",
-                        "Cebolla 1 unidad",
-                        "Especias"
-                    ],
-                    preparacion: [
-                        "Limpiar y marinar el cuy.",
-                        "Asar en horno 1 hora.",
-                        "Servir con papas."
-                    ]
-                },
-                {
-                    nombre: "Colada morada",
-                    descripcion: "Bebida espesa de frutos rojos y maíz.",
-                    ingredientes: [
-                        "Maíz morado 500g",
-                        "Frutos rojos (mora, fresa)",
-                        "Canela",
-                        "Clavo",
-                        "Azúcar"
-                    ],
-                    preparacion: [
-                        "Cocer el maíz con especias.",
-                        "Licuar y colar.",
-                        "Agregar frutos rojos y azúcar."
-                    ]
-                }
+                { nombre: "Encebollado", descripcion: "Sopa de pescado con yuca y cebolla.", ingredientes: ["Pescado 1kg (albacora)", "Yuca 1kg", "Cebolla morada 2 unidades", "Cilantro", "Limón"], preparacion: ["Cocer el pescado con condimentos.", "Agregar yuca y cocinar 30 min.", "Servir con cebolla curtida y limón."] },
+                { nombre: "Llapingachos", descripcion: "Tortillas de papa rellenas de queso.", ingredientes: ["Papa 6 unidades", "Queso fresco 200g", "Cebolla 1 unidad", "Achiote", "Chorizo o huevo para acompañar"], preparacion: ["Cocer y hacer puré de papas.", "Sofreír cebolla con achiote.", "Formar tortitas rellenas de queso y dorar."] },
+                { nombre: "Fanesca", descripcion: "Sopa de granos y bacalao para Semana Santa.", ingredientes: ["Bacalao seco 500g", "Granos variados (habas, arvejas, garbanzos)", "Zapallo 200g", "Maní 100g", "Leche 500ml"], preparacion: ["Remojar bacalao 24 horas.", "Cocer todos los granos.", "Mezclar con bacalao, zapallo y leche."] },
+                { nombre: "Hornado", descripcion: "Cerdo asado con choclo y papas.", ingredientes: ["Cerdo (pierna) 2kg", "Ajo 4 dientes", "Cebolla 2 unidades", "Choclo", "Papas"], preparacion: ["Marinar el cerdo con ajo y cebolla.", "Asar en horno 3 horas.", "Servir con choclo y papas."] },
+                { nombre: "Ceviche ecuatoriano", descripcion: "Camarones en jugo de naranja y limón.", ingredientes: ["Camarones 500g", "Naranja agria 1 taza", "Limón 1 taza", "Cebolla morada 2 unidades", "Tomate 2 unidades"], preparacion: ["Cocer los camarones en agua con sal.", "Mezclar con jugo de naranja y limón.", "Agregar cebolla y tomate."] },
+                { nombre: "Cuy asado", descripcion: "Conejillo de indias asado.", ingredientes: ["Cuy 1 unidad", "Ajo 2 dientes", "Cebolla 1 unidad", "Especias"], preparacion: ["Limpiar y marinar el cuy.", "Asar en horno 1 hora.", "Servir con papas."] },
+                { nombre: "Colada morada", descripcion: "Bebida espesa de frutos rojos y maíz.", ingredientes: ["Maíz morado 500g", "Frutos rojos (mora, fresa)", "Canela", "Clavo", "Azúcar"], preparacion: ["Cocer el maíz con especias.", "Licuar y colar.", "Agregar frutos rojos y azúcar."] }
             ]
         },
         estadosunidos: {
             nombre: "Estados Unidos",
             bandera: "🇺🇸",
             recetas: [
-                {
-                    nombre: "Fried Chicken",
-                    descripcion: "Pollo frito crujiente y jugoso.",
-                    ingredientes: [
-                        "Pollo 1.5kg",
-                        "Suero de leche 2 tazas",
-                        "Harina 2 tazas",
-                        "Pimentón 1 cucharada",
-                        "Ajo en polvo 1 cucharadita",
-                        "Aceite para freír"
-                    ],
-                    preparacion: [
-                        "Marinar pollo en suero de leche 4 horas.",
-                        "Rebozar en harina con especias.",
-                        "Freír en aceite caliente 15 min."
-                    ]
-                },
-                {
-                    nombre: "Apple Pie",
-                    descripcion: "Pastel de manzana especiado.",
-                    ingredientes: [
-                        "Manzanas 5 unidades",
-                        "Azúcar 3/4 taza",
-                        "Canela 1 cucharadita",
-                        "Masa para pastel 2 discos",
-                        "Mantequilla"
-                    ],
-                    preparacion: [
-                        "Pelar y cortar manzanas.",
-                        "Mezclar con azúcar y canela.",
-                        "Cubrir con masa y hornear 50 min."
-                    ]
-                },
-                {
-                    nombre: "Cheeseburger",
-                    descripcion: "Hamburguesa con queso y vegetales.",
-                    ingredientes: [
-                        "Carne molida 500g",
-                        "Queso cheddar 4 lonchas",
-                        "Pan de hamburguesa 4 unidades",
-                        "Lechuga, tomate, pepinillos"
-                    ],
-                    preparacion: [
-                        "Formar hamburguesas y sazonar.",
-                        "Cocinar en plancha 4 min por lado.",
-                        "Armar con queso y vegetales."
-                    ]
-                },
-                {
-                    nombre: "Buffalo Wings",
-                    descripcion: "Alitas de pollo con salsa picante.",
-                    ingredientes: [
-                        "Alitas de pollo 24 unidades",
-                        "Harina 1 taza",
-                        "Mantequilla 100g",
-                        "Salsa picante 1/2 taza",
-                        "Vinagre 1 cucharada"
-                    ],
-                    preparacion: [
-                        "Rebozar alitas en harina.",
-                        "Freír en aceite 10 min.",
-                        "Bañar en salsa de mantequilla y picante."
-                    ]
-                },
-                {
-                    nombre: "New York Cheesecake",
-                    descripcion: "Tarta de queso cremosa estilo NY.",
-                    ingredientes: [
-                        "Queso crema 900g",
-                        "Azúcar 250g",
-                        "Huevo 4 unidades",
-                        "Crema agria 1/2 taza",
-                        "Galletas Graham 200g",
-                        "Mantequilla 100g"
-                    ],
-                    preparacion: [
-                        "Hacer base con galletas y mantequilla.",
-                        "Batir queso crema con azúcar y huevos.",
-                        "Hornear a baño María 60 min."
-                    ]
-                },
-                {
-                    nombre: "Barbecue Ribs",
-                    descripcion: "Costillas con salsa barbacoa.",
-                    ingredientes: [
-                        "Costillas de cerdo 2 racks",
-                        "Paprika 1/4 taza",
-                        "Azúcar moreno 2 cucharadas",
-                        "Salsa barbacoa"
-                    ],
-                    preparacion: [
-                        "Sazonar costillas con especias.",
-                        "Hornear envueltas en papel 2.5 horas.",
-                        "Bañar con salsa y gratinar."
-                    ]
-                },
-                {
-                    nombre: "Boston Cream Pie",
-                    descripcion: "Pastel con crema pastelera y chocolate.",
-                    ingredientes: [
-                        "Harina 210g",
-                        "Mantequilla 120g",
-                        "Azúcar 200g",
-                        "Huevo 2 unidades",
-                        "Crema pastelera",
-                        "Chocolate para cubrir"
-                    ],
-                    preparacion: [
-                        "Hornear bizcocho a 180°C 35 min.",
-                        "Rellenar con crema pastelera.",
-                        "Cubrir con ganache de chocolate."
-                    ]
-                }
+                { nombre: "Fried Chicken", descripcion: "Pollo frito crujiente y jugoso.", ingredientes: ["Pollo 1.5kg", "Suero de leche 2 tazas", "Harina 2 tazas", "Pimentón 1 cucharada", "Ajo en polvo 1 cucharadita", "Aceite para freír"], preparacion: ["Marinar pollo en suero de leche 4 horas.", "Rebozar en harina con especias.", "Freír en aceite caliente 15 min."] },
+                { nombre: "Apple Pie", descripcion: "Pastel de manzana especiado.", ingredientes: ["Manzanas 5 unidades", "Azúcar 3/4 taza", "Canela 1 cucharadita", "Masa para pastel 2 discos", "Mantequilla"], preparacion: ["Pelar y cortar manzanas.", "Mezclar con azúcar y canela.", "Cubrir con masa y hornear 50 min."] },
+                { nombre: "Cheeseburger", descripcion: "Hamburguesa con queso y vegetales.", ingredientes: ["Carne molida 500g", "Queso cheddar 4 lonchas", "Pan de hamburguesa 4 unidades", "Lechuga, tomate, pepinillos"], preparacion: ["Formar hamburguesas y sazonar.", "Cocinar en plancha 4 min por lado.", "Armar con queso y vegetales."] },
+                { nombre: "Buffalo Wings", descripcion: "Alitas de pollo con salsa picante.", ingredientes: ["Alitas de pollo 24 unidades", "Harina 1 taza", "Mantequilla 100g", "Salsa picante 1/2 taza", "Vinagre 1 cucharada"], preparacion: ["Rebozar alitas en harina.", "Freír en aceite 10 min.", "Bañar en salsa de mantequilla y picante."] },
+                { nombre: "New York Cheesecake", descripcion: "Tarta de queso cremosa estilo NY.", ingredientes: ["Queso crema 900g", "Azúcar 250g", "Huevo 4 unidades", "Crema agria 1/2 taza", "Galletas Graham 200g", "Mantequilla 100g"], preparacion: ["Hacer base con galletas y mantequilla.", "Batir queso crema con azúcar y huevos.", "Hornear a baño María 60 min."] },
+                { nombre: "Barbecue Ribs", descripcion: "Costillas con salsa barbacoa.", ingredientes: ["Costillas de cerdo 2 racks", "Paprika 1/4 taza", "Azúcar moreno 2 cucharadas", "Salsa barbacoa"], preparacion: ["Sazonar costillas con especias.", "Hornear envueltas en papel 2.5 horas.", "Bañar con salsa y gratinar."] },
+                { nombre: "Boston Cream Pie", descripcion: "Pastel con crema pastelera y chocolate.", ingredientes: ["Harina 210g", "Mantequilla 120g", "Azúcar 200g", "Huevo 2 unidades", "Crema pastelera", "Chocolate para cubrir"], preparacion: ["Hornear bizcocho a 180°C 35 min.", "Rellenar con crema pastelera.", "Cubrir con ganache de chocolate."] }
             ]
         },
         mexico: {
             nombre: "México",
             bandera: "🇲🇽",
             recetas: [
-                {
-                    nombre: "Mole poblano",
-                    descripcion: "Salsa de chiles con chocolate.",
-                    ingredientes: [
-                        "Chiles anchos 8 unidades",
-                        "Chiles mulatos 6 unidades",
-                        "Chocolate 100g",
-                        "Pollo 1kg",
-                        "Ajonjolí",
-                        "Almendras",
-                        "Pasas"
-                    ],
-                    preparacion: [
-                        "Tostar chiles y remojar.",
-                        "Licuar con chocolate y especias.",
-                        "Cocer con pollo 30 min."
-                    ]
-                },
-                {
-                    nombre: "Chiles en nogada",
-                    descripcion: "Chiles rellenos con salsa de nuez.",
-                    ingredientes: [
-                        "Chile poblano 10 unidades",
-                        "Carne de cerdo 1kg",
-                        "Manzana, pera, durazno",
-                        "Nuez de Castilla 1.5 tazas",
-                        "Crema 2.5 tazas",
-                        "Granada"
-                    ],
-                    preparacion: [
-                        "Asar y pelar chiles.",
-                        "Rellenar con carne y frutas.",
-                        "Bañar con salsa de nuez y decorar."
-                    ]
-                },
-                {
-                    nombre: "Pozole rojo",
-                    descripcion: "Caldo de maíz con carne de cerdo.",
-                    ingredientes: [
-                        "Maíz cacahuazintle 1.5kg",
-                        "Carne de cerdo 1kg",
-                        "Chiles guajillo 12 unidades",
-                        "Chiles ancho 4 unidades"
-                    ],
-                    preparacion: [
-                        "Cocer maíz y carne 3 horas.",
-                        "Licuar chiles con condimentos.",
-                        "Integrar y cocinar 30 min más."
-                    ]
-                },
-                {
-                    nombre: "Flautas ahogadas",
-                    descripcion: "Tortillas enrolladas bañadas en salsa.",
-                    ingredientes: [
-                        "Tortillas de maíz 12 unidades",
-                        "Pollo 500g",
-                        "Tomatillo 500g",
-                        "Chiles serranos 2 unidades",
-                        "Crema y queso"
-                    ],
-                    preparacion: [
-                        "Rellenar tortillas con pollo y enrollar.",
-                        "Freír hasta dorar.",
-                        "Bañar con salsa y decorar."
-                    ]
-                },
-                {
-                    nombre: "Guacamole",
-                    descripcion: "Crema de aguacate con vegetales.",
-                    ingredientes: [
-                        "Aguacate 4 unidades",
-                        "Cebolla 1/2 unidad",
-                        "Tomate 1 unidad",
-                        "Cilantro",
-                        "Limón",
-                        "Chile serrano"
-                    ],
-                    preparacion: [
-                        "Machacar aguacate con tenedor.",
-                        "Mezclar con cebolla, tomate y cilantro.",
-                        "Añadir limón y chile."
-                    ]
-                },
-                {
-                    nombre: "Tamales",
-                    descripcion: "Masa de maíz rellena envuelta en hojas.",
-                    ingredientes: [
-                        "Masa de maíz 1kg",
-                        "Manteca 300g",
-                        "Pollo o cerdo 500g",
-                        "Salsa roja o verde",
-                        "Hojas de maíz"
-                    ],
-                    preparacion: [
-                        "Batir manteca con masa.",
-                        "Colocar masa y relleno en hojas.",
-                        "Cocer al vapor 1 hora."
-                    ]
-                },
-                {
-                    nombre: "Churros",
-                    descripcion: "Masa frita con azúcar y canela.",
-                    ingredientes: [
-                        "Harina 300g",
-                        "Agua 300ml",
-                        "Sal 1 pizca",
-                        "Aceite para freír",
-                        "Azúcar y canela"
-                    ],
-                    preparacion: [
-                        "Hervir agua con sal.",
-                        "Agregar harina y mezclar.",
-                        "Freír churros y espolvorear."
-                    ]
-                }
+                { nombre: "Mole poblano", descripcion: "Salsa de chiles con chocolate.", ingredientes: ["Chiles anchos 8 unidades", "Chiles mulatos 6 unidades", "Chocolate 100g", "Pollo 1kg", "Ajonjolí", "Almendras", "Pasas"], preparacion: ["Tostar chiles y remojar.", "Licuar con chocolate y especias.", "Cocer con pollo 30 min."] },
+                { nombre: "Chiles en nogada", descripcion: "Chiles rellenos con salsa de nuez.", ingredientes: ["Chile poblano 10 unidades", "Carne de cerdo 1kg", "Manzana, pera, durazno", "Nuez de Castilla 1.5 tazas", "Crema 2.5 tazas", "Granada"], preparacion: ["Asar y pelar chiles.", "Rellenar con carne y frutas.", "Bañar con salsa de nuez y decorar."] },
+                { nombre: "Pozole rojo", descripcion: "Caldo de maíz con carne de cerdo.", ingredientes: ["Maíz cacahuazintle 1.5kg", "Carne de cerdo 1kg", "Chiles guajillo 12 unidades", "Chiles ancho 4 unidades"], preparacion: ["Cocer maíz y carne 3 horas.", "Licuar chiles con condimentos.", "Integrar y cocinar 30 min más."] },
+                { nombre: "Flautas ahogadas", descripcion: "Tortillas enrolladas bañadas en salsa.", ingredientes: ["Tortillas de maíz 12 unidades", "Pollo 500g", "Tomatillo 500g", "Chiles serranos 2 unidades", "Crema y queso"], preparacion: ["Rellenar tortillas con pollo y enrollar.", "Freír hasta dorar.", "Bañar con salsa y decorar."] },
+                { nombre: "Guacamole", descripcion: "Crema de aguacate con vegetales.", ingredientes: ["Aguacate 4 unidades", "Cebolla 1/2 unidad", "Tomate 1 unidad", "Cilantro", "Limón", "Chile serrano"], preparacion: ["Machacar aguacate con tenedor.", "Mezclar con cebolla, tomate y cilantro.", "Añadir limón y chile."] },
+                { nombre: "Tamales", descripcion: "Masa de maíz rellena envuelta en hojas.", ingredientes: ["Masa de maíz 1kg", "Manteca 300g", "Pollo o cerdo 500g", "Salsa roja o verde", "Hojas de maíz"], preparacion: ["Batir manteca con masa.", "Colocar masa y relleno en hojas.", "Cocer al vapor 1 hora."] },
+                { nombre: "Churros", descripcion: "Masa frita con azúcar y canela.", ingredientes: ["Harina 300g", "Agua 300ml", "Sal 1 pizca", "Aceite para freír", "Azúcar y canela"], preparacion: ["Hervir agua con sal.", "Agregar harina y mezclar.", "Freír churros y espolvorear."] }
             ]
         },
         peru: {
             nombre: "Perú",
             bandera: "🇵🇪",
             recetas: [
-                {
-                    nombre: "Ceviche",
-                    descripcion: "Pescado en jugo de limón con ají.",
-                    ingredientes: [
-                        "Pescado blanco 500g",
-                        "Limón 12 unidades",
-                        "Cebolla morada 1 unidad",
-                        "Ají limo 2 unidades",
-                        "Cilantro",
-                        "Camote y choclo"
-                    ],
-                    preparacion: [
-                        "Cortar pescado en cubos.",
-                        "Cubrir con jugo de limón.",
-                        "Agregar cebolla, ají y cilantro. Reposar 10 min."
-                    ]
-                },
-                {
-                    nombre: "Lomo saltado",
-                    descripcion: "Tiras de res con cebolla y tomate.",
-                    ingredientes: [
-                        "Lomo fino 500g",
-                        "Cebolla 2 unidades",
-                        "Tomate 2 unidades",
-                        "Sillao (salsa de soja) 3 cucharadas",
-                        "Ají amarillo 1 unidad",
-                        "Papas fritas"
-                    ],
-                    preparacion: [
-                        "Sellar la carne en wok caliente.",
-                        "Agregar cebolla, tomate y ají.",
-                        "Incorporar sillao y servir con papas."
-                    ]
-                },
-                {
-                    nombre: "Ají de gallina",
-                    descripcion: "Gallina en crema de ají y leche.",
-                    ingredientes: [
-                        "Pollo 1kg",
-                        "Ají amarillo 6 unidades",
-                        "Pan de molde 4 rebanadas",
-                        "Leche evaporada 500ml",
-                        "Nueces 50g",
-                        "Queso parmesano 2 cucharadas"
-                    ],
-                    preparacion: [
-                        "Cocer y desmenuzar pollo.",
-                        "Sofreír ají con cebolla y ajo.",
-                        "Licuar con pan, leche y nueces.",
-                        "Mezclar con el pollo y cocinar a fuego bajo."
-                    ]
-                }
-                // ... otros platos de Perú si los tienes
+                { nombre: "Ceviche", descripcion: "Pescado en jugo de limón con ají.", ingredientes: ["Pescado blanco 500g", "Limón 12 unidades", "Cebolla morada 1 unidad", "Ají limo 2 unidades", "Cilantro", "Camote y choclo"], preparacion: ["Cortar pescado en cubos.", "Cubrir con jugo de limón.", "Agregar cebolla, ají y cilantro. Reposar 10 min."] },
+                { nombre: "Lomo saltado", descripcion: "Tiras de res con cebolla y tomate.", ingredientes: ["Lomo fino 500g", "Cebolla 2 unidades", "Tomate 2 unidades", "Sillao (salsa de soja) 3 cucharadas", "Ají amarillo 1 unidad", "Papas fritas"], preparacion: ["Sellar la carne en wok caliente.", "Agregar cebolla, tomate y ají.", "Incorporar sillao y servir con papas."] },
+                { nombre: "Ají de gallina", descripcion: "Gallina en crema de ají y leche.", ingredientes: ["Pollo 1kg", "Ají amarillo 6 unidades", "Pan de molde 4 rebanadas", "Leche evaporada 500ml", "Nueces 50g", "Queso parmesano 2 cucharadas"], preparacion: ["Cocer y desmenuzar pollo.", "Sofreír ají con cebolla y ajo.", "Licuar con pan, leche y nueces.", "Mezclar con el pollo y cocinar a fuego bajo."] },
+                { nombre: "Papa a la Huancaína", descripcion: "Papas con salsa de ají amarillo y queso.", ingredientes: ["Papas 6 unidades", "Ají amarillo 3 unidades", "Queso fresco 200g", "Leche evaporada 100ml", "Galletas saladas 4 unidades", "Aceite", "Huevo duro para decorar"], preparacion: ["Cocer papas y pelarlas.", "Licuar ají con queso, leche y galletas.", "Bañar las papas con la salsa."] },
+                { nombre: "Causa limeña", descripcion: "Pastel de papa con pollo o atún.", ingredientes: ["Papa amarilla 1kg", "Ají amarillo 2 unidades", "Limón 2 unidades", "Pollo desmenuzado 500g", "Mayonesa", "Aceitunas"], preparacion: ["Cocer y hacer puré de papa con ají y limón.", "Colocar capas de puré y pollo.", "Decorar con aceitunas."] },
+                { nombre: "Anticuchos", descripcion: "Corazón de res marinado en brochetas.", ingredientes: ["Corazón de res 1kg", "Ají panca molido 4 cucharadas", "Vinagre 1/4 taza", "Comino 1 cucharadita"], preparacion: ["Marinar el corazón en ají y vinagre 4 horas.", "Ensartar en brochetas.", "Asar a la parrilla 10 min."] },
+                { nombre: "Rocoto relleno", descripcion: "Rocotos rellenos de carne y queso.", ingredientes: ["Rocotos 4 unidades", "Carne molida 500g", "Cebolla 1 unidad", "Queso 200g", "Huevo duro 2 unidades", "Leche"], preparacion: ["Quitar las venas a los rocotos.", "Sofreír carne con cebolla.", "Rellenar los rocotos y hornear con queso."] }
             ]
         }
-        // Aquí puedes agregar más países (España, Francia, etc.)
+        // Puedes agregar más países (España, Francia, etc.) siguiendo el mismo formato.
     };
 
-    // ================================================================
-    // 2. POSTRES (LOS QUE YA TENÍAS)
-    // ================================================================
+    // Postres (126 recetas - ya tenemos de varios países)
     const recetasPostres = {
         "Argentina": [
             { name: "Chocotorta", ingredients: ["400 g de dulce de leche", "400 g de crema de leche", "750 g de galletitas de chocolate", "Café frío"], steps: ["Mezclar dulce de leche con crema.", "Mojar galletitas en café.", "Alternar capas.", "Refrigerar 4 horas."] },
@@ -1751,10 +1065,66 @@
     };
 
     // ================================================================
-    // 3. CONVERTIR DATOS A FORMATO UNIFICADO
+    // 2. BLOG - ARTÍCULOS (extraídos de las capturas)
+    // ================================================================
+    const articulosBlog = [
+        {
+            titulo: "Marroquíes: un viaje sensorial",
+            categoria: "Tradiciones",
+            fecha: "8 de junio de 2026",
+            autor: "Por Amina Boussouf",
+            descripcion: "Los zocos de Marrakech huelen a canela, comino, cilantro y ras el hanout. Aprende a usar estas especias en tu cocina.",
+            imagen: "https://source.unsplash.com/featured/?moroccan,spices"
+        },
+        {
+            titulo: "El umami: el quinto sabor que lo cambia todo",
+            categoria: "Ciencia culinaria",
+            fecha: "17 de mayo de 2026",
+            autor: "Por Kenji Tanaka",
+            descripcion: "El umami — ese sabor profundo y sabroso — es el secreto detrás de la cocina japonesa y muchos otros platos del mundo.",
+            imagen: "https://source.unsplash.com/featured/?umami,japanese,food"
+        },
+        {
+            titulo: "El arte del asado argentino: fuego, paciencia y pasión",
+            categoria: "Tradiciones",
+            fecha: "8 de junio de 2026",
+            autor: "Por Gastón Herrera",
+            descripcion: "En Argentina, el asado es mucho más que una técnica culinaria — es un ritual social que une familias y amigos.",
+            imagen: "https://source.unsplash.com/featured/?argentinian,asado,bbq"
+        },
+        {
+            titulo: "Por qué la pasta italiana sabe diferente: los secretos de Italia",
+            categoria: "Gastronomía",
+            fecha: "1 de junio de 2026",
+            autor: "Por Marco Bellini",
+            descripcion: "La pasta italiana auténtica tiene poco que ver con lo que se come fuera de Italia. Descubre sus secretos.",
+            imagen: "https://source.unsplash.com/featured/?italian,pasta"
+        },
+        {
+            titulo: "Los secretos del ceviche peruano auténtico",
+            categoria: "Técnicas",
+            fecha: "15 de junio de 2026",
+            autor: "Por Chef Carlos Rivera",
+            descripcion: "El ceviche es mucho más que mezclar pescado con limón. Descubre los secretos que los chefs peruanos guardan con celo.",
+            imagen: "https://source.unsplash.com/featured/?peruvian,ceviche"
+        }
+    ];
+
+    // ================================================================
+    // 3. VIDEOS (ejemplo)
+    // ================================================================
+    const videos = [
+        { titulo: "Ceviche Peruano Auténtico", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+        { titulo: "Empanadas Argentinas Perfectas", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+        { titulo: "Paella Valenciana Tradicional", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+        { titulo: "Mole Poblano Paso a Paso", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
+    ];
+
+    // ================================================================
+    // 4. CONVERTIR DATOS A FORMATO UNIFICADO
     // ================================================================
 
-    // Convertir platos (recetasData)
+    // Platos
     const platosUnificados = [];
     for (const key in recetasData) {
         const pais = recetasData[key];
@@ -1771,7 +1141,7 @@
         });
     }
 
-    // Convertir postres
+    // Postres
     const postresUnificados = [];
     for (const pais in recetasPostres) {
         recetasPostres[pais].forEach(postre => {
@@ -1787,11 +1157,10 @@
         });
     }
 
-    // Unir todo
     const todasRecetas = [...platosUnificados, ...postresUnificados];
 
     // ================================================================
-    // 4. LÓGICA DE FILTRADO Y RENDERIZADO
+    // 5. LÓGICA DE RENDERIZADO
     // ================================================================
 
     let tipoActual = 'plato';
@@ -1804,13 +1173,15 @@
     const buscador = document.getElementById('buscador');
     const filtroPaises = document.getElementById('filtroPaises');
     const footerPaises = document.getElementById('footerPaises');
+    const gridBlog = document.getElementById('gridBlog');
+    const gridVideos = document.getElementById('gridVideos');
 
-    // Obtener países únicos (de todas las recetas)
+    // Países únicos (de todas las recetas)
     const paisesUnicos = [...new Set(todasRecetas.map(r => r.pais))];
 
     // Renderizar botones de países
     function renderizarPaises() {
-        let html = `<button class="pais-btn activo" data-pais="todos">🌍 Todos</button>`;
+        let html = `<button class="pais-btn activo" data-pais="todos">Todos</button>`;
         paisesUnicos.forEach(p => {
             html += `<button class="pais-btn" data-pais="${p}">${p}</button>`;
         });
@@ -1829,8 +1200,8 @@
         });
     }
 
-    // Renderizar tarjetas
-    function renderizar() {
+    // Renderizar tarjetas de recetas
+    function renderizarRecetas() {
         const filtradas = obtenerFiltradas();
         contador.textContent = `Mostrando ${filtradas.length} recetas`;
 
@@ -1842,7 +1213,6 @@
         let html = '';
         filtradas.forEach(r => {
             const tipoEtiqueta = r.tipo === 'plato' ? '🍽️ Plato' : '🍰 Postre';
-            // IMAGEN REAL usando Unsplash con búsqueda del nombre
             const imagen = `https://source.unsplash.com/featured/?${encodeURIComponent(r.name)}`;
             const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(r.name)}+receta`;
             html += `
@@ -1863,15 +1233,54 @@
         grid.innerHTML = html;
     }
 
+    // Renderizar blog
+    function renderizarBlog() {
+        let html = '';
+        articulosBlog.forEach(a => {
+            html += `
+                <div class="articulo">
+                    <img class="imagen-articulo" src="${a.imagen}" alt="${a.titulo}" loading="lazy" />
+                    <div class="contenido-articulo">
+                        <div class="categoria">${a.categoria} <span class="fecha">${a.fecha}</span></div>
+                        <h3>${a.titulo}</h3>
+                        <p>${a.autor}</p>
+                        <p>${a.descripcion}</p>
+                        <a href="#" class="leer-mas">Leer más →</a>
+                    </div>
+                </div>
+            `;
+        });
+        gridBlog.innerHTML = html;
+    }
+
+    // Renderizar videos
+    function renderizarVideos() {
+        let html = '';
+        videos.forEach(v => {
+            html += `
+                <div class="video-tarjeta">
+                    <div class="thumbnail" style="background-image: url('${v.thumbnail}'); background-size: cover; background-position: center;">
+                        <div class="play"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="info-video">
+                        <h3>${v.titulo}</h3>
+                        <p style="font-size:0.85rem; color:var(--muted);">${v.canal}</p>
+                        <a href="${v.url}" target="_blank" class="btn-video" style="display:inline-block; margin-top:8px; background:#ff0000; color:#fff; padding:6px 16px; border-radius:50px; font-size:0.8rem; text-decoration:none;"><i class="fab fa-youtube"></i> Ver video</a>
+                    </div>
+                </div>
+            `;
+        });
+        gridVideos.innerHTML = html;
+    }
+
     // ================================================================
-    // 5. MODAL
+    // 6. MODAL
     // ================================================================
 
     function abrirModal(nombre) {
         const receta = todasRecetas.find(r => r.name === nombre);
         if (!receta) return;
 
-        // IMAGEN REAL en el modal
         const imagen = `https://source.unsplash.com/featured/?${encodeURIComponent(receta.name)}`;
         const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(receta.name)}+receta`;
 
@@ -1900,17 +1309,17 @@
     });
 
     // ================================================================
-    // 6. EVENTOS
+    // 7. EVENTOS
     // ================================================================
 
-    // Pestañas
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    // Pestañas de tipo (Platos / Postres)
+    document.querySelectorAll('.tipo-tab').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+            document.querySelectorAll('.tipo-tab').forEach(b => b.classList.remove('activo'));
             btn.classList.add('activo');
             tipoActual = btn.dataset.tipo;
             tituloSeccion.textContent = tipoActual === 'plato' ? '🍽️ Platos principales' : '🍰 Postres del mundo';
-            renderizar();
+            renderizarRecetas();
         });
     });
 
@@ -1921,13 +1330,13 @@
         document.querySelectorAll('.pais-btn').forEach(b => b.classList.remove('activo'));
         btn.classList.add('activo');
         paisActual = btn.dataset.pais;
-        renderizar();
+        renderizarRecetas();
     });
 
     // Buscador
     buscador.addEventListener('input', (e) => {
         busquedaActual = e.target.value;
-        renderizar();
+        renderizarRecetas();
     });
 
     // Menú hamburguesa
@@ -1936,11 +1345,13 @@
     });
 
     // ================================================================
-    // 7. INICIALIZAR
+    // 8. INICIALIZAR
     // ================================================================
 
     renderizarPaises();
-    renderizar();
+    renderizarRecetas();
+    renderizarBlog();
+    renderizarVideos();
 </script>
 </body>
 </html>
