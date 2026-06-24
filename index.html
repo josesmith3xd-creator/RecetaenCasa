@@ -3,255 +3,641 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocina en Casa - Recetas del Mundo</title>
-    <meta name="description" content="Más de 120 recetas tradicionales de todos los países, explicadas paso a paso.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Cocina en Casa - 126 Recetas del Mundo | Gastronomía Internacional</title>
+    <meta name="description" content="Descubre 126 recetas tradicionales de todo el mundo: Argentina, Perú, México, España, Francia y más. Ingredientes y preparación paso a paso.">
+    <meta name="keywords" content="recetas del mundo, cocina internacional, gastronomía, recetas tradicionales, cocina en casa, platos típicos">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cocinaencasa.cyou/">
+    <meta property="og:title" content="Cocina en Casa - 126 Recetas del Mundo">
+    <meta property="og:description" content="Recetas tradicionales de Argentina, Perú, México, España, Francia y más. ¡Cocina como un profesional!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cocinaencasa.cyou/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cocina en Casa - 126 Recetas del Mundo">
+    <meta name="twitter:description" content="Recetas tradicionales de todo el mundo. ¡Cocina como un profesional!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
+        /* ============================================================
+           RESET Y VARIABLES
+           ============================================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --naranja: #e67e22;
-            --marron: #8b4513;
-            --crema: #fff8f0;
-            --blanco: #ffffff;
-            --gris: #f8f4f0;
-            --texto: #333333;
-            --sombra: rgba(0,0,0,0.1);
+            --primary: #1a0f0a;
+            --secondary: #8B5A2B;
+            --accent: #e67e22;
+            --accent-light: #f39c12;
+            --bg: #fdf8f2;
+            --card: #ffffff;
+            --text: #1a0f0a;
+            --muted: #7f6b5c;
+            --border: #e8ddd0;
+            --shadow: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 20px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        html { scroll-behavior: smooth; }
         body {
-            background-color: var(--crema);
-            color: var(--texto);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ============================================================
+           HEADER - Menú Profesional
+           ============================================================ */
         header {
-            background: linear-gradient(135deg, var(--marron), var(--naranja));
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 2px 10px var(--sombra);
+            background: var(--primary);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
         }
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .buscador {
-            max-width: 700px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-        }
-        .buscador input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            box-shadow: 0 2px 8px var(--sombra);
-            transition: 0.3s;
-        }
-        .buscador input:focus {
-            outline: 2px solid var(--naranja);
-        }
-        .contenedor {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem 3rem;
-        }
-        .paises {
+        header .container {
             display: flex;
-            gap: 0.8rem;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            gap: 10px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #fff;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span { color: var(--accent-light); }
+        .logo i { color: var(--accent-light); font-size: 1.4rem; }
+
+        /* Menú de navegación principal */
+        .menu-principal {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .menu-principal a {
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .menu-principal a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .menu-principal a.activo {
+            color: #fff;
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+        }
+        .menu-principal .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .menu-principal .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--card);
+            min-width: 200px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            padding: 8px 0;
+            z-index: 1001;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .menu-principal .dropdown-content.show {
+            display: block;
+            animation: aparecerDropdown 0.25s ease;
+        }
+        @keyframes aparecerDropdown {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-principal .dropdown-content a {
+            color: var(--text);
+            padding: 8px 20px;
+            display: block;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 0;
+        }
+        .menu-principal .dropdown-content a:hover {
+            background: var(--bg);
+            color: var(--accent);
+        }
+        .menu-hamburguesa {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           HERO - Banner Principal
+           ============================================================ */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d1b0e 100%);
+            padding: 60px 0 50px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(230,126,34,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            color: #fff;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 span { color: var(--accent-light); }
+        .hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .stats .stat {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        .hero .stats .stat strong {
+            color: #fff;
+            font-size: 1.4rem;
+            display: block;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           BUSCADOR
+           ============================================================ */
+        .buscador-section {
+            padding: 30px 0 10px;
+            background: var(--card);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+        }
+        .buscador-section .container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
         }
-        .pais {
-            background: var(--blanco);
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            box-shadow: 0 1px 4px var(--sombra);
-            transition: all 0.2s ease;
-            border: none;
+        .buscador-section input {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px 20px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background: var(--bg);
+            transition: var(--transition);
         }
-        .pais:hover, .pais.activo {
-            background: var(--naranja);
-            color: white;
+        .buscador-section input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(230,126,34,0.15);
+        }
+
+        /* ============================================================
+           FILTRO DE PAÍSES - Menú horizontal mejorado
+           ============================================================ */
+        .paises-section {
+            padding: 20px 0 10px;
+            background: var(--bg);
+        }
+        .paises-section .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .pais-btn {
+            background: var(--card);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+        }
+        .pais-btn:hover {
             transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-light);
+        }
+        .pais-btn.activo {
+            background: var(--accent-light);
+            color: #fff;
+            border-color: var(--accent-light);
+            box-shadow: 0 4px 15px rgba(243,156,18,0.35);
+        }
+        .pais-btn .bandera { margin-right: 4px; }
+
+        /* ============================================================
+           GRID DE RECETAS
+           ============================================================ */
+        .recetas-section {
+            padding: 30px 0 50px;
+        }
+        .recetas-section .header-recetas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .recetas-section .header-recetas h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+        .recetas-section .header-recetas .contador {
+            color: var(--muted);
+            font-size: 0.95rem;
+            background: var(--card);
+            padding: 6px 18px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
         }
         .grid-recetas {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
         .tarjeta {
-            background: var(--blanco);
-            border-radius: 12px;
+            background: var(--card);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 3px 10px var(--sombra);
-            transition: transform 0.2s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
         }
         .tarjeta:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-light);
         }
-        .bandera-tarjeta {
-            font-size: 2.5rem;
+        .tarjeta .bandera-tarjeta {
+            font-size: 2.8rem;
             text-align: center;
-            padding: 1rem;
-            background: var(--gris);
+            padding: 1.2rem 0 0.6rem;
+            background: var(--bg);
         }
-        .info-tarjeta {
-            padding: 1.2rem;
+        .tarjeta .info-tarjeta {
+            padding: 1.2rem 1.5rem 1.5rem;
         }
-        .info-tarjeta h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.6rem;
-            color: var(--marron);
+        .tarjeta .info-tarjeta .pais-nombre {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            font-weight: 600;
         }
-        .info-tarjeta p {
+        .tarjeta .info-tarjeta h3 {
+            font-size: 1.15rem;
+            margin: 4px 0 6px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .tarjeta .info-tarjeta p {
             font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
+            color: var(--muted);
+            margin-bottom: 12px;
             line-height: 1.5;
         }
-        .ver-receta {
+        .tarjeta .btn-receta {
             display: inline-block;
-            background: var(--naranja);
-            color: white;
-            padding: 0.5rem 1.1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
+            background: var(--accent-light);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
             border: none;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
         }
-        .ver-receta:hover {
-            background: #d36e16;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.75);
-            z-index: 999;
-            padding: 2rem 1rem;
-            overflow-y: auto;
-        }
-        .modal-contenido {
-            background: white;
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 2rem;
-            border-radius: 12px;
-            position: relative;
-            animation: aparecer 0.3s ease;
-        }
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .cerrar {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-            transition: color 0.2s;
-        }
-        .cerrar:hover {
-            color: #333;
-        }
-        .modal h2 {
-            color: var(--marron);
-            margin-bottom: 0.8rem;
-            font-size: 1.7rem;
-        }
-        .modal .origen {
-            font-size: 1rem;
-            color: #777;
-            margin-bottom: 1.5rem;
-        }
-        .modal h3 {
-            margin: 1.5rem 0 0.7rem;
-            color: var(--naranja);
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.4rem;
-        }
-        .modal ul, .modal ol {
-            padding-left: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        .modal li {
-            margin-bottom: 0.5rem;
+        .tarjeta .btn-receta:hover {
+            background: var(--accent);
+            transform: scale(1.02);
         }
         .sin-resultados {
             text-align: center;
-            padding: 3rem;
-            color: #888;
-            font-size: 1.1rem;
+            padding: 4rem 2rem;
+            color: var(--muted);
             grid-column: 1 / -1;
         }
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--marron);
-            color: white;
-            margin-top: 2rem;
+        .sin-resultados i { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+        /* ============================================================
+           MODAL - Detalle de receta
+           ============================================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            padding: 2rem 1rem;
+            overflow-y: auto;
         }
-        .contador {
-            text-align: center;
-            color: #888;
-            margin-bottom: 1.5rem;
+        .modal.active { display: block; }
+        .modal-contenido {
+            background: var(--card);
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            position: relative;
+            animation: modalAnim 0.35s ease;
+        }
+        @keyframes modalAnim {
+            from { opacity: 0; transform: scale(0.95) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal .cerrar {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--muted);
+            transition: var(--transition);
+            background: none;
+            border: none;
+        }
+        .modal .cerrar:hover { color: var(--text); transform: rotate(90deg); }
+        .modal .modal-titulo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .modal .modal-origen {
             font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1.2rem;
+        }
+        .modal .modal-descripcion {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .modal h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.8rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 6px;
+        }
+        .modal ul, .modal ol {
+            padding-left: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .modal li { margin-bottom: 6px; }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+        }
+        footer .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+        }
+        footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; font-weight: 700; }
+        footer ul { list-style: none; }
+        footer ul li { margin-bottom: 6px; }
+        footer ul a { transition: var(--transition); font-size: 0.9rem; }
+        footer ul a:hover { color: #fff; }
+        footer .copy {
+            grid-column: 1/-1;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 900px) {
+            .menu-hamburguesa { display: block; }
+            .menu-principal {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                padding-top: 12px;
+                border-top: 1px solid rgba(255,255,255,0.08);
+            }
+            .menu-principal.abierto { display: flex; }
+            .menu-principal a {
+                padding: 10px 14px;
+                text-align: center;
+            }
+            .menu-principal .dropdown-content {
+                position: static;
+                box-shadow: none;
+                background: rgba(255,255,255,0.05);
+                border-radius: 8px;
+                max-height: none;
+            }
+            .menu-principal .dropdown-content a { color: rgba(255,255,255,0.8); }
+            .menu-principal .dropdown-content a:hover { background: rgba(255,255,255,0.08); }
+            footer .container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+        @media (max-width: 700px) {
+            .hero .stats { gap: 20px; }
+            .hero .stats .stat strong { font-size: 1.1rem; }
+            .grid-recetas { grid-template-columns: 1fr; }
+            .modal-contenido { padding: 1.5rem; }
+            .modal .modal-titulo { font-size: 1.5rem; }
+            .buscador-section { top: 60px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
 <header>
-    <h1>🍽️ Cocina en Casa</h1>
-    <p>126 recetas tradicionales de todo el mundo</p>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-utensils"></i>
+            Cocina<span>EnCasa</span>
+        </div>
+        <button class="menu-hamburguesa" id="menuHamburguesa" aria-label="Menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="menu-principal" id="menuPrincipal">
+            <a href="#" class="activo">Inicio</a>
+            <a href="#recetas">Recetas</a>
+            <div class="dropdown">
+                <a href="#" onclick="toggleDropdown(event)" style="display:flex;align-items:center;gap:6px;">
+                    Países <i class="fas fa-chevron-down" style="font-size:0.6rem;"></i>
+                </a>
+                <div class="dropdown-content" id="dropdownPaises"></div>
+            </div>
+            <a href="#footer">Contacto</a>
+        </nav>
+    </div>
 </header>
 
-<div class="buscador">
-    <input type="text" id="buscar" placeholder="Buscar receta por nombre, ingrediente o país...">
-</div>
-
-<div class="contenedor">
-    <div class="paises" id="filtroPaises">
-        <button class="pais activo" data-pais="todos">🌍 Todos</button>
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+    <div class="container">
+        <h1>🍽️ Recetas del <span>Mundo</span></h1>
+        <p>Descubre 126 recetas tradicionales de todos los países. Cocina como un profesional desde tu casa.</p>
+        <div class="stats">
+            <div class="stat"><strong>18</strong> Países</div>
+            <div class="stat"><strong>126</strong> Recetas</div>
+            <div class="stat"><strong>⭐ 4.8</strong> Valoración</div>
+        </div>
     </div>
-    <div class="contador" id="contadorRecetas"></div>
-    <div class="grid-recetas" id="listaRecetas"></div>
+</section>
+
+<!-- ============================================================
+     BUSCADOR
+     ============================================================ -->
+<div class="buscador-section">
+    <div class="container">
+        <input type="text" id="buscar" placeholder="🔍 Buscar receta por nombre, ingrediente o país...">
+    </div>
 </div>
 
+<!-- ============================================================
+     FILTRO DE PAÍSES
+     ============================================================ -->
+<section class="paises-section" id="recetas">
+    <div class="container" id="filtroPaises">
+        <button class="pais-btn activo" data-pais="todos">🌍 Todos</button>
+    </div>
+</section>
+
+<!-- ============================================================
+     LISTA DE RECETAS
+     ============================================================ -->
+<section class="recetas-section">
+    <div class="container">
+        <div class="header-recetas">
+            <h2>📖 Recetas</h2>
+            <span class="contador" id="contadorRecetas">0 recetas</span>
+        </div>
+        <div class="grid-recetas" id="listaRecetas"></div>
+    </div>
+</section>
+
+<!-- ============================================================
+     MODAL
+     ============================================================ -->
 <div class="modal" id="modalReceta">
     <div class="modal-contenido">
-        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+        <button class="cerrar" onclick="cerrarModal()">&times;</button>
         <div id="contenidoModal"></div>
     </div>
 </div>
 
-<footer>
-    <p>© 2026 Cocina en Casa | Recetas para todos los gustos</p>
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer">
+    <div class="container">
+        <div>
+            <h4 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;">
+                🍽️ Cocina<span style="color:var(--accent-light);">EnCasa</span>
+            </h4>
+            <p style="font-size:0.9rem;margin-top:6px;">Recetas de todo el mundo, paso a paso y con ingredientes precisos.</p>
+        </div>
+        <div>
+            <h4>Países</h4>
+            <ul id="footerPaises"></ul>
+        </div>
+        <div>
+            <h4>Contacto</h4>
+            <ul>
+                <li><a href="mailto:info@cocinaencasa.cyou"><i class="fas fa-envelope"></i> info@cocinaencasa.cyou</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i> @cocinaencasa</a></li>
+                <li><a href="#"><i class="fab fa-youtube"></i> CocinaEnCasa</a></li>
+            </ul>
+        </div>
+        <div class="copy">© 2026 CocinaEnCasa. Todos los derechos reservados.</div>
+    </div>
 </footer>
 
+<!-- ============================================================
+     RECETAS DATA + SCRIPTS
+     ============================================================ -->
 <script>
 // ============================================================
-//  COCINAENCASA - TODAS LAS RECETAS DEL MUNDO
-//  126 recetas organizadas por país
+//  DATOS - 126 RECETAS
 // ============================================================
 
 const recetasData = {
@@ -289,312 +675,4 @@ const recetasData = {
             { nombre: "Moqueca baiana", descripcion: "Pescado en leche de coco y aceite de dendê.", ingredientes: ["Pescado blanco 500g", "Camarones 300g", "Leche de coco 250ml", "Aceite de dendê 2 cucharadas", "Cebolla 2 unidades", "Tomate 3 unidades"], preparacion: ["Sofreír cebolla y tomate.", "Agregar pescado y camarones.", "Incorporar leche de coco y cocinar 20 min."] },
             { nombre: "Pão de queijo", descripcion: "Panecillos de almidón de yuca y queso.", ingredientes: ["Almidón de yuca 500g", "Queso rallado 300g", "Leche 250ml", "Huevo 2 unidades", "Aceite 100ml"], preparacion: ["Mezclar todos los ingredientes.", "Formar bolitas.", "Hornear a 180°C por 25 min."] },
             { nombre: "Churrasco", descripcion: "Carnes asadas a la parrilla con farofa.", ingredientes: ["Picanha 1.5kg", "Sal gruesa", "Farofa (harina de mandioca)"], preparacion: ["Asar la carne a la parrilla con sal gruesa.", "Servir con farofa."] },
-            { nombre: "Acarajé", descripcion: "Bola de frijol frito rellena de camarones.", ingredientes: ["Frijol carita 500g", "Cebolla 1 unidad", "Aceite de dendê para freír", "Camarones secos 200g", "Vatapá"], preparacion: ["Remojar frijoles y triturar.", "Freír bolitas de masa en aceite de dendê.", "Rellenar con vatapá y camarones."] },
-            { nombre: "Brigadeiro", descripcion: "Trufa de leche condensada y chocolate.", ingredientes: ["Leche condensada 1 lata", "Cacao en polvo 3 cucharadas", "Mantequilla 1 cucharada", "Granillo de chocolate"], preparacion: ["Cocinar leche condensada con cacao y mantequilla.", "Cocer hasta despegar de la olla.", "Hacer bolitas y pasar por granillo."] },
-            { nombre: "Caipirinha", descripcion: "Cóctel de cachaça, lima y azúcar.", ingredientes: ["Cachaça 50ml", "Lima 1 unidad", "Azúcar 2 cucharadas"], preparacion: ["Cortar la lima y machacar con azúcar.", "Agregar hielo y cachaça.", "Servir."] }
-        ]
-    },
-    chile: {
-        nombre: "Chile",
-        bandera: "🇨🇱",
-        recetas: [
-            { nombre: "Pastel de choclo", descripcion: "Pastel de maíz con relleno de carne.", ingredientes: ["Choclo 8 unidades", "Carne molida 500g", "Cebolla 2 unidades", "Huevo duro 3 unidades", "Aceitunas", "Azúcar para espolvorear"], preparacion: ["Sofreír carne con cebolla.", "Licuar choclo con leche.", "Armar en fuente y hornear 40 min."] },
-            { nombre: "Empanadas de pino", descripcion: "Rellenas de carne, cebolla y aceitunas.", ingredientes: ["Carne molida 500g", "Cebolla 2 unidades", "Comino 1 cucharadita", "Aceitunas", "Huevo duro 2 unidades", "Masa para empanadas"], preparacion: ["Sofreír carne con cebolla y comino.", "Rellenar las empanadas y hornear 25 min."] },
-            { nombre: "Cazuela de vacuno", descripcion: "Sopa de carne, zapallo y choclo.", ingredientes: ["Carne de res con hueso 500g", "Papa 3 unidades", "Zapallo 200g", "Choclo 2 unidades", "Arroz 1/2 taza"], preparacion: ["Cocer la carne con verduras.", "Agregar papas, zapallo y choclo.", "Cocinar 30 min y servir."] },
-            { nombre: "Completos", descripcion: "Hot dog con palta, tomate y mayonesa.", ingredientes: ["Pan de completo 4 unidades", "Vienesa 4 unidades", "Palta 2 unidades", "Tomate 2 unidades", "Mayonesa", "Chucrut (opcional)"], preparacion: ["Cocer las vienesas.", "Calentar los panes.", "Armar con todos los ingredientes."] },
-            { nombre: "Caldillo de congrio", descripcion: "Sopa de congrio con verduras.", ingredientes: ["Congrio 1kg", "Cebolla 2 unidades", "Zanahoria 2 unidades", "Papa 3 unidades", "Vino blanco 1 vaso"], preparacion: ["Sofreír verduras en aceite.", "Agregar vino y el congrio.", "Cocinar 20 min y servir."] },
-            { nombre: "Humitas", descripcion: "Masa de choclo envuelta en hojas de maíz.", ingredientes: ["Choclo 6 unidades", "Cebolla 1 unidad", "Albahaca", "Hojas de maíz"], preparacion: ["Moler el choclo con cebolla y albahaca.", "Envolver en hojas de maíz.", "Cocer en agua 30 min."] },
-            { nombre: "Mote con huesillo", descripcion: "Bebida de duraznos secos con trigo.", ingredientes: ["Huesillos (duraznos secos) 500g", "Mote (trigo pelado) 300g", "Azúcar", "Canela"], preparacion: ["Cocer los huesillos con azúcar y canela.", "Cocer el mote por separado.", "Mezclar y servir frío."] }
-        ]
-    },
-    colombia: {
-        nombre: "Colombia",
-        bandera: "🇨🇴",
-        recetas: [
-            { nombre: "Bandeja paisa", descripcion: "Plato abundante con frijoles, carnes y arroz.", ingredientes: ["Frijoles rojos 300g", "Carne molida 300g", "Chicharrón 300g", "Arroz blanco", "Huevo 4 unidades", "Plátano maduro", "Arepa"], preparacion: ["Cocer frijoles con condimentos.", "Freír chicharrón, plátano y huevos.", "Servir todos los componentes juntos."] },
-            { nombre: "Ajiaco santafereño", descripcion: "Sopa de pollo con tres papas y guascas.", ingredientes: ["Pollo 1kg", "Papa criolla 500g", "Papa sabanera 500g", "Papa pastusa 500g", "Guascas 2 cucharadas", "Mazorca 2 unidades"], preparacion: ["Cocer el pollo en agua con sal.", "Agregar las papas y la mazorca.", "Añadir guascas y cocinar 15 min más."] },
-            { nombre: "Sancocho", descripcion: "Sopa de gallina con yuca y plátano.", ingredientes: ["Gallina 1kg", "Yuca 500g", "Plátano verde 3 unidades", "Maíz 2 unidades", "Cebolla 1 unidad"], preparacion: ["Cocer la gallina en abundante agua.", "Agregar yuca, plátano y maíz.", "Cocinar 40 min y servir."] },
-            { nombre: "Arepas", descripcion: "Pan de maíz relleno al gusto.", ingredientes: ["Harina de maíz precocida 2 tazas", "Agua 2.5 tazas", "Sal 1 cucharadita", "Aceite"], preparacion: ["Mezclar harina con agua y sal.", "Formar discos y cocinar en plancha.", "Rellenar al gusto."] },
-            { nombre: "Patacones (tostones)", descripcion: "Plátano verde frito dos veces.", ingredientes: ["Plátano verde 4 unidades", "Sal", "Aceite para freír"], preparacion: ["Pelar y cortar los plátanos en rodajas.", "Freír ligeramente.", "Aplastar y freír nuevamente."] },
-            { nombre: "Lechona", descripcion: "Cerdo relleno con arroz y especias.", ingredientes: ["Cerdo entero o pierna 5kg", "Arroz 1kg", "Cebolla 3 unidades", "Arvejas 300g", "Especias"], preparacion: ["Rellenar el cerdo con arroz y especias.", "Cocer en horno 5 horas.", "Servir con arepas."] },
-            { nombre: "Obleas", descripcion: "Galletas rellenas de arequipe y queso.", ingredientes: ["Harina de trigo 300g", "Huevo 2 unidades", "Azúcar 100g", "Arequipe (dulce de leche)", "Queso rallado"], preparacion: ["Preparar masa con harina, huevo y azúcar.", "Cocer en oblera.", "Rellenar con arequipe y queso."] }
-        ]
-    },
-    ecuador: {
-        nombre: "Ecuador",
-        bandera: "🇪🇨",
-        recetas: [
-            { nombre: "Encebollado", descripcion: "Sopa de pescado con yuca y cebolla.", ingredientes: ["Pescado 1kg (albacora)", "Yuca 1kg", "Cebolla morada 2 unidades", "Cilantro", "Limón"], preparacion: ["Cocer el pescado con condimentos.", "Agregar yuca y cocinar 30 min.", "Servir con cebolla curtida y limón."] },
-            { nombre: "Llapingachos", descripcion: "Tortillas de papa rellenas de queso.", ingredientes: ["Papa 6 unidades", "Queso fresco 200g", "Cebolla 1 unidad", "Achiote", "Chorizo o huevo para acompañar"], preparacion: ["Cocer y hacer puré de papas.", "Sofreír cebolla con achiote.", "Formar tortitas rellenas de queso y dorar."] },
-            { nombre: "Fanesca", descripcion: "Sopa de granos y bacalao para Semana Santa.", ingredientes: ["Bacalao seco 500g", "Granos variados (habas, arvejas, garbanzos)", "Zapallo 200g", "Maní 100g", "Leche 500ml"], preparacion: ["Remojar bacalao 24 horas.", "Cocer todos los granos.", "Mezclar con bacalao, zapallo y leche."] },
-            { nombre: "Hornado", descripcion: "Cerdo asado con choclo y papas.", ingredientes: ["Cerdo (pierna) 2kg", "Ajo 4 dientes", "Cebolla 2 unidades", "Choclo", "Papas"], preparacion: ["Marinar el cerdo con ajo y cebolla.", "Asar en horno 3 horas.", "Servir con choclo y papas."] },
-            { nombre: "Ceviche ecuatoriano", descripcion: "Camarones en jugo de naranja y limón.", ingredientes: ["Camarones 500g", "Naranja agria 1 taza", "Limón 1 taza", "Cebolla morada 2 unidades", "Tomate 2 unidades"], preparacion: ["Cocer los camarones en agua con sal.", "Mezclar con jugo de naranja y limón.", "Agregar cebolla y tomate."] },
-            { nombre: "Cuy asado", descripcion: "Conejillo de indias asado.", ingredientes: ["Cuy 1 unidad", "Ajo 2 dientes", "Cebolla 1 unidad", "Especias"], preparacion: ["Limpiar y marinar el cuy.", "Asar en horno 1 hora.", "Servir con papas."] },
-            { nombre: "Colada morada", descripcion: "Bebida espesa de frutos rojos y maíz.", ingredientes: ["Maíz morado 500g", "Frutos rojos (mora, fresa)", "Canela", "Clavo", "Azúcar"], preparacion: ["Cocer el maíz con especias.", "Licuar y colar.", "Agregar frutos rojos y azúcar."] }
-        ]
-    },
-    estadosunidos: {
-        nombre: "Estados Unidos",
-        bandera: "🇺🇸",
-        recetas: [
-            { nombre: "Fried Chicken", descripcion: "Pollo frito crujiente y jugoso.", ingredientes: ["Pollo 1.5kg", "Suero de leche 2 tazas", "Harina 2 tazas", "Pimentón 1 cucharada", "Ajo en polvo 1 cucharadita", "Aceite para freír"], preparacion: ["Marinar pollo en suero de leche 4 horas.", "Rebozar en harina con especias.", "Freír en aceite caliente 15 min."] },
-            { nombre: "Apple Pie", descripcion: "Pastel de manzana especiado.", ingredientes: ["Manzanas 5 unidades", "Azúcar 3/4 taza", "Canela 1 cucharadita", "Masa para pastel 2 discos", "Mantequilla"], preparacion: ["Pelar y cortar manzanas.", "Mezclar con azúcar y canela.", "Cubrir con masa y hornear 50 min."] },
-            { nombre: "Cheeseburger", descripcion: "Hamburguesa con queso y vegetales.", ingredientes: ["Carne molida 500g", "Queso cheddar 4 lonchas", "Pan de hamburguesa 4 unidades", "Lechuga, tomate, pepinillos"], preparacion: ["Formar hamburguesas y sazonar.", "Cocinar en plancha 4 min por lado.", "Armar con queso y vegetales."] },
-            { nombre: "Buffalo Wings", descripcion: "Alitas de pollo con salsa picante.", ingredientes: ["Alitas de pollo 24 unidades", "Harina 1 taza", "Mantequilla 100g", "Salsa picante 1/2 taza", "Vinagre 1 cucharada"], preparacion: ["Rebozar alitas en harina.", "Freír en aceite 10 min.", "Bañar en salsa de mantequilla y picante."] },
-            { nombre: "New York Cheesecake", descripcion: "Tarta de queso cremosa estilo NY.", ingredientes: ["Queso crema 900g", "Azúcar 250g", "Huevo 4 unidades", "Crema agria 1/2 taza", "Galletas Graham 200g", "Mantequilla 100g"], preparacion: ["Hacer base con galletas y mantequilla.", "Batir queso crema con azúcar y huevos.", "Hornear a baño María 60 min."] },
-            { nombre: "Barbecue Ribs", descripcion: "Costillas con salsa barbacoa.", ingredientes: ["Costillas de cerdo 2 racks", "Paprika 1/4 taza", "Azúcar moreno 2 cucharadas", "Salsa barbacoa"], preparacion: ["Sazonar costillas con especias.", "Hornear envueltas en papel 2.5 horas.", "Bañar con salsa y gratinar."] },
-            { nombre: "Boston Cream Pie", descripcion: "Pastel con crema pastelera y chocolate.", ingredientes: ["Harina 210g", "Mantequilla 120g", "Azúcar 200g", "Huevo 2 unidades", "Crema pastelera", "Chocolate para cubrir"], preparacion: ["Hornear bizcocho a 180°C 35 min.", "Rellenar con crema pastelera.", "Cubrir con ganache de chocolate."] }
-        ]
-    },
-    mexico: {
-        nombre: "México",
-        bandera: "🇲🇽",
-        recetas: [
-            { nombre: "Mole poblano", descripcion: "Salsa de chiles con chocolate.", ingredientes: ["Chiles anchos 8 unidades", "Chiles mulatos 6 unidades", "Chocolate 100g", "Pollo 1kg", "Ajonjolí", "Almendras", "Pasas"], preparacion: ["Tostar chiles y remojar.", "Licuar con chocolate y especias.", "Cocer con pollo 30 min."] },
-            { nombre: "Chiles en nogada", descripcion: "Chiles rellenos con salsa de nuez.", ingredientes: ["Chile poblano 10 unidades", "Carne de cerdo 1kg", "Manzana, pera, durazno", "Nuez de Castilla 1.5 tazas", "Crema 2.5 tazas", "Granada"], preparacion: ["Asar y pelar chiles.", "Rellenar con carne y frutas.", "Bañar con salsa de nuez y decorar."] },
-            { nombre: "Pozole rojo", descripcion: "Caldo de maíz con carne de cerdo.", ingredientes: ["Maíz cacahuazintle 1.5kg", "Carne de cerdo 1kg", "Chiles guajillo 12 unidades", "Chiles ancho 4 unidades"], preparacion: ["Cocer maíz y carne 3 horas.", "Licuar chiles con condimentos.", "Integrar y cocinar 30 min más."] },
-            { nombre: "Flautas ahogadas", descripcion: "Tortillas enrolladas bañadas en salsa.", ingredientes: ["Tortillas de maíz 12 unidades", "Pollo 500g", "Tomatillo 500g", "Chiles serranos 2 unidades", "Crema y queso"], preparacion: ["Rellenar tortillas con pollo y enrollar.", "Freír hasta dorar.", "Bañar con salsa y decorar."] },
-            { nombre: "Guacamole", descripcion: "Crema de aguacate con vegetales.", ingredientes: ["Aguacate 4 unidades", "Cebolla 1/2 unidad", "Tomate 1 unidad", "Cilantro", "Limón", "Chile serrano"], preparacion: ["Machacar aguacate con tenedor.", "Mezclar con cebolla, tomate y cilantro.", "Añadir limón y chile."] },
-            { nombre: "Tamales", descripcion: "Masa de maíz rellena envuelta en hojas.", ingredientes: ["Masa de maíz 1kg", "Manteca 300g", "Pollo o cerdo 500g", "Salsa roja o verde", "Hojas de maíz"], preparacion: ["Batir manteca con masa.", "Colocar masa y relleno en hojas.", "Cocer al vapor 1 hora."] },
-            { nombre: "Churros", descripcion: "Masa frita con azúcar y canela.", ingredientes: ["Harina 300g", "Agua 300ml", "Sal 1 pizca", "Aceite para freír", "Azúcar y canela"], preparacion: ["Hervir agua con sal.", "Agregar harina y mezclar.", "Freír churros y espolvorear."] }
-        ]
-    },
-    peru: {
-        nombre: "Perú",
-        bandera: "🇵🇪",
-        recetas: [
-            { nombre: "Ceviche", descripcion: "Pescado en jugo de limón con ají.", ingredientes: ["Pescado blanco 500g", "Limón 12 unidades", "Cebolla morada 1 unidad", "Ají limo 2 unidades", "Cilantro", "Camote y choclo"], preparacion: ["Cortar pescado en cubos.", "Cubrir con jugo de limón.", "Agregar cebolla, ají y cilantro. Reposar 10 min."] },
-            { nombre: "Lomo saltado", descripcion: "Tiras de res con cebolla y tomate.", ingredientes: ["Lomo fino 500g", "Cebolla 2 unidades", "Tomate 2 unidades", "Sillao (salsa de soja) 3 cucharadas", "Ají amarillo 1 unidad", "Papas fritas"], preparacion: ["Sellar la carne en wok caliente.", "Agregar cebolla, tomate y ají.", "Incorporar sillao y servir con papas."] },
-            { nombre: "Ají de gallina", descripcion: "Gallina en crema de ají y leche.", ingredientes: ["Pollo 1kg", "Ají amarillo 6 unidades", "Pan de molde 4 rebanadas", "Leche evaporada 500ml", "Nueces 50g", "Queso parmesano 2 cucharadas"], preparacion: ["Cocer y desmenuzar pollo.", "Sofreír ají con cebolla.", "Licuar pan con leche y mezclar todo. Cocinar 10 min."] },
-            { nombre: "Causa limeña", descripcion: "Pastel de papa amarilla relleno.", ingredientes: ["Papa amarilla 1kg", "Ají amarillo 3 unidades", "Limón 3 unidades", "Aceite, sal", "Relleno: pollo, atún o mariscos"], preparacion: ["Cocer papas y hacer puré.", "Mezclar con ají, limón, aceite y sal.", "Armar capas con el relleno y servir frío."] },
-            { nombre: "Anticuchos de corazón", descripcion: "Brochetas de corazón de res con ají.", ingredientes: ["Corazón de res 1kg", "Ají panca 4 cucharadas", "Vinagre, comino, ajo", "Papa y choclo para acompañar"], preparacion: ["Marinar el corazón cortado en cubos 4 horas.", "Ensartar en brochetas.", "Asar a la parrilla y servir con papas."] },
-            { nombre: "Picarones", descripcion: "Masa frita de calabaza y camote con miel.", ingredientes: ["Camote 200g", "Calabaza 200g", "Harina 300g", "Levadura 1 cucharada", "Miel de chancaca"], preparacion: ["Cocer camote y calabaza, hacer puré.", "Mezclar con harina y levadura, dejar reposar.", "Freír en aceite y bañar con miel."] },
-            { nombre: "Papa a la huancaína", descripcion: "Papas con salsa cremosa de ají y queso.", ingredientes: ["Papa 6 unidades", "Ají amarillo 4 unidades", "Queso fresco 200g", "Leche evaporada 1/2 taza", "Galletas saladas 4 unidades", "Aceite, sal"], preparacion: ["Cocer papas y cortar en rodajas.", "Licuar ají con queso, leche y galletas.", "Servir papas bañadas con la salsa."] }
-        ]
-    },
-    venezuela: {
-        nombre: "Venezuela",
-        bandera: "🇻🇪",
-        recetas: [
-            { nombre: "Pabellón criollo", descripcion: "Arroz, caraotas, carne mechada y plátano.", ingredientes: ["Arroz blanco", "Caraotas negras 300g", "Carne de res 500g", "Plátano maduro"], preparacion: ["Cocer caraotas con condimentos.", "Mechar la carne desmenuzada.", "Freír plátano y servir con arroz."] },
-            { nombre: "Hallaca", descripcion: "Masa de maíz con guiso de carnes envuelta en hojas.", ingredientes: ["Harina de maíz 750g", "Carne de res 500g", "Carne de cerdo 250g", "Cebolla, ajo, pimentón", "Alcaparras, aceitunas", "Hojas de plátano"], preparacion: ["Sofreír carnes con verduras.", "Preparar masa de maíz.", "Armar en hojas y hervir 45 min."] },
-            { nombre: "Asado negro", descripcion: "Carne de res cocida en reducción dulce.", ingredientes: ["Muchacho redondo 2kg", "Papelón 250g", "Cebolla 2 unidades", "Tomate 3 unidades", "Vino tinto 1 taza"], preparacion: ["Marinar carne con especias 12 horas.", "Caramelizar papelón y dorar carne.", "Cocinar a fuego lento 3 horas."] },
-            { nombre: "Cachapa", descripcion: "Torta de maíz tierno con queso.", ingredientes: ["Maíz tierno 450g", "Huevo 2 unidades", "Leche 120ml", "Harina de maíz 40g", "Queso mozzarella"], preparacion: ["Licuar maíz con leche y harina.", "Cocinar en sartén hasta dorar.", "Rellenar con queso y doblar."] },
-            { nombre: "Arepas", descripcion: "Pan de maíz relleno al gusto.", ingredientes: ["Harina de maíz precocida 2 tazas", "Agua 2.5 tazas", "Sal 1 cucharadita", "Aceite"], preparacion: ["Mezclar harina con agua y sal.", "Formar discos y cocinar en plancha.", "Rellenar al gusto."] },
-            { nombre: "Tequeños", descripcion: "Palitos de queso envueltos en masa y fritos.", ingredientes: ["Queso blanco 1kg", "Harina de trigo 500g", "Mantequilla 100g", "Huevo 1 unidad", "Aceite para freír"], preparacion: ["Preparar masa con harina, mantequilla y huevo.", "Cortar tiras y envolver queso.", "Freír hasta dorar."] },
-            { nombre: "Pan de jamón", descripcion: "Pan relleno de jamón, tocineta y pasas.", ingredientes: ["Harina de trigo 500g", "Jamón 500g", "Tocineta 200g", "Pasas 100g", "Aceitunas 100g"], preparacion: ["Preparar masa y dejar levar 1 hora.", "Rellenar con jamón y tocineta.", "Enrollar y hornear 40 min."] }
-        ]
-    },
-    uruguay: {
-        nombre: "Uruguay",
-        bandera: "🇺🇾",
-        recetas: [
-            { nombre: "Chivito", descripcion: "Sándwich con lomo, jamón, queso y huevo.", ingredientes: ["Pan de hamburguesa 4 unidades", "Lomo 200g", "Jamón 4 lonchas", "Queso 4 lonchas", "Huevo 2 unidades", "Lechuga, tomate, panceta"], preparacion: ["Cocinar lomo a la plancha.", "Freír huevos y panceta.", "Armar sándwich con todos los ingredientes."] },
-            { nombre: "Asado uruguayo", descripcion: "Parrillada de carnes con achuras.", ingredientes: ["Tira de asado 1.5kg", "Achuras", "Sal gruesa"], preparacion: ["Encender fuego y esperar brasas.", "Asar carnes a fuego lento 1 hora.", "Servir con ensalada."] },
-            { nombre: "Milanesa uruguaya", descripcion: "Filete empanado con papas fritas.", ingredientes: ["Filete de carne 4 unidades", "Pan rallado 200g", "Huevo 2 unidades", "Papas fritas"], preparacion: ["Empanar filetes.", "Freír en aceite caliente.", "Servir con papas fritas."] },
-            { nombre: "Pascualina", descripcion: "Tarta de acelga, queso y huevo.", ingredientes: ["Masa para tarta", "Acelga 500g", "Queso 200g", "Huevo 4 unidades"], preparacion: ["Sofreír acelga y queso.", "Rellenar la tarta.", "Cocinar al horno 40 min."] },
-            { nombre: "Fainá", descripcion: "Torta de harina de garbanzos.", ingredientes: ["Harina de garbanzos 300g", "Agua 500ml", "Aceite de oliva", "Sal"], preparacion: ["Mezclar harina con agua y sal.", "Cocer en sartén con aceite.", "Servir con pizza."] },
-            { nombre: "Mate", descripcion: "Infusión de yerba mate.", ingredientes: ["Yerba mate", "Agua caliente (80°C)", "Azúcar (opcional)"], preparacion: ["Llenar el mate con yerba.", "Agregar agua caliente.", "Beber con bombilla."] },
-            { nombre: "Dulce de leche uruguayo", descripcion: "Crema de leche y azúcar cocida.", ingredientes: ["Leche 2 litros", "Azúcar 500g", "Bicarbonato 1 cucharadita"], preparacion: ["Cocinar leche con azúcar a fuego bajo.", "Revolver constantemente hasta espesar.", "Dejar enfriar."] }
-        ]
-    },
-    paraguay: {
-        nombre: "Paraguay",
-        bandera: "🇵🇾",
-        recetas: [
-            { nombre: "Sopa paraguaya", descripcion: "Pastel de maíz y queso.", ingredientes: ["Harina de maíz 500g", "Queso Paraguay 500g", "Leche 1 taza", "Huevo 6 unidades", "Cebolla 1 unidad", "Manteca 100g"], preparacion: ["Mezclar todos los ingredientes.", "Verter en molde enmantecado.", "Hornear a 180°C por 45 min."] },
-            { nombre: "Chipa", descripcion: "Panecillos de almidón de yuca y queso.", ingredientes: ["Almidón de yuca 500g", "Queso rallado 300g", "Huevo 3 unidades", "Leche 200ml", "Manteca 100g"], preparacion: ["Mezclar todos los ingredientes.", "Formar rosquillas.", "Hornear a 200°C por 20 min."] },
-            { nombre: "Mbejú", descripcion: "Tortilla de almidón de yuca y queso.", ingredientes: ["Almidón de yuca 500g", "Queso Paraguay 300g", "Leche 200ml", "Huevo 2 unidades", "Manteca"], preparacion: ["Mezclar almidón con queso y huevo.", "Cocinar en sartén como tortilla.", "Servir caliente."] },
-            { nombre: "Bori-bori", descripcion: "Sopa de maíz con queso y carne.", ingredientes: ["Maíz 500g", "Queso 200g", "Carne 500g", "Cebolla 1 unidad"], preparacion: ["Cocer carne en agua con cebolla.", "Agregar maíz y queso.", "Cocinar 30 min y servir."] },
-            { nombre: "Pira caldo", descripcion: "Sopa de pescado con tomate y queso.", ingredientes: ["Pescado 1kg", "Tomate 3 unidades", "Queso 200g", "Cebolla 1 unidad"], preparacion: ["Cocer pescado en agua.", "Agregar tomate y cebolla.", "Añadir queso y cocinar 10 min."] },
-            { nombre: "Chipa guazú", descripcion: "Tarta de choclo y queso.", ingredientes: ["Choclo 6 unidades", "Queso 300g", "Leche 200ml", "Huevo 4 unidades", "Cebolla 1 unidad"], preparacion: ["Licuar choclo con leche.", "Mezclar con queso, huevo y cebolla.", "Hornear a 180°C por 40 min."] },
-            { nombre: "Mazamorra", descripcion: "Postre de maíz con leche y azúcar.", ingredientes: ["Maíz blanco 500g", "Leche 1 litro", "Azúcar", "Canela"], preparacion: ["Cocer maíz en leche.", "Agregar azúcar y canela.", "Cocinar hasta espesar."] }
-        ]
-    },
-    reino_unido: {
-        nombre: "Reino Unido",
-        bandera: "🇬🇧",
-        recetas: [
-            { nombre: "Roast Beef", descripcion: "Asado de res con pudines de Yorkshire.", ingredientes: ["Falda de res 2kg", "Vino tinto 1 vaso", "Harina 225g", "Huevo 4 unidades", "Leche 300ml"], preparacion: ["Asar la carne a 180°C por 90 min.", "Preparar los pudines con harina, huevos y leche.", "Servir con gravy."] },
-            { nombre: "Lancashire Hotpot", descripcion: "Guiso de cordero con cobertura de papas.", ingredientes: ["Cordero 1kg", "Cebolla 3 unidades", "Zanahoria 2 unidades", "Caldo 600ml", "Papa 1kg"], preparacion: ["Colocar capas de carne y verduras.", "Cubrir con rodajas de papa.", "Hornear 2 horas."] },
-            { nombre: "Summer Pudding", descripcion: "Postre de frutos rojos y pan.", ingredientes: ["Frutos rojos 1.8kg", "Azúcar 300g", "Vino blanco 150ml", "Pan de molde 6 rebanadas"], preparacion: ["Cocer frutos con azúcar y vino.", "Forrar un bol con pan pintado en jugo.", "Rellenar con frutos y refrigerar."] },
-            { nombre: "English Trifle", descripcion: "Postre de bizcocho, crema y frutos.", ingredientes: ["Bizcocho de vainilla 170g", "Frambuesas", "Jerez 2 cucharadas", "Gelatina de frambuesa", "Natillas 500ml", "Crema de leche 480ml"], preparacion: ["Colocar bizcocho con frambuesas y jerez.", "Cubrir con gelatina y refrigerar.", "Agregar natillas y crema montada."] },
-            { nombre: "Chicken Pot Pie", descripcion: "Pastel de pollo y champiñones.", ingredientes: ["Pollo 1kg", "Champiñones 250g", "Mantequilla 60g", "Harina 90g", "Leche 1 taza", "Hojaldre 1 lámina"], preparacion: ["Cocinar pollo y desmenuzar.", "Preparar salsa con mantequilla y harina.", "Cubrir con hojaldre y hornear."] },
-            { nombre: "Fish and Chips", descripcion: "Pescado rebozado con papas fritas.", ingredientes: ["Bacalao 500g", "Harina 200g", "Cerveza 300ml", "Papa 1kg", "Aceite para freír"], preparacion: ["Preparar masa con harina y cerveza.", "Rebozar el pescado y freír.", "Freír papas en bastones."] },
-            { nombre: "Shepherd's Pie", descripcion: "Pastel de cordero con puré de papa.", ingredientes: ["Cordero molido 500g", "Cebolla 1 unidad", "Zanahoria 1 unidad", "Papa 1kg", "Mantequilla"], preparacion: ["Sofreír carne con verduras.", "Cubrir con puré de papa.", "Hornear 30 min."] }
-        ]
-    },
-    francia: {
-        nombre: "Francia",
-        bandera: "🇫🇷",
-        recetas: [
-            { nombre: "Cassoulet", descripcion: "Guiso de alubias con carnes.", ingredientes: ["Alubias blancas 500g", "Confit de pato 4 muslos", "Salchichas 500g", "Panceta 200g", "Pan rallado"], preparacion: ["Remojar alubias 12 horas.", "Cocer con carnes 2 horas.", "Hornear con pan rallado 1 hora."] },
-            { nombre: "Coq au Vin", descripcion: "Pollo estofado en vino tinto.", ingredientes: ["Pollo 1kg", "Vino tinto 1 botella", "Champiñones 200g", "Panceta 100g", "Cebolla 1 unidad"], preparacion: ["Marinar pollo en vino 4 horas.", "Dorar pollo y panceta.", "Cocer a fuego lento 1 hora."] },
-            { nombre: "Ratatouille", descripcion: "Estofado de verduras provenzal.", ingredientes: ["Berenjena 1 unidad", "Calabacín 2 unidades", "Pimiento rojo 1 unidad", "Tomate 4 unidades", "Aceite de oliva"], preparacion: ["Cortar verduras en rodajas.", "Sofreír cebolla y ajo.", "Cocinar a fuego lento 30 min."] },
-            { nombre: "Quiche Lorraine", descripcion: "Tarta salada de tocino y queso.", ingredientes: ["Masa quebrada", "Huevo 3 unidades", "Crema de leche 200ml", "Queso Gruyère 150g", "Tocino 200g"], preparacion: ["Pre-cocer la masa.", "Mezclar huevos, crema y queso.", "Hornear 35 min."] },
-            { nombre: "Crêpes", descripcion: "Masa fina rellena dulce o salada.", ingredientes: ["Harina 250g", "Huevo 4 unidades", "Leche 500ml", "Sal", "Mantequilla"], preparacion: ["Mezclar todos los ingredientes.", "Cocinar en sartén antiadherente.", "Rellenar al gusto."] },
-            { nombre: "Soupe à l'Oignon", descripcion: "Sopa de cebolla gratinada.", ingredientes: ["Cebolla 1kg", "Mantequilla 40g", "Caldo de res 1 litro", "Queso Gruyère 200g", "Pan de campo"], preparacion: ["Caramelizar cebolla a fuego lento.", "Agregar caldo y cocer 1 hora.", "Gratinar con pan y queso."] },
-            { nombre: "Steak Frites", descripcion: "Bistec con papas fritas.", ingredientes: ["Entrecot 4 unidades", "Papa 1kg", "Aceite para freír", "Mantequilla"], preparacion: ["Freír papas dos veces.", "Cocinar carne a la plancha.", "Servir con mantequilla y hierbas."] }
-        ]
-    },
-    espana: {
-        nombre: "España",
-        bandera: "🇪🇸",
-        recetas: [
-            { nombre: "Gazpacho andaluz", descripcion: "Sopa fría de tomate y verduras.", ingredientes: ["Tomates 1kg", "Pimiento verde 1 unidad", "Pepino 1/2 unidad", "Ajo 1 diente", "Aceite de oliva 3 cucharadas", "Vinagre 3 cucharadas"], preparacion: ["Triturar todos los ingredientes.", "Colar y enfriar 2 horas.", "Servir muy frío."] },
-            { nombre: "Fabada asturiana", descripcion: "Guiso de fabes con embutidos.", ingredientes: ["Fabes 500g", "Chorizo asturiano 2 unidades", "Morcilla 2 unidades", "Panceta 250g", "Lacón 250g", "Laurel"], preparacion: ["Remojar fabes 12 horas.", "Cocer con embutidos 3 horas.", "Dejar reposar y servir."] },
-            { nombre: "Paella valenciana", descripcion: "Arroz con pollo, conejo y verduras.", ingredientes: ["Arroz bomba 500g", "Pollo 400g", "Conejo 400g", "Habas 100g", "Tomate", "Azafrán"], preparacion: ["Sofreír carnes en paellera.", "Agregar verduras y tomate.", "Añadir arroz y caldo. Cocer 20 min."] },
-            { nombre: "Tortilla de patatas", descripcion: "Tortilla de huevo y papa.", ingredientes: ["Papa 1kg", "Huevo 6 unidades", "Cebolla 1 unidad (opcional)", "Aceite de oliva"], preparacion: ["Freír papas en aceite.", "Batir huevos y mezclar con papas.", "Cocer en sartén y dar la vuelta."] },
-            { nombre: "Pulpo a la gallega", descripcion: "Pulpo cocido con pimentón y sal.", ingredientes: ["Pulpo 2kg", "Papa 1kg", "Pimentón dulce", "Sal gruesa"], preparacion: ["Cocer pulpo en agua hirviendo.", "Cocer papas.", "Servir con pimentón y sal."] },
-            { nombre: "Jamón serrano con melón", descripcion: "Jamón con melón.", ingredientes: ["Jamón serrano en lonchas", "Melón 1 unidad"], preparacion: ["Cortar melón en rodajas.", "Enrollar jamón sobre el melón.", "Servir frío."] },
-            { nombre: "Churros con chocolate", descripcion: "Churros con chocolate caliente.", ingredientes: ["Harina 300g", "Agua 300ml", "Aceite para freír", "Chocolate para fundir"], preparacion: ["Hervir agua y agregar harina.", "Freír churros.", "Servir con chocolate caliente."] }
-        ]
-    },
-    rusia: {
-        nombre: "Rusia",
-        bandera: "🇷🇺",
-        recetas: [
-            { nombre: "Borsch", descripcion: "Sopa de remolacha con crema agria.", ingredientes: ["Remolacha 3 unidades", "Col 300g", "Papa 3 unidades", "Zanahoria 1 unidad", "Cebolla 1 unidad", "Crema agria", "Eneldo"], preparacion: ["Cocer el caldo de carne.", "Agregar remolacha, col y papas.", "Servir con crema agria y eneldo."] },
-            { nombre: "Pelmeni", descripcion: "Empanadillas siberianas rellenas de carne.", ingredientes: ["Harina 3 tazas", "Huevo 1 unidad", "Carne picada 800g (cerdo y res)", "Cebolla 1 unidad"], preparacion: ["Hacer masa con harina, huevo y agua.", "Rellenar con carne y cebolla.", "Cocer en agua 10 min."] },
-            { nombre: "Solyanka", descripcion: "Sopa mixta de carnes con pepinillos.", ingredientes: ["Carne de res 500g", "Salchichas ahumadas 200g", "Pepinillos 3 unidades", "Cebolla 1 unidad", "Pasta de tomate 2 cucharadas", "Aceitunas"], preparacion: ["Cocer caldo de carne.", "Sofreír cebolla con tomate.", "Agregar carnes y pepinillos."] },
-            { nombre: "Golubtsy", descripcion: "Rollos de repollo rellenos de carne y arroz.", ingredientes: ["Repollo 1 unidad", "Carne molida 500g", "Arroz 1 taza", "Cebolla 1 unidad"], preparacion: ["Blanquear hojas de repollo.", "Rellenar con carne y arroz.", "Cocer en caldo 30 min."] },
-            { nombre: "Kasha", descripcion: "Gachas de alforfón.", ingredientes: ["Alforfón 1 taza", "Agua 2 tazas", "Mantequilla", "Champiñones"], preparacion: ["Tostar el alforfón en seco.", "Cocer en agua 20 min.", "Servir con mantequilla."] },
-            { nombre: "Shchi", descripcion: "Sopa de col con carne.", ingredientes: ["Carne de res 500g", "Col 400g", "Papa 3 unidades", "Zanahoria 1 unidad", "Cebolla 1 unidad"], preparacion: ["Cocer caldo de carne.", "Agregar col y papas.", "Servir con crema agria."] },
-            { nombre: "Kulebyaka", descripcion: "Pastel de pescado con arroz y huevo.", ingredientes: ["Masa de hojaldre", "Pescado blanco 500g", "Arroz 1 taza", "Huevo duro 3 unidades", "Cebolla 1 unidad"], preparacion: ["Mezclar pescado, arroz, huevo y cebolla.", "Rellenar la masa.", "Hornear 40 min."] }
-        ]
-    },
-    china: {
-        nombre: "China",
-        bandera: "🇨🇳",
-        recetas: [
-            { nombre: "Siu Mai", descripcion: "Dim sum de cerdo y camarón al vapor.", ingredientes: ["Cerdo picado 225g", "Camarones 115g", "Setas shiitake 4 unidades", "Salsa de soja", "Envolturas wantán"], preparacion: ["Mezclar todos los ingredientes.", "Rellenar las envolturas.", "Cocinar al vapor 12 min."] },
-            { nombre: "Chow Mein", descripcion: "Fideos salteados con pollo y verduras.", ingredientes: ["Fideos de trigo 200g", "Pollo 2 filetes", "Zanahoria 1 unidad", "Cebolleta china", "Salsa de soja", "Salsa de ostras"], preparacion: ["Dorar el pollo en wok.", "Saltear verduras.", "Incorporar fideos y salsas."] },
-            { nombre: "Mapo Tofu", descripcion: "Tofu picante de Sichuan.", ingredientes: ["Tofu blando 400g", "Carne de cerdo picada 150g", "Pasta de soja fermentada 2 cucharadas", "Pimienta de Sichuan", "Salsa de soja"], preparacion: ["Sofreír jengibre y ajo.", "Dorar la carne.", "Agregar tofu y salsa."] },
-            { nombre: "Nian Gao", descripcion: "Pastel de arroz salteado.", ingredientes: ["Pastel de arroz 200g", "Cerdo 200g", "Bok choy 200g", "Setas shiitake"], preparacion: ["Marinar cerdo.", "Saltear cerdo y verduras.", "Agregar pastel de arroz y salsa."] },
-            { nombre: "Arroz frito chino", descripcion: "Arroz salteado con huevo y verduras.", ingredientes: ["Arroz cocido 2 tazas", "Huevo 2 unidades", "Guisantes", "Zanahoria", "Salsa de soja"], preparacion: ["Saltear huevo y verduras.", "Agregar arroz y salsa.", "Saltear hasta integrar."] },
-            { nombre: "Pato laqueado", descripcion: "Pato asado con salsa hoisin.", ingredientes: ["Pato 1 unidad", "Salsa hoisin", "Miel", "Salsa de soja", "Jengibre"], preparacion: ["Marinar pato 24 horas.", "Asar en horno 1.5 horas.", "Servir con salsa."] },
-            { nombre: "Dim sum de verduras", descripcion: "Empanadillas de verduras al vapor.", ingredientes: ["Repollo 200g", "Zanahoria 1 unidad", "Champiñones", "Envolturas wantán"], preparacion: ["Picar verduras y saltear.", "Rellenar envolturas.", "Cocinar al vapor."] }
-        ]
-    },
-    japon: {
-        nombre: "Japón",
-        bandera: "🇯🇵",
-        recetas: [
-            { nombre: "Nikujaga", descripcion: "Carne y patatas en salsa dulce.", ingredientes: ["Patatas 600g", "Carne de res 200g", "Cebolla 1 unidad", "Sake 60cc", "Salsa de soja 80cc", "Azúcar 3.5 cucharadas"], preparacion: ["Cortar todos los ingredientes.", "Cocinar en caldo dashi con sake y soja.", "Cocer a fuego lento 30 min."] },
-            { nombre: "Champon", descripcion: "Sopa de fideos de Nagasaki.", ingredientes: ["Fideos ramen 4 paquetes", "Cerdo 115g", "Calamares", "Gambas", "Verduras", "Leche 2 tazas"], preparacion: ["Sofreír carnes y mariscos.", "Agregar verduras y caldo.", "Servir con fideos."] },
-            { nombre: "Ozoni", descripcion: "Sopa de Año Nuevo con mochi.", ingredientes: ["Mochi 8 unidades", "Kombu", "Copos de bonito", "Patata taro", "Daikon", "Kamaboko"], preparacion: ["Preparar caldo dashi.", "Cocer verduras en el caldo.", "Servir con mochi tostado."] },
-            { nombre: "Sushi rolls", descripcion: "Rollos de arroz y pescado.", ingredientes: ["Arroz para sushi", "Nori (algas)", "Salmón o atún", "Pepino", "Zanahoria"], preparacion: ["Cocinar arroz sazonado.", "Extender en alga nori.", "Rellenar y enrollar."] },
-            { nombre: "Tempura", descripcion: "Rebozado ligero de mariscos y verduras.", ingredientes: ["Gambas", "Verduras", "Harina 100g", "Agua 100ml", "Huevo 1 unidad"], preparacion: ["Preparar masa ligera.", "Rebozar gambas y verduras.", "Freír en aceite caliente."] },
-            { nombre: "Ramen de cerdo", descripcion: "Sopa de fideos con cerdo.", ingredientes: ["Fideos ramen", "Cerdo 300g", "Huevo 1 unidad", "Caldo de cerdo", "Salsa de soja"], preparacion: ["Cocer fideos.", "Preparar caldo y carne.", "Montar con huevo y verduras."] },
-            { nombre: "Miso soup", descripcion: "Sopa de miso con tofu y alga.", ingredientes: ["Pasta de miso", "Tofu", "Alga wakame", "Agua"], preparacion: ["Calentar agua sin hervir.", "Agregar pasta de miso.", "Añadir tofu y alga."] }
-        ]
-    }
-};
-
-// ============================================================
-//  FUNCIONES DE RENDERIZADO
-// ============================================================
-
-let paisActual = 'todos';
-
-function renderizarPaises() {
-    const contenedor = document.getElementById('filtroPaises');
-    const paises = Object.keys(recetasData);
-    contenedor.innerHTML = '<button class="pais activo" data-pais="todos">🌍 Todos</button>';
-    paises.forEach(key => {
-        const btn = document.createElement('button');
-        btn.className = 'pais';
-        btn.dataset.pais = key;
-        btn.textContent = recetasData[key].bandera + ' ' + recetasData[key].nombre;
-        btn.onclick = () => filtrarPorPais(key);
-        contenedor.appendChild(btn);
-    });
-}
-
-function filtrarPorPais(pais) {
-    paisActual = pais;
-    document.querySelectorAll('.pais').forEach(b => b.classList.remove('activo'));
-    document.querySelector(`.pais[data-pais="${pais}"]`)?.classList.add('activo');
-    renderizarRecetas();
-}
-
-function renderizarRecetas() {
-    const grid = document.getElementById('listaRecetas');
-    const busqueda = document.getElementById('buscar').value.toLowerCase().trim();
-    const contador = document.getElementById('contadorRecetas');
-    let resultados = [];
-
-    Object.keys(recetasData).forEach(paisKey => {
-        if (paisActual !== 'todos' && paisKey !== paisActual) return;
-        const pais = recetasData[paisKey];
-        pais.recetas.forEach(receta => {
-            const texto = (receta.nombre + ' ' + receta.descripcion + ' ' + pais.nombre + ' ' + receta.ingredientes.join(' ')).toLowerCase();
-            if (busqueda && !texto.includes(busqueda)) return;
-            resultados.push({ ...receta, paisKey, bandera: pais.bandera, paisNombre: pais.nombre });
-        });
-    });
-
-    contador.textContent = resultados.length + ' recetas encontradas';
-
-    if (resultados.length === 0) {
-        grid.innerHTML = '<div class="sin-resultados">🍽️ No se encontraron recetas. Intenta con otra búsqueda.</div>';
-        return;
-    }
-
-    grid.innerHTML = resultados.map(r => `
-        <div class="tarjeta">
-            <div class="bandera-tarjeta">${r.bandera}</div>
-            <div class="info-tarjeta">
-                <h3>${r.nombre}</h3>
-                <p><strong>${r.paisNombre}</strong> · ${r.descripcion}</p>
-                <button class="ver-receta" onclick="abrirModal('${r.paisKey}','${r.nombre.replace(/'/g,"\\'")}')">Ver receta</button>
-            </div>
-        </div>
-    `).join('');
-}
-
-function abrirModal(paisKey, recetaNombre) {
-    const pais = recetasData[paisKey];
-    const receta = pais.recetas.find(r => r.nombre === recetaNombre);
-    if (!receta) return;
-
-    const modal = document.getElementById('modalReceta');
-    const contenido = document.getElementById('contenidoModal');
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-
-    contenido.innerHTML = `
-        <h2>${receta.nombre}</h2>
-        <div class="origen">${pais.bandera} ${pais.nombre}</div>
-        <p style="margin-bottom:1rem;color:#666;">${receta.descripcion}</p>
-        <h3>🛒 Ingredientes</h3>
-        <ul>${receta.ingredientes.map(i => `<li>${i}</li>`).join('')}</ul>
-        <h3>👨‍🍳 Preparación</h3>
-        <ol>${receta.preparacion.map(p => `<li>${p}</li>`).join('')}</ol>
-    `;
-}
-
-function cerrarModal() {
-    document.getElementById('modalReceta').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Cerrar modal con ESC
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') cerrarModal();
-});
-
-// Cerrar modal al hacer clic fuera
-document.getElementById('modalReceta').addEventListener('click', e => {
-    if (e.target === e.currentTarget) cerrarModal();
-});
-
-// Buscar en tiempo real
-document.getElementById('buscar').addEventListener('input', renderizarRecetas);
-
-// Inicializar
-renderizarPaises();
-renderizarRecetas();
-</script>
-</body>
-</html>
+            { nombre: "Acarajé", descripcion: "Bola de frijol frito rellena de camarones.", ingredientes: ["Frijol carita 500g", "Ceb
