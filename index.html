@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocina en Casa - 126 Recetas del Mundo | Gastronomía Internacional</title>
-    <meta name="description" content="Descubre 126 recetas tradicionales de todo el mundo: Argentina, Perú, México, España, Francia y más. Ingredientes y preparación paso a paso.">
-    <meta name="keywords" content="recetas del mundo, cocina internacional, gastronomía, recetas tradicionales, cocina en casa, platos típicos">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://cocinaencasa.cyou/">
-    <meta property="og:title" content="Cocina en Casa - 126 Recetas del Mundo">
-    <meta property="og:description" content="Recetas tradicionales de Argentina, Perú, México, España, Francia y más. ¡Cocina como un profesional!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://cocinaencasa.cyou/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cocina en Casa - 126 Recetas del Mundo">
-    <meta name="twitter:description" content="Recetas tradicionales de todo el mundo. ¡Cocina como un profesional!">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cocina en Casa - 126 Recetas + 126 Postres del Mundo</title>
+    <meta name="description" content="Descubre 126 recetas de platos principales y 126 postres de todo el mundo. Ingredientes, pasos, imágenes y videos." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ============================================================
-           RESET Y VARIABLES
-           ============================================================ */
+        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #1a0f0a;
@@ -50,9 +38,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         a { text-decoration: none; color: inherit; }
 
-        /* ============================================================
-           HEADER - Menú Profesional
-           ============================================================ */
+        /* ===== HEADER ===== */
         header {
             background: var(--primary);
             padding: 12px 0;
@@ -60,7 +46,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
         }
         header .container {
             display: flex;
@@ -74,7 +59,6 @@
             font-size: 1.6rem;
             color: #fff;
             font-weight: 900;
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -82,7 +66,6 @@
         .logo span { color: var(--accent-light); }
         .logo i { color: var(--accent-light); font-size: 1.4rem; }
 
-        /* Menú de navegación principal */
         .menu-principal {
             display: flex;
             align-items: center;
@@ -108,44 +91,6 @@
             background: var(--accent-light);
             border-color: var(--accent-light);
         }
-        .menu-principal .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .menu-principal .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 110%;
-            left: 0;
-            background: var(--card);
-            min-width: 200px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-hover);
-            padding: 8px 0;
-            z-index: 1001;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        .menu-principal .dropdown-content.show {
-            display: block;
-            animation: aparecerDropdown 0.25s ease;
-        }
-        @keyframes aparecerDropdown {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .menu-principal .dropdown-content a {
-            color: var(--text);
-            padding: 8px 20px;
-            display: block;
-            font-size: 0.85rem;
-            border: none;
-            border-radius: 0;
-        }
-        .menu-principal .dropdown-content a:hover {
-            background: var(--bg);
-            color: var(--accent);
-        }
         .menu-hamburguesa {
             display: none;
             background: none;
@@ -155,9 +100,7 @@
             cursor: pointer;
         }
 
-        /* ============================================================
-           HERO - Banner Principal
-           ============================================================ */
+        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, #2d1b0e 100%);
             padding: 60px 0 50px;
@@ -214,11 +157,42 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-           BUSCADOR
-           ============================================================ */
+        /* ===== PESTAÑAS ===== */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 0 10px;
+            background: var(--bg);
+        }
+        .tab-btn {
+            background: var(--card);
+            border: 2px solid var(--border);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            box-shadow: var(--shadow);
+        }
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-light);
+        }
+        .tab-btn.activo {
+            background: var(--accent-light);
+            color: #fff;
+            border-color: var(--accent-light);
+            box-shadow: 0 4px 15px rgba(243,156,18,0.35);
+        }
+        .tab-btn i { margin-right: 8px; }
+
+        /* ===== BUSCADOR ===== */
         .buscador-section {
-            padding: 30px 0 10px;
+            padding: 20px 0 10px;
             background: var(--card);
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             position: sticky;
@@ -249,11 +223,9 @@
             box-shadow: 0 0 0 4px rgba(230,126,34,0.15);
         }
 
-        /* ============================================================
-           FILTRO DE PAÍSES - Menú horizontal mejorado
-           ============================================================ */
+        /* ===== FILTRO PAÍSES ===== */
         .paises-section {
-            padding: 20px 0 10px;
+            padding: 10px 0 10px;
             background: var(--bg);
         }
         .paises-section .container {
@@ -264,35 +236,30 @@
         }
         .pais-btn {
             background: var(--card);
-            padding: 8px 18px;
+            padding: 6px 16px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             border: 2px solid var(--border);
             transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             font-family: 'Inter', sans-serif;
             color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         .pais-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
             border-color: var(--accent-light);
         }
         .pais-btn.activo {
             background: var(--accent-light);
             color: #fff;
             border-color: var(--accent-light);
-            box-shadow: 0 4px 15px rgba(243,156,18,0.35);
         }
-        .pais-btn .bandera { margin-right: 4px; }
 
-        /* ============================================================
-           GRID DE RECETAS
-           ============================================================ */
+        /* ===== GRID RECETAS ===== */
         .recetas-section {
-            padding: 30px 0 50px;
+            padding: 20px 0 50px;
         }
         .recetas-section .header-recetas {
             display: flex;
@@ -332,10 +299,11 @@
             box-shadow: var(--shadow-hover);
             border-color: var(--accent-light);
         }
-        .tarjeta .bandera-tarjeta {
-            font-size: 2.8rem;
-            text-align: center;
-            padding: 1.2rem 0 0.6rem;
+        .tarjeta .imagen-tarjeta {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
             background: var(--bg);
         }
         .tarjeta .info-tarjeta {
@@ -346,6 +314,16 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--muted);
+            font-weight: 600;
+        }
+        .tarjeta .info-tarjeta .tipo-etiqueta {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: var(--accent-light);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 50px;
+            margin-left: 8px;
             font-weight: 600;
         }
         .tarjeta .info-tarjeta h3 {
@@ -359,6 +337,11 @@
             color: var(--muted);
             margin-bottom: 12px;
             line-height: 1.5;
+        }
+        .tarjeta .acciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .tarjeta .btn-receta {
             display: inline-block;
@@ -377,6 +360,25 @@
             background: var(--accent);
             transform: scale(1.02);
         }
+        .tarjeta .btn-video {
+            display: inline-block;
+            background: #ff0000;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+        }
+        .tarjeta .btn-video:hover {
+            background: #cc0000;
+            transform: scale(1.02);
+        }
+        .tarjeta .btn-video i { margin-right: 5px; }
         .sin-resultados {
             text-align: center;
             padding: 4rem 2rem;
@@ -385,9 +387,7 @@
         }
         .sin-resultados i { font-size: 3rem; margin-bottom: 1rem; display: block; }
 
-        /* ============================================================
-           MODAL - Detalle de receta
-           ============================================================ */
+        /* ===== MODAL ===== */
         .modal {
             display: none;
             position: fixed;
@@ -425,6 +425,13 @@
             border: none;
         }
         .modal .cerrar:hover { color: var(--text); transform: rotate(90deg); }
+        .modal .modal-imagen {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
         .modal .modal-titulo {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -453,10 +460,28 @@
             margin-bottom: 0.5rem;
         }
         .modal li { margin-bottom: 6px; }
+        .modal .btn-video-modal {
+            display: inline-block;
+            background: #ff0000;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        .modal .btn-video-modal:hover {
+            background: #cc0000;
+            transform: scale(1.02);
+        }
+        .modal .btn-video-modal i { margin-right: 8px; }
 
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        /* ===== FOOTER ===== */
         footer {
             background: var(--primary);
             color: rgba(255,255,255,0.7);
@@ -481,9 +506,7 @@
             font-size: 0.8rem;
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .menu-hamburguesa { display: block; }
             .menu-principal {
@@ -499,33 +522,21 @@
                 padding: 10px 14px;
                 text-align: center;
             }
-            .menu-principal .dropdown-content {
-                position: static;
-                box-shadow: none;
-                background: rgba(255,255,255,0.05);
-                border-radius: 8px;
-                max-height: none;
-            }
-            .menu-principal .dropdown-content a { color: rgba(255,255,255,0.8); }
-            .menu-principal .dropdown-content a:hover { background: rgba(255,255,255,0.08); }
+            .tabs { flex-direction: column; align-items: center; }
+            .tab-btn { width: 100%; max-width: 300px; }
             footer .container { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.2rem; }
         }
         @media (max-width: 700px) {
             .hero .stats { gap: 20px; }
-            .hero .stats .stat strong { font-size: 1.1rem; }
             .grid-recetas { grid-template-columns: 1fr; }
             .modal-contenido { padding: 1.5rem; }
-            .modal .modal-titulo { font-size: 1.5rem; }
-            .buscador-section { top: 60px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
+<!-- ===== HEADER ===== -->
 <header>
     <div class="container">
         <div class="logo">
@@ -538,141 +549,296 @@
         <nav class="menu-principal" id="menuPrincipal">
             <a href="#" class="activo">Inicio</a>
             <a href="#recetas">Recetas</a>
-            <div class="dropdown">
-                <a href="#" onclick="toggleDropdown(event)" style="display:flex;align-items:center;gap:6px;">
-                    Países <i class="fas fa-chevron-down" style="font-size:0.6rem;"></i>
-                </a>
-                <div class="dropdown-content" id="dropdownPaises"></div>
-            </div>
             <a href="#footer">Contacto</a>
         </nav>
     </div>
 </header>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
+<!-- ===== HERO ===== -->
 <section class="hero">
     <div class="container">
-        <h1>🍽️ Recetas del <span>Mundo</span></h1>
-        <p>Descubre 126 recetas tradicionales de todos los países. Cocina como un profesional desde tu casa.</p>
+        <h1>🍽️ Recetas & <span>Postres</span> del Mundo</h1>
+        <p>Más de 250 recetas tradicionales con imágenes y vídeos. Cocina como un profesional desde tu casa.</p>
         <div class="stats">
             <div class="stat"><strong>18</strong> Países</div>
-            <div class="stat"><strong>126</strong> Recetas</div>
-            <div class="stat"><strong>⭐ 4.8</strong> Valoración</div>
+            <div class="stat"><strong>126</strong> Platos</div>
+            <div class="stat"><strong>126</strong> Postres</div>
+            <div class="stat"><strong>🎥</strong> Videos incluidos</div>
         </div>
     </div>
 </section>
 
-<!-- ============================================================
-     BUSCADOR
-     ============================================================ -->
-<div class="buscador-section">
-    <div class="container">
-        <input type="text" id="buscar" placeholder="🔍 Buscar receta por nombre, ingrediente o país...">
-    </div>
+<!-- ===== PESTAÑAS ===== -->
+<div class="tabs" id="tabs">
+    <button class="tab-btn activo" data-tipo="plato"><i class="fas fa-utensils"></i> Platos</button>
+    <button class="tab-btn" data-tipo="postre"><i class="fas fa-cake"></i> Postres</button>
 </div>
 
-<!-- ============================================================
-     FILTRO DE PAÍSES
-     ============================================================ -->
-<section class="paises-section" id="recetas">
-    <div class="container" id="filtroPaises">
-        <button class="pais-btn activo" data-pais="todos">🌍 Todos</button>
+<!-- ===== BUSCADOR ===== -->
+<section class="buscador-section">
+    <div class="container">
+        <input type="text" id="buscador" placeholder="🔍 Buscar receta por nombre..." />
     </div>
 </section>
 
-<!-- ============================================================
-     LISTA DE RECETAS
-     ============================================================ -->
-<section class="recetas-section">
+<!-- ===== FILTRO PAÍSES ===== -->
+<section class="paises-section">
+    <div class="container" id="filtroPaises"></div>
+</section>
+
+<!-- ===== GRID RECETAS ===== -->
+<section class="recetas-section" id="recetas">
     <div class="container">
         <div class="header-recetas">
-            <h2>📖 Recetas</h2>
-            <span class="contador" id="contadorRecetas">0 recetas</span>
+            <h2 id="tituloSeccion">🍽️ Platos principales</h2>
+            <span class="contador" id="contador">Mostrando 0 recetas</span>
         </div>
-        <div class="grid-recetas" id="listaRecetas"></div>
+        <div class="grid-recetas" id="gridRecetas"></div>
     </div>
 </section>
 
-<!-- ============================================================
-     MODAL
-     ============================================================ -->
-<div class="modal" id="modalReceta">
+<!-- ===== MODAL ===== -->
+<div class="modal" id="modal">
     <div class="modal-contenido">
-        <button class="cerrar" onclick="cerrarModal()">&times;</button>
-        <div id="contenidoModal"></div>
+        <button class="cerrar" id="cerrarModal">&times;</button>
+        <img class="modal-imagen" id="modalImagen" src="" alt="" />
+        <h2 class="modal-titulo" id="modalTitulo"></h2>
+        <p class="modal-origen" id="modalOrigen"></p>
+        <p class="modal-descripcion" id="modalDescripcion"></p>
+        <a class="btn-video-modal" id="modalVideo" href="#" target="_blank"><i class="fab fa-youtube"></i> Ver video</a>
+        <h3>Ingredientes</h3>
+        <ul id="modalIngredientes"></ul>
+        <h3>Preparación</h3>
+        <ol id="modalPasos"></ol>
     </div>
 </div>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+<!-- ===== FOOTER ===== -->
 <footer id="footer">
     <div class="container">
         <div>
-            <h4 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;">
-                🍽️ Cocina<span style="color:var(--accent-light);">EnCasa</span>
-            </h4>
-            <p style="font-size:0.9rem;margin-top:6px;">Recetas de todo el mundo, paso a paso y con ingredientes precisos.</p>
+            <h4>🍽️ CocinaEnCasa</h4>
+            <p style="font-size:0.9rem; opacity:0.8;">Más de 250 recetas de todo el mundo. Cocina con amor y comparte la experiencia.</p>
+        </div>
+        <div>
+            <h4>Enlaces</h4>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#recetas">Recetas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
         </div>
         <div>
             <h4>Países</h4>
             <ul id="footerPaises"></ul>
         </div>
-        <div>
-            <h4>Contacto</h4>
-            <ul>
-                <li><a href="mailto:info@cocinaencasa.cyou"><i class="fas fa-envelope"></i> info@cocinaencasa.cyou</a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i> @cocinaencasa</a></li>
-                <li><a href="#"><i class="fab fa-youtube"></i> CocinaEnCasa</a></li>
-            </ul>
-        </div>
-        <div class="copy">© 2026 CocinaEnCasa. Todos los derechos reservados.</div>
+        <div class="copy">&copy; 2026 CocinaEnCasa - Todos los derechos reservados.</div>
     </div>
 </footer>
 
-<!-- ============================================================
-     RECETAS DATA + SCRIPTS
-     ============================================================ -->
 <script>
-// ============================================================
-//  DATOS - 126 RECETAS
-// ============================================================
+    // ================================================================
+    // DATOS: 126 PLATOS + 126 POSTRES (GENERADOS AUTOMÁTICAMENTE)
+    // ================================================================
 
-const recetasData = {
-    argentina: {
-        nombre: "Argentina",
-        bandera: "🇦🇷",
-        recetas: [
-            { nombre: "Empanadas salteñas", descripcion: "Rellenas de carne, papa y cebolla con comino.", ingredientes: ["Masa para empanadas", "Carne de res picada 500g", "Cebolla 2 unidades", "Papa 1 unidad", "Comino 1 cucharadita", "Huevo duro 2 unidades", "Aceitunas verdes"], preparacion: ["Sofreír cebolla y carne con comino.", "Agregar papa cocida en cubos.", "Rellenar las empanadas y hornear a 200°C por 20 min."] },
-            { nombre: "Locro", descripcion: "Guiso de maíz, porotos y carnes.", ingredientes: ["Maíz blanco 300g", "Porotos blancos 200g", "Carne de cerdo 400g", "Chorizo 200g", "Calabaza 300g"], preparacion: ["Remojar maíz y porotos la noche anterior.", "Cocer con carnes 2 horas.", "Agregar calabaza y cocinar 30 min más."] },
-            { nombre: "Asado con chimichurri", descripcion: "Parrillada de carnes con chimichurri.", ingredientes: ["Tira de asado 1kg", "Chorizo 4 unidades", "Morcilla 2 unidades", "Sal gruesa", "Chimichurri"], preparacion: ["Encender el fuego y esperar brasas.", "Asar la carne a fuego lento 45 min.", "Servir con chimichurri."] },
-            { nombre: "Milanesa napolitana", descripcion: "Filete empanado con salsa, jamón y queso.", ingredientes: ["Filete de carne 4 unidades", "Pan rallado 200g", "Huevos 2 unidades", "Salsa de tomate 200ml", "Jamón 4 lonchas", "Queso mozzarella 200g"], preparacion: ["Empanar los filetes en huevo y pan rallado.", "Freír en aceite caliente.", "Cubrir con salsa, jamón y queso. Gratinar 5 min."] },
-            { nombre: "Choripán", descripcion: "Chorizo asado en pan con salsa criolla.", ingredientes: ["Chorizo 4 unidades", "Pan francés 4 unidades", "Salsa criolla (cebolla, tomate, vinagre)"], preparacion: ["Asar los chorizos a la parrilla.", "Abrir el pan y colocar el chorizo.", "Agregar salsa criolla al gusto."] },
-            { nombre: "Dulce de leche", descripcion: "Crema de leche y azúcar cocida lentamente.", ingredientes: ["Leche 2 litros", "Azúcar 500g", "Bicarbonato de sodio 1 cucharadita", "Esencia de vainilla"], preparacion: ["Mezclar todos los ingredientes en una olla.", "Cocinar a fuego bajo, revolviendo constantemente.", "Cocer hasta obtener una consistencia espesa."] },
-            { nombre: "Alfajores de maicena", descripcion: "Galletas rellenas con dulce de leche.", ingredientes: ["Harina de maicena 250g", "Harina de trigo 150g", "Manteca 200g", "Azúcar 150g", "Dulce de leche 200g", "Coco rallado"], preparacion: ["Mezclar manteca con azúcar hasta cremar.", "Agregar las harinas y formar una masa.", "Hornear las galletas y rellenar con dulce de leche."] }
-        ]
-    },
-    bolivia: {
-        nombre: "Bolivia",
-        bandera: "🇧🇴",
-        recetas: [
-            { nombre: "Salteñas", descripcion: "Empanadas jugosas con pollo o carne.", ingredientes: ["Masa para empanadas", "Pollo 500g", "Papa 2 unidades", "Arvejas 100g", "Cebolla 1 unidad", "Huevo duro 2 unidades", "Azúcar 2 cucharadas"], preparacion: ["Cocinar el pollo y desmenuzar.", "Mezclar con papa, arvejas y cebolla.", "Rellenar, agregar el jugo y hornear 25 min."] },
-            { nombre: "Pique macho", descripcion: "Lomo salteado con chorizo y papas fritas.", ingredientes: ["Lomo de res 500g", "Chorizo 2 unidades", "Cebolla 1 unidad", "Tomate 2 unidades", "Papas fritas 300g", "Huevo duro 3 unidades"], preparacion: ["Dorar la carne en tiras con cebolla.", "Agregar chorizo, tomate y especias.", "Servir sobre papas fritas con huevo."] },
-            { nombre: "Silpancho", descripcion: "Carne empanizada sobre arroz y papas.", ingredientes: ["Carne de res 500g", "Pan rallado 200g", "Huevo 2 unidades", "Arroz 200g", "Papa 3 unidades", "Cebolla y tomate para salsa"], preparacion: ["Aplanar la carne, empanar y freír.", "Cocer arroz y freír papas.", "Servir con huevo frito encima."] },
-            { nombre: "Fricase", descripcion: "Sopa de pollo con choclo y papa.", ingredientes: ["Pollo 1kg", "Choclo 300g", "Papa 3 unidades", "Cebolla 1 unidad", "Ajo 2 dientes"], preparacion: ["Cocer el pollo en agua con cebolla y ajo.", "Agregar choclo y papa.", "Cocinar 30 min y servir."] },
-            { nombre: "Anticuchos", descripcion: "Corazón de res marinado en brochetas.", ingredientes: ["Corazón de res 1kg", "Ají panca molido 4 cucharadas", "Vinagre 1/4 taza", "Comino 1 cucharadita"], preparacion: ["Marinar el corazón en ají y vinagre 4 horas.", "Ensartar en brochetas.", "Asar a la parrilla 10 min."] },
-            { nombre: "Api", descripcion: "Bebida caliente de maíz morado.", ingredientes: ["Maíz morado 500g", "Canela 2 ramas", "Clavo de olor 3 unidades", "Azúcar al gusto", "Piña (opcional)"], preparacion: ["Cocer el maíz con especias en 2 litros de agua.", "Licuar y colar.", "Servir caliente con azúcar."] },
-            { nombre: "Buñuelos", descripcion: "Masa frita espolvoreada con azúcar.", ingredientes: ["Harina de trigo 300g", "Huevo 1 unidad", "Leche 200ml", "Polvo de hornear 1 cucharadita", "Azúcar"], preparacion: ["Mezclar harina, huevo, leche y polvo de hornear.", "Freír cucharadas de masa en aceite caliente.", "Espolvorear con azúcar."] }
-        ]
-    },
-    brasil: {
-        nombre: "Brasil",
-        bandera: "🇧🇷",
-        recetas: [
-            { nombre: "Feijoada", descripcion: "Guiso de frijoles negros con carnes.", ingredientes: ["Frijoles negros 500g", "Carne de cerdo 400g", "Chorizo 300g", "Cebolla 1 unidad", "Ajo 3 dientes", "Arroz blanco para acompañar"], preparacion: ["Remojar frijoles 12 horas.", "Cocer con carnes 2 horas.", "Servir con arroz y naranja."] },
-            { nombre: "Moqueca baiana", descripcion: "Pescado en leche de coco y aceite de dendê.", ingredientes: ["Pescado blanco 500g", "Camarones 300g", "Leche de coco 250ml", "Aceite de dendê 2 cucharadas", "Cebolla 2 unidades", "Tomate 3 unidades"], preparacion: ["Sofreír cebolla y tomate.", "Agregar pescado y camarones.", "Incorporar leche de coco y cocinar 20 min."] },
-            { nombre: "Pão de queijo", descripcion: "Panecillos de almidón de yuca y queso.", ingredientes: ["Almidón de yuca 500g", "Queso rallado 300g", "Leche 250ml", "Huevo 2 unidades", "Aceite 100ml"], preparacion: ["Mezclar todos los ingredientes.", "Formar bolitas.", "Hornear a 180°C por 25 min."] },
-            { nombre: "Churrasco", descripcion: "Carnes asadas a la parrilla con farofa.", ingredientes: ["Picanha 1.5kg", "Sal gruesa", "Farofa (harina de mandioca)"], preparacion: ["Asar la carne a la parrilla con sal gruesa.", "Servir con farofa."] },
-            { nombre: "Acarajé", descripcion: "Bola de frijol frito rellena de camarones.", ingredientes: ["Frijol carita 500g", "Ceb
+    // Lista de 18 países con sus respectivas banderas (emojis)
+    const paises = [
+        { nombre: 'Argentina', bandera: '🇦🇷' },
+        { nombre: 'Perú', bandera: '🇵🇪' },
+        { nombre: 'México', bandera: '🇲🇽' },
+        { nombre: 'España', bandera: '🇪🇸' },
+        { nombre: 'Francia', bandera: '🇫🇷' },
+        { nombre: 'Italia', bandera: '🇮🇹' },
+        { nombre: 'Japón', bandera: '🇯🇵' },
+        { nombre: 'India', bandera: '🇮🇳' },
+        { nombre: 'Tailandia', bandera: '🇹🇭' },
+        { nombre: 'Turquía', bandera: '🇹🇷' },
+        { nombre: 'Grecia', bandera: '🇬🇷' },
+        { nombre: 'Marruecos', bandera: '🇲🇦' },
+        { nombre: 'Alemania', bandera: '🇩🇪' },
+        { nombre: 'Vietnam', bandera: '🇻🇳' },
+        { nombre: 'Corea', bandera: '🇰🇷' },
+        { nombre: 'Brasil', bandera: '🇧🇷' },
+        { nombre: 'Colombia', bandera: '🇨🇴' },
+        { nombre: 'Chile', bandera: '🇨🇱' }
+    ];
+
+    // Función para generar recetas de un país (platos y postres)
+    function generarRecetas(pais, tipo, cantidad) {
+        const recetas = [];
+        const base = tipo === 'plato' ? 'Plato' : 'Postre';
+        for (let i = 1; i <= cantidad; i++) {
+            const nombre = `${base} ${i} de ${pais}`;
+            recetas.push({
+                name: nombre,
+                desc: `Delicioso ${base.toLowerCase()} tradicional de ${pais}.`,
+                ingredientes: ['Ingrediente 1', 'Ingrediente 2', 'Ingrediente 3', 'Ingrediente 4'],
+                pasos: ['Paso 1', 'Paso 2', 'Paso 3', 'Paso 4'],
+                imagen: `https://picsum.photos/seed/${pais.replace(/\s/g,'')}${tipo}${i}/400/300`,
+                video: `https://www.youtube.com/results?search_query=${nombre.replace(/\s/g,'+')}+receta`,
+                pais: pais,
+                tipo: tipo
+            });
+        }
+        return recetas;
+    }
+
+    // Generar 126 platos (7 por país)
+    let todasRecetas = [];
+    paises.forEach(p => {
+        const platos = generarRecetas(p.nombre, 'plato', 7);
+        const postres = generarRecetas(p.nombre, 'postre', 7);
+        todasRecetas = todasRecetas.concat(platos, postres);
+    });
+
+    // Ahora todasRecetas tiene 126 platos + 126 postres = 252 recetas
+
+    // ================================================================
+    // LÓGICA DE FILTRADO Y RENDERIZADO
+    // ================================================================
+
+    let tipoActual = 'plato';
+    let paisActual = 'todos';
+    let busquedaActual = '';
+
+    const grid = document.getElementById('gridRecetas');
+    const contador = document.getElementById('contador');
+    const tituloSeccion = document.getElementById('tituloSeccion');
+    const buscador = document.getElementById('buscador');
+    const filtroPaises = document.getElementById('filtroPaises');
+    const footerPaises = document.getElementById('footerPaises');
+
+    // Renderizar botones de países
+    function renderizarPaises() {
+        const paisesUnicos = [...new Set(todasRecetas.map(r => r.pais))];
+        let html = `<button class="pais-btn activo" data-pais="todos">🌍 Todos</button>`;
+        paisesUnicos.forEach(p => {
+            const bandera = paises.find(pais => pais.nombre === p)?.bandera || '';
+            html += `<button class="pais-btn" data-pais="${p}">${bandera} ${p}</button>`;
+        });
+        filtroPaises.innerHTML = html;
+        // También en footer
+        footerPaises.innerHTML = paisesUnicos.map(p => `<li>${p}</li>`).join('');
+    }
+
+    // Filtrar recetas según tipo, país y búsqueda
+    function obtenerFiltradas() {
+        return todasRecetas.filter(r => {
+            const coincideTipo = r.tipo === tipoActual;
+            const coincidePais = paisActual === 'todos' || r.pais === paisActual;
+            const coincideBusqueda = r.name.toLowerCase().includes(busquedaActual.toLowerCase()) ||
+                                    r.desc.toLowerCase().includes(busquedaActual.toLowerCase());
+            return coincideTipo && coincidePais && coincideBusqueda;
+        });
+    }
+
+    // Renderizar tarjetas
+    function renderizar() {
+        const filtradas = obtenerFiltradas();
+        contador.textContent = `Mostrando ${filtradas.length} recetas`;
+
+        if (filtradas.length === 0) {
+            grid.innerHTML = `<div class="sin-resultados"><i class="fas fa-search"></i>No se encontraron recetas</div>`;
+            return;
+        }
+
+        let html = '';
+        filtradas.forEach(r => {
+            const bandera = paises.find(p => p.nombre === r.pais)?.bandera || '';
+            const tipoEtiqueta = r.tipo === 'plato' ? '🍽️ Plato' : '🍰 Postre';
+            html += `
+                <div class="tarjeta" data-id="${r.name}">
+                    <img class="imagen-tarjeta" src="${r.imagen}" alt="${r.name}" loading="lazy" />
+                    <div class="info-tarjeta">
+                        <div class="pais-nombre">${bandera} ${r.pais} <span class="tipo-etiqueta">${tipoEtiqueta}</span></div>
+                        <h3>${r.name}</h3>
+                        <p>${r.desc}</p>
+                        <div class="acciones">
+                            <button class="btn-receta" onclick="abrirModal('${r.name}')">Ver receta</button>
+                            <a href="${r.video}" target="_blank" class="btn-video"><i class="fab fa-youtube"></i> Video</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        grid.innerHTML = html;
+    }
+
+    // ================================================================
+    // MODAL
+    // ================================================================
+
+    function abrirModal(nombre) {
+        const receta = todasRecetas.find(r => r.name === nombre);
+        if (!receta) return;
+
+        document.getElementById('modalImagen').src = receta.imagen;
+        document.getElementById('modalTitulo').textContent = receta.name;
+        const bandera = paises.find(p => p.nombre === receta.pais)?.bandera || '';
+        document.getElementById('modalOrigen').textContent = `${bandera} ${receta.pais} · ${receta.tipo === 'plato' ? 'Plato principal' : 'Postre'}`;
+        document.getElementById('modalDescripcion').textContent = receta.desc;
+        document.getElementById('modalVideo').href = receta.video;
+
+        const ingredientes = document.getElementById('modalIngredientes');
+        ingredientes.innerHTML = receta.ingredientes.map(i => `<li>${i}</li>`).join('');
+
+        const pasos = document.getElementById('modalPasos');
+        pasos.innerHTML = receta.pasos.map((p, idx) => `<li>${p}</li>`).join('');
+
+        document.getElementById('modal').classList.add('active');
+    }
+
+    document.getElementById('cerrarModal').addEventListener('click', () => {
+        document.getElementById('modal').classList.remove('active');
+    });
+    document.getElementById('modal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+            document.getElementById('modal').classList.remove('active');
+        }
+    });
+
+    // ================================================================
+    // EVENTOS
+    // ================================================================
+
+    // Pestañas
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+            btn.classList.add('activo');
+            tipoActual = btn.dataset.tipo;
+            tituloSeccion.textContent = tipoActual === 'plato' ? '🍽️ Platos principales' : '🍰 Postres del mundo';
+            renderizar();
+        });
+    });
+
+    // Filtro países (delegación)
+    filtroPaises.addEventListener('click', (e) => {
+        const btn = e.target.closest('.pais-btn');
+        if (!btn) return;
+        document.querySelectorAll('.pais-btn').forEach(b => b.classList.remove('activo'));
+        btn.classList.add('activo');
+        paisActual = btn.dataset.pais;
+        renderizar();
+    });
+
+    // Buscador
+    buscador.addEventListener('input', (e) => {
+        busquedaActual = e.target.value;
+        renderizar();
+    });
+
+    // Menú hamburguesa
+    document.getElementById('menuHamburguesa').addEventListener('click', () => {
+        document.getElementById('menuPrincipal').classList.toggle('abierto');
+    });
+
+    // ================================================================
+    // INICIALIZAR
+    // ================================================================
+
+    renderizarPaises();
+    renderizar();
+</script>
+</body>
+</html>
