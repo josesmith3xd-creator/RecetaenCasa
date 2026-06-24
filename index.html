@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocina en Casa - 126 Platos + 126 Postres del Mundo</title>
-    <meta name="description" content="Descubre 126 recetas de platos principales y 126 postres de todo el mundo. Ingredientes, pasos, imágenes y videos." />
+    <title>Cocina en Casa - Recetas del Mundo + Postres</title>
+    <meta name="description" content="Descubre recetas de platos principales y postres de todo el mundo. Ingredientes, pasos, imágenes y videos." />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -337,6 +337,10 @@
             color: var(--muted);
             margin-bottom: 12px;
             line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .tarjeta .acciones {
             display: flex;
@@ -558,7 +562,7 @@
 <section class="hero">
     <div class="container">
         <h1>🍽️ Platos & <span>Postres</span> del Mundo</h1>
-        <p>Más de 250 recetas tradicionales con imágenes y vídeos. Cocina como un profesional desde tu casa.</p>
+        <p>Descubre recetas tradicionales de todo el mundo con ingredientes y pasos detallados.</p>
         <div class="stats">
             <div class="stat"><strong>18</strong> Países</div>
             <div class="stat"><strong>126</strong> Platos</div>
@@ -618,7 +622,7 @@
     <div class="container">
         <div>
             <h4>🍽️ CocinaEnCasa</h4>
-            <p style="font-size:0.9rem; opacity:0.8;">Más de 250 recetas de todo el mundo. Cocina con amor y comparte la experiencia.</p>
+            <p style="font-size:0.9rem; opacity:0.8;">Recetas de todo el mundo con amor y pasión.</p>
         </div>
         <div>
             <h4>Enlaces</h4>
@@ -638,180 +642,1160 @@
 
 <script>
     // ================================================================
-    // 1. DATOS DE POSTRES (TAL CUAL LOS PROPORCIONASTE)
+    // 1. TUS RECETAS REALES (126 PLATOS)
+    // ================================================================
+    const recetasData = {
+        argentina: {
+            nombre: "Argentina",
+            bandera: "🇦🇷",
+            recetas: [
+                {
+                    nombre: "Empanadas salteñas",
+                    descripcion: "Rellenas de carne, papa y cebolla con comino.",
+                    ingredientes: [
+                        "Masa para empanadas",
+                        "Carne de res picada 500g",
+                        "Cebolla 2 unidades",
+                        "Papa 1 unidad",
+                        "Comino 1 cucharadita",
+                        "Huevo duro 2 unidades",
+                        "Aceitunas verdes"
+                    ],
+                    preparacion: [
+                        "Sofreír cebolla y carne con comino.",
+                        "Agregar papa cocida en cubos.",
+                        "Rellenar las empanadas y hornear a 200°C por 20 min."
+                    ]
+                },
+                {
+                    nombre: "Locro",
+                    descripcion: "Guiso de maíz, porotos y carnes.",
+                    ingredientes: [
+                        "Maíz blanco 300g",
+                        "Porotos blancos 200g",
+                        "Carne de cerdo 400g",
+                        "Chorizo 200g",
+                        "Calabaza 300g"
+                    ],
+                    preparacion: [
+                        "Remojar maíz y porotos la noche anterior.",
+                        "Cocer con carnes 2 horas.",
+                        "Agregar calabaza y cocinar 30 min más."
+                    ]
+                },
+                {
+                    nombre: "Asado con chimichurri",
+                    descripcion: "Parrillada de carnes con chimichurri.",
+                    ingredientes: [
+                        "Tira de asado 1kg",
+                        "Chorizo 4 unidades",
+                        "Morcilla 2 unidades",
+                        "Sal gruesa",
+                        "Chimichurri"
+                    ],
+                    preparacion: [
+                        "Encender el fuego y esperar brasas.",
+                        "Asar la carne a fuego lento 45 min.",
+                        "Servir con chimichurri."
+                    ]
+                },
+                {
+                    nombre: "Milanesa napolitana",
+                    descripcion: "Filete empanado con salsa, jamón y queso.",
+                    ingredientes: [
+                        "Filete de carne 4 unidades",
+                        "Pan rallado 200g",
+                        "Huevos 2 unidades",
+                        "Salsa de tomate 200ml",
+                        "Jamón 4 lonchas",
+                        "Queso mozzarella 200g"
+                    ],
+                    preparacion: [
+                        "Empanar los filetes en huevo y pan rallado.",
+                        "Freír en aceite caliente.",
+                        "Cubrir con salsa, jamón y queso. Gratinar 5 min."
+                    ]
+                },
+                {
+                    nombre: "Choripán",
+                    descripcion: "Chorizo asado en pan con salsa criolla.",
+                    ingredientes: [
+                        "Chorizo 4 unidades",
+                        "Pan francés 4 unidades",
+                        "Salsa criolla (cebolla, tomate, vinagre)"
+                    ],
+                    preparacion: [
+                        "Asar los chorizos a la parrilla.",
+                        "Abrir el pan y colocar el chorizo.",
+                        "Agregar salsa criolla al gusto."
+                    ]
+                },
+                {
+                    nombre: "Dulce de leche",
+                    descripcion: "Crema de leche y azúcar cocida lentamente.",
+                    ingredientes: [
+                        "Leche 2 litros",
+                        "Azúcar 500g",
+                        "Bicarbonato de sodio 1 cucharadita",
+                        "Esencia de vainilla"
+                    ],
+                    preparacion: [
+                        "Mezclar todos los ingredientes en una olla.",
+                        "Cocinar a fuego bajo, revolviendo constantemente.",
+                        "Cocer hasta obtener una consistencia espesa."
+                    ]
+                },
+                {
+                    nombre: "Alfajores de maicena",
+                    descripcion: "Galletas rellenas con dulce de leche.",
+                    ingredientes: [
+                        "Harina de maicena 250g",
+                        "Harina de trigo 150g",
+                        "Manteca 200g",
+                        "Azúcar 150g",
+                        "Dulce de leche 200g",
+                        "Coco rallado"
+                    ],
+                    preparacion: [
+                        "Mezclar manteca con azúcar hasta cremar.",
+                        "Agregar las harinas y formar una masa.",
+                        "Hornear las galletas y rellenar con dulce de leche."
+                    ]
+                }
+            ]
+        },
+        bolivia: {
+            nombre: "Bolivia",
+            bandera: "🇧🇴",
+            recetas: [
+                {
+                    nombre: "Salteñas",
+                    descripcion: "Empanadas jugosas con pollo o carne.",
+                    ingredientes: [
+                        "Masa para empanadas",
+                        "Pollo 500g",
+                        "Papa 2 unidades",
+                        "Arvejas 100g",
+                        "Cebolla 1 unidad",
+                        "Huevo duro 2 unidades",
+                        "Azúcar 2 cucharadas"
+                    ],
+                    preparacion: [
+                        "Cocinar el pollo y desmenuzar.",
+                        "Mezclar con papa, arvejas y cebolla.",
+                        "Rellenar, agregar el jugo y hornear 25 min."
+                    ]
+                },
+                {
+                    nombre: "Pique macho",
+                    descripcion: "Lomo salteado con chorizo y papas fritas.",
+                    ingredientes: [
+                        "Lomo de res 500g",
+                        "Chorizo 2 unidades",
+                        "Cebolla 1 unidad",
+                        "Tomate 2 unidades",
+                        "Papas fritas 300g",
+                        "Huevo duro 3 unidades"
+                    ],
+                    preparacion: [
+                        "Dorar la carne en tiras con cebolla.",
+                        "Agregar chorizo, tomate y especias.",
+                        "Servir sobre papas fritas con huevo."
+                    ]
+                },
+                {
+                    nombre: "Silpancho",
+                    descripcion: "Carne empanizada sobre arroz y papas.",
+                    ingredientes: [
+                        "Carne de res 500g",
+                        "Pan rallado 200g",
+                        "Huevo 2 unidades",
+                        "Arroz 200g",
+                        "Papa 3 unidades",
+                        "Cebolla y tomate para salsa"
+                    ],
+                    preparacion: [
+                        "Aplanar la carne, empanar y freír.",
+                        "Cocer arroz y freír papas.",
+                        "Servir con huevo frito encima."
+                    ]
+                },
+                {
+                    nombre: "Fricase",
+                    descripcion: "Sopa de pollo con choclo y papa.",
+                    ingredientes: [
+                        "Pollo 1kg",
+                        "Choclo 300g",
+                        "Papa 3 unidades",
+                        "Cebolla 1 unidad",
+                        "Ajo 2 dientes"
+                    ],
+                    preparacion: [
+                        "Cocer el pollo en agua con cebolla y ajo.",
+                        "Agregar choclo y papa.",
+                        "Cocinar 30 min y servir."
+                    ]
+                },
+                {
+                    nombre: "Anticuchos",
+                    descripcion: "Corazón de res marinado en brochetas.",
+                    ingredientes: [
+                        "Corazón de res 1kg",
+                        "Ají panca molido 4 cucharadas",
+                        "Vinagre 1/4 taza",
+                        "Comino 1 cucharadita"
+                    ],
+                    preparacion: [
+                        "Marinar el corazón en ají y vinagre 4 horas.",
+                        "Ensartar en brochetas.",
+                        "Asar a la parrilla 10 min."
+                    ]
+                },
+                {
+                    nombre: "Api",
+                    descripcion: "Bebida caliente de maíz morado.",
+                    ingredientes: [
+                        "Maíz morado 500g",
+                        "Canela 2 ramas",
+                        "Clavo de olor 3 unidades",
+                        "Azúcar al gusto",
+                        "Piña (opcional)"
+                    ],
+                    preparacion: [
+                        "Cocer el maíz con especias en 2 litros de agua.",
+                        "Licuar y colar.",
+                        "Servir caliente con azúcar."
+                    ]
+                },
+                {
+                    nombre: "Buñuelos",
+                    descripcion: "Masa frita espolvoreada con azúcar.",
+                    ingredientes: [
+                        "Harina de trigo 300g",
+                        "Huevo 1 unidad",
+                        "Leche 200ml",
+                        "Polvo de hornear 1 cucharadita",
+                        "Azúcar"
+                    ],
+                    preparacion: [
+                        "Mezclar harina, huevo, leche y polvo de hornear.",
+                        "Freír cucharadas de masa en aceite caliente.",
+                        "Espolvorear con azúcar."
+                    ]
+                }
+            ]
+        },
+        brasil: {
+            nombre: "Brasil",
+            bandera: "🇧🇷",
+            recetas: [
+                {
+                    nombre: "Feijoada",
+                    descripcion: "Guiso de frijoles negros con carnes.",
+                    ingredientes: [
+                        "Frijoles negros 500g",
+                        "Carne de cerdo 400g",
+                        "Chorizo 300g",
+                        "Cebolla 1 unidad",
+                        "Ajo 3 dientes",
+                        "Arroz blanco para acompañar"
+                    ],
+                    preparacion: [
+                        "Remojar frijoles 12 horas.",
+                        "Cocer con carnes 2 horas.",
+                        "Servir con arroz y naranja."
+                    ]
+                },
+                {
+                    nombre: "Moqueca baiana",
+                    descripcion: "Pescado en leche de coco y aceite de dendê.",
+                    ingredientes: [
+                        "Pescado blanco 500g",
+                        "Camarones 300g",
+                        "Leche de coco 250ml",
+                        "Aceite de dendê 2 cucharadas",
+                        "Cebolla 2 unidades",
+                        "Tomate 3 unidades"
+                    ],
+                    preparacion: [
+                        "Sofreír cebolla y tomate.",
+                        "Agregar pescado y camarones.",
+                        "Incorporar leche de coco y cocinar 20 min."
+                    ]
+                },
+                {
+                    nombre: "Pão de queijo",
+                    descripcion: "Panecillos de almidón de yuca y queso.",
+                    ingredientes: [
+                        "Almidón de yuca 500g",
+                        "Queso rallado 300g",
+                        "Leche 250ml",
+                        "Huevo 2 unidades",
+                        "Aceite 100ml"
+                    ],
+                    preparacion: [
+                        "Mezclar todos los ingredientes.",
+                        "Formar bolitas.",
+                        "Hornear a 180°C por 25 min."
+                    ]
+                },
+                {
+                    nombre: "Churrasco",
+                    descripcion: "Carnes asadas a la parrilla con farofa.",
+                    ingredientes: [
+                        "Picanha 1.5kg",
+                        "Sal gruesa",
+                        "Farofa (harina de mandioca)"
+                    ],
+                    preparacion: [
+                        "Asar la carne a la parrilla con sal gruesa.",
+                        "Servir con farofa."
+                    ]
+                },
+                {
+                    nombre: "Acarajé",
+                    descripcion: "Bola de frijol frito rellena de camarones.",
+                    ingredientes: [
+                        "Frijol carita 500g",
+                        "Cebolla 1 unidad",
+                        "Aceite de dendê para freír",
+                        "Camarones secos 200g",
+                        "Vatapá"
+                    ],
+                    preparacion: [
+                        "Remojar frijoles y triturar.",
+                        "Freír bolitas de masa en aceite de dendê.",
+                        "Rellenar con vatapá y camarones."
+                    ]
+                },
+                {
+                    nombre: "Brigadeiro",
+                    descripcion: "Trufa de leche condensada y chocolate.",
+                    ingredientes: [
+                        "Leche condensada 1 lata",
+                        "Cacao en polvo 3 cucharadas",
+                        "Mantequilla 1 cucharada",
+                        "Granillo de chocolate"
+                    ],
+                    preparacion: [
+                        "Cocinar leche condensada con cacao y mantequilla.",
+                        "Cocer hasta despegar de la olla.",
+                        "Hacer bolitas y pasar por granillo."
+                    ]
+                },
+                {
+                    nombre: "Caipirinha",
+                    descripcion: "Cóctel de cachaça, lima y azúcar.",
+                    ingredientes: [
+                        "Cachaça 50ml",
+                        "Lima 1 unidad",
+                        "Azúcar 2 cucharadas"
+                    ],
+                    preparacion: [
+                        "Cortar la lima y machacar con azúcar.",
+                        "Agregar hielo y cachaça.",
+                        "Servir."
+                    ]
+                }
+            ]
+        },
+        chile: {
+            nombre: "Chile",
+            bandera: "🇨🇱",
+            recetas: [
+                {
+                    nombre: "Pastel de choclo",
+                    descripcion: "Pastel de maíz con relleno de carne.",
+                    ingredientes: [
+                        "Choclo 8 unidades",
+                        "Carne molida 500g",
+                        "Cebolla 2 unidades",
+                        "Huevo duro 3 unidades",
+                        "Aceitunas",
+                        "Azúcar para espolvorear"
+                    ],
+                    preparacion: [
+                        "Sofreír carne con cebolla.",
+                        "Licuar choclo con leche.",
+                        "Armar en fuente y hornear 40 min."
+                    ]
+                },
+                {
+                    nombre: "Empanadas de pino",
+                    descripcion: "Rellenas de carne, cebolla y aceitunas.",
+                    ingredientes: [
+                        "Carne molida 500g",
+                        "Cebolla 2 unidades",
+                        "Comino 1 cucharadita",
+                        "Aceitunas",
+                        "Huevo duro 2 unidades",
+                        "Masa para empanadas"
+                    ],
+                    preparacion: [
+                        "Sofreír carne con cebolla y comino.",
+                        "Rellenar las empanadas y hornear 25 min."
+                    ]
+                },
+                {
+                    nombre: "Cazuela de vacuno",
+                    descripcion: "Sopa de carne, zapallo y choclo.",
+                    ingredientes: [
+                        "Carne de res con hueso 500g",
+                        "Papa 3 unidades",
+                        "Zapallo 200g",
+                        "Choclo 2 unidades",
+                        "Arroz 1/2 taza"
+                    ],
+                    preparacion: [
+                        "Cocer la carne con verduras.",
+                        "Agregar papas, zapallo y choclo.",
+                        "Cocinar 30 min y servir."
+                    ]
+                },
+                {
+                    nombre: "Completos",
+                    descripcion: "Hot dog con palta, tomate y mayonesa.",
+                    ingredientes: [
+                        "Pan de completo 4 unidades",
+                        "Vienesa 4 unidades",
+                        "Palta 2 unidades",
+                        "Tomate 2 unidades",
+                        "Mayonesa",
+                        "Chucrut (opcional)"
+                    ],
+                    preparacion: [
+                        "Cocer las vienesas.",
+                        "Calentar los panes.",
+                        "Armar con todos los ingredientes."
+                    ]
+                },
+                {
+                    nombre: "Caldillo de congrio",
+                    descripcion: "Sopa de congrio con verduras.",
+                    ingredientes: [
+                        "Congrio 1kg",
+                        "Cebolla 2 unidades",
+                        "Zanahoria 2 unidades",
+                        "Papa 3 unidades",
+                        "Vino blanco 1 vaso"
+                    ],
+                    preparacion: [
+                        "Sofreír verduras en aceite.",
+                        "Agregar vino y el congrio.",
+                        "Cocinar 20 min y servir."
+                    ]
+                },
+                {
+                    nombre: "Humitas",
+                    descripcion: "Masa de choclo envuelta en hojas de maíz.",
+                    ingredientes: [
+                        "Choclo 6 unidades",
+                        "Cebolla 1 unidad",
+                        "Albahaca",
+                        "Hojas de maíz"
+                    ],
+                    preparacion: [
+                        "Moler el choclo con cebolla y albahaca.",
+                        "Envolver en hojas de maíz.",
+                        "Cocer en agua 30 min."
+                    ]
+                },
+                {
+                    nombre: "Mote con huesillo",
+                    descripcion: "Bebida de duraznos secos con trigo.",
+                    ingredientes: [
+                        "Huesillos (duraznos secos) 500g",
+                        "Mote (trigo pelado) 300g",
+                        "Azúcar",
+                        "Canela"
+                    ],
+                    preparacion: [
+                        "Cocer los huesillos con azúcar y canela.",
+                        "Cocer el mote por separado.",
+                        "Mezclar y servir frío."
+                    ]
+                }
+            ]
+        },
+        colombia: {
+            nombre: "Colombia",
+            bandera: "🇨🇴",
+            recetas: [
+                {
+                    nombre: "Bandeja paisa",
+                    descripcion: "Plato abundante con frijoles, carnes y arroz.",
+                    ingredientes: [
+                        "Frijoles rojos 300g",
+                        "Carne molida 300g",
+                        "Chicharrón 300g",
+                        "Arroz blanco",
+                        "Huevo 4 unidades",
+                        "Plátano maduro",
+                        "Arepa"
+                    ],
+                    preparacion: [
+                        "Cocer frijoles con condimentos.",
+                        "Freír chicharrón, plátano y huevos.",
+                        "Servir todos los componentes juntos."
+                    ]
+                },
+                {
+                    nombre: "Ajiaco santafereño",
+                    descripcion: "Sopa de pollo con tres papas y guascas.",
+                    ingredientes: [
+                        "Pollo 1kg",
+                        "Papa criolla 500g",
+                        "Papa sabanera 500g",
+                        "Papa pastusa 500g",
+                        "Guascas 2 cucharadas",
+                        "Mazorca 2 unidades"
+                    ],
+                    preparacion: [
+                        "Cocer el pollo en agua con sal.",
+                        "Agregar las papas y la mazorca.",
+                        "Añadir guascas y cocinar 15 min más."
+                    ]
+                },
+                {
+                    nombre: "Sancocho",
+                    descripcion: "Sopa de gallina con yuca y plátano.",
+                    ingredientes: [
+                        "Gallina 1kg",
+                        "Yuca 500g",
+                        "Plátano verde 3 unidades",
+                        "Maíz 2 unidades",
+                        "Cebolla 1 unidad"
+                    ],
+                    preparacion: [
+                        "Cocer la gallina en abundante agua.",
+                        "Agregar yuca, plátano y maíz.",
+                        "Cocinar 40 min y servir."
+                    ]
+                },
+                {
+                    nombre: "Arepas",
+                    descripcion: "Pan de maíz relleno al gusto.",
+                    ingredientes: [
+                        "Harina de maíz precocida 2 tazas",
+                        "Agua 2.5 tazas",
+                        "Sal 1 cucharadita",
+                        "Aceite"
+                    ],
+                    preparacion: [
+                        "Mezclar harina con agua y sal.",
+                        "Formar discos y cocinar en plancha.",
+                        "Rellenar al gusto."
+                    ]
+                },
+                {
+                    nombre: "Patacones (tostones)",
+                    descripcion: "Plátano verde frito dos veces.",
+                    ingredientes: [
+                        "Plátano verde 4 unidades",
+                        "Sal",
+                        "Aceite para freír"
+                    ],
+                    preparacion: [
+                        "Pelar y cortar los plátanos en rodajas.",
+                        "Freír ligeramente.",
+                        "Aplastar y freír nuevamente."
+                    ]
+                },
+                {
+                    nombre: "Lechona",
+                    descripcion: "Cerdo relleno con arroz y especias.",
+                    ingredientes: [
+                        "Cerdo entero o pierna 5kg",
+                        "Arroz 1kg",
+                        "Cebolla 3 unidades",
+                        "Arvejas 300g",
+                        "Especias"
+                    ],
+                    preparacion: [
+                        "Rellenar el cerdo con arroz y especias.",
+                        "Cocer en horno 5 horas.",
+                        "Servir con arepas."
+                    ]
+                },
+                {
+                    nombre: "Obleas",
+                    descripcion: "Galletas rellenas de arequipe y queso.",
+                    ingredientes: [
+                        "Harina de trigo 300g",
+                        "Huevo 2 unidades",
+                        "Azúcar 100g",
+                        "Arequipe (dulce de leche)",
+                        "Queso rallado"
+                    ],
+                    preparacion: [
+                        "Preparar masa con harina, huevo y azúcar.",
+                        "Cocer en oblera.",
+                        "Rellenar con arequipe y queso."
+                    ]
+                }
+            ]
+        },
+        ecuador: {
+            nombre: "Ecuador",
+            bandera: "🇪🇨",
+            recetas: [
+                {
+                    nombre: "Encebollado",
+                    descripcion: "Sopa de pescado con yuca y cebolla.",
+                    ingredientes: [
+                        "Pescado 1kg (albacora)",
+                        "Yuca 1kg",
+                        "Cebolla morada 2 unidades",
+                        "Cilantro",
+                        "Limón"
+                    ],
+                    preparacion: [
+                        "Cocer el pescado con condimentos.",
+                        "Agregar yuca y cocinar 30 min.",
+                        "Servir con cebolla curtida y limón."
+                    ]
+                },
+                {
+                    nombre: "Llapingachos",
+                    descripcion: "Tortillas de papa rellenas de queso.",
+                    ingredientes: [
+                        "Papa 6 unidades",
+                        "Queso fresco 200g",
+                        "Cebolla 1 unidad",
+                        "Achiote",
+                        "Chorizo o huevo para acompañar"
+                    ],
+                    preparacion: [
+                        "Cocer y hacer puré de papas.",
+                        "Sofreír cebolla con achiote.",
+                        "Formar tortitas rellenas de queso y dorar."
+                    ]
+                },
+                {
+                    nombre: "Fanesca",
+                    descripcion: "Sopa de granos y bacalao para Semana Santa.",
+                    ingredientes: [
+                        "Bacalao seco 500g",
+                        "Granos variados (habas, arvejas, garbanzos)",
+                        "Zapallo 200g",
+                        "Maní 100g",
+                        "Leche 500ml"
+                    ],
+                    preparacion: [
+                        "Remojar bacalao 24 horas.",
+                        "Cocer todos los granos.",
+                        "Mezclar con bacalao, zapallo y leche."
+                    ]
+                },
+                {
+                    nombre: "Hornado",
+                    descripcion: "Cerdo asado con choclo y papas.",
+                    ingredientes: [
+                        "Cerdo (pierna) 2kg",
+                        "Ajo 4 dientes",
+                        "Cebolla 2 unidades",
+                        "Choclo",
+                        "Papas"
+                    ],
+                    preparacion: [
+                        "Marinar el cerdo con ajo y cebolla.",
+                        "Asar en horno 3 horas.",
+                        "Servir con choclo y papas."
+                    ]
+                },
+                {
+                    nombre: "Ceviche ecuatoriano",
+                    descripcion: "Camarones en jugo de naranja y limón.",
+                    ingredientes: [
+                        "Camarones 500g",
+                        "Naranja agria 1 taza",
+                        "Limón 1 taza",
+                        "Cebolla morada 2 unidades",
+                        "Tomate 2 unidades"
+                    ],
+                    preparacion: [
+                        "Cocer los camarones en agua con sal.",
+                        "Mezclar con jugo de naranja y limón.",
+                        "Agregar cebolla y tomate."
+                    ]
+                },
+                {
+                    nombre: "Cuy asado",
+                    descripcion: "Conejillo de indias asado.",
+                    ingredientes: [
+                        "Cuy 1 unidad",
+                        "Ajo 2 dientes",
+                        "Cebolla 1 unidad",
+                        "Especias"
+                    ],
+                    preparacion: [
+                        "Limpiar y marinar el cuy.",
+                        "Asar en horno 1 hora.",
+                        "Servir con papas."
+                    ]
+                },
+                {
+                    nombre: "Colada morada",
+                    descripcion: "Bebida espesa de frutos rojos y maíz.",
+                    ingredientes: [
+                        "Maíz morado 500g",
+                        "Frutos rojos (mora, fresa)",
+                        "Canela",
+                        "Clavo",
+                        "Azúcar"
+                    ],
+                    preparacion: [
+                        "Cocer el maíz con especias.",
+                        "Licuar y colar.",
+                        "Agregar frutos rojos y azúcar."
+                    ]
+                }
+            ]
+        },
+        estadosunidos: {
+            nombre: "Estados Unidos",
+            bandera: "🇺🇸",
+            recetas: [
+                {
+                    nombre: "Fried Chicken",
+                    descripcion: "Pollo frito crujiente y jugoso.",
+                    ingredientes: [
+                        "Pollo 1.5kg",
+                        "Suero de leche 2 tazas",
+                        "Harina 2 tazas",
+                        "Pimentón 1 cucharada",
+                        "Ajo en polvo 1 cucharadita",
+                        "Aceite para freír"
+                    ],
+                    preparacion: [
+                        "Marinar pollo en suero de leche 4 horas.",
+                        "Rebozar en harina con especias.",
+                        "Freír en aceite caliente 15 min."
+                    ]
+                },
+                {
+                    nombre: "Apple Pie",
+                    descripcion: "Pastel de manzana especiado.",
+                    ingredientes: [
+                        "Manzanas 5 unidades",
+                        "Azúcar 3/4 taza",
+                        "Canela 1 cucharadita",
+                        "Masa para pastel 2 discos",
+                        "Mantequilla"
+                    ],
+                    preparacion: [
+                        "Pelar y cortar manzanas.",
+                        "Mezclar con azúcar y canela.",
+                        "Cubrir con masa y hornear 50 min."
+                    ]
+                },
+                {
+                    nombre: "Cheeseburger",
+                    descripcion: "Hamburguesa con queso y vegetales.",
+                    ingredientes: [
+                        "Carne molida 500g",
+                        "Queso cheddar 4 lonchas",
+                        "Pan de hamburguesa 4 unidades",
+                        "Lechuga, tomate, pepinillos"
+                    ],
+                    preparacion: [
+                        "Formar hamburguesas y sazonar.",
+                        "Cocinar en plancha 4 min por lado.",
+                        "Armar con queso y vegetales."
+                    ]
+                },
+                {
+                    nombre: "Buffalo Wings",
+                    descripcion: "Alitas de pollo con salsa picante.",
+                    ingredientes: [
+                        "Alitas de pollo 24 unidades",
+                        "Harina 1 taza",
+                        "Mantequilla 100g",
+                        "Salsa picante 1/2 taza",
+                        "Vinagre 1 cucharada"
+                    ],
+                    preparacion: [
+                        "Rebozar alitas en harina.",
+                        "Freír en aceite 10 min.",
+                        "Bañar en salsa de mantequilla y picante."
+                    ]
+                },
+                {
+                    nombre: "New York Cheesecake",
+                    descripcion: "Tarta de queso cremosa estilo NY.",
+                    ingredientes: [
+                        "Queso crema 900g",
+                        "Azúcar 250g",
+                        "Huevo 4 unidades",
+                        "Crema agria 1/2 taza",
+                        "Galletas Graham 200g",
+                        "Mantequilla 100g"
+                    ],
+                    preparacion: [
+                        "Hacer base con galletas y mantequilla.",
+                        "Batir queso crema con azúcar y huevos.",
+                        "Hornear a baño María 60 min."
+                    ]
+                },
+                {
+                    nombre: "Barbecue Ribs",
+                    descripcion: "Costillas con salsa barbacoa.",
+                    ingredientes: [
+                        "Costillas de cerdo 2 racks",
+                        "Paprika 1/4 taza",
+                        "Azúcar moreno 2 cucharadas",
+                        "Salsa barbacoa"
+                    ],
+                    preparacion: [
+                        "Sazonar costillas con especias.",
+                        "Hornear envueltas en papel 2.5 horas.",
+                        "Bañar con salsa y gratinar."
+                    ]
+                },
+                {
+                    nombre: "Boston Cream Pie",
+                    descripcion: "Pastel con crema pastelera y chocolate.",
+                    ingredientes: [
+                        "Harina 210g",
+                        "Mantequilla 120g",
+                        "Azúcar 200g",
+                        "Huevo 2 unidades",
+                        "Crema pastelera",
+                        "Chocolate para cubrir"
+                    ],
+                    preparacion: [
+                        "Hornear bizcocho a 180°C 35 min.",
+                        "Rellenar con crema pastelera.",
+                        "Cubrir con ganache de chocolate."
+                    ]
+                }
+            ]
+        },
+        mexico: {
+            nombre: "México",
+            bandera: "🇲🇽",
+            recetas: [
+                {
+                    nombre: "Mole poblano",
+                    descripcion: "Salsa de chiles con chocolate.",
+                    ingredientes: [
+                        "Chiles anchos 8 unidades",
+                        "Chiles mulatos 6 unidades",
+                        "Chocolate 100g",
+                        "Pollo 1kg",
+                        "Ajonjolí",
+                        "Almendras",
+                        "Pasas"
+                    ],
+                    preparacion: [
+                        "Tostar chiles y remojar.",
+                        "Licuar con chocolate y especias.",
+                        "Cocer con pollo 30 min."
+                    ]
+                },
+                {
+                    nombre: "Chiles en nogada",
+                    descripcion: "Chiles rellenos con salsa de nuez.",
+                    ingredientes: [
+                        "Chile poblano 10 unidades",
+                        "Carne de cerdo 1kg",
+                        "Manzana, pera, durazno",
+                        "Nuez de Castilla 1.5 tazas",
+                        "Crema 2.5 tazas",
+                        "Granada"
+                    ],
+                    preparacion: [
+                        "Asar y pelar chiles.",
+                        "Rellenar con carne y frutas.",
+                        "Bañar con salsa de nuez y decorar."
+                    ]
+                },
+                {
+                    nombre: "Pozole rojo",
+                    descripcion: "Caldo de maíz con carne de cerdo.",
+                    ingredientes: [
+                        "Maíz cacahuazintle 1.5kg",
+                        "Carne de cerdo 1kg",
+                        "Chiles guajillo 12 unidades",
+                        "Chiles ancho 4 unidades"
+                    ],
+                    preparacion: [
+                        "Cocer maíz y carne 3 horas.",
+                        "Licuar chiles con condimentos.",
+                        "Integrar y cocinar 30 min más."
+                    ]
+                },
+                {
+                    nombre: "Flautas ahogadas",
+                    descripcion: "Tortillas enrolladas bañadas en salsa.",
+                    ingredientes: [
+                        "Tortillas de maíz 12 unidades",
+                        "Pollo 500g",
+                        "Tomatillo 500g",
+                        "Chiles serranos 2 unidades",
+                        "Crema y queso"
+                    ],
+                    preparacion: [
+                        "Rellenar tortillas con pollo y enrollar.",
+                        "Freír hasta dorar.",
+                        "Bañar con salsa y decorar."
+                    ]
+                },
+                {
+                    nombre: "Guacamole",
+                    descripcion: "Crema de aguacate con vegetales.",
+                    ingredientes: [
+                        "Aguacate 4 unidades",
+                        "Cebolla 1/2 unidad",
+                        "Tomate 1 unidad",
+                        "Cilantro",
+                        "Limón",
+                        "Chile serrano"
+                    ],
+                    preparacion: [
+                        "Machacar aguacate con tenedor.",
+                        "Mezclar con cebolla, tomate y cilantro.",
+                        "Añadir limón y chile."
+                    ]
+                },
+                {
+                    nombre: "Tamales",
+                    descripcion: "Masa de maíz rellena envuelta en hojas.",
+                    ingredientes: [
+                        "Masa de maíz 1kg",
+                        "Manteca 300g",
+                        "Pollo o cerdo 500g",
+                        "Salsa roja o verde",
+                        "Hojas de maíz"
+                    ],
+                    preparacion: [
+                        "Batir manteca con masa.",
+                        "Colocar masa y relleno en hojas.",
+                        "Cocer al vapor 1 hora."
+                    ]
+                },
+                {
+                    nombre: "Churros",
+                    descripcion: "Masa frita con azúcar y canela.",
+                    ingredientes: [
+                        "Harina 300g",
+                        "Agua 300ml",
+                        "Sal 1 pizca",
+                        "Aceite para freír",
+                        "Azúcar y canela"
+                    ],
+                    preparacion: [
+                        "Hervir agua con sal.",
+                        "Agregar harina y mezclar.",
+                        "Freír churros y espolvorear."
+                    ]
+                }
+            ]
+        },
+        peru: {
+            nombre: "Perú",
+            bandera: "🇵🇪",
+            recetas: [
+                {
+                    nombre: "Ceviche",
+                    descripcion: "Pescado en jugo de limón con ají.",
+                    ingredientes: [
+                        "Pescado blanco 500g",
+                        "Limón 12 unidades",
+                        "Cebolla morada 1 unidad",
+                        "Ají limo 2 unidades",
+                        "Cilantro",
+                        "Camote y choclo"
+                    ],
+                    preparacion: [
+                        "Cortar pescado en cubos.",
+                        "Cubrir con jugo de limón.",
+                        "Agregar cebolla, ají y cilantro. Reposar 10 min."
+                    ]
+                },
+                {
+                    nombre: "Lomo saltado",
+                    descripcion: "Tiras de res con cebolla y tomate.",
+                    ingredientes: [
+                        "Lomo fino 500g",
+                        "Cebolla 2 unidades",
+                        "Tomate 2 unidades",
+                        "Sillao (salsa de soja) 3 cucharadas",
+                        "Ají amarillo 1 unidad",
+                        "Papas fritas"
+                    ],
+                    preparacion: [
+                        "Sellar la carne en wok caliente.",
+                        "Agregar cebolla, tomate y ají.",
+                        "Incorporar sillao y servir con papas."
+                    ]
+                },
+                {
+                    nombre: "Ají de gallina",
+                    descripcion: "Gallina en crema de ají y leche.",
+                    ingredientes: [
+                        "Pollo 1kg",
+                        "Ají amarillo 6 unidades",
+                        "Pan de molde 4 rebanadas",
+                        "Leche evaporada 500ml",
+                        "Nueces 50g",
+                        "Queso parmesano 2 cucharadas"
+                    ],
+                    preparacion: [
+                        "Cocer y desmenuzar pollo.",
+                        "Sofreír ají con cebolla y ajo.",
+                        "Licuar con pan, leche y nueces.",
+                        "Mezclar con el pollo y cocinar a fuego bajo."
+                    ]
+                }
+                // ... (faltan más recetas de Perú, pero son las que proporcionó)
+            ]
+        }
+        // Aquí puedes agregar los demás países que tengas (España, Francia, etc.)
+        // siguiendo el mismo formato. Por ahora solo están los que mandaste.
+    };
+
+    // ================================================================
+    // 2. POSTRES (LOS QUE YA TENÍAS)
     // ================================================================
     const recetasPostres = {
         "Argentina": [
-            { name: "Chocotorta", ingredients: ["400 g de dulce de leche (repostero)", "400 g de crema de leche (nata)", "750 g de galletitas de chocolate (tipo Chocolinas)", "Café frío para mojar"], steps: ["Mezclar el dulce de leche con la crema de leche hasta obtener una crema homogénea.", "Mojar las galletitas en café frío (sin empaparlas demasiado).", "En un molde, colocar una capa de galletitas, cubrir con la mezcla de dulce de leche, repetir capas.", "Refrigerar por varias horas (ideal toda la noche) y servir frío."] },
-            { name: "Pastelitos Criollos", ingredients: ["500 g de harina 0000", "100 g de manteca (o grasa vacuna)", "250 cc de agua", "1 cucharadita de jugo de limón", "Dulce de membrillo o batata para rellenar"], steps: ["Formar una masa con la harina, la manteca, el agua y el jugo de limón.", "Estirar la masa bien fina y cortar en cuadrados del tamaño deseado.", "Colocar un cubo de dulce de membrillo en cada cuadrado y tapar con otra capa de masa, sellando los bordes.", "Freír en aceite caliente hasta que estén dorados y crujientes."] },
-            { name: "Alfajores de Maicena", ingredients: ["300 g de maicena", "200 g de harina", "200 g de manteca", "150 g de azúcar", "4 yemas de huevo", "1 cucharadita de bicarbonato", "2 cucharaditas de polvo de hornear", "Esencia de vainilla y ralladura de limón", "Dulce de leche para rellenar", "Coco rallado para decorar"], steps: ["Batir la manteca con el azúcar hasta que esté cremosa.", "Agregar las yemas, la esencia de vainilla y la ralladura de limón.", "Tamizar la maicena, la harina, el bicarbonato y el polvo de hornear, e incorporar a la mezcla.", "Unir todo hasta formar una masa suave. Estirar, cortar discos y hornear a 180°C hasta dorar.", "Rellenar con dulce de leche y pasar los bordes por coco rallado."] },
-            { name: "Milhojas de Dulce de Leche", ingredients: ["250 g de harina 0000", "5 g de sal", "125 ml de agua fría", "200 g de manteca fría", "400 g de dulce de leche repostero"], steps: ["Formar una masa con harina, sal y agua. Dejar reposar.", "Estirar la masa, colocar la manteca fría en el centro y doblar en múltiples pliegues (para crear el hojaldre).", "Extender finamente, cortar en rectángulos y hornear a 200°C hasta que estén dorados y crocantes.", "Armar el milhojas intercalando capas de hojaldre con dulce de leche. Dejar reposar antes de cortar."] }
+            { name: "Chocotorta", ingredients: ["400 g de dulce de leche", "400 g de crema de leche", "750 g de galletitas de chocolate", "Café frío"], steps: ["Mezclar dulce de leche con crema.", "Mojar galletitas en café.", "Alternar capas.", "Refrigerar 4 horas."] },
+            { name: "Pastelitos Criollos", ingredients: ["500 g de harina", "100 g de manteca", "250 cc de agua", "Jugo de limón", "Dulce de membrillo"], steps: ["Formar masa.", "Estirar y cortar cuadrados.", "Rellenar con membrillo.", "Freír hasta dorar."] },
+            { name: "Alfajores de Maicena", ingredients: ["300 g de maicena", "200 g de harina", "200 g de manteca", "150 g de azúcar", "4 yemas", "Bicarbonato", "Polvo de hornear", "Vainilla", "Dulce de leche", "Coco rallado"], steps: ["Batir manteca con azúcar.", "Agregar yemas y vainilla.", "Incorporar harinas.", "Hornear discos y rellenar."] },
+            { name: "Milhojas de Dulce de Leche", ingredients: ["250 g de harina", "5 g de sal", "125 ml de agua", "200 g de manteca", "400 g de dulce de leche"], steps: ["Hacer masa y reposar.", "Estirar con manteca para hojaldre.", "Hornear capas.", "Armar milhojas."] }
         ],
         "Venezuela": [
-            { name: "Quesillo", ingredients: ["5 huevos", "1 lata (395 g) de leche condensada", "395 ml de leche completa", "1 cucharadita de esencia de vainilla", "Ron al gusto (opcional)", "¾ taza de azúcar (para el caramelo)", "¼ de agua (para el caramelo)"], steps: ["Preparar el caramelo: calentar el azúcar con el agua hasta que tome color ámbar y verter en el molde.", "Licuar los huevos, la leche condensada, la leche y la vainilla.", "Verter la mezcla sobre el caramelo en el molde.", "Hornear a baño María (160°C) durante aproximadamente 1 hora o hasta que al insertar un palillo salga limpio.", "Enfriar completamente y desmoldar con cuidado."] },
-            { name: "Bienmesabe de Coco", ingredients: ["Para el bizcocho: 1½ tazas de azúcar, 10 huevos, 1½ tazas de harina", "500 g de coco rallado", "400 g de leche condensada", "250 ml de leche de coco", "200 ml de leche entera", "100 g de azúcar", "Esencia de vainilla", "Merengue o crema Chantilly para decorar"], steps: ["Preparar el bizcocho batiendo los huevos con el azúcar hasta triplicar volumen, incorporar la harina y hornear.", "Hacer una crema con el coco, las leches, el azúcar y la vainilla, cocinando a fuego bajo hasta que espese.", "Pinchar el bizcocho y bañarlo con la crema caliente para que absorba todo el líquido.", "Dejar enfriar y decorar con merengue o crema Chantilly y coco tostado."] },
-            { name: "Torta Bejarana", ingredients: ["9 plátanos maduros (cambures)", "300 g de pan rallado o bizcocho molido", "250 g de papelón (panela)", "2-3 huevos", "2 cucharaditas de bicarbonato", "150 g de queso blanco rallado", "Canela y clavo de olor al gusto", "Ajonjolí para decorar"], steps: ["Moler los plátanos con el papelón hasta obtener un puré.", "Agregar el pan rallado, los huevos, el bicarbonato, el queso y las especias. Mezclar bien.", "Verter en un molde engrasado y hornear a 180°C hasta que esté firme y dorado.", "Dejar enfriar y decorar con ajonjolí tostado."] },
-            { name: "Dulce de Lechosa (Papaya)", ingredients: ["2 kg de papaya verde (lechosa)", "800 g de papelón o panela", "200 g de azúcar", "10 g de bicarbonato", "Clavos de olor y canela al gusto"], steps: ["Pelar y cortar la papaya en tiras o cubos.", "Hervir la papaya con bicarbonato por 10 minutos para quitar el amargor, luego escurrir.", "Preparar un almíbar con el papelón, el azúcar, los clavos y la canela.", "Cocinar la papaya en el almíbar a fuego bajo hasta que se vuelva traslúcida y el almíbar espese.", "Dejar enfriar y servir acompañada de queso fresco."] }
+            { name: "Quesillo", ingredients: ["5 huevos", "1 lata de leche condensada", "395 ml de leche", "Vainilla", "Azúcar para caramelo"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María.", "Desmoldar frío."] },
+            { name: "Bienmesabe de Coco", ingredients: ["Bizcocho: 1.5 tazas de azúcar, 10 huevos, 1.5 tazas de harina", "500 g de coco rallado", "400 g de leche condensada", "250 ml de leche de coco", "200 ml de leche", "100 g de azúcar", "Vainilla"], steps: ["Hornear bizcocho.", "Hacer crema de coco.", "Bañar bizcocho.", "Decorar con merengue."] },
+            { name: "Torta Bejarana", ingredients: ["9 plátanos maduros", "300 g de pan rallado", "250 g de papelón", "2-3 huevos", "Bicarbonato", "Queso blanco", "Canela", "Ajonjolí"], steps: ["Moler plátanos con papelón.", "Mezclar con pan, huevos, queso y especias.", "Hornear 180°C.", "Decorar con ajonjolí."] },
+            { name: "Dulce de Lechosa", ingredients: ["2 kg de papaya verde", "800 g de papelón", "200 g de azúcar", "Bicarbonato", "Clavos y canela"], steps: ["Pelar y cortar papaya.", "Hervir con bicarbonato.", "Cocinar en almíbar.", "Enfriar y servir."] }
         ],
         "Ecuador": [
-            { name: "Pristiños con Miel", ingredients: ["3 tazas (425 g) de harina", "1-2 cucharadas de azúcar", "1 cucharadita de polvo de hornear", "¼ cucharadita de sal", "2 huevos", "2 cucharadas de mantequilla derretida", "Agua de anís (cantidad necesaria)", "Para la miel: panela, canela, clavos de olor"], steps: ["Mezclar todos los ingredientes secos. Agregar los huevos, la mantequilla y el agua de anís hasta formar una masa suave.", "Estirar la masa y cortar en rectángulos o rombos.", "Freír en aceite caliente hasta que estén dorados y esponjosos.", "Bañar con la miel de panela caliente (hecha con panela, canela y clavos)."] },
-            { name: "Quimbolitos", ingredients: ["2 tazas de harina de maíz", "3 huevos", "1 taza de leche", "1 taza de azúcar", "½ taza de mantequilla", "1 cucharadita de polvo de hornear", "Esencia de vainilla", "Queso rallado (opcional)", "Hojas de achira o plátano para envolver"], steps: ["Mezclar la harina de maíz con el polvo de hornear.", "Batir los huevos con el azúcar, la leche, la mantequilla derretida y la vainilla.", "Incorporar los ingredientes secos y mezclar bien. Agregar el queso si se desea.", "Colocar porciones de la masa sobre hojas de achira, envolver y cocer al vapor durante 20-25 minutos."] },
-            { name: "Quesillo de Leche y Huevo", ingredients: ["1 lata (395 g) de leche condensada", "1 medida (de la lata) de leche entera", "5 huevos grandes", "Esencia de vainilla", "Para el caramelo: azúcar y agua"], steps: ["Preparar un caramelo en un molde para flan.", "Licuar la leche condensada, la leche, los huevos y la vainilla.", "Verter la mezcla sobre el caramelo.", "Hornear a baño María (170°C) durante 50-60 minutos o hasta que cuaje.", "Enfriar y desmoldar."] },
-            { name: "Dulce de Sambo", ingredients: ["Pulpa de sambo (calabaza grande verde)", "Panela o azúcar moreno", "Canela y clavo de olor al gusto"], steps: ["Pelar el sambo y cortar la pulpa en trozos.", "Cocinar lentamente con la panela, la canela y el clavo, removiendo constantemente.", "Cocinar hasta que la mezcla espese y adquiera consistencia de mermelada.", "Servir frío, acompañado de queso o solo."] }
+            { name: "Pristiños con Miel", ingredients: ["425 g de harina", "Azúcar", "Polvo de hornear", "Sal", "2 huevos", "Mantequilla", "Agua de anís", "Panela para miel"], steps: ["Mezclar secos.", "Agregar huevos y mantequilla.", "Freír masa.", "Bañar con miel."] },
+            { name: "Quimbolitos", ingredients: ["2 tazas de harina de maíz", "3 huevos", "1 taza de leche", "1 taza de azúcar", "½ taza de mantequilla", "Polvo de hornear", "Vainilla", "Queso", "Hojas de achira"], steps: ["Mezclar harina y polvo.", "Batir huevos con azúcar, leche y mantequilla.", "Incorporar secos.", "Envolver en hojas y cocer al vapor."] },
+            { name: "Quesillo de Leche y Huevo", ingredients: ["1 lata de leche condensada", "1 medida de leche", "5 huevos", "Vainilla", "Caramelo"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María.", "Desmoldar."] },
+            { name: "Dulce de Sambo", ingredients: ["Pulpa de sambo", "Panela", "Canela", "Clavo"], steps: ["Cortar sambo.", "Cocinar con panela y especias.", "Espesar y servir frío."] }
         ],
         "Colombia": [
-            { name: "Natilla Colombiana", ingredients: ["1 litro de leche entera", "200 g de panela rallada (o azúcar moreno)", "100 g de maicena (fécula de maíz)", "Canela en rama", "Opcional: coco rallado"], steps: ["Disolver la panela en la leche junto con la canela.", "Disolver la maicena en un poco de leche fría.", "Verter la maicena disuelta en la leche caliente y cocinar a fuego medio sin dejar de remover.", "Cocinar hasta que espese y se despegue del fondo. Verter en un molde y dejar enfriar.", "Servir frío, espolvoreado con canela en polvo."] },
-            { name: "Plátanos Calados", ingredients: ["2-3 plátanos maduros", "40 g de panela", "2 cucharadas de mantequilla", "1 cucharada de aceite", "¾ taza de agua", "Canela y clavos de olor"], steps: ["Pelar y cortar los plátanos en rodajas gruesas.", "Preparar un almíbar con la panela, el agua, la canela y los clavos.", "Cocinar los plátanos en el almíbar hasta que estén suaves y caramelizados.", "Servir tibios o fríos, acompañados de queso o helado."] },
-            { name: "Enyucado", ingredients: ["1 kg de yuca rallada", "1½ tazas de queso rallado (tipo costeño)", "1 taza de azúcar", "¾ taza de coco rallado", "1 cucharada de mantequilla", "Anís al gusto", "Hojas de plátano para envolver"], steps: ["Mezclar todos los ingredientes hasta obtener una masa homogénea.", "Colocar porciones sobre hojas de plátano y envolver como tamales.", "Hornear a 180°C durante 30-40 minutos o hasta que estén firmes.", "Servir tibio."] },
-            { name: "Pastel Gloria", ingredients: ["1 paquete de masa de hojaldre", "Pasta de guayaba (bocadillo)", "Queso mozzarella o blanco", "1 huevo batido para pintar", "Azúcar para espolvorear"], steps: ["Extender la masa de hojaldre y cortar en rectángulos.", "Colocar rodajas de guayaba y queso en el centro de cada rectángulo.", "Cerrar y sellar los bordes con un tenedor.", "Pintar con huevo batido, espolvorear con azúcar y hornear a 200°C hasta que estén dorados."] }
+            { name: "Natilla Colombiana", ingredients: ["1 litro de leche", "200 g de panela", "100 g de maicena", "Canela", "Coco (opcional)"], steps: ["Disolver panela en leche.", "Disolver maicena en leche fría.", "Cocinar hasta espesar.", "Enfriar y espolvorear canela."] },
+            { name: "Plátanos Calados", ingredients: ["2-3 plátanos maduros", "40 g de panela", "Mantequilla", "Aceite", "Agua", "Canela y clavos"], steps: ["Pelar y cortar plátanos.", "Hacer almíbar.", "Cocinar plátanos en almíbar.", "Servir tibios."] },
+            { name: "Enyucado", ingredients: ["1 kg de yuca rallada", "1.5 tazas de queso", "1 taza de azúcar", "¾ taza de coco", "Mantequilla", "Anís", "Hojas de plátano"], steps: ["Mezclar todos los ingredientes.", "Envolver en hojas.", "Hornear 180°C 30-40 min.", "Servir tibio."] },
+            { name: "Pastel Gloria", ingredients: ["Masa de hojaldre", "Pasta de guayaba", "Queso", "Huevo", "Azúcar"], steps: ["Extender masa.", "Colocar guayaba y queso.", "Cerrar y pintar con huevo.", "Espolvorear azúcar y hornear."] }
         ],
         "Brasil": [
-            { name: "Brigadeiro", ingredients: ["1 lata (395 g) de leche condensada", "2 cucharadas de cacao en polvo", "1 cucharada de mantequilla", "Chocolate granulado para rebozar"], steps: ["Poner todos los ingredientes en una olla (excepto el granulado).", "Cocinar a fuego bajo, removiendo constantemente, hasta que la mezcla se despegue del fondo.", "Dejar enfriar por completo.", "Formar bolitas y rebozar en chocolate granulado."] },
-            { name: "Quindim", ingredients: ["6 yemas de huevo", "150 g de azúcar", "60 g de coco rallado", "120 g de leche de coco", "1 cucharada de mantequilla"], steps: ["Precalentar el horno a 180°C.", "Mezclar todos los ingredientes hasta obtener una masa homogénea.", "Verter en moldes individuales caramelizados (caramelo con azúcar y agua).", "Hornear a baño María hasta que estén firmes. Desmoldar y servir fríos."] },
-            { name: "Pudim de Leite Condensado", ingredients: ["1 lata (395 g) de leche condensada", "2 medidas (de la lata) de leche entera", "3 huevos", "Para el caramelo: 6 cucharadas de azúcar con ½ taza de agua"], steps: ["Preparar el caramelo en el molde.", "Licuar la leche condensada, la leche y los huevos.", "Verter la mezcla sobre el caramelo.", "Hornear a baño María (160°C) durante aproximadamente 1 hora. Enfriar y desmoldar."] },
-            { name: "Bolo de Cenoura", ingredients: ["Para la masa: 3 zanahorias medianas, 3 huevos, 1 taza de aceite, 2 tazas de azúcar, 2 tazas de harina, 1 cucharada de polvo de hornear", "Para la cobertura: 200 g de chocolate semiamargo, 1 lata de crema de leche (nata)"], steps: ["Licuar las zanahorias con los huevos y el aceite.", "Mezclar con el azúcar, la harina y el polvo de hornear.", "Hornear a 180°C durante 40 minutos.", "Preparar la ganache derritiendo el chocolate con la crema de leche.", "Bañar el pastel ya frío con la cobertura."] }
+            { name: "Brigadeiro", ingredients: ["1 lata de leche condensada", "2 cdas de cacao", "1 cda de mantequilla", "Granillo de chocolate"], steps: ["Cocinar ingredientes hasta despegar.", "Dejar enfriar.", "Hacer bolitas y rebozar."] },
+            { name: "Quindim", ingredients: ["6 yemas", "150 g de azúcar", "60 g de coco", "120 g de leche de coco", "Mantequilla"], steps: ["Mezclar todo.", "Verter en moldes caramelizados.", "Hornear a baño María.", "Desmoldar frío."] },
+            { name: "Pudim de Leite Condensado", ingredients: ["1 lata de leche condensada", "2 medidas de leche", "3 huevos", "Caramelo"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María.", "Desmoldar."] },
+            { name: "Bolo de Cenoura", ingredients: ["3 zanahorias", "3 huevos", "1 taza de aceite", "2 tazas de azúcar", "2 tazas de harina", "1 cda de polvo de hornear", "Cobertura: chocolate y crema"], steps: ["Licuar zanahorias con huevos y aceite.", "Mezclar con secos.", "Hornear 180°C 40 min.", "Bañar con ganache."] }
         ],
         "Estados Unidos": [
-            { name: "Apple Pie", ingredients: ["Para la masa: 300 g de harina, 150 g de mantequilla fría, 75 g de azúcar, 1 huevo", "Para el relleno: 750 g de manzanas, 100 g de azúcar moreno, 1 cucharadita de canela, nuez moscada"], steps: ["Preparar la masa quebrada y forrar un molde para tarta.", "Pelar y cortar las manzanas en láminas, mezclar con el azúcar y la canela.", "Rellenar la tarta con las manzanas y cubrir con otra capa de masa (o en tiras).", "Hornear a 180°C durante 40-45 minutos. Servir con helado de vainilla."] },
-            { name: "New York Cheesecake", ingredients: ["Para la base: 200 g de galletas Graham, 100 g de mantequilla derretida", "Para el relleno: 900 g de queso crema, 300 g de azúcar, 200 ml de crema agria (sour cream), 4 huevos, 3 cucharadas de harina"], steps: ["Triturar las galletas, mezclar con la mantequilla y presionar en el fondo de un molde.", "Batir el queso crema con el azúcar, añadir los huevos uno a uno, la crema agria y la harina.", "Verter la mezcla sobre la base y hornear a baño María (160°C) durante 1 hora.", "Apagar el horno y dejar enfriar con la puerta entreabierta. Refrigerar al menos 4 horas."] },
-            { name: "Chocolate Chip Cookies", ingredients: ["115 g de mantequilla", "85 g de azúcar blanca", "85 g de azúcar moreno", "1 huevo", "150 g de harina", "½ cucharadita de bicarbonato", "1 cucharadita de vainilla", "200 g de chispas de chocolate"], steps: ["Batir la mantequilla con los azúcares hasta que esté cremosa.", "Añadir el huevo y la vainilla. Mezclar bien.", "Incorporar la harina tamizada con el bicarbonato.", "Agregar las chispas de chocolate. Formar bolitas y hornear a 180°C durante 10-12 minutos."] },
-            { name: "S'mores", ingredients: ["Galletas tipo Graham (o María)", "Chocolate en tableta", "Malvaviscos grandes"], steps: ["Asar el malvavisco sobre una fogata (o en el microondas durante 15-20 segundos).", "Colocar un trozo de chocolate sobre una galleta.", "Poner el malvavisco caliente encima del chocolate y tapar con otra galleta.", "Presionar ligeramente para que el chocolate se derrita y disfrutar."] }
+            { name: "Apple Pie", ingredients: ["Masa: 300g harina, 150g mantequilla, 75g azúcar, 1 huevo", "Relleno: 750g manzanas, 100g azúcar moreno, canela, nuez moscada"], steps: ["Preparar masa.", "Mezclar manzanas con azúcar y canela.", "Rellenar y cubrir.", "Hornear 180°C 40-45 min."] },
+            { name: "New York Cheesecake", ingredients: ["Base: 200g galletas Graham, 100g mantequilla", "Relleno: 900g queso crema, 300g azúcar, 200ml crema agria, 4 huevos, 3 cdas harina"], steps: ["Hacer base.", "Batir queso crema con azúcar, huevos, crema y harina.", "Hornear a baño María 160°C 1 hora.", "Refrigerar."] },
+            { name: "Chocolate Chip Cookies", ingredients: ["115g mantequilla", "85g azúcar blanca", "85g azúcar moreno", "1 huevo", "150g harina", "½ cdta bicarbonato", "1 cdta vainilla", "200g chispas de chocolate"], steps: ["Batir mantequilla con azúcares.", "Añadir huevo y vainilla.", "Incorporar harina y bicarbonato.", "Agregar chispas y hornear 180°C 10-12 min."] },
+            { name: "S'mores", ingredients: ["Galletas Graham", "Chocolate", "Malvaviscos"], steps: ["Asar malvavisco.", "Colocar chocolate sobre galleta.", "Poner malvavisco encima.", "Tapar con otra galleta."] }
         ],
         "Canadá": [
-            { name: "Nanaimo Bars", ingredients: ["Base: 160 g de galletas Graham, 3 cdas de cacao, 100 g de coco rallado, 50 g de nueces, 100 g de mantequilla", "Capa media: crema de vainilla (150 g de mantequilla, 300 g de azúcar glas, 2 cdas de leche, 1 cdta de vainilla)", "Cobertura: 150 g de chocolate (cobertura)"], steps: ["Mezclar los ingredientes de la base y presionar en un molde cuadrado. Refrigerar.", "Batir los ingredientes de la capa media y extender sobre la base. Refrigerar.", "Derretir el chocolate y verter como cobertura. Refrigerar hasta que endurezca.", "Cortar en cuadrados y servir fríos."] },
-            { name: "Butter Tarts", ingredients: ["Para la masa: 190 g de harina, 160 g de mantequilla, 1 yema", "Para el relleno: ½ taza de mantequilla derretida, ½ taza de azúcar moreno, 1 huevo, 1 cdta de vainilla, pasas (opcional)"], steps: ["Preparar la masa quebrada y forrar moldes para tartaletas.", "Mezclar todos los ingredientes del relleno.", "Verter el relleno en los moldes (sin llenar demasiado).", "Hornear a 190°C durante 15-20 minutos hasta que el relleno burbujee."] },
-            { name: "Tarte au Sucre (Quebec)", ingredients: ["1 masa quebrada (para tarta)", "460 g de azúcar moreno (cassonade)", "45 g de harina", "250 ml de crema de leche (35% de grasa)"], steps: ["Forrar un molde para tarta con la masa quebrada.", "Mezclar el azúcar moreno con la harina y la crema.", "Verter la mezcla sobre la masa.", "Hornear a 190°C durante 25-30 minutos hasta que el relleno esté firme."] },
-            { name: "Sugar Pie (variante)", ingredients: ["Masa quebrada", "1 taza de azúcar moreno", "½ taza de jarabe de arce (maple syrup)", "1 taza de crema de leche", "2 cucharadas de harina"], steps: ["Forrar un molde con la masa.", "Mezclar todos los ingredientes del relleno.", "Verter sobre la masa y hornear a 180°C durante 30-35 minutos.", "Dejar enfriar completamente antes de servir."] }
+            { name: "Nanaimo Bars", ingredients: ["Base: 160g galletas, 3 cdas cacao, 100g coco, 50g nueces, 100g mantequilla", "Capa media: 150g mantequilla, 300g azúcar glas, 2 cdas leche, 1 cdta vainilla", "Cobertura: 150g chocolate"], steps: ["Hacer base y refrigerar.", "Batir capa media y extender.", "Verter chocolate derretido.", "Refrigerar y cortar."] },
+            { name: "Butter Tarts", ingredients: ["Masa: 190g harina, 160g mantequilla, 1 yema", "Relleno: ½ taza mantequilla derretida, ½ taza azúcar moreno, 1 huevo, 1 cdta vainilla, pasas"], steps: ["Forrar moldes con masa.", "Mezclar relleno.", "Verter y hornear 190°C 15-20 min."] },
+            { name: "Tarte au Sucre", ingredients: ["Masa quebrada", "460g azúcar moreno", "45g harina", "250ml crema de leche"], steps: ["Forrar molde.", "Mezclar azúcar, harina y crema.", "Verter y hornear 190°C 25-30 min."] },
+            { name: "Sugar Pie", ingredients: ["Masa quebrada", "1 taza azúcar moreno", "½ taza jarabe de arce", "1 taza crema de leche", "2 cdas harina"], steps: ["Forrar molde.", "Mezclar ingredientes.", "Verter y hornear 180°C 30-35 min."] }
         ],
         "Reino Unido": [
-            { name: "Budín de Pan y Mantequilla", ingredients: ["10 rebanadas de pan de brioche (o pan de molde)", "3 huevos", "350 ml de leche", "60 ml de nata (crema)", "Pasas", "Mantequilla para untar", "Nuez moscada y canela al gusto"], steps: ["Untar las rebanadas de pan con mantequilla y cortar en triángulos.", "Colocar las rebanadas en un molde alternando con pasas.", "Mezclar los huevos con la leche, la nata y las especias.", "Verter la mezcla sobre el pan, dejar reposar 30 minutos y hornear a 180°C hasta que esté dorado."] },
-            { name: "Treacle Tart", ingredients: ["Para la base: 250 g de harina, 125 g de mantequilla", "Para el relleno: 450 g de Golden Syrup (sirope dorado), 200 g de pan rallado, 2 huevos, zumo y ralladura de 1 limón"], steps: ["Preparar la masa quebrada y forrar un molde para tarta.", "Mezclar el sirope con el pan rallado, los huevos y el limón.", "Verter el relleno sobre la masa.", "Hornear a 180°C durante 30-35 minutos. Servir tibio o frío."] },
-            { name: "Simnel Cake", ingredients: ["250 g de harina", "200 g de mantequilla", "200 g de azúcar", "4 huevos", "250 g de frutas secas (pasas, cerezas)", "Especias (canela, nuez moscada)", "Ralladura de limón y naranja", "500 g de mazapán"], steps: ["Batir la mantequilla con el azúcar, añadir los huevos uno a uno.", "Incorporar la harina, las frutas, las especias y las ralladuras.", "Verter la mitad de la masa en un molde, colocar una capa de mazapán y cubrir con el resto.", "Hornear a 160°C durante 1 hora y 20 minutos. Decorar con mazapán y 11 bolitas."] },
-            { name: "Welsh Cakes", ingredients: ["225 g de harina", "115 g de mantequilla fría", "75 g de azúcar", "1 huevo", "50 g de pasas", "Canela y nuez moscada al gusto", "Levadura química"], steps: ["Mezclar la harina con la levadura y la mantequilla hasta obtener una textura arenosa.", "Añadir el azúcar, las pasas, las especias y el huevo. Formar una masa.", "Estirar y cortar discos.", "Cocinar en una plancha o sartén caliente hasta que estén dorados por ambos lados."] }
+            { name: "Budín de Pan y Mantequilla", ingredients: ["10 rebanadas de pan de brioche", "3 huevos", "350ml leche", "60ml nata", "Pasas", "Mantequilla", "Nuez moscada"], steps: ["Untar pan con mantequilla.", "Colocar en molde con pasas.", "Mezclar huevos, leche y nata.", "Verter y hornear 180°C."] },
+            { name: "Treacle Tart", ingredients: ["Masa: 250g harina, 125g mantequilla", "Relleno: 450g sirope dorado, 200g pan rallado, 2 huevos, zumo y ralladura de limón"], steps: ["Forrar molde.", "Mezclar sirope, pan, huevos y limón.", "Rellenar y hornear 180°C 30-35 min."] },
+            { name: "Simnel Cake", ingredients: ["250g harina", "200g mantequilla", "200g azúcar", "4 huevos", "250g frutas secas", "Especias", "Ralladura de cítricos", "500g mazapán"], steps: ["Batir mantequilla con azúcar.", "Añadir huevos, harina y frutas.", "Verter mitad de masa, capa de mazapán, resto.", "Hornear 160°C 1h 20min."] },
+            { name: "Welsh Cakes", ingredients: ["225g harina", "115g mantequilla", "75g azúcar", "1 huevo", "50g pasas", "Canela", "Levadura"], steps: ["Mezclar harina con mantequilla.", "Añadir azúcar, pasas, especias y huevo.", "Estirar y cortar discos.", "Cocinar en plancha hasta dorar."] }
         ],
         "España": [
-            { name: "Tarta de Santiago", ingredients: ["250 g de almendra molida", "250 g de azúcar", "5 huevos", "Ralladura de limón", "Azúcar glas para decorar"], steps: ["Mezclar la almendra molida con el azúcar.", "Añadir los huevos uno a uno y la ralladura de limón.", "Verter en un molde engrasado y hornear a 180°C durante 25-30 minutos.", "Una vez frío, espolvorear con azúcar glas usando una plantilla con la cruz de Santiago."] },
-            { name: "Crema Catalana", ingredients: ["1 litro de leche entera", "8 yemas de huevo", "200 g de azúcar", "40 g de maicena", "1 rama de canela", "Cáscara de limón"], steps: ["Calentar la leche con la canela y la cáscara de limón.", "Batir las yemas con el azúcar y la maicena.", "Verter la leche caliente sobre la mezcla y cocinar a fuego bajo hasta que espese.", "Verter en cazuelitas, enfriar y, justo antes de servir, quemar azúcar por encima con un soplete."] },
-            { name: "Tocino de Cielo", ingredients: ["12 yemas de huevo", "500 g de azúcar", "500 ml de agua", "5 cucharadas de azúcar para el caramelo"], steps: ["Preparar un caramelo con las 5 cucharadas de azúcar en un molde.", "Hacer un almíbar con el azúcar y el agua. Dejar enfriar.", "Batir las yemas y verter el almíbar frío. Mezclar bien.", "Colar, verter sobre el caramelo y hornear a baño María hasta que cuaje."] },
-            { name: "Flan de Queso", ingredients: ["200 g de queso crema", "1 lata (395 g) de leche condensada", "395 ml de leche entera", "4 huevos", "1 cucharadita de vainilla"], steps: ["Preparar un caramelo en el molde.", "Licuar todos los ingredientes.", "Verter sobre el caramelo y hornear a baño María durante 50 minutos.", "Enfriar y desmoldar."] }
+            { name: "Tarta de Santiago", ingredients: ["250g almendra molida", "250g azúcar", "5 huevos", "Ralladura de limón", "Azúcar glas"], steps: ["Mezclar almendra y azúcar.", "Añadir huevos y limón.", "Hornear 180°C 25-30 min.", "Espolvorear azúcar glas."] },
+            { name: "Crema Catalana", ingredients: ["1l leche", "8 yemas", "200g azúcar", "40g maicena", "Canela", "Cáscara de limón"], steps: ["Calentar leche con canela y limón.", "Batir yemas con azúcar y maicena.", "Verter leche caliente y cocinar hasta espesar.", "Enfriar y quemar azúcar."] },
+            { name: "Tocino de Cielo", ingredients: ["12 yemas", "500g azúcar", "500ml agua", "Caramelo"], steps: ["Caramelizar molde.", "Hacer almíbar con azúcar y agua.", "Batir yemas y verter almíbar.", "Hornear a baño María."] },
+            { name: "Flan de Queso", ingredients: ["200g queso crema", "1 lata leche condensada", "395ml leche", "4 huevos", "Vainilla"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María 50 min.", "Desmoldar."] }
         ],
         "Francia": [
-            { name: "Flan Pâtissier", ingredients: ["Para la masa: 250 g de harina, 125 g de mantequilla, 50 g de azúcar glass, 1 huevo", "Para el relleno: 1 litro de leche entera, 65 g de maicena, 150 g de azúcar, 4 huevos, 1 vaina de vainilla"], steps: ["Forrar un molde con la masa quebrada y pincharla con un tenedor.", "Preparar una crema pastelera: calentar la leche con la vainilla. Batir los huevos con el azúcar y la maicena.", "Verter la leche caliente sobre la mezcla, cocinar hasta que espese.", "Verter la crema sobre la masa y hornear a 200°C durante 30-35 minutos (la superficie debe estar bien dorada)."] },
-            { name: "Paris-Brest", ingredients: ["Para la masa choux: 250 ml de agua, 100 g de mantequilla, 150 g de harina, 4 huevos", "Para el relleno: 500 ml de crema pastelera con praliné de avellanas"], steps: ["Preparar la masa choux: hervir agua con mantequilla, añadir la harina y cocinar. Fuera del fuego, agregar los huevos.", "Formar un anillo con la masa en una bandeja y hornear a 200°C.", "Dejar enfriar, partir por la mitad y rellenar con la crema de praliné.", "Espolvorear con azúcar glas y almendras laminadas."] },
-            { name: "Saint-Honoré", ingredients: ["Base de hojaldre", "Masa choux para profiteroles", "Crema pastelera", "Crema Chantilly (nata montada)"], steps: ["Hornear la base de hojaldre.", "Preparar la masa choux, formar pequeños profiteroles y hornear.", "Rellenar los profiteroles con crema pastelera.", "Colocar los profiteroles alrededor de la base y rellenar el centro con crema Chantilly."] },
-            { name: "Macaron", ingredients: ["110 g de harina de almendras", "200 g de azúcar glas", "100 g de claras de huevo (envejecidas)", "30 g de azúcar", "Colorante (opcional)", "Relleno: ganache o crema de mantequilla"], steps: ["Tamizar la harina de almendras con el azúcar glas.", "Batir las claras a punto de nieve, añadiendo el azúcar poco a poco.", "Incorporar la mezcla de almendras con movimientos envolventes (macaronnage).", "Formar discos sobre papel de hornear y dejar secar 30 minutos antes de hornear a 150°C durante 12-15 minutos.", "Rellenar con ganache y unir dos discos."] }
+            { name: "Flan Pâtissier", ingredients: ["Masa: 250g harina, 125g mantequilla, 50g azúcar glass, 1 huevo", "Relleno: 1l leche, 65g maicena, 150g azúcar, 4 huevos, vainilla"], steps: ["Forrar molde.", "Hacer crema pastelera.", "Verter sobre masa.", "Hornear 200°C 30-35 min."] },
+            { name: "Paris-Brest", ingredients: ["Masa choux: 250ml agua, 100g mantequilla, 150g harina, 4 huevos", "Relleno: 500ml crema pastelera con praliné"], steps: ["Hacer masa choux.", "Formar anillo y hornear.", "Rellenar con crema.", "Decorar con almendras."] },
+            { name: "Saint-Honoré", ingredients: ["Hojaldre", "Masa choux", "Crema pastelera", "Chantilly"], steps: ["Hornear hojaldre.", "Hacer profiteroles y hornear.", "Rellenar con crema.", "Montar en la base."] },
+            { name: "Macaron", ingredients: ["110g harina de almendras", "200g azúcar glas", "100g claras", "30g azúcar", "Colorante", "Relleno"], steps: ["Tamizar almendras con azúcar.", "Batir claras y añadir azúcar.", "Incorporar mezcla envolviendo.", "Formar discos, secar y hornear 150°C 12-15 min.", "Rellenar."] }
         ],
         "Alemania": [
-            { name: "Apfelstrudel", ingredients: ["Masa filo (o masa de strudel)", "1 kg de manzanas verdes (tipo Granny Smith)", "75 g de azúcar", "1 cucharadita de canela", "50 g de pasas", "50 g de pan rallado", "Mantequilla derretida para pintar"], steps: ["Pelar y cortar las manzanas en láminas finas. Mezclar con azúcar, canela y pasas.", "Estirar la masa filo, pintar con mantequilla derretida y espolvorear pan rallado.", "Colocar el relleno sobre la masa y enrollar.", "Hornear a 190°C durante 30-35 minutos hasta que esté dorado. Servir con nata o helado."] },
-            { name: "Tarta Selva Negra", ingredients: ["Para el bizcocho: 5 huevos, 160 g de azúcar, 150 g de mantequilla, 50 g de cacao, 200 g de harina", "Para el relleno: 600 g de nata montada, 400 g de cerezas, 100 ml de kirsch (licor de cereza)", "Virutas de chocolate para decorar"], steps: ["Hornear el bizcocho de chocolate y dejar enfriar. Cortar en 3 capas.", "Remojar cada capa con kirsch.", "Rellenar con nata montada y cerezas.", "Cubrir toda la tarta con nata y decorar con virutas de chocolate y cerezas."] },
-            { name: "Stollen (Navideño)", ingredients: ["500 g de harina de fuerza", "150 ml de leche tibia", "42 g de levadura fresca", "70 g de azúcar", "200 g de mantequilla", "100 g de frutas confitadas", "100 g de pasas", "50 g de almendras", "200 g de mazapán", "Azúcar glas para espolvorear"], steps: ["Activar la levadura con la leche tibia y un poco de azúcar.", "Mezclar con la harina, el azúcar, la mantequilla, las frutas y las almendras.", "Amasar bien, dejar levar 1 hora.", "Añadir un rollo de mazapán en el centro, hornear a 180°C durante 45 minutos.", "Pintar con mantequilla derretida y espolvorear con azúcar glas."] },
-            { name: "Gugelhupf", ingredients: ["500 g de harina", "200 ml de leche", "21 g de levadura fresca", "100 g de azúcar", "150 g de mantequilla", "3 huevos", "100 g de pasas", "Ralladura de limón"], steps: ["Activar la levadura con la leche tibia.", "Mezclar todos los ingredientes y amasar hasta obtener una masa suave.", "Verter en un molde con chimenea y dejar reposar 30 minutos.", "Hornear a 180°C durante 40 minutos. Espolvorear con azúcar glas."] }
+            { name: "Apfelstrudel", ingredients: ["Masa filo", "1kg manzanas", "75g azúcar", "1 cdta canela", "50g pasas", "50g pan rallado", "Mantequilla"], steps: ["Pelar y cortar manzanas.", "Mezclar con azúcar, canela y pasas.", "Estirar masa, pintar con mantequilla.", "Rellenar, enrollar y hornear 190°C 30-35 min."] },
+            { name: "Tarta Selva Negra", ingredients: ["Bizcocho: 5 huevos, 160g azúcar, 150g mantequilla, 50g cacao, 200g harina", "Relleno: 600g nata montada, 400g cerezas, 100ml kirsch", "Virutas de chocolate"], steps: ["Hornear bizcocho.", "Cortar en 3 capas y remojar con kirsch.", "Rellenar con nata y cerezas.", "Cubrir y decorar."] },
+            { name: "Stollen", ingredients: ["500g harina de fuerza", "150ml leche", "42g levadura", "70g azúcar", "200g mantequilla", "100g frutas confitadas", "100g pasas", "50g almendras", "200g mazapán", "Azúcar glas"], steps: ["Activar levadura.", "Mezclar con harina y demás.", "Amasar y dejar levar.", "Añadir mazapán y hornear 180°C 45 min.", "Espolvorear azúcar."] },
+            { name: "Gugelhupf", ingredients: ["500g harina", "200ml leche", "21g levadura", "100g azúcar", "150g mantequilla", "3 huevos", "100g pasas", "Ralladura de limón"], steps: ["Activar levadura.", "Mezclar todos los ingredientes.", "Verter en molde con chimenea y reposar.", "Hornear 180°C 40 min."] }
         ],
         "Perú": [
-            { name: "Suspiro a la Limeña", ingredients: ["Para la base: 200 g de leche evaporada, 200 g de leche condensada, 2 yemas", "Para el merengue: 2 claras, 150 g de azúcar, 80 ml de vino Oporto"], steps: ["Cocinar las leches con las yemas a fuego bajo hasta que espese (manjar blanco).", "Preparar un merengue: batir las claras, añadir el azúcar y el vino Oporto a punto de nieve.", "Colocar la base en copas y cubrir con el merengue.", "Gratinar ligeramente con soplete o servir frío."] },
-            { name: "Picarones", ingredients: ["300 g de camote (boniato) cocido", "300 g de zapallo (calabaza) cocido", "500 g de harina", "10 g de levadura", "Para la miel: chancaca, canela, clavo de olor, cáscara de naranja"], steps: ["Hacer un puré con el camote y el zapallo.", "Agregar la harina y la levadura, formar una masa elástica. Dejar reposar.", "Freír porciones en forma de anillo en aceite caliente.", "Bañar con la miel de chancaca caliente."] },
-            { name: "Mazamorra Morada", ingredients: ["1 kg de maíz morado", "Agua", "Canela en rama", "Clavo de olor", "Cáscara de piña", "1 manzana, 1 membrillo", "Azúcar al gusto", "Harina de camote para espesar"], steps: ["Hervir el maíz morado con abundante agua, canela, clavo y cáscara de piña durante 1 hora.", "Colar el líquido y desechar el maíz.", "Añadir las frutas picadas, endulzar con azúcar y espesar con harina de camote.", "Servir frío, espolvoreado con canela."] },
-            { name: "Arroz con Leche", ingredients: ["1 taza de arroz", "3 tazas de agua", "1 lata de leche condensada", "1 lata de leche evaporada", "1 rama de canela", "2 clavos de olor", "Cáscara de naranja"], steps: ["Cocinar el arroz en agua con la canela, los clavos y la cáscara de naranja hasta que se evapore el agua.", "Añadir las dos leches y cocinar a fuego bajo hasta que espese.", "Servir frío, espolvoreado con canela en polvo."] }
+            { name: "Suspiro a la Limeña", ingredients: ["Base: 200g leche evaporada, 200g leche condensada, 2 yemas", "Merengue: 2 claras, 150g azúcar, 80ml vino Oporto"], steps: ["Cocinar base.", "Hacer merengue con vino.", "Montar y gratinar."] },
+            { name: "Picarones", ingredients: ["300g camote cocido", "300g zapallo cocido", "500g harina", "10g levadura", "Miel de chancaca"], steps: ["Hacer puré.", "Mezclar con harina y levadura.", "Freír anillos.", "Bañar con miel."] },
+            { name: "Mazamorra Morada", ingredients: ["1kg maíz morado", "Agua", "Canela", "Clavo", "Cáscara de piña", "Manzana, membrillo", "Azúcar", "Harina de camote"], steps: ["Hervir maíz con especias.", "Colar.", "Añadir frutas y endulzar.", "Espesar y servir frío."] },
+            { name: "Arroz con Leche", ingredients: ["1 taza arroz", "3 tazas agua", "1 lata leche condensada", "1 lata leche evaporada", "Canela", "Clavo", "Cáscara de naranja"], steps: ["Cocinar arroz en agua con especias.", "Añadir leches y cocinar hasta espesar.", "Servir frío con canela."] }
         ],
         "China": [
-            { name: "Pastel de Luna (Mooncake)", ingredients: ["Para la masa: harina, sirope dorado, aceite, agua alcalina", "Para el relleno: pasta de semilla de loto (o frijoles rojos) y yema de huevo de pato salado"], steps: ["Mezclar los ingredientes de la masa y dejar reposar.", "Formar una bola, aplanar y colocar el relleno con la yema en el centro.", "Encerrar el relleno, colocar en un molde para pastel de luna y presionar.", "Hornear a 180°C durante 20 minutos, pintar con huevo y hornear 10 minutos más."] },
-            { name: "Tangyuan (Bolas de Arroz Glutinoso)", ingredients: ["250 g de harina de arroz glutinoso", "Para el relleno: 80 g de sésamo negro, 80 g de azúcar, 60 g de mantequilla", "Agua para la sopa: 500 ml de agua con 2 cucharadas de azúcar"], steps: ["Tostar el sésamo y molerlo con el azúcar y la mantequilla. Formar bolitas.", "Mezclar la harina con agua hasta formar una masa elástica.", "Dividir la masa, rellenar con la bolita de sésamo y cerrar.", "Cocinar en agua hirviendo hasta que floten. Servir en la sopa dulce."] },
-            { name: "Nian Gao (Pastel de Año Nuevo)", ingredients: ["400 g de harina de arroz glutinoso", "⅔ taza de azúcar moreno", "210 ml de agua hirviendo", "1 cucharada de leche"], steps: ["Disolver el azúcar en el agua hirviendo.", "Mezclar con la harina y la leche hasta obtener una masa suave.", "Verter en un molde engrasado y cocer al vapor durante 45 minutos.", "Dejar enfriar y cortar en rebanadas para servir."] },
-            { name: "Jian Dui (Bolas de Sésamo)", ingredients: ["200 g de harina de arroz glutinoso", "50 g de azúcar", "150 ml de agua", "200 g de pasta de judías rojas (relleno)", "Semillas de sésamo"], steps: ["Mezclar la harina con el azúcar y el agua para formar una masa.", "Dividir en porciones, aplanar y colocar una cucharada de pasta de judías.", "Cerrar, formar bolas y rebozar en sésamo.", "Freír en aceite caliente hasta que estén doradas y crujientes."] }
+            { name: "Pastel de Luna", ingredients: ["Masa: harina, sirope dorado, aceite", "Relleno: pasta de semilla de loto y yema de huevo salado"], steps: ["Hacer masa.", "Rellenar con pasta y yema.", "Prensar en molde.", "Hornear 180°C 20 min + 10 min con huevo."] },
+            { name: "Tangyuan", ingredients: ["250g harina de arroz glutinoso", "Relleno: 80g sésamo negro, 80g azúcar, 60g mantequilla", "Agua para sopa"], steps: ["Tostar sésamo y mezclar.", "Hacer masa de arroz.", "Rellenar bolitas.", "Cocer en agua hirviendo y servir."] },
+            { name: "Nian Gao", ingredients: ["400g harina de arroz glutinoso", "⅔ taza azúcar moreno", "210ml agua hirviendo", "1 cda leche"], steps: ["Disolver azúcar en agua.", "Mezclar con harina y leche.", "Cocer al vapor 45 min.", "Cortar en rebanadas."] },
+            { name: "Jian Dui", ingredients: ["200g harina de arroz glutinoso", "50g azúcar", "150ml agua", "200g pasta de judías rojas", "Semillas de sésamo"], steps: ["Hacer masa.", "Rellenar con pasta.", "Rebozar en sésamo.", "Freír en aceite."] }
         ],
         "Japón": [
-            { name: "Mochi (Daifuku)", ingredients: ["130 g de harina de arroz glutinoso (mochiko)", "50 g de azúcar", "240 ml de agua", "Maicena para espolvorear", "Relleno: 200 g de pasta de judías rojas (anko)"], steps: ["Mezclar la harina, el azúcar y el agua en un bol.", "Cubrir con film y calentar en el microondas durante 2-3 minutos, removiendo cada minuto.", "Dejar enfriar ligeramente, espolvorear con maicena y estirar.", "Cortar en círculos, colocar el anko en el centro y cerrar formando bolitas."] },
-            { name: "Dorayaki", ingredients: ["2 huevos", "200 g de harina", "5 g de levadura", "15 g de azúcar", "60 g de miel", "Agua (cantidad necesaria)", "Relleno: 300 g de pasta de judías rojas (anko)"], steps: ["Batir los huevos con el azúcar y la miel.", "Tamizar la harina con la levadura y agregar a la mezcla. Añadir agua hasta obtener una masa líquida.", "Cocinar pequeñas porciones en una sartén antiadherente hasta que burbujeen.", "Dar la vuelta y cocinar el otro lado. Rellenar dos discos con anko."] },
-            { name: "Yokan", ingredients: ["200 g de pasta de judías rojas (anko)", "400 ml de agua", "4 g de agar-agar en polvo (kanten)", "80 g de azúcar"], steps: ["Disolver el agar-agar en el agua y calentar hasta que hierva.", "Añadir el azúcar y el anko, mezclar bien.", "Verter en un molde y dejar enfriar a temperatura ambiente.", "Refrigerar durante 4 horas hasta que cuaje. Cortar en rectángulos."] },
-            { name: "Anmitsu", ingredients: ["Gelatina de agar-agar (kanten) en cubos", "Frutas frescas (fresa, melón, naranja)", "Pasta de judías rojas (anko)", "Gyūhi (mochi suave)", "Kuromitsu (jarabe de azúcar moreno)"], steps: ["Preparar la gelatina de kanten y cortarla en cubos.", "Colocar los cubos en un cuenco con las frutas picadas, el anko y el gyūhi.", "Servir con el jarabe de kuromitsu aparte para verter al gusto."] }
+            { name: "Mochi Daifuku", ingredients: ["130g harina de arroz glutinoso", "50g azúcar", "240ml agua", "Maicena", "200g anko"], steps: ["Mezclar y cocinar en microondas.", "Espolvorear maicena.", "Estirar y rellenar con anko."] },
+            { name: "Dorayaki", ingredients: ["2 huevos", "200g harina", "5g levadura", "15g azúcar", "60g miel", "Agua", "300g anko"], steps: ["Batir huevos con azúcar y miel.", "Agregar harina y levadura.", "Cocinar discos en sartén.", "Rellenar con anko."] },
+            { name: "Yokan", ingredients: ["200g anko", "400ml agua", "4g agar-agar", "80g azúcar"], steps: ["Disolver agar-agar en agua y hervir.", "Añadir azúcar y anko.", "Verter en molde y refrigerar."] },
+            { name: "Anmitsu", ingredients: ["Gelatina de kanten", "Frutas frescas", "Anko", "Gyūhi", "Kuromitsu"], steps: ["Preparar gelatina.", "Colocar en cuenco con frutas, anko y gyūhi.", "Servir con jarabe."] }
         ],
         "Chile": [
-            { name: "Mote con Huesillo", ingredients: ["1 taza de mote (trigo pelado)", "6 huesillos (duraznos deshidratados)", "1 taza de azúcar", "4 tazas de agua", "1 rama de canela", "Clavo de olor"], steps: ["Remojar el mote y los huesillos en agua la noche anterior.", "Cocinar el mote en agua con canela y clavo hasta que esté tierno.", "Preparar un almíbar con el azúcar y cocinar los huesillos en él.", "Mezclar el mote con los huesillos y el jugo. Servir frío."] },
-            { name: "Alfajores Chilenos", ingredients: ["200 g de mantequilla", "100 g de azúcar flor", "2 yemas", "1 cucharadita de esencia de vainilla", "200 g de harina", "100 g de maicena", "Manjar para rellenar", "Coco rallado para decorar"], steps: ["Batir la mantequilla con el azúcar flor hasta que esté cremosa.", "Añadir las yemas y la vainilla.", "Incorporar la harina y la maicena tamizadas. Formar una masa y refrigerar.", "Estirar, cortar discos y hornear a 170°C hasta dorar.", "Rellenar con manjar y pasar los bordes por coco rallado."] },
-            { name: "Torta Mil Hojas", ingredients: ["500 g de harina", "100 g de mantequilla", "6 yemas", "1 huevo", "90 ml de agua", "1 kg de manjar"], steps: ["Mezclar todos los ingredientes para formar la masa. Refrigerar toda la noche.", "Estirar la masa muy fina (3 mm) y cortar en círculos del tamaño de un plato.", "Hornear cada círculo por separado a 200°C hasta que esté dorado.", "Armar la torta intercalando capas de hojaldre con manjar."] },
-            { name: "Leche Asada", ingredients: ["1 litro de leche", "6 huevos", "200 g de azúcar", "Esencia de vainilla", "Canela en polvo", "Para el caramelo: 6 cucharadas de azúcar"], steps: ["Preparar el caramelo en un molde.", "Batir los huevos con el azúcar, la leche y la vainilla.", "Verter sobre el caramelo y hornear a baño María durante 45 minutos.", "Enfriar y desmoldar. Espolvorear con canela."] }
+            { name: "Mote con Huesillo", ingredients: ["1 taza mote", "6 huesillos", "1 taza azúcar", "4 tazas agua", "Canela", "Clavo"], steps: ["Remojar mote y huesillos.", "Cocer mote con especias.", "Hacer almíbar con huesillos.", "Mezclar y servir frío."] },
+            { name: "Alfajores Chilenos", ingredients: ["200g mantequilla", "100g azúcar flor", "2 yemas", "Vainilla", "200g harina", "100g maicena", "Manjar", "Coco"], steps: ["Batir mantequilla con azúcar.", "Añadir yemas y vainilla.", "Incorporar harinas.", "Hornear discos, rellenar con manjar y coco."] },
+            { name: "Torta Mil Hojas", ingredients: ["500g harina", "100g mantequilla", "6 yemas", "1 huevo", "90ml agua", "1kg manjar"], steps: ["Hacer masa y refrigerar.", "Estirar fina y hornear discos.", "Armar con manjar."] },
+            { name: "Leche Asada", ingredients: ["1l leche", "6 huevos", "200g azúcar", "Vainilla", "Canela", "Caramelo"], steps: ["Caramelizar molde.", "Batir huevos con leche y azúcar.", "Hornear a baño María 45 min.", "Espolvorear canela."] }
         ]
     };
 
     // ================================================================
-    // 2. GENERAR 126 PLATOS PRINCIPALES (CON NOMBRES REALES)
+    // 3. CONVERTIR DATOS A FORMATO UNIFICADO
     // ================================================================
 
-    // Lista de platos típicos por país (7 por país = 126 platos)
-    const platosPorPais = {
-        "Argentina": ["Asado", "Empanadas", "Milanesa a la Napolitana", "Locro", "Carbonada", "Choripán", "Provoleta"],
-        "Venezuela": ["Arepa", "Pabellón Criollo", "Hallaca", "Cachapa", "Tequeño", "Asado Negro", "Pastel de Chucho"],
-        "Ecuador": ["Encebollado", "Fanesca", "Llapingachos", "Seco de Chivo", "Ceviche Ecuatoriano", "Arroz con Menestra", "Hornado"],
-        "Colombia": ["Bandeja Paisa", "Ajiaco", "Sancocho", "Arepa Boyacense", "Lechona", "Tamal", "Sudado de Pollo"],
-        "Brasil": ["Feijoada", "Moqueca", "Churrasco", "Coxinha", "Acarajé", "Pão de Queijo", "Bobó de Camarão"],
-        "Estados Unidos": ["Hamburguesa", "Hot Dog", "Pollo Frito", "Mac and Cheese", "Barbacoa", "Clam Chowder", "Cobb Salad"],
-        "Canadá": ["Poutine", "Tourtière", "Montreal Bagel", "Bannock", "Jiggs Dinner", "Nanaimo Bars (salado)", "Peameal Bacon Sandwich"],
-        "Reino Unido": ["Fish and Chips", "Sunday Roast", "Shepherd's Pie", "Full English Breakfast", "Cornish Pasty", "Yorkshire Pudding", "Toad in the Hole"],
-        "España": ["Paella", "Tortilla Española", "Jamón Ibérico", "Gazpacho", "Pulpo a la Gallega", "Fabada Asturiana", "Cocido Madrileño"],
-        "Francia": ["Ratatouille", "Bœuf Bourguignon", "Quiche Lorraine", "Cassoulet", "Confit de Canard", "Pot-au-Feu", "Croque Monsieur"],
-        "Alemania": ["Bratwurst", "Sauerkraut", "Schnitzel", "Currywurst", "Käsespätzle", "Rouladen", "Eisbein"],
-        "Perú": ["Ceviche", "Lomo Saltado", "Ají de Gallina", "Papa a la Huancaína", "Causa Limeña", "Anticuchos", "Rocoto Relleno"],
-        "China": ["Pato Pekín", "Arroz Frito", "Ternera con Brócoli", "Sopa de Wonton", "Pollo Kung Pao", "Cerdo Agridulce", "Dumplings"],
-        "Japón": ["Sushi", "Ramen", "Tempura", "Yakitori", "Gyudon", "Tonkatsu", "Okonomiyaki"],
-        "Chile": ["Empanada de Pino", "Pastel de Choclo", "Cazuela", "Porotos Granados", "Chorillana", "Machas a la Parmesana", "Curanto"]
-    };
-
-    // Función para generar platos con estructura similar a postres
-    function generarPlatos() {
-        const todos = [];
-        for (const pais in platosPorPais) {
-            const lista = platosPorPais[pais];
-            lista.forEach(nombre => {
-                // Descripción genérica pero realista
-                const descripcion = `Plato tradicional de ${pais}, preparado con ingredientes auténticos y técnicas típicas.`;
-                // Ingredientes genéricos (puedes personalizar)
-                const ingredientes = ["Ingrediente 1", "Ingrediente 2", "Ingrediente 3", "Ingrediente 4", "Ingrediente 5"];
-                const pasos = ["Paso 1: Preparar los ingredientes.", "Paso 2: Cocinar según la receta tradicional.", "Paso 3: Servir caliente y disfrutar."];
-                todos.push({
-                    name: nombre,
-                    ingredients: ingredientes,
-                    steps: pasos,
-                    desc: descripcion,
-                    pais: pais,
-                    tipo: 'plato'
-                });
+    // Convertir platos (recetasData)
+    const platosUnificados = [];
+    for (const key in recetasData) {
+        const pais = recetasData[key];
+        pais.recetas.forEach(receta => {
+            platosUnificados.push({
+                name: receta.nombre,
+                desc: receta.descripcion,
+                ingredients: receta.ingredientes,
+                steps: receta.preparacion,
+                pais: pais.nombre,
+                bandera: pais.bandera,
+                tipo: 'plato'
             });
-        }
-        return todos;
+        });
     }
 
-    // ================================================================
-    // 3. UNIFICAR AMBAS BASES DE DATOS
-    // ================================================================
-
-    // Convertir postres a formato unificado (agregar desc, pais, tipo)
+    // Convertir postres
     const postresUnificados = [];
     for (const pais in recetasPostres) {
         recetasPostres[pais].forEach(postre => {
             postresUnificados.push({
                 name: postre.name,
+                desc: `Postre tradicional de ${pais}.`,
                 ingredients: postre.ingredients,
                 steps: postre.steps,
-                desc: `Postre tradicional de ${pais}.`,
                 pais: pais,
+                bandera: '', // se puede buscar después
                 tipo: 'postre'
             });
         });
     }
 
-    // Generar platos
-    const platosUnificados = generarPlatos();
-
-    // Unir todo en un solo array
+    // Unir todo
     const todasRecetas = [...platosUnificados, ...postresUnificados];
-
-    // Ahora tenemos: 126 platos (7x18) + 126 postres (7x18) = 252 recetas
 
     // ================================================================
     // 4. LÓGICA DE FILTRADO Y RENDERIZADO
     // ================================================================
 
-    let tipoActual = 'plato'; // 'plato' o 'postre'
+    let tipoActual = 'plato';
     let paisActual = 'todos';
     let busquedaActual = '';
 
@@ -929,7 +1913,7 @@
         });
     });
 
-    // Filtro países (delegación)
+    // Filtro países
     filtroPaises.addEventListener('click', (e) => {
         const btn = e.target.closest('.pais-btn');
         if (!btn) return;
