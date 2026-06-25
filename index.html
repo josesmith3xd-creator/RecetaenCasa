@@ -672,18 +672,21 @@
 
         // ---- Funciones auxiliares para partidos ----
         function obtenerTotales(linescore, boxscore, esVisitante) {
-            const equipoLS = esVisitante ? linescore?.away : linescore?.home;
-            if (equipoLS && equipoLS.runs !== undefined) return { runs: equipoLS.runs, hits: equipoLS.hits || 0, errors: equipoLS
-                    .errors || 0 };
+            // Primero intentar desde linescore.teams
+            if (linescore && linescore.teams) {
+                const eq = esVisitante ? linescore.teams.away : linescore.teams.home;
+                if (eq && eq.runs !== undefined) {
+                    return { runs: eq.runs || 0, hits: eq.hits || 0, errors: eq.errors || 0 };
+                }
+            }
+            // Luego desde boxscore
             if (boxscore && boxscore.teams) {
                 const eqBox = esVisitante ? boxscore.teams.away : boxscore.teams.home;
-                if (eqBox && eqBox.stats) return { runs: eqBox.stats.runs || 0, hits: eqBox.stats.hits || 0, errors: eqBox
-                        .stats.errors || 0 };
+                if (eqBox && eqBox.stats) {
+                    return { runs: eqBox.stats.runs || 0, hits: eqBox.stats.hits || 0, errors: eqBox.stats.errors || 0 };
+                }
             }
-            if (linescore && linescore.teams) {
-                const eqAlt = esVisitante ? linescore.teams.away : linescore.teams.home;
-                if (eqAlt) return { runs: eqAlt.runs || 0, hits: eqAlt.hits || 0, errors: eqAlt.errors || 0 };
-            }
+            // Fallback
             return { runs: 0, hits: 0, errors: 0 };
         }
 
@@ -692,7 +695,10 @@
             const fila = [];
             for (let i = 0; i < 9; i++) {
                 const inn = innings[i];
-                if (!inn) { fila.push('-'); continue; }
+                if (!inn) {
+                    fila.push('-');
+                    continue;
+                }
                 const runs = esVisitante ? inn.away?.runs : inn.home?.runs;
                 fila.push(runs !== undefined && runs !== null ? runs : '-');
             }
@@ -747,14 +753,19 @@
                     const horaTexto = horaLocal.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
                     const ls = p.linescore || {};
                     const box = p.boxscore || {};
+
+                    // Leer entradas y totales correctamente
                     const v = leerEntradas(ls, box, true);
                     const h = leerEntradas(ls, box, false);
+
                     const actInn = ls.currentInning || '';
                     const mitad = ls.inningHalf === 'Top' ? 'Arriba' : ls.inningHalf === 'Bottom' ? 'Abajo' : '';
                     const bol = ls.balls ?? '-';
                     const str = ls.strikes ?? '-';
                     const out = ls.outs ?? '-';
                     const tipo = p.seriesDescription || 'Temporada Regular';
+
+                    // Pitchers
                     let lanzA = p.probablePitchers?.away || {};
                     let lanzH = p.probablePitchers?.home || {};
                     if (!lanzA.fullName && box?.teams?.away?.players) {
@@ -770,11 +781,23 @@
                     if (!lanzA.fullName) lanzA.fullName = vivo ? 'En vivo' : 'Por confirmar';
                     if (!lanzH.fullName) lanzH.fullName = vivo ? 'En vivo' : 'Por confirmar';
 
+                    // Estado del partido
+                    let estadoTexto = '';
+                    let estadoClase = '';
+                    if (vivo) {
+                        estadoTexto = `EN VIVO ${actInn}° ${mitad}`;
+                        estadoClase = 'bg-rojoVivo';
+                    } else if (final) {
+                        estadoTexto = 'FINAL';
+                        estadoClase = 'bg-gray-500';
+                    } else if (programado) {
+                        estadoTexto = horaTexto;
+                        estadoClase = 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300';
+                    }
+
                     html += `
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 p-4 relative card-hover fade-in transition-all">
-                        ${vivo ? `<span class="absolute top-3 right-3 bg-rojoVivo text-white text-[0.7rem] px-2 py-0.5 rounded-full flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 bg-white rounded-full parpadeo"></span>EN VIVO ${actInn}° ${mitad}</span>` : ''}
-                        ${final ? `<span class="absolute top-3 right-3 bg-gray-500 text-white text-[0.7rem] px-2 py-0.5 rounded-full shadow">FINAL</span>` : ''}
-                        ${programado ? `<span class="absolute top-3 right-3 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-[0.7rem] px-2 py-0.5 rounded-full shadow">${horaTexto}</span>` : ''}
+                        ${estadoTexto ? `<span class="absolute top-3 right-3 ${estadoClase} text-white text-[0.7rem] px-2 py-0.5 rounded-full shadow">${estadoTexto}</span>` : ''}
                         <div class="text-center text-xs text-gray-500 dark:text-gray-400 mb-3">${tipo}</div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
@@ -856,8 +879,10 @@
                             <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 ${ligas[leagueId]}</h3>
                             <div class="overflow-x-auto">
                     `;
+                    // Ordenar divisiones por nombre
                     registrosLiga.sort((a, b) => a.division?.name?.localeCompare(b.division?.name || '') || 0);
                     for (const division of registrosLiga) {
+                        // Usar el nombre real de la división
                         const divName = division.division?.name || 'División';
                         const teams = division.teamRecords || [];
                         teams.sort((a, b) => (parseInt(a.divisionRank) || 99) - (parseInt(b.divisionRank) || 99));
@@ -915,7 +940,7 @@
         }
 
         // ============================================================
-        //  LÍDERES – TODAS LAS CATEGORÍAS
+        //  LÍDERES – CON FILTRO POR MÍNIMOS (evita jugadores con pocos juegos)
         // ============================================================
         let datosLideres = { bateo: null, pitcheo: null };
         let lideresCargando = false;
@@ -937,9 +962,9 @@
                 return;
             }
             const urls = [
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&group=hitting&stats=season&limit=100'
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=hitting&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&limit=200'
             ];
             let stats = [];
             for (const url of urls) {
@@ -959,8 +984,10 @@
                 });
                 return;
             }
-            datosLideres.bateo = stats;
-            renderizarBateo(stats);
+            // Filtrar jugadores con al menos 100 apariciones al bate (AB)
+            const filtrados = stats.filter(s => (s.stat?.atBats || 0) >= 100);
+            datosLideres.bateo = filtrados;
+            renderizarBateo(filtrados);
         }
 
         function renderizarBateo(stats) {
@@ -1008,9 +1035,9 @@
                 return;
             }
             const urls = [
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&group=pitching&stats=season&limit=100'
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=pitching&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&limit=200'
             ];
             let stats = [];
             for (const url of urls) {
@@ -1030,8 +1057,10 @@
                 });
                 return;
             }
-            datosLideres.pitcheo = stats;
-            renderizarPitcheo(stats);
+            // Filtrar lanzadores con al menos 50 innings lanzados (IP)
+            const filtrados = stats.filter(s => (s.stat?.inningsPitched || 0) >= 50);
+            datosLideres.pitcheo = filtrados;
+            renderizarPitcheo(filtrados);
         }
 
         function renderizarPitcheo(stats) {
