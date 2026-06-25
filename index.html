@@ -914,7 +914,7 @@
         }
 
         // ============================================================
-        //  LÍDERES DE BATEO Y PITCHEO (con doble intento)
+        //  LÍDERES DE BATEO Y PITCHEO (corregido)
         // ============================================================
         let lideresCargados = false;
 
@@ -930,24 +930,21 @@
             const cont = document.getElementById('lideres-bateo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de bateo...</p>`;
             try {
-                let url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&playerPool=all&sortStat=avg&limit=10';
-                let res = await fetch(url);
-                let data = await res.json();
-                let stats = data.stats?.[0]?.splits || [];
-
-                if (!stats.length) {
-                    url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&group=hitting&stats=season&playerPool=all&limit=10';
-                    res = await fetch(url);
-                    data = await res.json();
-                    stats = data.stats?.[0]?.splits || [];
-                    stats.sort((a, b) => (b.stat?.avg || 0) - (a.stat?.avg || 0));
-                    stats = stats.slice(0, 10);
-                }
+                // Obtener hasta 50 jugadores (sin sortStat, para evitar errores)
+                const url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=50';
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Error en la respuesta de la API');
+                const data = await res.json();
+                const stats = data.stats?.[0]?.splits || [];
 
                 if (!stats.length) {
                     cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de bateo disponibles para la temporada 2026.</p>';
                     return;
                 }
+
+                // Ordenar por promedio (avg) descendente
+                stats.sort((a, b) => (b.stat?.avg || 0) - (a.stat?.avg || 0));
+                const top10 = stats.slice(0, 10);
 
                 let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
                     <thead><tr>
@@ -957,7 +954,7 @@
                         <th>HR</th>
                         <th>RBI</th>
                     </tr></thead><tbody>`;
-                for (const item of stats) {
+                for (const item of top10) {
                     const player = item.player;
                     const stat = item.stat;
                     const teamId = item.team?.id;
@@ -986,24 +983,20 @@
             const cont = document.getElementById('lideres-pitcheo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de pitcheo...</p>`;
             try {
-                let url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&playerPool=all&sortStat=era&limit=10';
-                let res = await fetch(url);
-                let data = await res.json();
-                let stats = data.stats?.[0]?.splits || [];
-
-                if (!stats.length) {
-                    url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&group=pitching&stats=season&playerPool=all&limit=10';
-                    res = await fetch(url);
-                    data = await res.json();
-                    stats = data.stats?.[0]?.splits || [];
-                    stats.sort((a, b) => (a.stat?.era || 999) - (b.stat?.era || 999));
-                    stats = stats.slice(0, 10);
-                }
+                const url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=50';
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Error en la respuesta de la API');
+                const data = await res.json();
+                const stats = data.stats?.[0]?.splits || [];
 
                 if (!stats.length) {
                     cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de pitcheo disponibles para la temporada 2026.</p>';
                     return;
                 }
+
+                // Ordenar por ERA ascendente (menor es mejor)
+                stats.sort((a, b) => (a.stat?.era || 999) - (b.stat?.era || 999));
+                const top10 = stats.slice(0, 10);
 
                 let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
                     <thead><tr>
@@ -1013,7 +1006,7 @@
                         <th>K</th>
                         <th>W</th>
                     </tr></thead><tbody>`;
-                for (const item of stats) {
+                for (const item of top10) {
                     const player = item.player;
                     const stat = item.stat;
                     const teamId = item.team?.id;
