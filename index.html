@@ -822,11 +822,9 @@
         async function cargarPosicionesAPI() {
             const cont = document.getElementById('contenedor-posiciones');
             cont.innerHTML = `<div class="flex justify-center py-10"><div class="spinner"></div></div>`;
-            const hoy = new Date();
-            const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-            const dia = String(hoy.getDate()).padStart(2, '0');
-            const anio = hoy.getFullYear();
-            const fechaStr = `${mes}/${dia}/${anio}`;
+            // <-- CORREGIDO: usar formato YYYY-MM-DD y la fecha actual (Lima)
+            const fechaStr = iso(hoyLima());  // Ej: "2026-06-25"
+            const anio = new Date().getFullYear();
             const url = `https://statsapi.mlb.com/api/v1/standings?season=${anio}&leagueId=103,104&date=${fechaStr}&division=all`;
             try {
                 const res = await fetch(url);
@@ -905,13 +903,6 @@
         // ---------------------- INICIALIZACIÓN ----------------------
         mostrarFechas();
         cargarPartidos(iso(fechaActual));
-
-        // Al cargar la página, si la pestaña de estadísticas no está activa, no cargamos datos hasta que se active.
-        // Pero la función mostrarSeccion ya llama a cargarTodasLasEstadisticas cuando se activa.
-        // También cargamos datos de estadísticas si la pestaña está activa por defecto (no lo está, es "inicio").
-        // Podemos precargar las estadísticas en segundo plano para que estén listas.
-        // setTimeout(() => cargarTodasLasEstadisticas(), 2000);
-        // Pero mejor esperar a que el usuario haga clic.
     </script>
 </body>
 </html>
