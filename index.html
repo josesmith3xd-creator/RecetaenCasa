@@ -6,7 +6,6 @@
     <title>sportMlb2026 | MLB en vivo</title>
     <meta name="description" content="sportMlb2026: MLB en vivo, posiciones, líderes de bateo y pitcheo. Actualizado en tiempo real." />
 
-    <!-- ===== SEGURIDAD: CSP ===== -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://statsapi.mlb.com;
@@ -363,7 +362,6 @@
             .tab-link-movil .icono { font-size: 1.2rem; }
         }
 
-        /* ===== ESTILOS PARA LA TABLA DE PLAYOFFS ===== */
         .playoff-tabla th {
             background: #f1f5f9;
             font-weight: 600;
@@ -458,7 +456,7 @@
             </div>
         </div>
 
-        <!-- ========== SECCIÓN INICIO ========== -->
+        <!-- ========== INICIO ========== -->
         <section id="seccion-inicio" class="seccion activa">
             <div class="relative rounded-2xl overflow-hidden mb-6 glass-card p-6 md:p-8">
                 <div class="absolute inset-0 bg-gradient-to-r from-azul/10 via-morado/5 to-transparent"></div>
@@ -507,11 +505,10 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN CALENDARIO (con partidos y selector propio) ========== -->
+        <!-- ========== CALENDARIO ========== -->
         <section id="seccion-calendario" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📅 Calendario de partidos</h2>
             <div class="glass-card rounded-xl p-5">
-                <!-- Selector de fechas propio -->
                 <div class="flex items-center justify-center gap-2 mb-4">
                     <button onclick="window.cambiarFechaCalendario(-1)" class="text-lg px-3 py-1 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/50 transition">‹</button>
                     <div id="selector-fechas-calendario" class="flex gap-2 text-sm font-medium"></div>
@@ -521,14 +518,13 @@
                     <button onclick="window.irFechaCalendario(window.obtenerFechaHoy())" class="btn-recargar">Hoy</button>
                     <button onclick="window.cambiarFechaCalendario(1)" class="btn-recargar" style="background:linear-gradient(135deg,#7c3aed,#8b5cf6);">Mañana</button>
                 </div>
-                <!-- Lista de partidos del calendario -->
                 <div id="lista-partidos-calendario" class="space-y-4">
                     <div class="flex justify-center py-10"><div class="spinner"></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECCIÓN POSICIONES ========== -->
+        <!-- ========== POSICIONES ========== -->
         <section id="seccion-posiciones" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📊 Posiciones de equipos</h2>
             <div id="contenedor-posiciones" class="space-y-6">
@@ -536,7 +532,7 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN JUGADORES ========== -->
+        <!-- ========== JUGADORES ========== -->
         <section id="seccion-jugadores" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">👤 Jugadores destacados</h2>
             <div class="glass-card rounded-xl p-5">
@@ -550,7 +546,7 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN EQUIPOS ========== -->
+        <!-- ========== EQUIPOS ========== -->
         <section id="seccion-equipos" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🏟️ Equipos MLB</h2>
             <div class="glass-card rounded-xl p-5">
@@ -560,7 +556,7 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN PLAYOFFS (tabla dinámica) ========== -->
+        <!-- ========== PLAYOFFS ========== -->
         <section id="seccion-playoffs" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🏅 Playoffs 2026</h2>
             <div class="glass-card rounded-xl p-5">
@@ -575,7 +571,7 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN ESTADÍSTICAS ========== -->
+        <!-- ========== ESTADÍSTICAS ========== -->
         <section id="seccion-estadisticas" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Líderes de bateo y pitcheo</h2>
             <div class="glass-card rounded-xl p-5">
@@ -615,7 +611,7 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN TRANSMISIÓN ========== -->
+        <!-- ========== TRANSMISIÓN ========== -->
         <section id="seccion-transmision" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🔴 Transmisión en vivo</h2>
             <div class="glass-card rounded-xl p-5">
@@ -651,7 +647,7 @@
     </footer>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT COMPLETO Y DEFINITIVO                              -->
+    <!-- JAVASCRIPT CORREGIDO - VERSIÓN FINAL                         -->
     <!-- ============================================================ -->
     <script>
         (function() {
@@ -711,14 +707,12 @@
                 document.querySelectorAll(`.tab-link[data-seccion="${id}"], .tab-link-movil[data-seccion="${id}"]`)
                     .forEach(tab => tab.classList.add('active'));
 
-                // Carga bajo demanda
                 if (id === 'posiciones') window.cargarPosicionesAPI();
                 if (id === 'estadisticas') window.cargarTodasLasEstadisticas();
                 if (id === 'jugadores') window.cargarJugadoresDestacados('bateo');
                 if (id === 'equipos') window.cargarEquiposMLB();
                 if (id === 'playoffs') window.cargarPlayoffs();
                 if (id === 'calendario') {
-                    // Asegurar que el selector y los partidos de calendario se carguen
                     window.mostrarFechasCalendario();
                     window.cargarPartidosCalendario(window.obtenerFechaHoy());
                 }
@@ -784,50 +778,47 @@
             });
 
             // ============================================================
-            // 5. ESTADÍSTICAS (API)
+            // 5. FUNCIONES DE ESTADÍSTICAS (CORREGIDAS CON FALLBACK 2025)
             // ============================================================
             const bateoMap = { 'avg': 'avg', 'hr': 'homeRuns', 'rbi': 'rbi', 'hits': 'hits', 'sb': 'stolenBases' };
             const pitcheoMap = { 'era': 'era', 'sv': 'saves', 'k': 'strikeouts', 'w': 'wins', 'qs': 'qualityStarts' };
+
+            // Función auxiliar para obtener datos de la API con reintento en 2025
+            async function fetchStats(tipo, sortStat, season) {
+                const grupo = tipo === 'bateo' ? 'hitting' : 'pitching';
+                const url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=${grupo}&statType=season&playerPool=all&sortStat=${sortStat}&limit=10&sportId=1`;
+                console.log(`🔍 Intentando cargar ${tipo} con temporada ${season}: ${url}`);
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                return data.stats?.[0]?.splits || [];
+            }
 
             async function cargarLideresBateo(categoria, contenedorId) {
                 const cont = document.getElementById(contenedorId);
                 if (!cont) return;
                 cont.innerHTML = '<div class="spinner"></div>';
                 const sortStat = bateoMap[categoria] || 'avg';
-                const season = new Date().getFullYear();
-                const url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=hitting&statType=season&playerPool=all&sortStat=${sortStat}&limit=10`;
+                const seasonActual = new Date().getFullYear();
                 try {
-                    const res = await fetch(url);
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                    const data = await res.json();
-                    const stats = data.stats?.[0]?.splits || [];
+                    let stats = await fetchStats('bateo', sortStat, seasonActual);
                     if (!stats.length) {
-                        cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles</p>`;
+                        console.log(`⚠️ No hay datos para temporada ${seasonActual}, probando con 2025...`);
+                        stats = await fetchStats('bateo', sortStat, 2025);
+                    }
+                    if (!stats.length) {
+                        cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles para esta temporada.</p>`;
                         return;
                     }
-                    let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
-                        <thead><tr><th>#</th><th class="text-left">Jugador</th><th>Equipo</th><th>${escaparHTML(categoria.toUpperCase())}</th></tr></thead><tbody>`;
-                    stats.forEach((item, index) => {
-                        const player = item.player;
-                        const stat = item.stat;
-                        const team = item.team;
-                        const valor = stat[sortStat] !== undefined ? stat[sortStat] : '-';
-                        const name = sanitizar(player?.fullName || 'Desconocido');
-                        const teamName = sanitizar(team?.name || '-');
-                        const teamId = team?.id;
-                        const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(teamName)}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">` : '';
-                        html += `<tr>
-                            <td class="ranking">${index + 1}</td>
-                            <td class="text-left font-medium">${name}</td>
-                            <td>${logo} ${teamName}</td>
-                            <td>${valor}</td>
-                        </tr>`;
-                    });
-                    html += `</tbody></table>`;
-                    cont.innerHTML = html;
+                    renderLideresTabla(stats, categoria, sortStat, cont);
                 } catch (error) {
                     console.error('Error cargando líderes de bateo:', error);
-                    cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar los datos</p>`;
+                    cont.innerHTML = `
+                        <div class="text-center text-red-600 dark:text-red-400 py-4">
+                            <p>Error al cargar los datos.</p>
+                            <button onclick="window.cargarLideresBateo('${categoria}','${contenedorId}')" class="btn-recargar mt-2">Reintentar</button>
+                        </div>
+                    `;
                 }
             }
 
@@ -836,41 +827,50 @@
                 if (!cont) return;
                 cont.innerHTML = '<div class="spinner"></div>';
                 const sortStat = pitcheoMap[categoria] || 'era';
-                const season = new Date().getFullYear();
-                const url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=pitching&statType=season&playerPool=all&sortStat=${sortStat}&limit=10`;
+                const seasonActual = new Date().getFullYear();
                 try {
-                    const res = await fetch(url);
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                    const data = await res.json();
-                    const stats = data.stats?.[0]?.splits || [];
+                    let stats = await fetchStats('pitcheo', sortStat, seasonActual);
                     if (!stats.length) {
-                        cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles</p>`;
+                        console.log(`⚠️ No hay datos para temporada ${seasonActual}, probando con 2025...`);
+                        stats = await fetchStats('pitcheo', sortStat, 2025);
+                    }
+                    if (!stats.length) {
+                        cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles para esta temporada.</p>`;
                         return;
                     }
-                    let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
-                        <thead><tr><th>#</th><th class="text-left">Jugador</th><th>Equipo</th><th>${escaparHTML(categoria.toUpperCase())}</th></tr></thead><tbody>`;
-                    stats.forEach((item, index) => {
-                        const player = item.player;
-                        const stat = item.stat;
-                        const team = item.team;
-                        const valor = stat[sortStat] !== undefined ? stat[sortStat] : '-';
-                        const name = sanitizar(player?.fullName || 'Desconocido');
-                        const teamName = sanitizar(team?.name || '-');
-                        const teamId = team?.id;
-                        const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(teamName)}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">` : '';
-                        html += `<tr>
-                            <td class="ranking">${index + 1}</td>
-                            <td class="text-left font-medium">${name}</td>
-                            <td>${logo} ${teamName}</td>
-                            <td>${valor}</td>
-                        </tr>`;
-                    });
-                    html += `</tbody></table>`;
-                    cont.innerHTML = html;
+                    renderLideresTabla(stats, categoria, sortStat, cont);
                 } catch (error) {
                     console.error('Error cargando líderes de pitcheo:', error);
-                    cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar los datos</p>`;
+                    cont.innerHTML = `
+                        <div class="text-center text-red-600 dark:text-red-400 py-4">
+                            <p>Error al cargar los datos.</p>
+                            <button onclick="window.cargarLideresPitcheo('${categoria}','${contenedorId}')" class="btn-recargar mt-2">Reintentar</button>
+                        </div>
+                    `;
                 }
+            }
+
+            function renderLideresTabla(stats, categoria, sortStat, cont) {
+                let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
+                    <thead><tr><th>#</th><th class="text-left">Jugador</th><th>Equipo</th><th>${escaparHTML(categoria.toUpperCase())}</th></tr></thead><tbody>`;
+                stats.forEach((item, index) => {
+                    const player = item.player;
+                    const stat = item.stat;
+                    const team = item.team;
+                    const valor = stat[sortStat] !== undefined ? stat[sortStat] : '-';
+                    const name = sanitizar(player?.fullName || 'Desconocido');
+                    const teamName = sanitizar(team?.name || '-');
+                    const teamId = team?.id;
+                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(teamName)}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">` : '';
+                    html += `<tr>
+                        <td class="ranking">${index + 1}</td>
+                        <td class="text-left font-medium">${name}</td>
+                        <td>${logo} ${teamName}</td>
+                        <td>${valor}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>`;
+                cont.innerHTML = html;
             }
 
             function cargarTodasLasEstadisticas() {
@@ -907,58 +907,67 @@
             }
 
             // ============================================================
-            // 6. JUGADORES DESTACADOS
+            // 6. JUGADORES DESTACADOS (CORREGIDO CON FALLBACK 2025)
             // ============================================================
             async function cargarJugadoresDestacados(tipo) {
                 const cont = document.getElementById('contenedor-jugadores');
                 if (!cont) return;
                 cont.innerHTML = '<div class="spinner"></div>';
-                const season = new Date().getFullYear();
-                let url;
-                if (tipo === 'bateo') {
-                    url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=hitting&statType=season&playerPool=all&sortStat=avg&limit=5`;
-                } else {
-                    url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=pitching&statType=season&playerPool=all&sortStat=era&limit=5`;
-                }
+                const sortStat = tipo === 'bateo' ? 'avg' : 'era';
+                const seasonActual = new Date().getFullYear();
                 try {
-                    const res = await fetch(url);
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                    const data = await res.json();
-                    const stats = data.stats?.[0]?.splits || [];
+                    let stats = await fetchStats(tipo, sortStat, seasonActual);
                     if (!stats.length) {
-                        cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles</p>`;
+                        console.log(`⚠️ No hay datos para temporada ${seasonActual}, probando con 2025...`);
+                        stats = await fetchStats(tipo, sortStat, 2025);
+                    }
+                    if (!stats.length) {
+                        cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles para esta temporada.</p>`;
                         return;
                     }
-                    let html = `<div class="grid grid-cols-2 md:grid-cols-3 gap-3">`;
-                    stats.forEach((item) => {
-                        const player = item.player;
-                        const stat = item.stat;
-                        const team = item.team;
-                        const name = sanitizar(player?.fullName || 'Desconocido');
-                        const teamName = sanitizar(team?.name || '-');
-                        const teamId = team?.id;
-                        const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(teamName)}" class="w-6 h-6 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">` : '';
-                        let valor = '-';
-                        if (tipo === 'bateo') {
-                            valor = stat.avg || stat.homeRuns || stat.rbi || stat.hits || stat.stolenBases || '-';
-                        } else {
-                            valor = stat.era || stat.saves || stat.strikeouts || stat.wins || stat.qualityStarts || '-';
-                        }
-                        html += `
-                            <div class="bg-white/30 dark:bg-gray-800/30 rounded-xl p-3 text-center transition hover:scale-105">
-                                <div class="text-2xl">${tipo === 'bateo' ? '⚾' : '⛽'}</div>
-                                <p class="font-bold text-sm dark:text-white">${name}</p>
-                                <div class="flex items-center justify-center text-xs text-gray-500 dark:text-gray-400">${logo} ${teamName}</div>
-                                <div class="mt-1 text-sm font-semibold text-azul dark:text-azulClaro">${valor}</div>
-                            </div>
-                        `;
-                    });
-                    html += `</div>`;
-                    cont.innerHTML = html;
+                    renderJugadores(stats, tipo, cont);
                 } catch (error) {
                     console.error('Error cargando jugadores destacados:', error);
-                    cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar los datos</p>`;
+                    cont.innerHTML = `
+                        <div class="text-center text-red-600 dark:text-red-400 py-4">
+                            <p>Error al cargar los datos.</p>
+                            <button onclick="window.cargarJugadoresDestacados('${tipo}')" class="btn-recargar mt-2">Reintentar</button>
+                        </div>
+                    `;
                 }
+            }
+
+            function renderJugadores(stats, tipo, cont) {
+                let html = `<div class="grid grid-cols-2 md:grid-cols-3 gap-3">`;
+                stats.slice(0, 6).forEach((item) => {
+                    const player = item.player;
+                    const stat = item.stat;
+                    const team = item.team;
+                    const name = sanitizar(player?.fullName || 'Desconocido');
+                    const teamName = sanitizar(team?.name || '-');
+                    const teamId = team?.id;
+                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(teamName)}" class="w-6 h-6 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">` : '';
+                    let valor = '-';
+                    if (tipo === 'bateo') {
+                        valor = stat.avg || stat.homeRuns || stat.rbi || stat.hits || stat.stolenBases || '-';
+                    } else {
+                        valor = stat.era || stat.saves || stat.strikeouts || stat.wins || stat.qualityStarts || '-';
+                    }
+                    // Formatear promedio a 3 decimales si es número
+                    if (typeof valor === 'number' && tipo === 'bateo' && valor < 1) {
+                        valor = valor.toFixed(3);
+                    }
+                    html += `
+                        <div class="bg-white/30 dark:bg-gray-800/30 rounded-xl p-3 text-center transition hover:scale-105">
+                            <div class="text-2xl">${tipo === 'bateo' ? '⚾' : '⛽'}</div>
+                            <p class="font-bold text-sm dark:text-white">${name}</p>
+                            <div class="flex items-center justify-center text-xs text-gray-500 dark:text-gray-400">${logo} ${teamName}</div>
+                            <div class="mt-1 text-sm font-semibold text-azul dark:text-azulClaro">${valor}</div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                cont.innerHTML = html;
             }
 
             document.querySelectorAll('#seccion-jugadores .sub-tab-link').forEach(btn => {
@@ -1002,19 +1011,24 @@
                     cont.innerHTML = html;
                 } catch (error) {
                     console.error('Error cargando equipos:', error);
-                    cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar los equipos</p>`;
+                    cont.innerHTML = `
+                        <div class="text-center text-red-600 dark:text-red-400 py-4">
+                            <p>Error al cargar los equipos.</p>
+                            <button onclick="window.cargarEquiposMLB()" class="btn-recargar mt-2">Reintentar</button>
+                        </div>
+                    `;
                 }
             }
 
             // ============================================================
-            // 8. PLAYOFFS - TABLA DINÁMICA DESDE API
+            // 8. PLAYOFFS
             // ============================================================
             async function cargarPlayoffs() {
                 const cont = document.getElementById('contenedor-playoffs');
                 if (!cont) return;
                 cont.innerHTML = '<div class="spinner"></div>';
                 const anio = new Date().getFullYear();
-                const fecha = window.obtenerFechaHoy(); // YYYY-MM-DD
+                const fecha = window.obtenerFechaHoy();
                 const url = `https://statsapi.mlb.com/api/v1/standings?season=${anio}&leagueId=103,104&date=${fecha}&division=all`;
                 try {
                     const res = await fetch(url);
@@ -1025,7 +1039,6 @@
                         cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos de playoffs disponibles.</p>`;
                         return;
                     }
-                    // Agrupar por liga y división
                     const ligas = { '103': 'Liga Americana', '104': 'Liga Nacional' };
                     let html = '';
                     for (const leagueId of ['103', '104']) {
@@ -1093,12 +1106,17 @@
                     cont.innerHTML = html;
                 } catch (error) {
                     console.error('Error cargando playoffs:', error);
-                    cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar playoffs.</p>`;
+                    cont.innerHTML = `
+                        <div class="text-center text-red-600 dark:text-red-400 py-4">
+                            <p>Error al cargar playoffs.</p>
+                            <button onclick="window.cargarPlayoffs()" class="btn-recargar mt-2">Reintentar</button>
+                        </div>
+                    `;
                 }
             }
 
             // ============================================================
-            // 9. PARTIDOS Y FECHAS (general y calendario)
+            // 9. PARTIDOS Y FECHAS
             // ============================================================
             const ZONA_LIMA = 'America/Lima';
 
@@ -1121,7 +1139,6 @@
                 return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
             }
 
-            // --- Funciones para Inicio ---
             function cambiarFecha(delta) {
                 fechaActual.setDate(fechaActual.getDate() + delta);
                 mostrarFechas();
@@ -1152,7 +1169,6 @@
                 });
             }
 
-            // --- Funciones para Calendario ---
             function cambiarFechaCalendario(delta) {
                 fechaCalendario.setDate(fechaCalendario.getDate() + delta);
                 mostrarFechasCalendario();
@@ -1223,7 +1239,7 @@
             }
 
             // ============================================================
-            // 11. CARGAR PARTIDOS (general y calendario)
+            // 11. CARGAR PARTIDOS
             // ============================================================
             async function cargarPartidos(fecha) {
                 const cont = document.getElementById('lista-partidos');
@@ -1275,7 +1291,6 @@
                 }
             }
 
-            // Función auxiliar para generar una tarjeta de partido (reutilizable)
             function generarTarjetaPartido(p) {
                 const away = p.teams?.away || {};
                 const home = p.teams?.home || {};
@@ -1486,14 +1501,16 @@
             // ============================================================
             mostrarFechas();
             cargarPartidos(iso(fechaActual));
-            // Inicializar calendario con hoy
             mostrarFechasCalendario();
             cargarPartidosCalendario(iso(fechaCalendario));
 
-            // Botón seguridad
             document.getElementById('btnSeguridad')?.addEventListener('click', function() {
                 alert('🔒 Conexión segura (HTTPS)\n✅ CSP activo\n✅ Sanitización de entrada\n✅ Protección XSS');
             });
+
+            // Cargar automáticamente los datos de jugadores y estadísticas cuando se abran
+            // pero solo si la pestaña está activa al inicio (no lo está)
+            // Dejamos que la navegación bajo demanda los cargue.
 
         })();
     </script>
