@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SportVivo360 | MLB</title>
-    <meta name="description" content="SportVivo360: MLB en vivo, horarios, resultados, líderes y posiciones. Zona Lima UTC‑5">
+    <meta name="description" content="SportVivo360: MLB en vivo, horarios, resultados, líderes, posiciones y noticias. Zona Lima UTC‑5" />
     <script src="https://cdn.tailwindcss.com">
     </script>
     <script>
@@ -31,21 +31,15 @@
         }
         @keyframes parpadeo {
             0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
+            100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         .fade-in {
             animation: fadeIn 0.5s ease-out forwards;
             opacity: 0;
         }
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            to { opacity: 1; }
         }
         .diamante-base {
             width: 14px;
@@ -148,9 +142,7 @@
             margin: 20px auto;
         }
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
         .dark .tabla-posiciones th {
             background-color: #1e293b;
@@ -251,11 +243,39 @@
         .dark .theme-toggle .slider::after {
             transform: translateX(18px);
         }
+
+        /* Tarjetas de noticias */
+        .noticia-card {
+            border-left: 4px solid #1a56db;
+        }
+        .dark .noticia-card {
+            border-left-color: #3b82f6;
+        }
+        .noticia-card .fecha {
+            font-size: 0.65rem;
+            color: #64748b;
+        }
+        .dark .noticia-card .fecha {
+            color: #94a3b8;
+        }
+        .noticia-card .categoria {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .dark .noticia-card .categoria {
+            background: #334155;
+            color: #e2e8f0;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gris font-sans min-h-screen transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200">
 
-    <!-- Cabecera con modo oscuro -->
+    <!-- Cabecera -->
     <header class="bg-mlbAzul text-white py-3 px-4 sticky top-0 z-50 shadow-lg transition-colors dark:bg-gray-800">
         <div class="max-w-xl mx-auto flex items-center justify-between flex-wrap gap-2">
             <h1 class="font-bold text-xl tracking-wide flex items-center gap-2">
@@ -267,7 +287,6 @@
                     <span class="tab-link" data-seccion="posiciones">Posiciones</span>
                     <span class="tab-link" data-seccion="noticias">Noticias</span>
                     <span class="tab-link" data-seccion="estadisticas">Estadísticas</span>
-                    <span class="tab-link" data-seccion="videos">Videos</span>
                 </nav>
                 <!-- Toggle modo oscuro -->
                 <label class="theme-toggle" title="Cambiar tema">
@@ -283,7 +302,6 @@
             <span class="tab-link" data-seccion="posiciones">Posiciones</span>
             <span class="tab-link" data-seccion="noticias">Noticias</span>
             <span class="tab-link" data-seccion="estadisticas">Estadísticas</span>
-            <span class="tab-link" data-seccion="videos">Videos</span>
         </div>
     </header>
 
@@ -296,7 +314,7 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SECCIÓN RESULTADOS                                            -->
+        <!-- SECCIÓN RESULTADOS (partidos + vídeos)                       -->
         <!-- ============================================================ -->
         <section id="seccion-resultados" class="seccion activa">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📋 Resultados & En vivo</h2>
@@ -309,21 +327,47 @@
             </div>
 
             <!-- Contenedor de partidos -->
-            <div id="lista-partidos" class="space-y-5 mb-10">
+            <div id="lista-partidos" class="space-y-5 mb-8">
                 <div class="flex justify-center py-10">
                     <div class="spinner"></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN DE VÍDEOS DESTACADOS (dentro de Resultados) -->
+            <div class="mt-6">
+                <h3 class="text-xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-4 dark:text-white">🎥 Destacados MLB</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Video 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 overflow-hidden card-hover transition-all">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/P5hOMfdFv8Y?si=_yl2u_0CiEAscwFq" title="MLB Highlights 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold dark:text-white">⚾ Resumen de la jornada</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Las mejores jugadas del día en la MLB.</p>
+                        </div>
+                    </div>
+                    <!-- Video 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 overflow-hidden card-hover transition-all">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/f5YBfDI-CnM?si=i3OMDqU2aEP7LdrM" title="MLB Highlights 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold dark:text-white">⚾ Mejores jugadas de la semana</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Los momentos más espectaculares de la semana.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- SECCIÓN POSICIONES (incluye líderes)                          -->
+        <!-- SECCIÓN POSICIONES (solo tablas de equipos)                  -->
         <!-- ============================================================ -->
         <section id="seccion-posiciones" class="seccion">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📊 Posiciones y Líderes</h2>
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📊 Posiciones de equipos</h2>
 
-            <!-- Tablas de posiciones de equipos (manuales) -->
-            <div class="space-y-6 mb-10">
+            <div class="space-y-6">
                 <!-- Liga Americana -->
                 <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
                     <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 Liga Americana</h3>
@@ -452,13 +496,88 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- ============================================================ -->
-            <!-- LÍDERES DE LA TEMPORADA (desde API)                          -->
-            <!-- ============================================================ -->
+        <!-- ============================================================ -->
+        <!-- SECCIÓN NOTICIAS (contenido manual)                         -->
+        <!-- ============================================================ -->
+        <section id="seccion-noticias" class="seccion">
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📰 Noticias MLB</h2>
+            <div class="space-y-4">
+                <!-- Noticia 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <span class="categoria">🔥 Destacado</span>
+                        <span class="fecha">25 de junio, 2026</span>
+                    </div>
+                    <h4 class="font-bold text-base dark:text-white">Aaron Judge conecta su jonrón 40 de la temporada</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El capitán de los Yankees sigue imparable y ya es el favorito al MVP de la Liga Americana. Judge supera a Ohtani y Guerrero Jr. en la carrera por el título de jonrones.</p>
+                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
+                </div>
+
+                <!-- Noticia 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <span class="categoria">💰 Mercado</span>
+                        <span class="fecha">24 de junio, 2026</span>
+                    </div>
+                    <h4 class="font-bold text-base dark:text-white">Shohei Ohtani firma extensión millonaria con los Dodgers</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El japonés acuerda un contrato de 700 millones por 10 años, el más grande en la historia del deporte. Ohtani seguirá siendo la cara de la franquicia angelina.</p>
+                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
+                </div>
+
+                <!-- Noticia 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <span class="categoria">🏆 Playoffs</span>
+                        <span class="fecha">23 de junio, 2026</span>
+                    </div>
+                    <h4 class="font-bold text-base dark:text-white">¿Será este el año de los Orioles?</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El joven equipo de Baltimore lidera su división y apunta a los playoffs con una de las mejores ofensivas. Adley Rutschman y Gunnar Henderson son las estrellas.</p>
+                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
+                </div>
+
+                <!-- Noticia 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <span class="categoria">⚾ Pitcheo</span>
+                        <span class="fecha">22 de junio, 2026</span>
+                    </div>
+                    <h4 class="font-bold text-base dark:text-white">Lanzadores dominan en el mes de junio</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Las EFE de Strider, Cole y Cease están por debajo de 2.00, récord en la era moderna. El pitcheo está siendo el gran protagonista de la temporada.</p>
+                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
+                </div>
+
+                <!-- Noticia 5 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <span class="categoria">🔄 Cambios</span>
+                        <span class="fecha">21 de junio, 2026</span>
+                    </div>
+                    <h4 class="font-bold text-base dark:text-white">Los Padres despiden a su mánager</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Tras una racha de 10 derrotas, San Diego hace un cambio en el banquillo. Bob Melvin es reemplazado de manera interina por el coach de banca.</p>
+                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
+                </div>
+
+                <!-- Noticia 6 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <span class="categoria">🌟 Novatos</span>
+                        <span class="fecha">20 de junio, 2026</span>
+                    </div>
+                    <h4 class="font-bold text-base dark:text-white">¿Cómo va la carrera por el Novato del Año?</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El dominicano Elly De La Cruz (Reds) y el venezolano Ezequiel Tovar (Rockies) son los favoritos, pero el japonés Yoshida (Red Sox) también puja fuerte.</p>
+                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN ESTADÍSTICAS (líderes de bateo y pitcheo)           -->
+        <!-- ============================================================ -->
+        <section id="seccion-estadisticas" class="seccion">
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Estadísticas - Líderes 2026</h2>
             <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
-                <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🔥 Líderes de la Temporada 2026</h3>
-
                 <!-- Pestañas internas para bateo / pitcheo -->
                 <div class="flex gap-2 text-sm font-medium mb-4">
                     <span class="tab-link-interno active px-3 py-1 rounded-lg cursor-pointer bg-azul text-white" data-tab="bateo">Bateo</span>
@@ -481,61 +600,11 @@
                     </div>
                 </div>
             </div>
-
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SECCIÓN NOTICIAS (placeholder)                                -->
-        <!-- ============================================================ -->
-        <section id="seccion-noticias" class="seccion">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📰 Noticias MLB</h2>
-            <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-6 text-center">
-                <p class="text-gray-500 dark:text-gray-400">Próximamente… mantente al tanto de las últimas noticias.</p>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SECCIÓN ESTADÍSTICAS (placeholder)                            -->
-        <!-- ============================================================ -->
-        <section id="seccion-estadisticas" class="seccion">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Estadísticas avanzadas</h2>
-            <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-6 text-center">
-                <p class="text-gray-500 dark:text-gray-400">Próximamente… estadísticas detalladas de equipos y jugadores.</p>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SECCIÓN VIDEOS (igual que antes pero con pestaña)            -->
-        <!-- ============================================================ -->
-        <section id="seccion-videos" class="seccion">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🎥 Destacados MLB</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <!-- Video 1 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 overflow-hidden card-hover transition-all">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/P5hOMfdFv8Y?si=_yl2u_0CiEAscwFq" title="MLB Highlights 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                    <div class="p-3">
-                        <p class="text-sm font-semibold dark:text-white">⚾ Resumen de la jornada</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">Las mejores jugadas del día en la MLB.</p>
-                    </div>
-                </div>
-                <!-- Video 2 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 overflow-hidden card-hover transition-all">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/f5YBfDI-CnM?si=i3OMDqU2aEP7LdrM" title="MLB Highlights 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                    <div class="p-3">
-                        <p class="text-sm font-semibold dark:text-white">⚾ Mejores jugadas de la semana</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">Los momentos más espectaculares de la semana.</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main>
 
-    <!-- Footer mejorado -->
+    <!-- Footer -->
     <footer class="bg-white dark:bg-gray-800 border-t border-grisClaro dark:border-gray-700 py-6 mt-12 text-center text-xs">
         <div class="max-w-xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© 2026 <strong>SportVivo360</strong> • Datos MLB API pública</p>
@@ -581,8 +650,8 @@
             tabLinks.forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll(`.tab-link[data-seccion="${id}"]`).forEach(tab => tab.classList.add('active'));
 
-            // Si es la sección posiciones, cargar líderes (si no se han cargado aún)
-            if (id === 'posiciones') {
+            // Si es la sección estadísticas, cargar líderes (si no se han cargado aún)
+            if (id === 'estadisticas') {
                 cargarLideres();
             }
         }
@@ -594,18 +663,16 @@
             });
         });
 
-        // Por defecto, mostrar resultados (ya tiene clase activa)
-        // Pero aseguramos que el menú coincida
+        // Por defecto mostrar Resultados
         mostrarSeccion('resultados');
 
         // ============================================================
-        //  PESTAÑAS INTERNAS (bateo / pitcheo) en sección posiciones
+        //  PESTAÑAS INTERNAS (bateo / pitcheo) en estadísticas
         // ============================================================
         const tabsInternos = document.querySelectorAll('.tab-link-interno');
         tabsInternos.forEach(tab => {
             tab.addEventListener('click', function() {
                 const target = this.dataset.tab;
-                // Quitar activo de todos
                 tabsInternos.forEach(t => {
                     t.classList.remove('active', 'bg-azul', 'text-white');
                     t.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
@@ -613,11 +680,9 @@
                 this.classList.add('active', 'bg-azul', 'text-white');
                 this.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
 
-                // Ocultar/mostrar contenedores
                 document.querySelectorAll('.tab-interno').forEach(el => el.style.display = 'none');
                 document.getElementById('tab-' + target).style.display = 'block';
 
-                // Si es bateo o pitcheo, recargar datos (por si acaso)
                 if (target === 'bateo') cargarLideresBateo();
                 else cargarLideresPitcheo();
             });
@@ -644,9 +709,6 @@
             return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
         }
 
-        // ============================================================
-        //  SELECTOR DE FECHAS
-        // ============================================================
         function cambiarFecha(delta) {
             fechaActual.setDate(fechaActual.getDate() + delta);
             mostrarFechas();
@@ -724,7 +786,7 @@
         }
 
         // ============================================================
-        //  CARGAR PARTIDOS EN VIVO (API) CON SPINNER
+        //  CARGAR PARTIDOS EN VIVO (API)
         // ============================================================
         async function cargarPartidos(fecha) {
             const cont = document.getElementById('lista-partidos');
@@ -876,7 +938,7 @@
                 const data = await res.json();
                 const stats = data.stats?.[0]?.splits || [];
                 if (!stats.length) {
-                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos disponibles</p>';
+                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos disponibles para la temporada 2026.</p>';
                     return;
                 }
                 let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
@@ -909,7 +971,7 @@
             } catch (error) {
                 console.error('Error en líderes de bateo:', error);
                 cont.innerHTML =
-                    `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de bateo</p>`;
+                    `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de bateo. Intenta más tarde.</p>`;
             }
         }
 
@@ -924,7 +986,7 @@
                 const data = await res.json();
                 const stats = data.stats?.[0]?.splits || [];
                 if (!stats.length) {
-                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos disponibles</p>';
+                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos disponibles para la temporada 2026.</p>';
                     return;
                 }
                 let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
@@ -957,7 +1019,7 @@
             } catch (error) {
                 console.error('Error en líderes de pitcheo:', error);
                 cont.innerHTML =
-                    `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de pitcheo</p>`;
+                    `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de pitcheo. Intenta más tarde.</p>`;
             }
         }
 
@@ -968,10 +1030,10 @@
         cargarPartidos(iso(fechaActual));
         setInterval(() => cargarPartidos(iso(fechaActual)), 15000);
 
-        // Actualizar líderes cada 30 segundos solo si la pestaña posiciones está visible
+        // Actualizar líderes cada 30 segundos solo si la pestaña Estadísticas está visible
         setInterval(() => {
-            const posSeccion = document.getElementById('seccion-posiciones');
-            if (posSeccion.classList.contains('activa')) {
+            const statsSeccion = document.getElementById('seccion-estadisticas');
+            if (statsSeccion.classList.contains('activa')) {
                 cargarLideresBateo();
                 cargarLideresPitcheo();
             }
