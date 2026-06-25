@@ -277,6 +277,15 @@
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        /* Estilo para los logos en jugadores */
+        .team-logo-jugador {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 4px;
+        }
     </style>
 </head>
 <body>
@@ -514,7 +523,7 @@
     </footer>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT COMPLETO - DATOS TEMPORADA 2026                    -->
+    <!-- JAVASCRIPT COMPLETO - CON LOGOS DE EQUIPOS                   -->
     <!-- ============================================================ -->
     <script>
         (function() {
@@ -638,77 +647,77 @@
             // ============================================================
             const datosBateo = {
                 avg: [
-                    { rank: 1, name: 'O. Lopez', team: 'MIA', value: '.340' },
-                    { rank: 2, name: 'J. Lee', team: 'SF', value: '.333' },
-                    { rank: 3, name: 'Y. Diaz', team: 'TB', value: '.331' },
-                    { rank: 4, name: 'Y. Alvarez', team: 'HOU', value: '.322' },
-                    { rank: 5, name: 'B. Marsh', team: 'PHI', value: '.321' }
+                    { rank: 1, name: 'O. Lopez', team: 'MIA', teamId: 146, value: '.340' },
+                    { rank: 2, name: 'J. Lee', team: 'SF', teamId: 137, value: '.333' },
+                    { rank: 3, name: 'Y. Diaz', team: 'TB', teamId: 139, value: '.331' },
+                    { rank: 4, name: 'Y. Alvarez', team: 'HOU', teamId: 117, value: '.322' },
+                    { rank: 5, name: 'B. Marsh', team: 'PHI', teamId: 143, value: '.321' }
                 ],
                 hr: [
-                    { rank: 1, name: 'K. Schwarber', team: 'PHI', value: '22' },
-                    { rank: 2, name: 'Y. Alvarez', team: 'HOU', value: '20' },
-                    { rank: 2, name: 'M. Murakami', team: 'NYY', value: '20' },
-                    { rank: 4, name: 'B. Buxton', team: 'MIN', value: '18' },
-                    { rank: 5, name: 'B. Rice', team: 'NYY', value: '17' }
+                    { rank: 1, name: 'K. Schwarber', team: 'PHI', teamId: 143, value: '22' },
+                    { rank: 2, name: 'Y. Alvarez', team: 'HOU', teamId: 117, value: '20' },
+                    { rank: 2, name: 'M. Murakami', team: 'NYY', teamId: 147, value: '20' },
+                    { rank: 4, name: 'B. Buxton', team: 'MIN', teamId: 142, value: '18' },
+                    { rank: 5, name: 'B. Rice', team: 'NYY', teamId: 147, value: '17' }
                 ],
                 rbi: [
-                    { rank: 1, name: 'A. Pages', team: 'LAD', value: '58' },
-                    { rank: 1, name: 'J. Walker', team: 'STL', value: '58' },
-                    { rank: 3, name: 'C. Abrams', team: 'WSH', value: '57' },
-                    { rank: 3, name: 'A. Burleson', team: 'STL', value: '57' },
-                    { rank: 5, name: 'N. Kurtz', team: 'ATH', value: '55' }
+                    { rank: 1, name: 'A. Pages', team: 'LAD', teamId: 119, value: '58' },
+                    { rank: 1, name: 'J. Walker', team: 'STL', teamId: 138, value: '58' },
+                    { rank: 3, name: 'C. Abrams', team: 'WSH', teamId: 120, value: '57' },
+                    { rank: 3, name: 'A. Burleson', team: 'STL', teamId: 138, value: '57' },
+                    { rank: 5, name: 'N. Kurtz', team: 'ATH', teamId: 133, value: '55' }
                 ],
                 hits: [
-                    { rank: 1, name: 'O. Lopez', team: 'MIA', value: '107' },
-                    { rank: 2, name: 'L. Arraez', team: 'SF', value: '96' },
-                    { rank: 3, name: 'Y. Diaz', team: 'TB', value: '95' },
-                    { rank: 4, name: 'Y. Alvarez', team: 'HOU', value: '94' },
-                    { rank: 5, name: 'J. Lee', team: 'SF', value: '90' }
+                    { rank: 1, name: 'O. Lopez', team: 'MIA', teamId: 146, value: '107' },
+                    { rank: 2, name: 'L. Arraez', team: 'SF', teamId: 137, value: '96' },
+                    { rank: 3, name: 'Y. Diaz', team: 'TB', teamId: 139, value: '95' },
+                    { rank: 4, name: 'Y. Alvarez', team: 'HOU', teamId: 117, value: '94' },
+                    { rank: 5, name: 'J. Lee', team: 'SF', teamId: 137, value: '90' }
                 ],
                 sb: [
-                    { rank: 1, name: 'N. Nunez', team: 'WSH', value: '31' },
-                    { rank: 2, name: 'B. Witt Jr.', team: 'KC', value: '28' },
-                    { rank: 3, name: 'J. Ramirez', team: 'CLE', value: '24' },
-                    { rank: 4, name: 'J. Chisholm Jr.', team: 'NYY', value: '23' },
-                    { rank: 5, name: 'O. Cruz', team: 'PIT', value: '21' }
+                    { rank: 1, name: 'N. Nunez', team: 'WSH', teamId: 120, value: '31' },
+                    { rank: 2, name: 'B. Witt Jr.', team: 'KC', teamId: 118, value: '28' },
+                    { rank: 3, name: 'J. Ramirez', team: 'CLE', teamId: 114, value: '24' },
+                    { rank: 4, name: 'J. Chisholm Jr.', team: 'NYY', teamId: 147, value: '23' },
+                    { rank: 5, name: 'O. Cruz', team: 'PIT', teamId: 134, value: '21' }
                 ]
             };
 
             const datosPitcheo = {
                 era: [
-                    { rank: 1, name: 'J. Misiorowski', team: 'MIL', value: '1.45' },
-                    { rank: 2, name: 'C. Schlittler', team: 'NYY', value: '1.71' },
-                    { rank: 3, name: 'C. Sanchez', team: 'PHI', value: '1.80' },
-                    { rank: 4, name: 'C. Burns', team: 'CIN', value: '2.00' },
-                    { rank: 5, name: 'C. Sale', team: 'ATL', value: '2.14' }
+                    { rank: 1, name: 'J. Misiorowski', team: 'MIL', teamId: 158, value: '1.45' },
+                    { rank: 2, name: 'C. Schlittler', team: 'NYY', teamId: 147, value: '1.71' },
+                    { rank: 3, name: 'C. Sanchez', team: 'PHI', teamId: 143, value: '1.80' },
+                    { rank: 4, name: 'C. Burns', team: 'CIN', teamId: 113, value: '2.00' },
+                    { rank: 5, name: 'C. Sale', team: 'ATL', teamId: 144, value: '2.14' }
                 ],
                 sv: [
-                    { rank: 1, name: 'C. Smith', team: 'CLE', value: '24' },
-                    { rank: 2, name: 'M. Miller', team: 'SD', value: '21' },
-                    { rank: 3, name: 'B. Baker', team: 'TB', value: '20' },
-                    { rank: 4, name: 'R. O\'Brien', team: 'STL', value: '19' },
-                    { rank: 4, name: 'J. Duran', team: 'PHI', value: '19' }
+                    { rank: 1, name: 'C. Smith', team: 'CLE', teamId: 114, value: '24' },
+                    { rank: 2, name: 'M. Miller', team: 'SD', teamId: 135, value: '21' },
+                    { rank: 3, name: 'B. Baker', team: 'TB', teamId: 139, value: '20' },
+                    { rank: 4, name: 'R. O\'Brien', team: 'STL', teamId: 138, value: '19' },
+                    { rank: 4, name: 'J. Duran', team: 'PHI', teamId: 143, value: '19' }
                 ],
                 k: [
-                    { rank: 1, name: 'J. Misiorowski', team: 'MIL', value: '138' },
-                    { rank: 2, name: 'C. Sanchez', team: 'PHI', value: '121' },
-                    { rank: 3, name: 'D. Cease', team: 'TOR', value: '118' },
-                    { rank: 4, name: 'G. Williams', team: 'CLE', value: '111' },
-                    { rank: 5, name: 'J. Luzardo', team: 'PHI', value: '110' }
+                    { rank: 1, name: 'J. Misiorowski', team: 'MIL', teamId: 158, value: '138' },
+                    { rank: 2, name: 'C. Sanchez', team: 'PHI', teamId: 143, value: '121' },
+                    { rank: 3, name: 'D. Cease', team: 'TOR', teamId: 141, value: '118' },
+                    { rank: 4, name: 'G. Williams', team: 'CLE', teamId: 114, value: '111' },
+                    { rank: 5, name: 'J. Luzardo', team: 'PHI', teamId: 143, value: '110' }
                 ],
                 w: [
-                    { rank: 1, name: 'A. Ashby', team: 'MIL', value: '10' },
-                    { rank: 2, name: 'C. Sanchez', team: 'PHI', value: '9' },
-                    { rank: 2, name: 'G. Williams', team: 'CLE', value: '9' },
-                    { rank: 2, name: 'D. Martin', team: 'CHW', value: '9' },
-                    { rank: 2, name: 'J. Wrobleski', team: 'LAD', value: '9' }
+                    { rank: 1, name: 'A. Ashby', team: 'MIL', teamId: 158, value: '10' },
+                    { rank: 2, name: 'C. Sanchez', team: 'PHI', teamId: 143, value: '9' },
+                    { rank: 2, name: 'G. Williams', team: 'CLE', teamId: 114, value: '9' },
+                    { rank: 2, name: 'D. Martin', team: 'CHW', teamId: 145, value: '9' },
+                    { rank: 2, name: 'J. Wrobleski', team: 'LAD', teamId: 119, value: '9' }
                 ],
                 qs: [
-                    { rank: 1, name: 'S. Alcantara', team: 'MIA', value: '12' },
-                    { rank: 1, name: 'C. Sanchez', team: 'PHI', value: '12' },
-                    { rank: 3, name: 'M. Wacha', team: 'KC', value: '11' },
-                    { rank: 3, name: 'S. Ohtani', team: 'LAD', value: '11' },
-                    { rank: 3, name: 'Y. Yamamoto', team: 'LAD', value: '11' }
+                    { rank: 1, name: 'S. Alcantara', team: 'MIA', teamId: 146, value: '12' },
+                    { rank: 1, name: 'C. Sanchez', team: 'PHI', teamId: 143, value: '12' },
+                    { rank: 3, name: 'M. Wacha', team: 'KC', teamId: 118, value: '11' },
+                    { rank: 3, name: 'S. Ohtani', team: 'LAD', teamId: 119, value: '11' },
+                    { rank: 3, name: 'Y. Yamamoto', team: 'LAD', teamId: 119, value: '11' }
                 ]
             };
 
@@ -724,7 +733,8 @@
                 datos.forEach(item => {
                     const name = sanitizar(item.name);
                     const team = sanitizar(item.team);
-                    const logo = `<img src="https://www.mlbstatic.com/team-logos/fallback.svg" alt="${escaparHTML(team)}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">`;
+                    const teamId = item.teamId;
+                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(team)}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">` : '';
                     html += `<tr>
                         <td class="ranking">${item.rank}</td>
                         <td class="text-left font-medium">${name}</td>
@@ -755,7 +765,7 @@
             }
 
             // ============================================================
-            // 6. JUGADORES DESTACADOS - TEMPORADA 2026
+            // 6. JUGADORES DESTACADOS - CON LOGOS DE EQUIPOS
             // ============================================================
             function cargarJugadoresManual() {
                 const cont = document.getElementById('contenedor-jugadores');
@@ -767,33 +777,34 @@
                     let datos = [];
                     if (tipo === 'bateo') {
                         datos = [
-                            { name: 'K. Schwarber', team: 'PHI', value: '22 HR' },
-                            { name: 'Y. Alvarez', team: 'HOU', value: '20 HR' },
-                            { name: 'M. Murakami', team: 'NYY', value: '20 HR' },
-                            { name: 'O. Lopez', team: 'MIA', value: '.340' },
-                            { name: 'B. Marsh', team: 'PHI', value: '.321' }
+                            { name: 'K. Schwarber', team: 'PHI', teamId: 143, value: '22 HR' },
+                            { name: 'Y. Alvarez', team: 'HOU', teamId: 117, value: '20 HR' },
+                            { name: 'M. Murakami', team: 'NYY', teamId: 147, value: '20 HR' },
+                            { name: 'O. Lopez', team: 'MIA', teamId: 146, value: '.340' },
+                            { name: 'B. Marsh', team: 'PHI', teamId: 143, value: '.321' }
                         ];
                     } else {
                         datos = [
-                            { name: 'J. Misiorowski', team: 'MIL', value: '1.45 ERA' },
-                            { name: 'C. Sanchez', team: 'PHI', value: '1.80 ERA' },
-                            { name: 'C. Smith', team: 'CLE', value: '24 SV' },
-                            { name: 'M. Miller', team: 'SD', value: '21 SV' },
-                            { name: 'S. Ohtani', team: 'LAD', value: '11 QS' }
+                            { name: 'J. Misiorowski', team: 'MIL', teamId: 158, value: '1.45 ERA' },
+                            { name: 'C. Sanchez', team: 'PHI', teamId: 143, value: '1.80 ERA' },
+                            { name: 'C. Smith', team: 'CLE', teamId: 114, value: '24 SV' },
+                            { name: 'M. Miller', team: 'SD', teamId: 135, value: '21 SV' },
+                            { name: 'S. Ohtani', team: 'LAD', teamId: 119, value: '11 QS' }
                         ];
                     }
 
-                    let html = `<div class="grid grid-cols-2 md:grid-cols-3 gap-3">`;
+                    let html = `<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">`;
                     datos.forEach(item => {
                         const name = sanitizar(item.name);
                         const team = sanitizar(item.team);
-                        const logo = `<img src="https://www.mlbstatic.com/team-logos/fallback.svg" alt="${escaparHTML(team)}" class="w-6 h-6 inline-block mr-1" onerror="this.style.display='none'" loading="lazy">`;
+                        const teamId = item.teamId;
+                        const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escaparHTML(team)}" class="team-logo-jugador" onerror="this.style.display='none'" loading="lazy">` : '';
                         html += `
-                            <div class="bg-white/30 dark:bg-gray-800/30 rounded-xl p-3 text-center transition hover:scale-105">
-                                <div class="text-2xl">${tipo === 'bateo' ? '⚾' : '⛽'}</div>
-                                <p class="font-bold text-sm dark:text-white">${name}</p>
-                                <div class="flex items-center justify-center text-xs text-gray-500 dark:text-gray-400">${logo} ${team}</div>
-                                <div class="mt-1 text-sm font-semibold text-azul dark:text-azulClaro">${item.value}</div>
+                            <div class="bg-white/30 dark:bg-gray-800/30 rounded-xl p-4 text-center transition hover:scale-105 border border-white/20 dark:border-gray-700/30">
+                                ${logo}
+                                <p class="font-bold text-sm dark:text-white mt-1">${name}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">${team}</p>
+                                <div class="mt-2 text-sm font-semibold text-azul dark:text-azulClaro bg-azul/10 dark:bg-azul/20 px-2 py-1 rounded-full inline-block">${item.value}</div>
                             </div>
                         `;
                     });
