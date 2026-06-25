@@ -1,1396 +1,688 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CocinaEnCasa - 126 Recetas del Mundo</title>
-    <meta name="description" content="Descubre 126 recetas auténticas de 18 países. Ingredientes, pasos, imágenes y videos." />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        /* ===== RESET Y VARIABLES ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary: #0a0a0a;
-            --secondary: #1a1a1a;
-            --accent: #e67e22;
-            --accent-light: #f39c12;
-            --bg: #f8f4f0;
-            --card: #ffffff;
-            --text: #1a0f0a;
-            --muted: #6b5b4e;
-            --border: #e0d6cc;
-            --shadow: 0 10px 40px rgba(0,0,0,0.08);
-            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
-            --radius: 20px;
-            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; display: block; }
-
-        /* ===== HEADER ===== */
-        header {
-            background: var(--primary);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: #fff;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logo span { color: var(--accent-light); }
-        .logo i { color: var(--accent-light); font-size: 1.4rem; }
-
-        .menu-principal {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-        .menu-principal a {
-            color: rgba(255,255,255,0.7);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-        }
-        .menu-principal a:hover,
-        .menu-principal a.activo {
-            color: #fff;
-            border-bottom-color: var(--accent-light);
-        }
-        .menu-hamburguesa {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1f1a16 100%);
-            padding: 70px 0 60px;
-            text-align: center;
-            border-bottom: 4px solid var(--accent-light);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero .estrellas {
-            font-size: 1.4rem;
-            color: var(--accent-light);
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .estrellas span {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-            margin-left: 8px;
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.6rem;
-            color: #fff;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero h1 span { color: var(--accent-light); }
-        .hero p {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.15rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .botones {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 30px;
-        }
-        .hero .btn {
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-        }
-        .hero .btn-primario {
-            background: var(--accent-light);
-            color: #fff;
-        }
-        .hero .btn-primario:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
-        .hero .btn-secundario {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .hero .btn-secundario:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        .hero .stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .stats .stat {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
-        }
-        .hero .stats .stat strong {
-            color: #fff;
-            font-size: 1.4rem;
-            display: block;
-            font-weight: 700;
-        }
-
-        /* ===== FILTROS ===== */
-        .filtros-section {
-            padding: 20px 0 10px;
-            background: var(--card);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            position: sticky;
-            top: 76px;
-            z-index: 99;
-        }
-        .filtros-section .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .filtros-section .buscador {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px 18px;
-            border: 2px solid var(--border);
-            border-radius: 50px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            background: var(--bg);
-            transition: var(--transition);
-        }
-        .filtros-section .buscador:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(230,126,34,0.15);
-        }
-        .filtros-section .paises {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            max-height: 60px;
-            overflow-y: auto;
-            padding: 4px 0;
-        }
-        .filtros-section .pais-btn {
-            background: var(--bg);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            border: 2px solid var(--border);
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            white-space: nowrap;
-        }
-        .filtros-section .pais-btn:hover {
-            border-color: var(--accent-light);
-        }
-        .filtros-section .pais-btn.activo {
-            background: var(--accent-light);
-            color: #fff;
-            border-color: var(--accent-light);
-        }
-        .filtros-section .tipo-tabs {
-            display: flex;
-            gap: 4px;
-            background: var(--bg);
-            border-radius: 50px;
-            padding: 4px;
-        }
-        .filtros-section .tipo-tab {
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            background: transparent;
-            color: var(--muted);
-        }
-        .filtros-section .tipo-tab.activo {
-            background: var(--card);
-            color: var(--text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        .filtros-section .tipo-tab:hover {
-            color: var(--text);
-        }
-
-        /* ===== RECETAS ===== */
-        .recetas-section {
-            padding: 30px 0 50px;
-        }
-        .recetas-section .header-recetas {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .recetas-section .header-recetas h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-        }
-        .recetas-section .header-recetas .contador {
-            color: var(--muted);
-            font-size: 0.95rem;
-            background: var(--card);
-            padding: 6px 18px;
-            border-radius: 50px;
-            box-shadow: var(--shadow);
-        }
-        .grid-recetas {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .tarjeta {
-            background: var(--card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--border);
-        }
-        .tarjeta:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
-        }
-        .tarjeta .imagen-tarjeta {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-            background: var(--bg);
-        }
-        .tarjeta .info-tarjeta {
-            padding: 1.2rem 1.5rem 1.5rem;
-        }
-        .tarjeta .info-tarjeta .pais-nombre {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--muted);
-            font-weight: 600;
-        }
-        .tarjeta .info-tarjeta .tipo-etiqueta {
-            display: inline-block;
-            font-size: 0.65rem;
-            background: var(--accent-light);
-            color: #fff;
-            padding: 2px 10px;
-            border-radius: 50px;
-            margin-left: 8px;
-            font-weight: 600;
-        }
-        .tarjeta .info-tarjeta h3 {
-            font-size: 1.15rem;
-            margin: 4px 0 6px;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        .tarjeta .info-tarjeta p {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 12px;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .tarjeta .acciones {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .tarjeta .btn-receta {
-            display: inline-block;
-            background: var(--accent-light);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-        .tarjeta .btn-receta:hover {
-            background: var(--accent);
-            transform: scale(1.02);
-        }
-        .tarjeta .btn-video {
-            display: inline-block;
-            background: #ff0000;
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-        }
-        .tarjeta .btn-video:hover {
-            background: #cc0000;
-            transform: scale(1.02);
-        }
-        .tarjeta .btn-video i { margin-right: 5px; }
-        .sin-resultados {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--muted);
-            grid-column: 1 / -1;
-        }
-        .sin-resultados i { font-size: 3rem; margin-bottom: 1rem; display: block; }
-
-        /* ===== BLOG ===== */
-        .blog-section {
-            padding: 50px 0;
-            background: var(--bg);
-        }
-        .blog-section .blog-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .blog-section .blog-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-        }
-        .blog-section .blog-header a {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        .grid-blog {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        .articulo {
-            background: var(--card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-        .articulo:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-        .articulo .imagen-articulo {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: var(--bg);
-        }
-        .articulo .contenido-articulo {
-            padding: 1.5rem;
-        }
-        .articulo .contenido-articulo .categoria {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        .articulo .contenido-articulo .fecha {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-left: 8px;
-        }
-        .articulo .contenido-articulo h3 {
-            font-size: 1.2rem;
-            margin: 8px 0 10px;
-            font-weight: 700;
-        }
-        .articulo .contenido-articulo p {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-        }
-        .articulo .contenido-articulo .leer-mas {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .articulo .contenido-articulo .leer-mas:hover {
-            gap: 10px;
-        }
-
-        /* ===== VIDEOS ===== */
-        .videos-section {
-            padding: 50px 0;
-            background: var(--card);
-        }
-        .videos-section .videos-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .videos-section .videos-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-        }
-        .videos-section .videos-header p {
-            color: var(--muted);
-            max-width: 500px;
-            margin: 8px auto 0;
-        }
-        .grid-videos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .video-tarjeta {
-            background: var(--bg);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-        .video-tarjeta:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-        .video-tarjeta .thumbnail {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 3rem;
-            position: relative;
-        }
-        .video-tarjeta .thumbnail .play {
-            position: absolute;
-            background: rgba(255,0,0,0.8);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #fff;
-        }
-        .video-tarjeta .info-video {
-            padding: 1rem 1.2rem 1.2rem;
-        }
-        .video-tarjeta .info-video h3 {
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        /* ===== MODAL ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            padding: 2rem 1rem;
-            overflow-y: auto;
-        }
-        .modal.active { display: block; }
-        .modal-contenido {
-            background: var(--card);
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            position: relative;
-            animation: modalAnim 0.35s ease;
-        }
-        @keyframes modalAnim {
-            from { opacity: 0; transform: scale(0.95) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal .cerrar {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--muted);
-            transition: var(--transition);
-            background: none;
-            border: none;
-        }
-        .modal .cerrar:hover { color: var(--text); transform: rotate(90deg); }
-        .modal .modal-imagen {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .modal .modal-titulo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-        .modal .modal-origen {
-            font-size: 0.95rem;
-            color: var(--muted);
-            margin-bottom: 1.2rem;
-        }
-        .modal .modal-descripcion {
-            color: var(--muted);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-        .modal h3 {
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin: 1.5rem 0 0.8rem;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 6px;
-        }
-        .modal ul, .modal ol {
-            padding-left: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .modal li { margin-bottom: 6px; }
-        .modal .btn-video-modal {
-            display: inline-block;
-            background: #ff0000;
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-            margin-top: 1rem;
-        }
-        .modal .btn-video-modal:hover {
-            background: #cc0000;
-            transform: scale(1.02);
-        }
-        .modal .btn-video-modal i { margin-right: 8px; }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--primary);
-            color: rgba(255,255,255,0.7);
-            padding: 40px 0 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        footer .container {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 30px;
-        }
-        footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; font-weight: 700; }
-        footer ul { list-style: none; }
-        footer ul li { margin-bottom: 6px; }
-        footer ul a { transition: var(--transition); font-size: 0.9rem; }
-        footer ul a:hover { color: #fff; }
-        footer .copy {
-            grid-column: 1/-1;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            margin-top: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .menu-hamburguesa { display: block; }
-            .menu-principal {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                padding-top: 12px;
-                border-top: 1px solid rgba(255,255,255,0.08);
-                gap: 8px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportVivo360 | MLB</title>
+    <meta name="description" content="SportVivo360: MLB en vivo, horarios, resultados completos, bases ocupadas. Zona Lima UTC‑5">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mlbAzul: '#0a1e3c',
+                        azul: '#1a56db',
+                        rojoVivo: '#dc2626',
+                        gris: '#475569',
+                        grisClaro: '#f1f5f9',
+                        verdeBase: '#22c55e',
+                    },
+                    fontFamily: { sans: ['Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'] }
+                }
             }
-            .menu-principal.abierto { display: flex; }
-            .menu-principal a { padding: 6px 0; }
-            .filtros-section .container { flex-direction: column; align-items: stretch; }
-            .filtros-section .paises { justify-content: center; max-height: 100px; }
-            .filtros-section .tipo-tabs { align-self: center; }
-            footer .container { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.4rem; }
-            .grid-blog { grid-template-columns: 1fr; }
         }
-        @media (max-width: 700px) {
-            .hero .stats { gap: 20px; }
-            .hero .stats .stat strong { font-size: 1.1rem; }
-            .grid-recetas { grid-template-columns: 1fr; }
-            .modal-contenido { padding: 1.5rem; }
+    </script>
+    <style>
+        /* Animaciones y transiciones */
+        .parpadeo {
+            animation: parpadeo 1.2s infinite ease-in-out;
+        }
+        @keyframes parpadeo {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .diamante-base {
+            width: 14px;
+            height: 14px;
+            transform: rotate(45deg);
+            border: 1px solid #94a3b8;
+            box-sizing: border-box;
+            transition: all 0.2s;
+        }
+        .diamante-base.ocupada {
+            background-color: #22c55e;
+            border-color: #16a34a;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+        }
+        .diamante-base.vacia {
+            background-color: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+        .diamante-base.plato {
+            background-color: #94a3b8;
+            border-color: #64748b;
+        }
+        .grid-entradas {
+            display: grid;
+            grid-template-columns: repeat(9, 1.6rem) 2rem 2rem 2rem;
+        }
+        .grid-entradas > span {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-variant-numeric: tabular-nums;
+        }
+        @media (max-width: 480px) {
+            .grid-entradas {
+                grid-template-columns: repeat(9, 1.2rem) 1.6rem 1.6rem 1.6rem;
+                font-size: 0.65rem;
+            }
+        }
+        .tabla-posiciones th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            padding: 6px 8px;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+        .tabla-posiciones td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .tabla-posiciones tr:hover td {
+            background-color: #f8fafc;
+        }
+        .tabla-posiciones tr:last-child td {
+            border-bottom: none;
+        }
+        .division-titulo {
+            background: linear-gradient(to right, #e2e8f0, #f1f5f9);
+            font-weight: 700;
+            padding: 6px 12px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+        }
+        .division-titulo:first-of-type {
+            margin-top: 0;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .card-hover {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        .spinner {
+            border: 4px solid rgba(0,0,0,0.1);
+            border-left-color: #1a56db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .dark .tabla-posiciones th {
+            background-color: #1e293b;
+        }
+        .dark .tabla-posiciones tr:hover td {
+            background-color: #1e293b;
+        }
+        .dark .division-titulo {
+            background: linear-gradient(to right, #1e293b, #334155);
+            color: #e2e8f0;
+        }
+        /* Toggle modo oscuro */
+        .theme-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+        .theme-toggle input {
+            display: none;
+        }
+        .theme-toggle .slider {
+            width: 40px;
+            height: 22px;
+            background: #cbd5e1;
+            border-radius: 999px;
+            position: relative;
+            transition: background 0.3s;
+        }
+        .theme-toggle .slider::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        .dark .theme-toggle .slider {
+            background: #1a56db;
+        }
+        .dark .theme-toggle .slider::after {
+            transform: translateX(18px);
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gris font-sans min-h-screen transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200">
 
-<!-- ===== HEADER ===== -->
-<header>
-    <div class="container">
-        <div class="logo">
-            <i class="fas fa-utensils"></i>
-            Cocina<span>EnCasa</span>
+    <!-- Cabecera con modo oscuro -->
+    <header class="bg-mlbAzul text-white py-3 px-4 sticky top-0 z-50 shadow-lg transition-colors dark:bg-gray-800">
+        <div class="max-w-xl mx-auto flex items-center justify-between">
+            <h1 class="font-bold text-xl tracking-wide flex items-center gap-2">
+                <span class="text-2xl">⚾</span> SportVivo360 <span class="text-sm opacity-80 font-normal">MLB</span>
+            </h1>
+            <div class="flex items-center gap-4">
+                <nav class="hidden sm:flex gap-5 text-sm font-medium">
+                    <a href="#" class="hover:text-blue-300 transition">Resultados</a>
+                    <a href="#" class="hover:text-blue-300 transition">Noticias</a>
+                    <a href="#" class="hover:text-blue-300 transition">Posiciones</a>
+                    <a href="#" class="hover:text-blue-300 transition">Estadísticas</a>
+                    <a href="#" class="hover:text-blue-300 transition">Videos</a>
+                </nav>
+                <!-- Toggle modo oscuro -->
+                <label class="theme-toggle" title="Cambiar tema">
+                    <span class="text-sm hidden sm:inline">🌙</span>
+                    <input type="checkbox" id="themeCheckbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
-        <button class="menu-hamburguesa" id="menuHamburguesa" aria-label="Menú">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav class="menu-principal" id="menuPrincipal">
-            <a href="#" class="activo">Inicio</a>
-            <a href="#recetas">Todas las Recetas</a>
-            <a href="#videos">Videos</a>
-            <a href="#blog">Blog</a>
-        </nav>
-    </div>
-</header>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-    <div class="container">
-        <div class="estrellas">
-            ★★★★☆ <span>4.8/5 Estrellas por usuarios</span>
+        <div class="sm:hidden mt-2 flex justify-around text-xs border-t border-white/20 pt-2">
+            <a href="#">Resultados</a>
+            <a href="#">Noticias</a>
+            <a href="#">Posiciones</a>
+            <a href="#">Estadísticas</a>
+            <a href="#">Videos</a>
         </div>
-        <h1>Descubre los sabores del <span>mundo</span> sin salir de tu cocina</h1>
-        <p>Una colección cuidadosamente curada de recetas tradicionales para el cocinero apasionado.</p>
-        <div class="botones">
-            <a href="#recetas" class="btn btn-primario">Explorar recetas →</a>
-            <a href="#blog" class="btn btn-secundario">Ver blog →</a>
+    </header>
+
+    <main class="max-w-xl mx-auto px-3 py-4">
+        <!-- Indicador de estado -->
+        <div class="flex items-center justify-center gap-2 text-xs mb-4">
+            <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_#22c55e]"></span>
+            <span class="dark:text-gray-400">Actualizado • Lima (UTC‑5)</span>
         </div>
-        <div class="stats">
-            <div class="stat"><strong>18</strong> PAÍSES</div>
-            <div class="stat"><strong>126</strong> RECETAS</div>
-            <div class="stat"><strong>100%</strong> AUTÉNTICO</div>
-        </div>
-    </div>
-</section>
 
-<!-- ===== FILTROS ===== -->
-<section class="filtros-section" id="filtros">
-    <div class="container">
-        <input type="text" class="buscador" id="buscador" placeholder="Buscar por receta, ingrediente o..." />
-        <div class="paises" id="filtroPaises">
-            <!-- Botones generados por JS -->
-        </div>
-        <div class="tipo-tabs" id="tipoTabs">
-            <button class="tipo-tab activo" data-tipo="plato">Platos</button>
-            <button class="tipo-tab" data-tipo="postre">Postres</button>
-        </div>
-    </div>
-</section>
+        <section>
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📋 Resultados & En vivo</h2>
 
-<!-- ===== RECETAS ===== -->
-<section class="recetas-section" id="recetas">
-    <div class="container">
-        <div class="header-recetas">
-            <h2 id="tituloSeccion">🍽️ Platos principales</h2>
-            <span class="contador" id="contador">Mostrando 0 recetas</span>
-        </div>
-        <div class="grid-recetas" id="gridRecetas"></div>
-    </div>
-</section>
+            <!-- Selector de fechas mejorado -->
+            <div class="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 rounded-xl py-2 px-3 mb-6 border border-grisClaro dark:border-gray-700 shadow-sm">
+                <button onclick="cambiarFecha(-1)" class="text-lg px-3 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">‹</button>
+                <div id="selector-fechas" class="flex gap-2 text-sm font-medium"></div>
+                <button onclick="cambiarFecha(1)" class="text-lg px-3 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">›</button>
+            </div>
 
-<!-- ===== BLOG ===== -->
-<section class="blog-section" id="blog">
-    <div class="container">
-        <div class="blog-header">
-            <h2>📝 Blog</h2>
-            <a href="#">Ver todos →</a>
-        </div>
-        <div class="grid-blog" id="gridBlog"></div>
-    </div>
-</section>
+            <!-- Contenedor de partidos -->
+            <div id="lista-partidos" class="space-y-5 mb-10">
+                <!-- Spinner inicial -->
+                <div class="flex justify-center py-10">
+                    <div class="spinner"></div>
+                </div>
+            </div>
 
-<!-- ===== VIDEOS ===== -->
-<section class="videos-section" id="videos">
-    <div class="container">
-        <div class="videos-header">
-            <h2>🎥 Vídeos de Cocina del Mundo</h2>
-            <p>Aprende técnicas auténticas directamente de los expertos</p>
-        </div>
-        <div class="grid-videos" id="gridVideos"></div>
-    </div>
-</section>
+            <!-- ============================================================ -->
+            <!-- POSICIONES MANUALES (actualizadas al 19 de junio 2026)        -->
+            <!-- ============================================================ -->
+            <div class="space-y-6">
+                <!-- Liga Americana -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
+                    <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 Liga Americana</h3>
+                    <div class="overflow-x-auto">
 
-<!-- ===== MODAL ===== -->
-<div class="modal" id="modal">
-    <div class="modal-contenido">
-        <button class="cerrar" id="cerrarModal">&times;</button>
-        <img class="modal-imagen" id="modalImagen" src="" alt="" />
-        <h2 class="modal-titulo" id="modalTitulo"></h2>
-        <p class="modal-origen" id="modalOrigen"></p>
-        <p class="modal-descripcion" id="modalDescripcion"></p>
-        <a class="btn-video-modal" id="modalVideo" href="#" target="_blank"><i class="fab fa-youtube"></i> Ver video</a>
-        <h3>Ingredientes</h3>
-        <ul id="modalIngredientes"></ul>
-        <h3>Preparación</h3>
-        <ol id="modalPasos"></ol>
-    </div>
-</div>
+                        <!-- ESTE -->
+                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">ESTE</div>
+                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                            <thead><tr>
+                                <th class="text-left">Equipo</th>
+                                <th class="text-center">G</th>
+                                <th class="text-center">P</th>
+                                <th class="text-center">PCT</th>
+                                <th class="text-center">DIF</th>
+                                <th class="text-center">DIFWC</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>New York Yankees</td><td class="text-center">45</td><td class="text-center">28</td><td class="text-center">.616</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>Tampa Bay Rays</td><td class="text-center">41</td><td class="text-center">30</td><td class="text-center">.577</td><td class="text-center">3.0</td><td class="text-center">+1.0</td></tr>
+                                <tr><td>Toronto Blue Jays</td><td class="text-center">34</td><td class="text-center">38</td><td class="text-center">.472</td><td class="text-center">10.5</td><td class="text-center">6.5</td></tr>
+                                <tr><td>Baltimore Orioles</td><td class="text-center">34</td><td class="text-center">39</td><td class="text-center">.466</td><td class="text-center">11.0</td><td class="text-center">7.0</td></tr>
+                                <tr><td>Boston Red Sox</td><td class="text-center">29</td><td class="text-center">40</td><td class="text-center">.420</td><td class="text-center">14.0</td><td class="text-center">10.0</td></tr>
+                            </tbody>
+                        </table>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-    <div class="container">
-        <div>
-            <h4>🍽️ CocinaEnCasa</h4>
-            <p style="font-size:0.9rem; opacity:0.8;">Descubre los sabores del mundo sin salir de tu cocina.</p>
-        </div>
-        <div>
-            <h4>Enlaces</h4>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#recetas">Recetas</a></li>
-                <li><a href="#videos">Videos</a></li>
-                <li><a href="#blog">Blog</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>Países</h4>
-            <ul id="footerPaises"></ul>
-        </div>
-        <div class="copy">Made with Replit · © 2026 CocinaEnCasa</div>
-    </div>
-</footer>
+                        <!-- CENTRAL -->
+                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">CENTRAL</div>
+                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                            <thead><tr>
+                                <th class="text-left">Equipo</th>
+                                <th class="text-center">G</th>
+                                <th class="text-center">P</th>
+                                <th class="text-center">PCT</th>
+                                <th class="text-center">DIF</th>
+                                <th class="text-center">DIFWC</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Chicago White Sox</td><td class="text-center">38</td><td class="text-center">32</td><td class="text-center">.543</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>Cleveland Guardians</td><td class="text-center">39</td><td class="text-center">33</td><td class="text-center">.542</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>Minnesota Twins</td><td class="text-center">34</td><td class="text-center">40</td><td class="text-center">.459</td><td class="text-center">6.0</td><td class="text-center">3.0</td></tr>
+                                <tr><td>Detroit Tigers</td><td class="text-center">30</td><td class="text-center">42</td><td class="text-center">.417</td><td class="text-center">9.0</td><td class="text-center">6.0</td></tr>
+                                <tr><td>Kansas City Royals</td><td class="text-center">29</td><td class="text-center">44</td><td class="text-center">.397</td><td class="text-center">10.5</td><td class="text-center">7.5</td></tr>
+                            </tbody>
+                        </table>
 
-<script>
-    // ================================================================
-    // 1. DATOS DE RECETAS (PLATOS Y POSTRES) - 126 recetas reales
-    // ================================================================
+                        <!-- OESTE -->
+                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">OESTE</div>
+                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                            <thead><tr>
+                                <th class="text-left">Equipo</th>
+                                <th class="text-center">G</th>
+                                <th class="text-center">P</th>
+                                <th class="text-center">PCT</th>
+                                <th class="text-center">DIF</th>
+                                <th class="text-center">DIFWC</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Seattle Mariners</td><td class="text-center">37</td><td class="text-center">36</td><td class="text-center">.507</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>Athletics</td><td class="text-center">36</td><td class="text-center">36</td><td class="text-center">.500</td><td class="text-center">0.5</td><td class="text-center">-</td></tr>
+                                <tr><td>Texas Rangers</td><td class="text-center">35</td><td class="text-center">37</td><td class="text-center">.486</td><td class="text-center">1.5</td><td class="text-center">1.0</td></tr>
+                                <tr><td>Houston Astros</td><td class="text-center">33</td><td class="text-center">41</td><td class="text-center">.446</td><td class="text-center">4.5</td><td class="text-center">4.0</td></tr>
+                                <tr><td>Los Angeles Angels</td><td class="text-center">29</td><td class="text-center">44</td><td class="text-center">.397</td><td class="text-center">8.0</td><td class="text-center">7.5</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    // PLATOS (7 por país, 18 países = 126 platos)
-    const platosData = {
-        "Argentina": [
-            { nombre: "Empanadas salteñas", desc: "Rellenas de carne, papa y cebolla con comino.", ingredientes: ["Masa para empanadas", "Carne de res picada 500g", "Cebolla 2 unidades", "Papa 1 unidad", "Comino 1 cucharadita", "Huevo duro 2 unidades", "Aceitunas verdes"], preparacion: ["Sofreír cebolla y carne con comino.", "Agregar papa cocida en cubos.", "Rellenar las empanadas y hornear a 200°C por 20 min."] },
-            { nombre: "Locro", desc: "Guiso de maíz, porotos y carnes.", ingredientes: ["Maíz blanco 300g", "Porotos blancos 200g", "Carne de cerdo 400g", "Chorizo 200g", "Calabaza 300g"], preparacion: ["Remojar maíz y porotos la noche anterior.", "Cocer con carnes 2 horas.", "Agregar calabaza y cocinar 30 min más."] },
-            { nombre: "Asado con chimichurri", desc: "Parrillada de carnes con chimichurri.", ingredientes: ["Tira de asado 1kg", "Chorizo 4 unidades", "Morcilla 2 unidades", "Sal gruesa", "Chimichurri"], preparacion: ["Encender el fuego y esperar brasas.", "Asar la carne a fuego lento 45 min.", "Servir con chimichurri."] },
-            { nombre: "Milanesa napolitana", desc: "Filete empanado con salsa, jamón y queso.", ingredientes: ["Filete de carne 4 unidades", "Pan rallado 200g", "Huevos 2 unidades", "Salsa de tomate 200ml", "Jamón 4 lonchas", "Queso mozzarella 200g"], preparacion: ["Empanar los filetes en huevo y pan rallado.", "Freír en aceite caliente.", "Cubrir con salsa, jamón y queso. Gratinar 5 min."] },
-            { nombre: "Choripán", desc: "Chorizo asado en pan con salsa criolla.", ingredientes: ["Chorizo 4 unidades", "Pan francés 4 unidades", "Salsa criolla (cebolla, tomate, vinagre)"], preparacion: ["Asar los chorizos a la parrilla.", "Abrir el pan y colocar el chorizo.", "Agregar salsa criolla al gusto."] },
-            { nombre: "Dulce de leche", desc: "Crema de leche y azúcar cocida lentamente.", ingredientes: ["Leche 2 litros", "Azúcar 500g", "Bicarbonato de sodio 1 cucharadita", "Esencia de vainilla"], preparacion: ["Mezclar todos los ingredientes en una olla.", "Cocinar a fuego bajo, revolviendo constantemente.", "Cocer hasta obtener una consistencia espesa."] },
-            { nombre: "Alfajores de maicena", desc: "Galletas rellenas con dulce de leche.", ingredientes: ["Harina de maicena 250g", "Harina de trigo 150g", "Manteca 200g", "Azúcar 150g", "Dulce de leche 200g", "Coco rallado"], preparacion: ["Mezclar manteca con azúcar hasta cremar.", "Agregar las harinas y formar una masa.", "Hornear las galletas y rellenar con dulce de leche."] }
-        ],
-        "Bolivia": [
-            { nombre: "Salteñas", desc: "Empanadas jugosas con pollo o carne.", ingredientes: ["Masa para empanadas", "Pollo 500g", "Papa 2 unidades", "Arvejas 100g", "Cebolla 1 unidad", "Huevo duro 2 unidades", "Azúcar 2 cucharadas"], preparacion: ["Cocinar el pollo y desmenuzar.", "Mezclar con papa, arvejas y cebolla.", "Rellenar, agregar el jugo y hornear 25 min."] },
-            { nombre: "Pique macho", desc: "Lomo salteado con chorizo y papas fritas.", ingredientes: ["Lomo de res 500g", "Chorizo 2 unidades", "Cebolla 1 unidad", "Tomate 2 unidades", "Papas fritas 300g", "Huevo duro 3 unidades"], preparacion: ["Dorar la carne en tiras con cebolla.", "Agregar chorizo, tomate y especias.", "Servir sobre papas fritas con huevo."] },
-            { nombre: "Silpancho", desc: "Carne empanizada sobre arroz y papas.", ingredientes: ["Carne de res 500g", "Pan rallado 200g", "Huevo 2 unidades", "Arroz 200g", "Papa 3 unidades", "Cebolla y tomate para salsa"], preparacion: ["Aplanar la carne, empanar y freír.", "Cocer arroz y freír papas.", "Servir con huevo frito encima."] },
-            { nombre: "Fricase", desc: "Sopa de pollo con choclo y papa.", ingredientes: ["Pollo 1kg", "Choclo 300g", "Papa 3 unidades", "Cebolla 1 unidad", "Ajo 2 dientes"], preparacion: ["Cocer el pollo en agua con cebolla y ajo.", "Agregar choclo y papa.", "Cocinar 30 min y servir."] },
-            { nombre: "Anticuchos", desc: "Corazón de res marinado en brochetas.", ingredientes: ["Corazón de res 1kg", "Ají panca molido 4 cucharadas", "Vinagre 1/4 taza", "Comino 1 cucharadita"], preparacion: ["Marinar el corazón en ají y vinagre 4 horas.", "Ensartar en brochetas.", "Asar a la parrilla 10 min."] },
-            { nombre: "Api", desc: "Bebida caliente de maíz morado.", ingredientes: ["Maíz morado 500g", "Canela 2 ramas", "Clavo de olor 3 unidades", "Azúcar al gusto", "Piña (opcional)"], preparacion: ["Cocer el maíz con especias en 2 litros de agua.", "Licuar y colar.", "Servir caliente con azúcar."] },
-            { nombre: "Buñuelos", desc: "Masa frita espolvoreada con azúcar.", ingredientes: ["Harina de trigo 300g", "Huevo 1 unidad", "Leche 200ml", "Polvo de hornear 1 cucharadita", "Azúcar"], preparacion: ["Mezclar harina, huevo, leche y polvo de hornear.", "Freír cucharadas de masa en aceite caliente.", "Espolvorear con azúcar."] }
-        ],
-        "Brasil": [
-            { nombre: "Feijoada", desc: "Guiso de frijoles negros con carnes.", ingredientes: ["Frijoles negros 500g", "Carne de cerdo 400g", "Chorizo 300g", "Cebolla 1 unidad", "Ajo 3 dientes", "Arroz blanco para acompañar"], preparacion: ["Remojar frijoles 12 horas.", "Cocer con carnes 2 horas.", "Servir con arroz y naranja."] },
-            { nombre: "Moqueca baiana", desc: "Pescado en leche de coco y aceite de dendê.", ingredientes: ["Pescado blanco 500g", "Camarones 300g", "Leche de coco 250ml", "Aceite de dendê 2 cucharadas", "Cebolla 2 unidades", "Tomate 3 unidades"], preparacion: ["Sofreír cebolla y tomate.", "Agregar pescado y camarones.", "Incorporar leche de coco y cocinar 20 min."] },
-            { nombre: "Pão de queijo", desc: "Panecillos de almidón de yuca y queso.", ingredientes: ["Almidón de yuca 500g", "Queso rallado 300g", "Leche 250ml", "Huevo 2 unidades", "Aceite 100ml"], preparacion: ["Mezclar todos los ingredientes.", "Formar bolitas.", "Hornear a 180°C por 25 min."] },
-            { nombre: "Churrasco", desc: "Carnes asadas a la parrilla con farofa.", ingredientes: ["Picanha 1.5kg", "Sal gruesa", "Farofa (harina de mandioca)"], preparacion: ["Asar la carne a la parrilla con sal gruesa.", "Servir con farofa."] },
-            { nombre: "Acarajé", desc: "Bola de frijol frito rellena de camarones.", ingredientes: ["Frijol carita 500g", "Cebolla 1 unidad", "Aceite de dendê para freír", "Camarones secos 200g", "Vatapá"], preparacion: ["Remojar frijoles y triturar.", "Freír bolitas de masa en aceite de dendê.", "Rellenar con vatapá y camarones."] },
-            { nombre: "Brigadeiro", desc: "Trufa de leche condensada y chocolate.", ingredientes: ["Leche condensada 1 lata", "Cacao en polvo 3 cucharadas", "Mantequilla 1 cucharada", "Granillo de chocolate"], preparacion: ["Cocinar leche condensada con cacao y mantequilla.", "Cocer hasta despegar de la olla.", "Hacer bolitas y pasar por granillo."] },
-            { nombre: "Caipirinha", desc: "Cóctel de cachaça, lima y azúcar.", ingredientes: ["Cachaça 50ml", "Lima 1 unidad", "Azúcar 2 cucharadas"], preparacion: ["Cortar la lima y machacar con azúcar.", "Agregar hielo y cachaça.", "Servir."] }
-        ],
-        "Chile": [
-            { nombre: "Pastel de choclo", desc: "Pastel de maíz con relleno de carne.", ingredientes: ["Choclo 8 unidades", "Carne molida 500g", "Cebolla 2 unidades", "Huevo duro 3 unidades", "Aceitunas", "Azúcar para espolvorear"], preparacion: ["Sofreír carne con cebolla.", "Licuar choclo con leche.", "Armar en fuente y hornear 40 min."] },
-            { nombre: "Empanadas de pino", desc: "Rellenas de carne, cebolla y aceitunas.", ingredientes: ["Carne molida 500g", "Cebolla 2 unidades", "Comino 1 cucharadita", "Aceitunas", "Huevo duro 2 unidades", "Masa para empanadas"], preparacion: ["Sofreír carne con cebolla y comino.", "Rellenar las empanadas y hornear 25 min."] },
-            { nombre: "Cazuela de vacuno", desc: "Sopa de carne, zapallo y choclo.", ingredientes: ["Carne de res con hueso 500g", "Papa 3 unidades", "Zapallo 200g", "Choclo 2 unidades", "Arroz 1/2 taza"], preparacion: ["Cocer la carne con verduras.", "Agregar papas, zapallo y choclo.", "Cocinar 30 min y servir."] },
-            { nombre: "Completos", desc: "Hot dog con palta, tomate y mayonesa.", ingredientes: ["Pan de completo 4 unidades", "Vienesa 4 unidades", "Palta 2 unidades", "Tomate 2 unidades", "Mayonesa", "Chucrut (opcional)"], preparacion: ["Cocer las vienesas.", "Calentar los panes.", "Armar con todos los ingredientes."] },
-            { nombre: "Caldillo de congrio", desc: "Sopa de congrio con verduras.", ingredientes: ["Congrio 1kg", "Cebolla 2 unidades", "Zanahoria 2 unidades", "Papa 3 unidades", "Vino blanco 1 vaso"], preparacion: ["Sofreír verduras en aceite.", "Agregar vino y el congrio.", "Cocinar 20 min y servir."] },
-            { nombre: "Humitas", desc: "Masa de choclo envuelta en hojas de maíz.", ingredientes: ["Choclo 6 unidades", "Cebolla 1 unidad", "Albahaca", "Hojas de maíz"], preparacion: ["Moler el choclo con cebolla y albahaca.", "Envolver en hojas de maíz.", "Cocer en agua 30 min."] },
-            { nombre: "Mote con huesillo", desc: "Bebida de duraznos secos con trigo.", ingredientes: ["Huesillos (duraznos secos) 500g", "Mote (trigo pelado) 300g", "Azúcar", "Canela"], preparacion: ["Cocer los huesillos con azúcar y canela.", "Cocer el mote por separado.", "Mezclar y servir frío."] }
-        ],
-        "Colombia": [
-            { nombre: "Bandeja paisa", desc: "Plato abundante con frijoles, carnes y arroz.", ingredientes: ["Frijoles rojos 300g", "Carne molida 300g", "Chicharrón 300g", "Arroz blanco", "Huevo 4 unidades", "Plátano maduro", "Arepa"], preparacion: ["Cocer frijoles con condimentos.", "Freír chicharrón, plátano y huevos.", "Servir todos los componentes juntos."] },
-            { nombre: "Ajiaco santafereño", desc: "Sopa de pollo con tres papas y guascas.", ingredientes: ["Pollo 1kg", "Papa criolla 500g", "Papa sabanera 500g", "Papa pastusa 500g", "Guascas 2 cucharadas", "Mazorca 2 unidades"], preparacion: ["Cocer el pollo en agua con sal.", "Agregar las papas y la mazorca.", "Añadir guascas y cocinar 15 min más."] },
-            { nombre: "Sancocho", desc: "Sopa de gallina con yuca y plátano.", ingredientes: ["Gallina 1kg", "Yuca 500g", "Plátano verde 3 unidades", "Maíz 2 unidades", "Cebolla 1 unidad"], preparacion: ["Cocer la gallina en abundante agua.", "Agregar yuca, plátano y maíz.", "Cocinar 40 min y servir."] },
-            { nombre: "Arepas", desc: "Pan de maíz relleno al gusto.", ingredientes: ["Harina de maíz precocida 2 tazas", "Agua 2.5 tazas", "Sal 1 cucharadita", "Aceite"], preparacion: ["Mezclar harina con agua y sal.", "Formar discos y cocinar en plancha.", "Rellenar al gusto."] },
-            { nombre: "Patacones", desc: "Plátano verde frito dos veces.", ingredientes: ["Plátano verde 4 unidades", "Sal", "Aceite para freír"], preparacion: ["Pelar y cortar los plátanos en rodajas.", "Freír ligeramente.", "Aplastar y freír nuevamente."] },
-            { nombre: "Lechona", desc: "Cerdo relleno con arroz y especias.", ingredientes: ["Cerdo entero o pierna 5kg", "Arroz 1kg", "Cebolla 3 unidades", "Arvejas 300g", "Especias"], preparacion: ["Rellenar el cerdo con arroz y especias.", "Cocer en horno 5 horas.", "Servir con arepas."] },
-            { nombre: "Obleas", desc: "Galletas rellenas de arequipe y queso.", ingredientes: ["Harina de trigo 300g", "Huevo 2 unidades", "Azúcar 100g", "Arequipe (dulce de leche)", "Queso rallado"], preparacion: ["Preparar masa con harina, huevo y azúcar.", "Cocer en oblera.", "Rellenar con arequipe y queso."] }
-        ],
-        "Ecuador": [
-            { nombre: "Encebollado", desc: "Sopa de pescado con yuca y cebolla.", ingredientes: ["Pescado 1kg (albacora)", "Yuca 1kg", "Cebolla morada 2 unidades", "Cilantro", "Limón"], preparacion: ["Cocer el pescado con condimentos.", "Agregar yuca y cocinar 30 min.", "Servir con cebolla curtida y limón."] },
-            { nombre: "Llapingachos", desc: "Tortillas de papa rellenas de queso.", ingredientes: ["Papa 6 unidades", "Queso fresco 200g", "Cebolla 1 unidad", "Achiote", "Chorizo o huevo para acompañar"], preparacion: ["Cocer y hacer puré de papas.", "Sofreír cebolla con achiote.", "Formar tortitas rellenas de queso y dorar."] },
-            { nombre: "Fanesca", desc: "Sopa de granos y bacalao para Semana Santa.", ingredientes: ["Bacalao seco 500g", "Granos variados (habas, arvejas, garbanzos)", "Zapallo 200g", "Maní 100g", "Leche 500ml"], preparacion: ["Remojar bacalao 24 horas.", "Cocer todos los granos.", "Mezclar con bacalao, zapallo y leche."] },
-            { nombre: "Hornado", desc: "Cerdo asado con choclo y papas.", ingredientes: ["Cerdo (pierna) 2kg", "Ajo 4 dientes", "Cebolla 2 unidades", "Choclo", "Papas"], preparacion: ["Marinar el cerdo con ajo y cebolla.", "Asar en horno 3 horas.", "Servir con choclo y papas."] },
-            { nombre: "Ceviche ecuatoriano", desc: "Camarones en jugo de naranja y limón.", ingredientes: ["Camarones 500g", "Naranja agria 1 taza", "Limón 1 taza", "Cebolla morada 2 unidades", "Tomate 2 unidades"], preparacion: ["Cocer los camarones en agua con sal.", "Mezclar con jugo de naranja y limón.", "Agregar cebolla y tomate."] },
-            { nombre: "Cuy asado", desc: "Conejillo de indias asado.", ingredientes: ["Cuy 1 unidad", "Ajo 2 dientes", "Cebolla 1 unidad", "Especias"], preparacion: ["Limpiar y marinar el cuy.", "Asar en horno 1 hora.", "Servir con papas."] },
-            { nombre: "Colada morada", desc: "Bebida espesa de frutos rojos y maíz.", ingredientes: ["Maíz morado 500g", "Frutos rojos (mora, fresa)", "Canela", "Clavo", "Azúcar"], preparacion: ["Cocer el maíz con especias.", "Licuar y colar.", "Agregar frutos rojos y azúcar."] }
-        ],
-        "Estados Unidos": [
-            { nombre: "Fried Chicken", desc: "Pollo frito crujiente y jugoso.", ingredientes: ["Pollo 1.5kg", "Suero de leche 2 tazas", "Harina 2 tazas", "Pimentón 1 cucharada", "Ajo en polvo 1 cucharadita", "Aceite para freír"], preparacion: ["Marinar pollo en suero de leche 4 horas.", "Rebozar en harina con especias.", "Freír en aceite caliente 15 min."] },
-            { nombre: "Apple Pie", desc: "Pastel de manzana especiado.", ingredientes: ["Manzanas 5 unidades", "Azúcar 3/4 taza", "Canela 1 cucharadita", "Masa para pastel 2 discos", "Mantequilla"], preparacion: ["Pelar y cortar manzanas.", "Mezclar con azúcar y canela.", "Cubrir con masa y hornear 50 min."] },
-            { nombre: "Cheeseburger", desc: "Hamburguesa con queso y vegetales.", ingredientes: ["Carne molida 500g", "Queso cheddar 4 lonchas", "Pan de hamburguesa 4 unidades", "Lechuga, tomate, pepinillos"], preparacion: ["Formar hamburguesas y sazonar.", "Cocinar en plancha 4 min por lado.", "Armar con queso y vegetales."] },
-            { nombre: "Buffalo Wings", desc: "Alitas de pollo con salsa picante.", ingredientes: ["Alitas de pollo 24 unidades", "Harina 1 taza", "Mantequilla 100g", "Salsa picante 1/2 taza", "Vinagre 1 cucharada"], preparacion: ["Rebozar alitas en harina.", "Freír en aceite 10 min.", "Bañar en salsa de mantequilla y picante."] },
-            { nombre: "New York Cheesecake", desc: "Tarta de queso cremosa estilo NY.", ingredientes: ["Queso crema 900g", "Azúcar 250g", "Huevo 4 unidades", "Crema agria 1/2 taza", "Galletas Graham 200g", "Mantequilla 100g"], preparacion: ["Hacer base con galletas y mantequilla.", "Batir queso crema con azúcar y huevos.", "Hornear a baño María 60 min."] },
-            { nombre: "Barbecue Ribs", desc: "Costillas con salsa barbacoa.", ingredientes: ["Costillas de cerdo 2 racks", "Paprika 1/4 taza", "Azúcar moreno 2 cucharadas", "Salsa barbacoa"], preparacion: ["Sazonar costillas con especias.", "Hornear envueltas en papel 2.5 horas.", "Bañar con salsa y gratinar."] },
-            { nombre: "Boston Cream Pie", desc: "Pastel con crema pastelera y chocolate.", ingredientes: ["Harina 210g", "Mantequilla 120g", "Azúcar 200g", "Huevo 2 unidades", "Crema pastelera", "Chocolate para cubrir"], preparacion: ["Hornear bizcocho a 180°C 35 min.", "Rellenar con crema pastelera.", "Cubrir con ganache de chocolate."] }
-        ],
-        "México": [
-            { nombre: "Mole poblano", desc: "Salsa de chiles con chocolate.", ingredientes: ["Chiles anchos 8 unidades", "Chiles mulatos 6 unidades", "Chocolate 100g", "Pollo 1kg", "Ajonjolí", "Almendras", "Pasas"], preparacion: ["Tostar chiles y remojar.", "Licuar con chocolate y especias.", "Cocer con pollo 30 min."] },
-            { nombre: "Chiles en nogada", desc: "Chiles rellenos con salsa de nuez.", ingredientes: ["Chile poblano 10 unidades", "Carne de cerdo 1kg", "Manzana, pera, durazno", "Nuez de Castilla 1.5 tazas", "Crema 2.5 tazas", "Granada"], preparacion: ["Asar y pelar chiles.", "Rellenar con carne y frutas.", "Bañar con salsa de nuez y decorar."] },
-            { nombre: "Pozole rojo", desc: "Caldo de maíz con carne de cerdo.", ingredientes: ["Maíz cacahuazintle 1.5kg", "Carne de cerdo 1kg", "Chiles guajillo 12 unidades", "Chiles ancho 4 unidades"], preparacion: ["Cocer maíz y carne 3 horas.", "Licuar chiles con condimentos.", "Integrar y cocinar 30 min más."] },
-            { nombre: "Flautas ahogadas", desc: "Tortillas enrolladas bañadas en salsa.", ingredientes: ["Tortillas de maíz 12 unidades", "Pollo 500g", "Tomatillo 500g", "Chiles serranos 2 unidades", "Crema y queso"], preparacion: ["Rellenar tortillas con pollo y enrollar.", "Freír hasta dorar.", "Bañar con salsa y decorar."] },
-            { nombre: "Guacamole", desc: "Crema de aguacate con vegetales.", ingredientes: ["Aguacate 4 unidades", "Cebolla 1/2 unidad", "Tomate 1 unidad", "Cilantro", "Limón", "Chile serrano"], preparacion: ["Machacar aguacate con tenedor.", "Mezclar con cebolla, tomate y cilantro.", "Añadir limón y chile."] },
-            { nombre: "Tamales", desc: "Masa de maíz rellena envuelta en hojas.", ingredientes: ["Masa de maíz 1kg", "Manteca 300g", "Pollo o cerdo 500g", "Salsa roja o verde", "Hojas de maíz"], preparacion: ["Batir manteca con masa.", "Colocar masa y relleno en hojas.", "Cocer al vapor 1 hora."] },
-            { nombre: "Churros", desc: "Masa frita con azúcar y canela.", ingredientes: ["Harina 300g", "Agua 300ml", "Sal 1 pizca", "Aceite para freír", "Azúcar y canela"], preparacion: ["Hervir agua con sal.", "Agregar harina y mezclar.", "Freír churros y espolvorear."] }
-        ],
-        "Perú": [
-            { nombre: "Ceviche", desc: "Pescado en jugo de limón con ají.", ingredientes: ["Pescado blanco 500g", "Limón 12 unidades", "Cebolla morada 1 unidad", "Ají limo 2 unidades", "Cilantro", "Camote y choclo"], preparacion: ["Cortar pescado en cubos.", "Cubrir con jugo de limón.", "Agregar cebolla, ají y cilantro. Reposar 10 min."] },
-            { nombre: "Lomo saltado", desc: "Tiras de res con cebolla y tomate.", ingredientes: ["Lomo fino 500g", "Cebolla 2 unidades", "Tomate 2 unidades", "Sillao (salsa de soja) 3 cucharadas", "Ají amarillo 1 unidad", "Papas fritas"], preparacion: ["Sellar la carne en wok caliente.", "Agregar cebolla, tomate y ají.", "Incorporar sillao y servir con papas."] },
-            { nombre: "Ají de gallina", desc: "Gallina en crema de ají y leche.", ingredientes: ["Pollo 1kg", "Ají amarillo 6 unidades", "Pan de molde 4 rebanadas", "Leche evaporada 500ml", "Nueces 50g", "Queso parmesano 2 cucharadas"], preparacion: ["Cocer y desmenuzar pollo.", "Sofreír ají con cebolla y ajo.", "Licuar con pan, leche y nueces.", "Mezclar con el pollo y cocinar a fuego bajo."] },
-            { nombre: "Papa a la Huancaína", desc: "Papas con salsa de ají amarillo y queso.", ingredientes: ["Papas 6 unidades", "Ají amarillo 3 unidades", "Queso fresco 200g", "Leche evaporada 100ml", "Galletas saladas 4 unidades", "Aceite", "Huevo duro para decorar"], preparacion: ["Cocer papas y pelarlas.", "Licuar ají con queso, leche y galletas.", "Bañar las papas con la salsa."] },
-            { nombre: "Causa limeña", desc: "Pastel de papa con pollo o atún.", ingredientes: ["Papa amarilla 1kg", "Ají amarillo 2 unidades", "Limón 2 unidades", "Pollo desmenuzado 500g", "Mayonesa", "Aceitunas"], preparacion: ["Cocer y hacer puré de papa con ají y limón.", "Colocar capas de puré y pollo.", "Decorar con aceitunas."] },
-            { nombre: "Anticuchos", desc: "Corazón de res marinado en brochetas.", ingredientes: ["Corazón de res 1kg", "Ají panca molido 4 cucharadas", "Vinagre 1/4 taza", "Comino 1 cucharadita"], preparacion: ["Marinar el corazón en ají y vinagre 4 horas.", "Ensartar en brochetas.", "Asar a la parrilla 10 min."] },
-            { nombre: "Rocoto relleno", desc: "Rocotos rellenos de carne y queso.", ingredientes: ["Rocotos 4 unidades", "Carne molida 500g", "Cebolla 1 unidad", "Queso 200g", "Huevo duro 2 unidades", "Leche"], preparacion: ["Quitar las venas a los rocotos.", "Sofreír carne con cebolla.", "Rellenar los rocotos y hornear con queso."] }
-        ],
-        "Venezuela": [
-            { nombre: "Arepa", desc: "Pan de maíz relleno con diversos ingredientes.", ingredientes: ["Harina de maíz precocida 2 tazas", "Agua 2.5 tazas", "Sal 1 cucharadita", "Aceite"], preparacion: ["Mezclar harina con agua y sal.", "Formar discos y cocinar en plancha.", "Rellenar al gusto."] },
-            { nombre: "Pabellón Criollo", desc: "Arroz, carne mechada, caraotas y plátano frito.", ingredientes: ["Arroz blanco", "Carne de res 500g", "Caraotas negras 300g", "Plátano maduro 2 unidades", "Cebolla, ajo, comino"], preparacion: ["Cocer las caraotas.", "Cocer y desmenuzar la carne.", "Freír el plátano.", "Servir todos los componentes juntos."] },
-            { nombre: "Hallaca", desc: "Tamal navideño relleno de carne y vegetales.", ingredientes: ["Masa de maíz", "Carne de cerdo y res", "Cebolla, ajo, pimentón", "Alcaparras, aceitunas", "Pasas", "Hojas de plátano"], preparacion: ["Preparar el guiso de carnes.", "Estirar la masa sobre hojas de plátano.", "Colocar el relleno y envolver.", "Cocer en agua hirviendo 1 hora."] },
-            { nombre: "Cachapa", desc: "Tortita de maíz tierno rellena de queso.", ingredientes: ["Maíz tierno 6 unidades", "Leche 1/2 taza", "Azúcar 2 cucharadas", "Sal", "Queso de mano para rellenar"], preparacion: ["Licuar el maíz con leche y azúcar.", "Cocinar porciones en sartén.", "Rellenar con queso."] },
-            { nombre: "Tequeño", desc: "Palito de queso envuelto en masa y frito.", ingredientes: ["Harina de trigo 300g", "Mantequilla 100g", "Queso blanco en barra", "Sal"], preparacion: ["Preparar la masa.", "Cortar el queso en palitos.", "Envolver el queso en tiras de masa.", "Freír en aceite caliente."] },
-            { nombre: "Asado Negro", desc: "Carne de res cocinada con papelón y especias.", ingredientes: ["Carne de res (falda) 1.5kg", "Papelón 200g", "Cebolla 2 unidades", "Ajo 4 dientes", "Comino", "Vino tinto"], preparacion: ["Sellar la carne.", "Sofreír cebolla y ajo.", "Agregar papelón y vino.", "Cocinar a fuego lento 2 horas."] },
-            { nombre: "Pastel de Chucho", desc: "Pastel salado de plátano verde y carne.", ingredientes: ["Plátano verde 6 unidades", "Carne molida 500g", "Cebolla 1 unidad", "Tomate 2 unidades", "Queso 200g"], preparacion: ["Cocer y hacer puré de plátanos.", "Sofreír carne con cebolla y tomate.", "Armar capas de puré y carne.", "Hornear con queso."] }
-        ],
-        "Canadá": [
-            { nombre: "Poutine", desc: "Patatas fritas con queso y salsa gravy.", ingredientes: ["Patatas fritas 500g", "Queso en trozos (cheddar o curds)", "Salsa gravy"], preparacion: ["Freír las patatas.", "Colocar el queso sobre las patatas.", "Cubrir con salsa gravy caliente."] },
-            { nombre: "Tourtière", desc: "Pastel de carne típico de Quebec.", ingredientes: ["Carne de cerdo y res 500g", "Cebolla 1 unidad", "Papa 1 unidad", "Especias", "Masa para pastel"], preparacion: ["Sofreír carnes con cebolla y papa.", "Forrar un molde con masa.", "Rellenar y cubrir con otra capa de masa.", "Hornear a 190°C 45 min."] },
-            { nombre: "Montreal Bagel", desc: "Bagel estilo Montreal, más dulce y compacto.", ingredientes: ["Harina 500g", "Azúcar 2 cucharadas", "Miel 1 cucharada", "Levadura", "Agua", "Sésamo o amapola"], preparacion: ["Amasar todos los ingredientes.", "Formar anillos y hervir en agua con miel.", "Hornear a 200°C con semillas."] },
-            { nombre: "Bannock", desc: "Pan frito o al horno de origen indígena.", ingredientes: ["Harina 300g", "Polvo de hornear 1 cucharadita", "Sal", "Agua", "Aceite"], preparacion: ["Mezclar ingredientes secos.", "Agregar agua y formar masa.", "Freír o cocinar en sartén."] },
-            { nombre: "Jiggs Dinner", desc: "Comida tradicional de Newfoundland: carnes y verduras.", ingredientes: ["Carne de res o pollo", "Papas, zanahorias, nabos", "Repollo", "Pudín de guisantes"], preparacion: ["Cocer todas las carnes y verduras en una olla.", "Servir con pudín de guisantes."] },
-            { nombre: "Nanaimo Bars (salado)", desc: "Barra dulce con base de chocolate y coco, capa de crema y cobertura de chocolate.", ingredientes: ["Base: galletas Graham, coco, nueces, cacao, mantequilla", "Capa: mantequilla, azúcar glas, leche, vainilla", "Cobertura: chocolate"], preparacion: ["Mezclar base y presionar en molde.", "Batir capa y extender.", "Derretir chocolate y cubrir.", "Refrigerar y cortar."] },
-            { nombre: "Peameal Bacon Sandwich", desc: "Sándwich de tocino de maíz (peameal) con panecillo.", ingredientes: ["Peameal bacon (tocino curado)", "Panecillo kaiser", "Mostaza o mayonesa"], preparacion: ["Cocinar el tocino en sartén.", "Calentar el pan.", "Armar el sándwich."] }
-        ],
-        "Reino Unido": [
-            { nombre: "Fish and Chips", desc: "Pescado rebozado con patatas fritas.", ingredientes: ["Pescado blanco 4 filetes", "Harina 200g", "Cerveza 200ml", "Levadura", "Sal", "Patatas para freír"], preparacion: ["Preparar la masa de rebozado con harina, cerveza y levadura.", "Rebozar el pescado y freír.", "Cortar patatas en bastones y freír.", "Servir con sal y vinagre."] },
-            { nombre: "Sunday Roast", desc: "Asado dominical con carnes y verduras.", ingredientes: ["Carne asada (res, cordero o pollo)", "Papas 4 unidades", "Zanahorias 3 unidades", "Cebolla 1 unidad", "Gravis"], preparacion: ["Asar la carne en el horno.", "Cocer papas y verduras.", "Preparar la salsa con el jugo de la carne.", "Servir todo junto."] },
-            { nombre: "Shepherd's Pie", desc: "Pastel de cordero con puré de papa.", ingredientes: ["Carne de cordero molida 500g", "Cebolla 1 unidad", "Zanahoria 1 unidad", "Puré de papas 1kg", "Mantequilla"], preparacion: ["Sofreír carne con cebolla y zanahoria.", "Colocar en un molde.", "Cubrir con puré de papas.", "Hornear a 200°C 30 min."] },
-            { nombre: "Full English Breakfast", desc: "Desayuno inglés completo: huevos, tocino, salchichas, etc.", ingredientes: ["Huevos 2 unidades", "Tocino 2 lonchas", "Salchichas 2 unidades", "Frijoles horneados", "Tomate 1 unidad", "Pan"], preparacion: ["Freír tocino, salchichas, huevos y tomate.", "Calentar los frijoles.", "Tostar el pan.", "Servir todo en un plato."] },
-            { nombre: "Cornish Pasty", desc: "Empanada de carne y vegetales típica de Cornualles.", ingredientes: ["Carne de res 400g", "Papa 1 unidad", "Nabo 1 unidad", "Cebolla 1 unidad", "Masa para empanada"], preparacion: ["Cortar carnes y verduras en cubos.", "Rellenar la masa y sellar.", "Hornear a 180°C 45 min."] },
-            { nombre: "Yorkshire Pudding", desc: "Pudín salado hecho de harina, huevos y leche.", ingredientes: ["Harina 200g", "Huevos 3 unidades", "Leche 300ml", "Sal", "Aceite o manteca"], preparacion: ["Batir todos los ingredientes.", "Calentar el aceite en moldes para muffins.", "Verter la mezcla y hornear a 200°C 20 min."] },
-            { nombre: "Toad in the Hole", desc: "Salchichas cocidas en masa de Yorkshire.", ingredientes: ["Salchichas 6 unidades", "Harina 200g", "Huevos 3 unidades", "Leche 300ml", "Sal"], preparacion: ["Preparar la masa de Yorkshire.", "Colocar las salchichas en un molde.", "Verter la masa sobre las salchichas.", "Hornear a 200°C 30 min."] }
-        ],
-        "España": [
-            { nombre: "Paella", desc: "Arroz con mariscos, pollo o conejo.", ingredientes: ["Arroz bomba 400g", "Pollo 300g", "Conejo 300g", "Judías verdes 100g", "Tomate 2 unidades", "Azafrán", "Caldo de pescado o carne"], preparacion: ["Sofreír carnes y verduras en una paellera.", "Agregar arroz y caldo.", "Cocinar a fuego medio 20 min.", "Dejar reposar 5 min."] },
-            { nombre: "Tortilla Española", desc: "Tortilla de patatas y cebolla.", ingredientes: ["Patatas 500g", "Cebolla 1 unidad", "Huevos 6 unidades", "Aceite de oliva", "Sal"], preparacion: ["Cortar patatas y cebolla en rodajas.", "Pochar en aceite hasta que estén tiernas.", "Batir huevos y mezclar con las patatas.", "Cocer la tortilla en la sartén."] },
-            { nombre: "Jamón Ibérico", desc: "Jamón curado de cerdo ibérico.", ingredientes: ["Pata de jamón ibérico", "Sal"], preparacion: ["Curar el jamón con sal durante varios meses.", "Cortar en lonchas finas al momento de servir."] },
-            { nombre: "Gazpacho", desc: "Sopa fría de tomate y vegetales.", ingredientes: ["Tomates 6 unidades", "Pepino 1 unidad", "Pimiento verde 1 unidad", "Ajo 1 diente", "Pan 1 rebanada", "Aceite de oliva", "Vinagre"], preparacion: ["Triturar todos los ingredientes.", "Aliñar con aceite y vinagre.", "Servir bien frío."] },
-            { nombre: "Pulpo a la Gallega", desc: "Pulpo cocido con pimentón y aceite.", ingredientes: ["Pulpo 1kg", "Patatas 3 unidades", "Pimentón dulce", "Aceite de oliva", "Sal"], preparacion: ["Cocer el pulpo en agua hirviendo.", "Cocer las patatas.", "Cortar el pulpo y colocar sobre las patatas.", "Espolvorear con pimentón y aceite."] },
-            { nombre: "Fabada Asturiana", desc: "Estofado de fabes con chorizo y morcilla.", ingredientes: ["Fabes (judías blancas) 500g", "Chorizo 2 unidades", "Morcilla 2 unidades", "Panceta 100g", "Cebolla 1 unidad"], preparacion: ["Remojar fabes la noche anterior.", "Cocer con carnes y cebolla 2 horas."] },
-            { nombre: "Cocido Madrileño", desc: "Sopa de garbanzos con carnes y verduras.", ingredientes: ["Garbanzos 500g", "Carne de res y cerdo", "Chorizo 2 unidades", "Papa 3 unidades", "Zanahoria 2 unidades", "Repollo"], preparacion: ["Cocer garbanzos con carnes.", "Agregar verduras.", "Cocinar hasta que todo esté tierno."] }
-        ],
-        "Francia": [
-            { nombre: "Ratatouille", desc: "Estofado de verduras provenzal.", ingredientes: ["Berenjena 1 unidad", "Calabacín 1 unidad", "Pimiento 1 unidad", "Tomate 4 unidades", "Cebolla 1 unidad", "Ajo 2 dientes", "Hierbas provenzales"], preparacion: ["Cortar verduras en rodajas.", "Saltear cebolla y ajo.", "Agregar verduras y tomate.", "Cocinar a fuego lento 40 min."] },
-            { nombre: "Bœuf Bourguignon", desc: "Estofado de res con vino tinto.", ingredientes: ["Carne de res 1kg", "Vino tinto 750ml", "Cebolla 2 unidades", "Zanahoria 2 unidades", "Champiñones", "Tocino"], preparacion: ["Marinar la carne en vino.", "Sellar la carne.", "Agregar verduras y vino.", "Cocinar a fuego lento 2 horas."] },
-            { nombre: "Quiche Lorraine", desc: "Tarta salada de huevos y tocino.", ingredientes: ["Masa quebrada", "Huevos 4 unidades", "Crema de leche 200ml", "Tocino 200g", "Queso gruyère 100g", "Sal, pimienta"], preparacion: ["Forrar molde con masa.", "Sofreír tocino.", "Batir huevos con crema y queso.", "Verter sobre la masa y hornear a 180°C 30 min."] },
-            { nombre: "Cassoulet", desc: "Estofado de alubias con carnes.", ingredientes: ["Alubias blancas 500g", "Carne de cerdo 400g", "Chorizo 2 unidades", "Panceta 200g", "Cebolla 1 unidad"], preparacion: ["Remojar alubias.", "Cocer con carnes y cebolla 2 horas."] },
-            { nombre: "Confit de Canard", desc: "Pato confitado en su grasa.", ingredientes: ["Muslos de pato 4 unidades", "Sal", "Ajo", "Tomillo", "Grasa de pato"], preparacion: ["Salar los muslos y refrigerar 24h.", "Cubrir con grasa de pato y cocinar a fuego lento."] },
-            { nombre: "Pot-au-Feu", desc: "Sopa de carne y verduras.", ingredientes: ["Carne de res y huesos", "Papa 3 unidades", "Zanahoria 3 unidades", "Nabo 2 unidades", "Cebolla 1 unidad"], preparacion: ["Cocer la carne en agua.", "Agregar verduras.", "Cocinar hasta que estén tiernas."] },
-            { nombre: "Croque Monsieur", desc: "Sándwich caliente de jamón y queso.", ingredientes: ["Pan de molde 4 rebanadas", "Jamón 4 lonchas", "Queso gruyère 200g", "Mantequilla", "Bechamel"], preparacion: ["Untar bechamel en el pan.", "Colocar jamón y queso.", "Cubrir con otra rebanada.", "Dorar en sartén con mantequilla."] }
-        ],
-        "Alemania": [
-            { nombre: "Bratwurst", desc: "Salchicha asada típica alemana.", ingredientes: ["Salchichas Bratwurst", "Panecillos", "Mostaza"], preparacion: ["Asar las salchichas en parrilla.", "Colocar en panecillos.", "Servir con mostaza."] },
-            { nombre: "Sauerkraut", desc: "Col fermentada, acompañamiento típico.", ingredientes: ["Col 1kg", "Sal", "Comino", "Manzana (opcional)"], preparacion: ["Cortar col fina.", "Mezclar con sal y dejar fermentar.", "Cocinar lentamente con comino."] },
-            { nombre: "Schnitzel", desc: "Filete empanado y frito.", ingredientes: ["Filete de cerdo o ternera 4 unidades", "Pan rallado", "Huevos", "Harina", "Aceite"], preparacion: ["Aplastar los filetes.", "Pasar por harina, huevo y pan rallado.", "Freír en aceite caliente."] },
-            { nombre: "Currywurst", desc: "Salchicha con salsa de curry.", ingredientes: ["Salchicha Bratwurst", "Salsa de tomate", "Curry en polvo"], preparacion: ["Asar la salchicha.", "Cubrir con salsa de tomate y curry."] },
-            { nombre: "Käsespätzle", desc: "Pasta de huevo con queso gratinada.", ingredientes: ["Harina 400g", "Huevos 4 unidades", "Agua", "Queso Emmental 300g", "Cebolla frita"], preparacion: ["Hacer la masa y pasar por un prensador.", "Cocer en agua.", "Alternar capas de pasta con queso.", "Gratinar con cebolla frita."] },
-            { nombre: "Rouladen", desc: "Rollos de carne rellenos.", ingredientes: ["Carne de res en lonchas finas", "Mostaza", "Tocino", "Cebolla", "Pepinillos"], preparacion: ["Untar mostaza en la carne.", "Colocar tocino, cebolla y pepinillos.", "Enrollar y sujetar.", "Dorar y cocinar en caldo."] },
-            { nombre: "Eisbein", desc: "Codillo de cerdo asado.", ingredientes: ["Codillo de cerdo 1.5kg", "Sal", "Comino", "Cerveza"], preparacion: ["Salar el codillo.", "Asar en horno con cerveza.", "Servir con sauerkraut."] }
-        ],
-        "China": [
-            { nombre: "Pato Pekín", desc: "Pato asado con salsa hoisin.", ingredientes: ["Pato 1.5kg", "Salsa hoisin", "Cebolletas", "Tortillas de harina"], preparacion: ["Asar el pato hasta que la piel esté crujiente.", "Cortar en lonchas.", "Servir con salsa hoisin, cebolleta y tortillas."] },
-            { nombre: "Arroz Frito", desc: "Arroz salteado con vegetales y huevo.", ingredientes: ["Arroz cocido 2 tazas", "Huevo 1 unidad", "Zanahoria 1 unidad", "Guisantes 50g", "Salsa de soja"], preparacion: ["Saltear vegetales.", "Agregar arroz y salsa de soja.", "Añadir huevo revuelto."] },
-            { nombre: "Ternera con Brócoli", desc: "Ternera salteada con brócoli en salsa.", ingredientes: ["Ternera 400g", "Brócoli 300g", "Salsa de soja", "Jengibre", "Ajo"], preparacion: ["Marinar la carne.", "Saltear la carne.", "Agregar brócoli y salsa."] },
-            { nombre: "Sopa de Wonton", desc: "Sopa con dumplings de cerdo.", ingredientes: ["Wontons (masa rellena de cerdo)", "Caldo de pollo", "Cebolleta"], preparacion: ["Cocer los wontons en caldo.", "Servir con cebolleta."] },
-            { nombre: "Pollo Kung Pao", desc: "Pollo picante con cacahuetes.", ingredientes: ["Pollo 500g", "Cacahuetes 100g", "Chiles secos", "Salsa de soja", "Vinagre"], preparacion: ["Saltear pollo.", "Agregar chiles, cacahuetes y salsa."] },
-            { nombre: "Cerdo Agridulce", desc: "Cerdo frito con salsa agridulce.", ingredientes: ["Cerdo 500g", "Piña 200g", "Pimiento 1 unidad", "Salsa agridulce"], preparacion: ["Freír el cerdo.", "Saltear con piña y pimiento.", "Agregar salsa agridulce."] },
-            { nombre: "Dumplings", desc: "Bolitas de masa rellenas al vapor.", ingredientes: ["Masa para dumplings", "Cerdo picado 300g", "Col", "Jengibre", "Salsa de soja"], preparacion: ["Hacer masa y rellenar.", "Cocer al vapor 10 min."] }
-        ],
-        "Japón": [
-            { nombre: "Sushi", desc: "Arroz con pescado crudo y algas.", ingredientes: ["Arroz para sushi", "Pescado (salmón, atún)", "Alga nori", "Vinagre de arroz", "Wasabi"], preparacion: ["Cocer y sazonar el arroz.", "Cortar el pescado.", "Armar los rollos o nigiris."] },
-            { nombre: "Ramen", desc: "Sopa de fideos con caldo y toppings.", ingredientes: ["Fideos ramen", "Caldo de cerdo o pollo", "Cerdo chashu", "Huevo", "Cebolleta", "Alga nori"], preparacion: ["Preparar el caldo.", "Cocer los fideos.", "Servir con toppings."] },
-            { nombre: "Tempura", desc: "Pescado y verduras rebozados y fritos.", ingredientes: ["Pescado o gambas", "Verduras (calabacín, pimiento)", "Harina para tempura", "Agua fría"], preparacion: ["Mezclar harina con agua fría.", "Rebozar los ingredientes.", "Freír en aceite caliente."] },
-            { nombre: "Yakitori", desc: "Brochetas de pollo a la parrilla.", ingredientes: ["Pollo (muslo y pechuga)", "Cebolleta", "Salsa tare"], preparacion: ["Ensartar el pollo en brochetas.", "Asar a la parrilla.", "Bañar con salsa tare."] },
-            { nombre: "Gyudon", desc: "Arroz con carne de res y cebolla.", ingredientes: ["Arroz blanco", "Carne de res en láminas", "Cebolla 1 unidad", "Salsa de soja", "Mirin", "Caldo"], preparacion: ["Sofreír cebolla y carne.", "Agregar salsa y caldo.", "Servir sobre arroz."] },
-            { nombre: "Tonkatsu", desc: "Chuleta de cerdo empanada y frita.", ingredientes: ["Chuleta de cerdo 4 unidades", "Pan rallado", "Huevos", "Harina", "Aceite"], preparacion: ["Aplastar la carne.", "Pasar por harina, huevo y pan rallado.", "Freír en aceite."] },
-            { nombre: "Okonomiyaki", desc: "Tortilla japonesa con varios ingredientes.", ingredientes: ["Harina 200g", "Huevo 2 unidades", "Agua", "Col 1/2 unidad", "Carne o marisco", "Salsa okonomiyaki"], preparacion: ["Mezclar harina, huevo y agua.", "Agregar col y carne.", "Cocinar en sartén.", "Bañar con salsa."] }
-        ]
-    };
+                <!-- Liga Nacional -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
+                    <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 Liga Nacional</h3>
+                    <div class="overflow-x-auto">
 
-    // POSTRES (126 recetas - ya las teníamos)
-    const postresData = {
-        "Argentina": [
-            { name: "Chocotorta", ingredients: ["400 g de dulce de leche", "400 g de crema de leche", "750 g de galletitas de chocolate", "Café frío"], steps: ["Mezclar dulce de leche con crema.", "Mojar galletitas en café.", "Alternar capas.", "Refrigerar 4 horas."] },
-            { name: "Pastelitos Criollos", ingredients: ["500 g de harina", "100 g de manteca", "250 cc de agua", "Jugo de limón", "Dulce de membrillo"], steps: ["Formar masa.", "Estirar y cortar cuadrados.", "Rellenar con membrillo.", "Freír hasta dorar."] },
-            { name: "Alfajores de Maicena", ingredients: ["300 g de maicena", "200 g de harina", "200 g de manteca", "150 g de azúcar", "4 yemas", "Bicarbonato", "Polvo de hornear", "Vainilla", "Dulce de leche", "Coco rallado"], steps: ["Batir manteca con azúcar.", "Agregar yemas y vainilla.", "Incorporar harinas.", "Hornear discos y rellenar."] },
-            { name: "Milhojas de Dulce de Leche", ingredients: ["250 g de harina", "5 g de sal", "125 ml de agua", "200 g de manteca", "400 g de dulce de leche"], steps: ["Hacer masa y reposar.", "Estirar con manteca para hojaldre.", "Hornear capas.", "Armar milhojas."] }
-        ],
-        "Venezuela": [
-            { name: "Quesillo", ingredients: ["5 huevos", "1 lata de leche condensada", "395 ml de leche", "Vainilla", "Azúcar para caramelo"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María.", "Desmoldar frío."] },
-            { name: "Bienmesabe de Coco", ingredients: ["Bizcocho: 1.5 tazas de azúcar, 10 huevos, 1.5 tazas de harina", "500 g de coco rallado", "400 g de leche condensada", "250 ml de leche de coco", "200 ml de leche", "100 g de azúcar", "Vainilla"], steps: ["Hornear bizcocho.", "Hacer crema de coco.", "Bañar bizcocho.", "Decorar con merengue."] },
-            { name: "Torta Bejarana", ingredients: ["9 plátanos maduros", "300 g de pan rallado", "250 g de papelón", "2-3 huevos", "Bicarbonato", "Queso blanco", "Canela", "Ajonjolí"], steps: ["Moler plátanos con papelón.", "Mezclar con pan, huevos, queso y especias.", "Hornear 180°C.", "Decorar con ajonjolí."] },
-            { name: "Dulce de Lechosa", ingredients: ["2 kg de papaya verde", "800 g de papelón", "200 g de azúcar", "Bicarbonato", "Clavos y canela"], steps: ["Pelar y cortar papaya.", "Hervir con bicarbonato.", "Cocinar en almíbar.", "Enfriar y servir."] }
-        ],
-        "Ecuador": [
-            { name: "Pristiños con Miel", ingredients: ["425 g de harina", "Azúcar", "Polvo de hornear", "Sal", "2 huevos", "Mantequilla", "Agua de anís", "Panela para miel"], steps: ["Mezclar secos.", "Agregar huevos y mantequilla.", "Freír masa.", "Bañar con miel."] },
-            { name: "Quimbolitos", ingredients: ["2 tazas de harina de maíz", "3 huevos", "1 taza de leche", "1 taza de azúcar", "½ taza de mantequilla", "Polvo de hornear", "Vainilla", "Queso", "Hojas de achira"], steps: ["Mezclar harina y polvo.", "Batir huevos con azúcar, leche y mantequilla.", "Incorporar secos.", "Envolver en hojas y cocer al vapor."] },
-            { name: "Quesillo de Leche y Huevo", ingredients: ["1 lata de leche condensada", "1 medida de leche", "5 huevos", "Vainilla", "Caramelo"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María.", "Desmoldar."] },
-            { name: "Dulce de Sambo", ingredients: ["Pulpa de sambo", "Panela", "Canela", "Clavo"], steps: ["Cortar sambo.", "Cocinar con panela y especias.", "Espesar y servir frío."] }
-        ],
-        "Colombia": [
-            { name: "Natilla Colombiana", ingredients: ["1 litro de leche", "200 g de panela", "100 g de maicena", "Canela", "Coco (opcional)"], steps: ["Disolver panela en leche.", "Disolver maicena en leche fría.", "Cocinar hasta espesar.", "Enfriar y espolvorear canela."] },
-            { name: "Plátanos Calados", ingredients: ["2-3 plátanos maduros", "40 g de panela", "Mantequilla", "Aceite", "Agua", "Canela y clavos"], steps: ["Pelar y cortar plátanos.", "Hacer almíbar.", "Cocinar plátanos en almíbar.", "Servir tibios."] },
-            { name: "Enyucado", ingredients: ["1 kg de yuca rallada", "1.5 tazas de queso", "1 taza de azúcar", "¾ taza de coco", "Mantequilla", "Anís", "Hojas de plátano"], steps: ["Mezclar todos los ingredientes.", "Envolver en hojas.", "Hornear 180°C 30-40 min.", "Servir tibio."] },
-            { name: "Pastel Gloria", ingredients: ["Masa de hojaldre", "Pasta de guayaba", "Queso", "Huevo", "Azúcar"], steps: ["Extender masa.", "Colocar guayaba y queso.", "Cerrar y pintar con huevo.", "Espolvorear azúcar y hornear."] }
-        ],
-        "Brasil": [
-            { name: "Brigadeiro", ingredients: ["1 lata de leche condensada", "2 cdas de cacao", "1 cda de mantequilla", "Granillo de chocolate"], steps: ["Cocinar ingredientes hasta despegar.", "Dejar enfriar.", "Hacer bolitas y rebozar."] },
-            { name: "Quindim", ingredients: ["6 yemas", "150 g de azúcar", "60 g de coco", "120 g de leche de coco", "Mantequilla"], steps: ["Mezclar todo.", "Verter en moldes caramelizados.", "Hornear a baño María.", "Desmoldar frío."] },
-            { name: "Pudim de Leite Condensado", ingredients: ["1 lata de leche condensada", "2 medidas de leche", "3 huevos", "Caramelo"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María.", "Desmoldar."] },
-            { name: "Bolo de Cenoura", ingredients: ["3 zanahorias", "3 huevos", "1 taza de aceite", "2 tazas de azúcar", "2 tazas de harina", "1 cda de polvo de hornear", "Cobertura: chocolate y crema"], steps: ["Licuar zanahorias con huevos y aceite.", "Mezclar con secos.", "Hornear 180°C 40 min.", "Bañar con ganache."] }
-        ],
-        "Estados Unidos": [
-            { name: "Apple Pie", ingredients: ["Masa: 300g harina, 150g mantequilla, 75g azúcar, 1 huevo", "Relleno: 750g manzanas, 100g azúcar moreno, canela, nuez moscada"], steps: ["Preparar masa.", "Mezclar manzanas con azúcar y canela.", "Rellenar y cubrir.", "Hornear 180°C 40-45 min."] },
-            { name: "New York Cheesecake", ingredients: ["Base: 200g galletas Graham, 100g mantequilla", "Relleno: 900g queso crema, 300g azúcar, 200ml crema agria, 4 huevos, 3 cdas harina"], steps: ["Hacer base.", "Batir queso crema con azúcar, huevos, crema y harina.", "Hornear a baño María 160°C 1 hora.", "Refrigerar."] },
-            { name: "Chocolate Chip Cookies", ingredients: ["115g mantequilla", "85g azúcar blanca", "85g azúcar moreno", "1 huevo", "150g harina", "½ cdta bicarbonato", "1 cdta vainilla", "200g chispas de chocolate"], steps: ["Batir mantequilla con azúcares.", "Añadir huevo y vainilla.", "Incorporar harina y bicarbonato.", "Agregar chispas y hornear 180°C 10-12 min."] },
-            { name: "S'mores", ingredients: ["Galletas Graham", "Chocolate", "Malvaviscos"], steps: ["Asar malvavisco.", "Colocar chocolate sobre galleta.", "Poner malvavisco encima.", "Tapar con otra galleta."] }
-        ],
-        "Canadá": [
-            { name: "Nanaimo Bars", ingredients: ["Base: 160g galletas, 3 cdas cacao, 100g coco, 50g nueces, 100g mantequilla", "Capa media: 150g mantequilla, 300g azúcar glas, 2 cdas leche, 1 cdta vainilla", "Cobertura: 150g chocolate"], steps: ["Hacer base y refrigerar.", "Batir capa media y extender.", "Verter chocolate derretido.", "Refrigerar y cortar."] },
-            { name: "Butter Tarts", ingredients: ["Masa: 190g harina, 160g mantequilla, 1 yema", "Relleno: ½ taza mantequilla derretida, ½ taza azúcar moreno, 1 huevo, 1 cdta vainilla, pasas"], steps: ["Forrar moldes con masa.", "Mezclar relleno.", "Verter y hornear 190°C 15-20 min."] },
-            { name: "Tarte au Sucre", ingredients: ["Masa quebrada", "460g azúcar moreno", "45g harina", "250ml crema de leche"], steps: ["Forrar molde.", "Mezclar azúcar, harina y crema.", "Verter y hornear 190°C 25-30 min."] },
-            { name: "Sugar Pie", ingredients: ["Masa quebrada", "1 taza azúcar moreno", "½ taza jarabe de arce", "1 taza crema de leche", "2 cdas harina"], steps: ["Forrar molde.", "Mezclar ingredientes.", "Verter y hornear 180°C 30-35 min."] }
-        ],
-        "Reino Unido": [
-            { name: "Budín de Pan y Mantequilla", ingredients: ["10 rebanadas de pan de brioche", "3 huevos", "350ml leche", "60ml nata", "Pasas", "Mantequilla", "Nuez moscada"], steps: ["Untar pan con mantequilla.", "Colocar en molde con pasas.", "Mezclar huevos, leche y nata.", "Verter y hornear 180°C."] },
-            { name: "Treacle Tart", ingredients: ["Masa: 250g harina, 125g mantequilla", "Relleno: 450g sirope dorado, 200g pan rallado, 2 huevos, zumo y ralladura de limón"], steps: ["Forrar molde.", "Mezclar sirope, pan, huevos y limón.", "Rellenar y hornear 180°C 30-35 min."] },
-            { name: "Simnel Cake", ingredients: ["250g harina", "200g mantequilla", "200g azúcar", "4 huevos", "250g frutas secas", "Especias", "Ralladura de cítricos", "500g mazapán"], steps: ["Batir mantequilla con azúcar.", "Añadir huevos, harina y frutas.", "Verter mitad de masa, capa de mazapán, resto.", "Hornear 160°C 1h 20min."] },
-            { name: "Welsh Cakes", ingredients: ["225g harina", "115g mantequilla", "75g azúcar", "1 huevo", "50g pasas", "Canela", "Levadura"], steps: ["Mezclar harina con mantequilla.", "Añadir azúcar, pasas, especias y huevo.", "Estirar y cortar discos.", "Cocinar en plancha hasta dorar."] }
-        ],
-        "España": [
-            { name: "Tarta de Santiago", ingredients: ["250g almendra molida", "250g azúcar", "5 huevos", "Ralladura de limón", "Azúcar glas"], steps: ["Mezclar almendra y azúcar.", "Añadir huevos y limón.", "Hornear 180°C 25-30 min.", "Espolvorear azúcar glas."] },
-            { name: "Crema Catalana", ingredients: ["1l leche", "8 yemas", "200g azúcar", "40g maicena", "Canela", "Cáscara de limón"], steps: ["Calentar leche con canela y limón.", "Batir yemas con azúcar y maicena.", "Verter leche caliente y cocinar hasta espesar.", "Enfriar y quemar azúcar."] },
-            { name: "Tocino de Cielo", ingredients: ["12 yemas", "500g azúcar", "500ml agua", "Caramelo"], steps: ["Caramelizar molde.", "Hacer almíbar con azúcar y agua.", "Batir yemas y verter almíbar.", "Hornear a baño María."] },
-            { name: "Flan de Queso", ingredients: ["200g queso crema", "1 lata leche condensada", "395ml leche", "4 huevos", "Vainilla"], steps: ["Caramelizar molde.", "Licuar ingredientes.", "Hornear a baño María 50 min.", "Desmoldar."] }
-        ],
-        "Francia": [
-            { name: "Flan Pâtissier", ingredients: ["Masa: 250g harina, 125g mantequilla, 50g azúcar glass, 1 huevo", "Relleno: 1l leche, 65g maicena, 150g azúcar, 4 huevos, vainilla"], steps: ["Forrar molde.", "Hacer crema pastelera.", "Verter sobre masa.", "Hornear 200°C 30-35 min."] },
-            { name: "Paris-Brest", ingredients: ["Masa choux: 250ml agua, 100g mantequilla, 150g harina, 4 huevos", "Relleno: 500ml crema pastelera con praliné"], steps: ["Hacer masa choux.", "Formar anillo y hornear.", "Rellenar con crema.", "Decorar con almendras."] },
-            { name: "Saint-Honoré", ingredients: ["Hojaldre", "Masa choux", "Crema pastelera", "Chantilly"], steps: ["Hornear hojaldre.", "Hacer profiteroles y hornear.", "Rellenar con crema.", "Montar en la base."] },
-            { name: "Macaron", ingredients: ["110g harina de almendras", "200g azúcar glas", "100g claras", "30g azúcar", "Colorante", "Relleno"], steps: ["Tamizar almendras con azúcar.", "Batir claras y añadir azúcar.", "Incorporar mezcla envolviendo.", "Formar discos, secar y hornear 150°C 12-15 min.", "Rellenar."] }
-        ],
-        "Alemania": [
-            { name: "Apfelstrudel", ingredients: ["Masa filo", "1kg manzanas", "75g azúcar", "1 cdta canela", "50g pasas", "50g pan rallado", "Mantequilla"], steps: ["Pelar y cortar manzanas.", "Mezclar con azúcar, canela y pasas.", "Estirar masa, pintar con mantequilla.", "Rellenar, enrollar y hornear 190°C 30-35 min."] },
-            { name: "Tarta Selva Negra", ingredients: ["Bizcocho: 5 huevos, 160g azúcar, 150g mantequilla, 50g cacao, 200g harina", "Relleno: 600g nata montada, 400g cerezas, 100ml kirsch", "Virutas de chocolate"], steps: ["Hornear bizcocho.", "Cortar en 3 capas y remojar con kirsch.", "Rellenar con nata y cerezas.", "Cubrir y decorar."] },
-            { name: "Stollen", ingredients: ["500g harina de fuerza", "150ml leche", "42g levadura", "70g azúcar", "200g mantequilla", "100g frutas confitadas", "100g pasas", "50g almendras", "200g mazapán", "Azúcar glas"], steps: ["Activar levadura.", "Mezclar con harina y demás.", "Amasar y dejar levar.", "Añadir mazapán y hornear 180°C 45 min.", "Espolvorear azúcar."] },
-            { name: "Gugelhupf", ingredients: ["500g harina", "200ml leche", "21g levadura", "100g azúcar", "150g mantequilla", "3 huevos", "100g pasas", "Ralladura de limón"], steps: ["Activar levadura.", "Mezclar todos los ingredientes.", "Verter en molde con chimenea y reposar.", "Hornear 180°C 40 min."] }
-        ],
-        "Perú": [
-            { name: "Suspiro a la Limeña", ingredients: ["Base: 200g leche evaporada, 200g leche condensada, 2 yemas", "Merengue: 2 claras, 150g azúcar, 80ml vino Oporto"], steps: ["Cocinar base.", "Hacer merengue con vino.", "Montar y gratinar."] },
-            { name: "Picarones", ingredients: ["300g camote cocido", "300g zapallo cocido", "500g harina", "10g levadura", "Miel de chancaca"], steps: ["Hacer puré.", "Mezclar con harina y levadura.", "Freír anillos.", "Bañar con miel."] },
-            { name: "Mazamorra Morada", ingredients: ["1kg maíz morado", "Agua", "Canela", "Clavo", "Cáscara de piña", "Manzana, membrillo", "Azúcar", "Harina de camote"], steps: ["Hervir maíz con especias.", "Colar.", "Añadir frutas y endulzar.", "Espesar y servir frío."] },
-            { name: "Arroz con Leche", ingredients: ["1 taza arroz", "3 tazas agua", "1 lata leche condensada", "1 lata leche evaporada", "Canela", "Clavo", "Cáscara de naranja"], steps: ["Cocinar arroz en agua con especias.", "Añadir leches y cocinar hasta espesar.", "Servir frío con canela."] }
-        ],
-        "China": [
-            { name: "Pastel de Luna", ingredients: ["Masa: harina, sirope dorado, aceite", "Relleno: pasta de semilla de loto y yema de huevo salado"], steps: ["Hacer masa.", "Rellenar con pasta y yema.", "Prensar en molde.", "Hornear 180°C 20 min + 10 min con huevo."] },
-            { name: "Tangyuan", ingredients: ["250g harina de arroz glutinoso", "Relleno: 80g sésamo negro, 80g azúcar, 60g mantequilla", "Agua para sopa"], steps: ["Tostar sésamo y mezclar.", "Hacer masa de arroz.", "Rellenar bolitas.", "Cocer en agua hirviendo y servir."] },
-            { name: "Nian Gao", ingredients: ["400g harina de arroz glutinoso", "⅔ taza azúcar moreno", "210ml agua hirviendo", "1 cda leche"], steps: ["Disolver azúcar en agua.", "Mezclar con harina y leche.", "Cocer al vapor 45 min.", "Cortar en rebanadas."] },
-            { name: "Jian Dui", ingredients: ["200g harina de arroz glutinoso", "50g azúcar", "150ml agua", "200g pasta de judías rojas", "Semillas de sésamo"], steps: ["Hacer masa.", "Rellenar con pasta.", "Rebozar en sésamo.", "Freír en aceite."] }
-        ],
-        "Japón": [
-            { name: "Mochi Daifuku", ingredients: ["130g harina de arroz glutinoso", "50g azúcar", "240ml agua", "Maicena", "200g anko"], steps: ["Mezclar y cocinar en microondas.", "Espolvorear maicena.", "Estirar y rellenar con anko."] },
-            { name: "Dorayaki", ingredients: ["2 huevos", "200g harina", "5g levadura", "15g azúcar", "60g miel", "Agua", "300g anko"], steps: ["Batir huevos con azúcar y miel.", "Agregar harina y levadura.", "Cocinar discos en sartén.", "Rellenar con anko."] },
-            { name: "Yokan", ingredients: ["200g anko", "400ml agua", "4g agar-agar", "80g azúcar"], steps: ["Disolver agar-agar en agua y hervir.", "Añadir azúcar y anko.", "Verter en molde y refrigerar."] },
-            { name: "Anmitsu", ingredients: ["Gelatina de kanten", "Frutas frescas", "Anko", "Gyūhi", "Kuromitsu"], steps: ["Preparar gelatina.", "Colocar en cuenco con frutas, anko y gyūhi.", "Servir con jarabe."] }
-        ],
-        "Chile": [
-            { name: "Mote con Huesillo", ingredients: ["1 taza mote", "6 huesillos", "1 taza azúcar", "4 tazas agua", "Canela", "Clavo"], steps: ["Remojar mote y huesillos.", "Cocer mote con especias.", "Hacer almíbar con huesillos.", "Mezclar y servir frío."] },
-            { name: "Alfajores Chilenos", ingredients: ["200g mantequilla", "100g azúcar flor", "2 yemas", "Vainilla", "200g harina", "100g maicena", "Manjar", "Coco"], steps: ["Batir mantequilla con azúcar.", "Añadir yemas y vainilla.", "Incorporar harinas.", "Hornear discos, rellenar con manjar y coco."] },
-            { name: "Torta Mil Hojas", ingredients: ["500g harina", "100g mantequilla", "6 yemas", "1 huevo", "90ml agua", "1kg manjar"], steps: ["Hacer masa y refrigerar.", "Estirar fina y hornear discos.", "Armar con manjar."] },
-            { name: "Leche Asada", ingredients: ["1l leche", "6 huevos", "200g azúcar", "Vainilla", "Canela", "Caramelo"], steps: ["Caramelizar molde.", "Batir huevos con leche y azúcar.", "Hornear a baño María 45 min.", "Espolvorear canela."] }
-        ]
-    };
+                        <!-- ESTE -->
+                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">ESTE</div>
+                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                            <thead><tr>
+                                <th class="text-left">Equipo</th>
+                                <th class="text-center">G</th>
+                                <th class="text-center">P</th>
+                                <th class="text-center">PCT</th>
+                                <th class="text-center">DIF</th>
+                                <th class="text-center">DIFWC</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Atlanta Braves</td><td class="text-center">46</td><td class="text-center">25</td><td class="text-center">.648</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>Philadelphia Phillies</td><td class="text-center">40</td><td class="text-center">34</td><td class="text-center">.541</td><td class="text-center">7.5</td><td class="text-center">+0.5</td></tr>
+                                <tr><td>Washington Nationals</td><td class="text-center">38</td><td class="text-center">37</td><td class="text-center">.507</td><td class="text-center">10.0</td><td class="text-center">2.0</td></tr>
+                                <tr><td>Miami Marlins</td><td class="text-center">36</td><td class="text-center">39</td><td class="text-center">.480</td><td class="text-center">12.0</td><td class="text-center">4.0</td></tr>
+                                <tr><td>New York Mets</td><td class="text-center">34</td><td class="text-center">41</td><td class="text-center">.453</td><td class="text-center">14.0</td><td class="text-center">6.0</td></tr>
+                            </tbody>
+                        </table>
 
-    // ================================================================
-    // 2. BLOG - ARTÍCULOS
-    // ================================================================
-    const articulosBlog = [
-        {
-            titulo: "Marroquíes: un viaje sensorial",
-            categoria: "Tradiciones",
-            fecha: "8 de junio de 2026",
-            autor: "Por Amina Boussouf",
-            descripcion: "Los zocos de Marrakech huelen a canela, comino, cilantro y ras el hanout. Aprende a usar estas especias en tu cocina.",
-            imagen: "https://picsum.photos/seed/marroqui/600/400"
-        },
-        {
-            titulo: "El umami: el quinto sabor que lo cambia todo",
-            categoria: "Ciencia culinaria",
-            fecha: "17 de mayo de 2026",
-            autor: "Por Kenji Tanaka",
-            descripcion: "El umami — ese sabor profundo y sabroso — es el secreto detrás de la cocina japonesa y muchos otros platos del mundo.",
-            imagen: "https://picsum.photos/seed/umami/600/400"
-        },
-        {
-            titulo: "El arte del asado argentino: fuego, paciencia y pasión",
-            categoria: "Tradiciones",
-            fecha: "8 de junio de 2026",
-            autor: "Por Gastón Herrera",
-            descripcion: "En Argentina, el asado es mucho más que una técnica culinaria — es un ritual social que une familias y amigos.",
-            imagen: "https://picsum.photos/seed/asado/600/400"
-        },
-        {
-            titulo: "Por qué la pasta italiana sabe diferente: los secretos de Italia",
-            categoria: "Gastronomía",
-            fecha: "1 de junio de 2026",
-            autor: "Por Marco Bellini",
-            descripcion: "La pasta italiana auténtica tiene poco que ver con lo que se come fuera de Italia. Descubre sus secretos.",
-            imagen: "https://picsum.photos/seed/pasta/600/400"
-        },
-        {
-            titulo: "Los secretos del ceviche peruano auténtico",
-            categoria: "Técnicas",
-            fecha: "15 de junio de 2026",
-            autor: "Por Chef Carlos Rivera",
-            descripcion: "El ceviche es mucho más que mezclar pescado con limón. Descubre los secretos que los chefs peruanos guardan con celo.",
-            imagen: "https://picsum.photos/seed/ceviche/600/400"
-        }
-    ];
+                        <!-- CENTRAL -->
+                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">CENTRAL</div>
+                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                            <thead><tr>
+                                <th class="text-left">Equipo</th>
+                                <th class="text-center">G</th>
+                                <th class="text-center">P</th>
+                                <th class="text-center">PCT</th>
+                                <th class="text-center">DIF</th>
+                                <th class="text-center">DIFWC</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Milwaukee Brewers</td><td class="text-center">45</td><td class="text-center">27</td><td class="text-center">.625</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>St. Louis Cardinals</td><td class="text-center">39</td><td class="text-center">34</td><td class="text-center">.534</td><td class="text-center">6.5</td><td class="text-center">+1.5</td></tr>
+                                <tr><td>Chicago Cubs</td><td class="text-center">38</td><td class="text-center">36</td><td class="text-center">.514</td><td class="text-center">8.0</td><td class="text-center">-</td></tr>
+                                <tr><td>Pittsburgh Pirates</td><td class="text-center">38</td><td class="text-center">37</td><td class="text-center">.507</td><td class="text-center">8.5</td><td class="text-center">0.5</td></tr>
+                                <tr><td>Cincinnati Reds</td><td class="text-center">35</td><td class="text-center">38</td><td class="text-center">.479</td><td class="text-center">10.5</td><td class="text-center">2.5</td></tr>
+                            </tbody>
+                        </table>
 
-    // ================================================================
-    // 3. VIDEOS (ejemplo)
-    // ================================================================
-    const videos = [
-        { titulo: "Ceviche Peruano Auténtico", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-        { titulo: "Empanadas Argentinas Perfectas", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-        { titulo: "Paella Valenciana Tradicional", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-        { titulo: "Mole Poblano Paso a Paso", canal: "CocinaEnCasa", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
-    ];
+                        <!-- OESTE -->
+                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">OESTE</div>
+                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                            <thead><tr>
+                                <th class="text-left">Equipo</th>
+                                <th class="text-center">G</th>
+                                <th class="text-center">P</th>
+                                <th class="text-center">PCT</th>
+                                <th class="text-center">DIF</th>
+                                <th class="text-center">DIFWC</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Los Angeles Dodgers</td><td class="text-center">44</td><td class="text-center">26</td><td class="text-center">.629</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+                                <tr><td>San Diego Padres</td><td class="text-center">38</td><td class="text-center">35</td><td class="text-center">.521</td><td class="text-center">7.5</td><td class="text-center">-</td></tr>
+                                <tr><td>San Francisco Giants</td><td class="text-center">37</td><td class="text-center">36</td><td class="text-center">.507</td><td class="text-center">8.5</td><td class="text-center">1.0</td></tr>
+                                <tr><td>Arizona Diamondbacks</td><td class="text-center">35</td><td class="text-center">39</td><td class="text-center">.473</td><td class="text-center">11.0</td><td class="text-center">3.5</td></tr>
+                                <tr><td>Colorado Rockies</td><td class="text-center">28</td><td class="text-center">47</td><td class="text-center">.373</td><td class="text-center">18.5</td><td class="text-center">11.0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-    // ================================================================
-    // 4. UNIFICAR TODAS LAS RECETAS
-    // ================================================================
-
-    // Convertir platos
-    const platosUnificados = [];
-    for (const pais in platosData) {
-        platosData[pais].forEach(receta => {
-            platosUnificados.push({
-                name: receta.nombre,
-                desc: receta.desc,
-                ingredients: receta.ingredientes,
-                steps: receta.preparacion,
-                pais: pais,
-                tipo: 'plato'
-            });
-        });
-    }
-
-    // Convertir postres
-    const postresUnificados = [];
-    for (const pais in postresData) {
-        postresData[pais].forEach(postre => {
-            postresUnificados.push({
-                name: postre.name,
-                desc: `Postre tradicional de ${pais}.`,
-                ingredients: postre.ingredients,
-                steps: postre.steps,
-                pais: pais,
-                tipo: 'postre'
-            });
-        });
-    }
-
-    const todasRecetas = [...platosUnificados, ...postresUnificados];
-
-    // Países ordenados (para los filtros)
-    const paisesOrdenados = [
-        "Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Ecuador",
-        "Estados Unidos", "México", "Perú", "Venezuela", "Canadá",
-        "Reino Unido", "España", "Francia", "Alemania", "China", "Japón"
-    ];
-
-    // ================================================================
-    // 5. LÓGICA DE FILTRADO Y RENDERIZADO
-    // ================================================================
-
-    let tipoActual = 'plato';
-    let paisActual = 'todos';  // 'todos' muestra 10 destacadas
-    let busquedaActual = '';
-
-    const grid = document.getElementById('gridRecetas');
-    const contador = document.getElementById('contador');
-    const tituloSeccion = document.getElementById('tituloSeccion');
-    const buscador = document.getElementById('buscador');
-    const filtroPaises = document.getElementById('filtroPaises');
-    const footerPaises = document.getElementById('footerPaises');
-
-    // Renderizar botones de países
-    function renderizarPaises() {
-        let html = `<button class="pais-btn activo" data-pais="todos">Todos</button>`;
-        paisesOrdenados.forEach(p => {
-            html += `<button class="pais-btn" data-pais="${p}">${p}</button>`;
-        });
-        filtroPaises.innerHTML = html;
-        footerPaises.innerHTML = paisesOrdenados.map(p => `<li>${p}</li>`).join('');
-    }
-
-    // Obtener recetas filtradas
-    function obtenerFiltradas() {
-        let filtradas = todasRecetas.filter(r => {
-            const coincideTipo = r.tipo === tipoActual;
-            const coincideBusqueda = r.name.toLowerCase().includes(busquedaActual.toLowerCase()) ||
-                                    r.desc.toLowerCase().includes(busquedaActual.toLowerCase());
-            return coincideTipo && coincideBusqueda;
-        });
-
-        // Si hay país seleccionado (no 'todos'), filtrar por país
-        if (paisActual !== 'todos') {
-            filtradas = filtradas.filter(r => r.pais === paisActual);
-        } else {
-            // Si 'todos', mostrar solo 10 destacadas (las primeras 10)
-            filtradas = filtradas.slice(0, 10);
-        }
-
-        return filtradas;
-    }
-
-    // Renderizar recetas
-    function renderizarRecetas() {
-        const filtradas = obtenerFiltradas();
-        contador.textContent = `Mostrando ${filtradas.length} recetas`;
-
-        if (filtradas.length === 0) {
-            grid.innerHTML = `<div class="sin-resultados"><i class="fas fa-search"></i>No se encontraron recetas</div>`;
-            return;
-        }
-
-        let html = '';
-        filtradas.forEach(r => {
-            const tipoEtiqueta = r.tipo === 'plato' ? 'PLATO' : 'POSTRE';
-            const imagen = `https://picsum.photos/seed/${r.name.replace(/\s/g, '')}/400/300`;
-            const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(r.name)}+receta`;
-            html += `
-                <div class="tarjeta" data-id="${r.name}">
-                    <img class="imagen-tarjeta" src="${imagen}" alt="${r.name}" loading="lazy" />
-                    <div class="info-tarjeta">
-                        <div class="pais-nombre">${r.pais.toUpperCase()} <span class="tipo-etiqueta">${tipoEtiqueta}</span></div>
-                        <h3>${r.name}</h3>
-                        <p>${r.desc}</p>
-                        <div class="acciones">
-                            <button class="btn-receta" onclick="abrirModal('${r.name}')">Ver receta</button>
-                            <a href="${video}" target="_blank" class="btn-video"><i class="fab fa-youtube"></i> Video</a>
+            <!-- ============================================================ -->
+            <!-- SECCIÓN DE VIDEOS DESTACADOS MEJORADA                         -->
+            <!-- ============================================================ -->
+            <div class="mt-10">
+                <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🎥 Destacados MLB</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Video 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 overflow-hidden card-hover transition-all">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/P5hOMfdFv8Y?si=_yl2u_0CiEAscwFq" title="MLB Highlights 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold dark:text-white">⚾ Resumen de la jornada</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Las mejores jugadas del día en la MLB.</p>
+                        </div>
+                    </div>
+                    <!-- Video 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 overflow-hidden card-hover transition-all">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/f5YBfDI-CnM?si=i3OMDqU2aEP7LdrM" title="MLB Highlights 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold dark:text-white">⚾ Mejores jugadas de la semana</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Los momentos más espectaculares de la semana.</p>
                         </div>
                     </div>
                 </div>
-            `;
-        });
-        grid.innerHTML = html;
-    }
+            </div>
 
-    // ================================================================
-    // 6. MODAL
-    // ================================================================
+        </section>
+    </main>
 
-    function abrirModal(nombre) {
-        const receta = todasRecetas.find(r => r.name === nombre);
-        if (!receta) return;
+    <!-- Footer mejorado -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-grisClaro dark:border-gray-700 py-6 mt-12 text-center text-xs">
+        <div class="max-w-xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>© 2026 <strong>SportVivo360</strong> • Datos MLB API pública</p>
+            <p class="text-gray-500 dark:text-gray-400">Posiciones manuales actualizadas al 19/06/2026</p>
+            <div class="flex gap-4 text-gray-500 dark:text-gray-400">
+                <a href="#" class="hover:text-azul transition">Twitter</a>
+                <a href="#" class="hover:text-azul transition">Instagram</a>
+                <a href="#" class="hover:text-azul transition">YouTube</a>
+            </div>
+        </div>
+    </footer>
 
-        const imagen = `https://picsum.photos/seed/${receta.name.replace(/\s/g, '')}/800/600`;
-        const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(receta.name)}+receta`;
-
-        document.getElementById('modalImagen').src = imagen;
-        document.getElementById('modalTitulo').textContent = receta.name;
-        document.getElementById('modalOrigen').textContent = `${receta.pais} · ${receta.tipo === 'plato' ? 'Plato principal' : 'Postre'}`;
-        document.getElementById('modalDescripcion').textContent = receta.desc;
-        document.getElementById('modalVideo').href = video;
-
-        const ingredientes = document.getElementById('modalIngredientes');
-        ingredientes.innerHTML = receta.ingredients.map(i => `<li>${i}</li>`).join('');
-
-        const pasos = document.getElementById('modalPasos');
-        pasos.innerHTML = receta.steps.map((p, idx) => `<li>${p}</li>`).join('');
-
-        document.getElementById('modal').classList.add('active');
-    }
-
-    document.getElementById('cerrarModal').addEventListener('click', () => {
-        document.getElementById('modal').classList.remove('active');
-    });
-    document.getElementById('modal').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-            document.getElementById('modal').classList.remove('active');
+    <script>
+        // ============================================================
+        //  MODO OSCURO
+        // ============================================================
+        const themeCheckbox = document.getElementById('themeCheckbox');
+        // Cargar preferencia guardada
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            themeCheckbox.checked = true;
         }
-    });
-
-    // ================================================================
-    // 7. EVENTOS
-    // ================================================================
-
-    // Pestañas de tipo (Platos / Postres)
-    document.querySelectorAll('.tipo-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.tipo-tab').forEach(b => b.classList.remove('activo'));
-            btn.classList.add('activo');
-            tipoActual = btn.dataset.tipo;
-            tituloSeccion.textContent = tipoActual === 'plato' ? '🍽️ Platos principales' : '🍰 Postres del mundo';
-            renderizarRecetas();
+        themeCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
         });
-    });
 
-    // Filtro países
-    filtroPaises.addEventListener('click', (e) => {
-        const btn = e.target.closest('.pais-btn');
-        if (!btn) return;
-        document.querySelectorAll('.pais-btn').forEach(b => b.classList.remove('activo'));
-        btn.classList.add('activo');
-        paisActual = btn.dataset.pais;
-        renderizarRecetas();
-    });
+        // ============================================================
+        //  CONFIGURACIÓN – PARTIDOS EN VIVO (API)
+        // ============================================================
+        const ZONA_LIMA = 'America/Lima';
 
-    // Buscador
-    buscador.addEventListener('input', (e) => {
-        busquedaActual = e.target.value;
-        renderizarRecetas();
-    });
+        function hoyLima() {
+            const hoy = new Date();
+            const fechaStr = hoy.toLocaleDateString('en-CA', { timeZone: ZONA_LIMA });
+            return new Date(fechaStr + 'T00:00:00');
+        }
 
-    // Menú hamburguesa
-    document.getElementById('menuHamburguesa').addEventListener('click', () => {
-        document.getElementById('menuPrincipal').classList.toggle('abierto');
-    });
+        let fechaActual = hoyLima();
 
-    // ================================================================
-    // 8. RENDERIZAR BLOG Y VIDEOS
-    // ================================================================
+        function iso(d) { return d.toISOString().split('T')[0]; }
 
-    // Blog
-    function renderizarBlog() {
-        const gridBlog = document.getElementById('gridBlog');
-        let html = '';
-        articulosBlog.forEach(a => {
-            html += `
-                <div class="articulo">
-                    <img class="imagen-articulo" src="${a.imagen}" alt="${a.titulo}" loading="lazy" />
-                    <div class="contenido-articulo">
-                        <div class="categoria">${a.categoria} <span class="fecha">${a.fecha}</span></div>
-                        <h3>${a.titulo}</h3>
-                        <p>${a.autor}</p>
-                        <p>${a.descripcion}</p>
-                        <a href="#" class="leer-mas">Leer más →</a>
-                    </div>
-                </div>
-            `;
-        });
-        gridBlog.innerHTML = html;
-    }
+        function textoFecha(d) {
+            const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+            const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+            return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
+        }
 
-    // Videos
-    function renderizarVideos() {
-        const gridVideos = document.getElementById('gridVideos');
-        let html = '';
-        videos.forEach(v => {
-            html += `
-                <div class="video-tarjeta">
-                    <div class="thumbnail" style="background-image: url('${v.thumbnail}'); background-size: cover; background-position: center;">
-                        <div class="play"><i class="fas fa-play"></i></div>
-                    </div>
-                    <div class="info-video">
-                        <h3>${v.titulo}</h3>
-                        <p style="font-size:0.85rem; color:var(--muted);">${v.canal}</p>
-                        <a href="${v.url}" target="_blank" class="btn-video" style="display:inline-block; margin-top:8px; background:#ff0000; color:#fff; padding:6px 16px; border-radius:50px; font-size:0.8rem; text-decoration:none;"><i class="fab fa-youtube"></i> Ver video</a>
-                    </div>
-                </div>
-            `;
-        });
-        gridVideos.innerHTML = html;
-    }
+        // ============================================================
+        //  SELECTOR DE FECHAS
+        // ============================================================
+        function cambiarFecha(delta) {
+            fechaActual.setDate(fechaActual.getDate() + delta);
+            mostrarFechas();
+            cargarPartidos(iso(fechaActual));
+        }
 
-    // ================================================================
-    // 9. INICIALIZAR
-    // ================================================================
+        function irFecha(fechaStr) {
+            fechaActual = new Date(fechaStr + 'T00:00:00');
+            mostrarFechas();
+            cargarPartidos(fechaStr);
+        }
 
-    renderizarPaises();
-    renderizarRecetas();
-    renderizarBlog();
-    renderizarVideos();
-</script>
+        function mostrarFechas() {
+            const cont = document.getElementById('selector-fechas');
+            let html = '';
+            for (let i = -1; i <= 1; i++) {
+                let f = new Date(fechaActual);
+                f.setDate(f.getDate() + i);
+                const activo = iso(f) === iso(fechaActual);
+                html += `<span class="px-3 py-1.5 rounded-lg cursor-pointer text-sm ${activo ? 'bg-azul text-white font-semibold' : 'hover:bg-gray-100 dark:hover:bg-gray-700 transition'}" onclick="irFecha('${iso(f)}')">${textoFecha(f)}</span>`;
+            }
+            cont.innerHTML = html;
+        }
+
+        // ============================================================
+        //  EXTRACCIÓN DE DATOS DE PARTIDOS
+        // ============================================================
+        function obtenerTotales(linescore, boxscore, esVisitante) {
+            const equipoLS = esVisitante ? linescore?.away : linescore?.home;
+            if (equipoLS && equipoLS.runs !== undefined) {
+                return { runs: equipoLS.runs, hits: equipoLS.hits || 0, errors: equipoLS.errors || 0 };
+            }
+            if (boxscore && boxscore.teams) {
+                const eqBox = esVisitante ? boxscore.teams.away : boxscore.teams.home;
+                if (eqBox && eqBox.stats) {
+                    return { runs: eqBox.stats.runs || 0, hits: eqBox.stats.hits || 0, errors: eqBox.stats.errors || 0 };
+                }
+            }
+            if (linescore && linescore.teams) {
+                const eqAlt = esVisitante ? linescore.teams.away : linescore.teams.home;
+                if (eqAlt) {
+                    return { runs: eqAlt.runs || 0, hits: eqAlt.hits || 0, errors: eqAlt.errors || 0 };
+                }
+            }
+            return { runs: 0, hits: 0, errors: 0 };
+        }
+
+        function leerEntradas(linescore, boxscore, esVisitante) {
+            const innings = linescore?.innings || [];
+            const fila = [];
+            for (let i = 0; i < 9; i++) {
+                const inn = innings[i];
+                if (!inn) {
+                    fila.push('-');
+                    continue;
+                }
+                const runs = esVisitante ? inn.away?.runs : inn.home?.runs;
+                fila.push(runs !== undefined && runs !== null ? runs : '-');
+            }
+            const totals = obtenerTotales(linescore, boxscore, esVisitante);
+            return { fila, C: totals.runs, H: totals.hits, E: totals.errors };
+        }
+
+        function dibujarBases(offense) {
+            const b1 = !!offense?.first, b2 = !!offense?.second, b3 = !!offense?.third;
+            return `
+            <div class="relative w-16 h-16 mx-auto">
+                <div class="diamante-base absolute top-0 left-1/2 -translate-x-1/2 ${b2 ? 'ocupada' : 'vacia'}"></div>
+                <div class="diamante-base absolute bottom-1/2 right-0 translate-y-1/2 ${b1 ? 'ocupada' : 'vacia'}"></div>
+                <div class="diamante-base absolute bottom-1/2 left-0 translate-y-1/2 ${b3 ? 'ocupada' : 'vacia'}"></div>
+                <div class="diamante-base absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 plato"></div>
+            </div>`;
+        }
+
+        // ============================================================
+        //  CARGAR PARTIDOS EN VIVO (API) CON SPINNER
+        // ============================================================
+        async function cargarPartidos(fecha) {
+            const cont = document.getElementById('lista-partidos');
+            // Mostrar spinner mientras carga
+            cont.innerHTML = `<div class="flex justify-center py-10"><div class="spinner"></div></div>`;
+
+            try {
+                const url = `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${fecha}&language=es&hydrate=linescore,probablePitchers,status,linescore.offense,linescore.defense,boxscore,gameDate,plays`;
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const datos = await res.json();
+
+                const juegos = datos.dates?.[0]?.games || [];
+                if (!juegos.length) {
+                    cont.innerHTML = `<p class="text-center py-8 text-gray-500 dark:text-gray-400">No hay partidos programados para esta fecha</p>`;
+                    return;
+                }
+
+                let html = '';
+                for (const p of juegos) {
+                    const away = p.teams?.away || {};
+                    const home = p.teams?.home || {};
+                    const idA = away.team?.id;
+                    const idH = home.team?.id;
+                    const nomA = away.team?.name || 'Visitante';
+                    const nomH = home.team?.name || 'Local';
+                    const regA = away.leagueRecord ? `${away.leagueRecord.wins}-${away.leagueRecord.losses}` : '';
+                    const regH = home.leagueRecord ? `${home.leagueRecord.wins}-${home.leagueRecord.losses}` : '';
+
+                    const estado = p.status || {};
+                    const vivo = estado.abstractGameState === 'Live';
+                    const final = estado.abstractGameState === 'Final';
+                    const programado = estado.abstractGameState === 'Preview';
+
+                    const horaUTC = new Date(p.gameDate);
+                    const horaLocal = new Date(horaUTC.getTime() - 5 * 3600000);
+                    const horaTexto = horaLocal.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+
+                    const ls = p.linescore || {};
+                    const box = p.boxscore || {};
+
+                    const v = leerEntradas(ls, box, true);
+                    const h = leerEntradas(ls, box, false);
+
+                    const actInn = ls.currentInning || '';
+                    const mitad = ls.inningHalf === 'Top' ? 'Arriba' : ls.inningHalf === 'Bottom' ? 'Abajo' : '';
+                    const bol = ls.balls ?? '-';
+                    const str = ls.strikes ?? '-';
+                    const out = ls.outs ?? '-';
+                    const tipo = p.seriesDescription || 'Temporada Regular';
+
+                    let lanzA = p.probablePitchers?.away || {};
+                    let lanzH = p.probablePitchers?.home || {};
+                    if (!lanzA.fullName && box?.teams?.away?.players) {
+                        const players = box.teams.away.players;
+                        const pitcher = Object.values(players).find(pj => pj.position?.code === 'P');
+                        if (pitcher) lanzA = { fullName: pitcher.person?.fullName, era: pitcher.stats?.era };
+                    }
+                    if (!lanzH.fullName && box?.teams?.home?.players) {
+                        const players = box.teams.home.players;
+                        const pitcher = Object.values(players).find(pj => pj.position?.code === 'P');
+                        if (pitcher) lanzH = { fullName: pitcher.person?.fullName, era: pitcher.stats?.era };
+                    }
+                    if (!lanzA.fullName) lanzA.fullName = vivo ? 'En vivo' : 'Por confirmar';
+                    if (!lanzH.fullName) lanzH.fullName = vivo ? 'En vivo' : 'Por confirmar';
+
+                    html += `
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 p-4 relative card-hover fade-in transition-all">
+                        ${vivo ? `<span class="absolute top-3 right-3 bg-rojoVivo text-white text-[0.7rem] px-2 py-0.5 rounded-full flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 bg-white rounded-full parpadeo"></span>EN VIVO ${actInn}° ${mitad}</span>` : ''}
+                        ${final ? `<span class="absolute top-3 right-3 bg-gray-500 text-white text-[0.7rem] px-2 py-0.5 rounded-full shadow">FINAL</span>` : ''}
+                        ${programado ? `<span class="absolute top-3 right-3 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-[0.7rem] px-2 py-0.5 rounded-full shadow">${horaTexto}</span>` : ''}
+                        <div class="text-center text-xs text-gray-500 dark:text-gray-400 mb-3">${tipo}</div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                ${idA ? `<img src="https://www.mlbstatic.com/team-logos/${idA}.svg" alt="${nomA}" class="w-10 h-10 object-contain" onerror="this.style.display='none'">` : `<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>`}
+                                <div><div class="font-bold text-base dark:text-white">${nomA}</div><div class="text-xs text-gray-500 dark:text-gray-400">${regA}</div></div>
+                            </div>
+                            <div class="text-3xl font-bold min-w-[4rem] text-center dark:text-white">${v.C} - ${h.C}</div>
+                            <div class="flex items-center gap-3 text-right flex-row-reverse">
+                                ${idH ? `<img src="https://www.mlbstatic.com/team-logos/${idH}.svg" alt="${nomH}" class="w-10 h-10 object-contain" onerror="this.style.display='none'">` : `<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>`}
+                                <div><div class="font-bold text-base dark:text-white">${nomH}</div><div class="text-xs text-gray-500 dark:text-gray-400">${regH}</div></div>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <div class="grid grid-entradas gap-x-1 text-xs text-center font-medium text-gray-500 dark:text-gray-400">
+                                ${[1,2,3,4,5,6,7,8,9].map(n => `<span>${n}</span>`).join('')}
+                                <span class="border-l border-grisClaro dark:border-gray-700">C</span><span>H</span><span>E</span>
+                            </div>
+                            <div class="grid grid-entradas gap-x-1 text-xs text-center py-1 border-t border-grisClaro dark:border-gray-700 mt-1 dark:text-gray-300">
+                                ${v.fila.map(x => `<span>${x}</span>`).join('')}
+                                <span class="font-bold border-l border-grisClaro dark:border-gray-700">${v.C}</span><span class="font-bold">${v.H}</span><span class="font-bold">${v.E}</span>
+                            </div>
+                            <div class="grid grid-entradas gap-x-1 text-xs text-center py-1 dark:text-gray-300">
+                                ${h.fila.map(x => `<span>${x}</span>`).join('')}
+                                <span class="font-bold border-l border-grisClaro dark:border-gray-700">${h.C}</span><span class="font-bold">${h.H}</span><span class="font-bold">${h.E}</span>
+                            </div>
+                        </div>
+
+                        ${vivo ? `
+                        <div class="mt-3 flex flex-col sm:flex-row items-center justify-around text-xs bg-gray-50 dark:bg-gray-700/50 rounded-lg py-2 px-3 gap-2">
+                            <div class="text-center"><span class="font-medium dark:text-white">B ${bol} • S ${str} • O ${out}</span><div class="text-[0.6rem] text-gray-500 dark:text-gray-400">Bolas • Strikes • Outs</div></div>
+                            ${dibujarBases(ls.offense)}
+                        </div>` : ''}
+
+                        <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+                            <div><div class="text-gray-500 dark:text-gray-400">Lanzando</div><div class="font-medium dark:text-white">${lanzA.fullName}</div>${lanzA.era ? `<div class="text-gray-500 dark:text-gray-400">${lanzA.era} EFE</div>` : ''}</div>
+                            <div class="text-right"><div class="text-gray-500 dark:text-gray-400">Al bate</div><div class="font-medium dark:text-white">${lanzH.fullName}</div>${lanzH.era ? `<div class="text-gray-500 dark:text-gray-400">${lanzH.era} EFE</div>` : ''}</div>
+                        </div>
+
+                        <div class="mt-3 flex justify-around text-xs font-medium text-azul dark:text-blue-400">
+                            <a href="https://www.mlb.com/es/gameday/${p.gamePk}" target="_blank" rel="noopener noreferrer" class="hover:underline">Gameday</a>
+                            <a href="#" class="hover:underline">Crónica</a>
+                        </div>
+                    </div>`;
+                }
+                cont.innerHTML = html;
+
+            } catch (error) {
+                console.error('Error cargando partidos:', error);
+                cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400 py-8">Error al cargar los partidos. Intenta de nuevo.</p>`;
+            }
+        }
+
+        // ============================================================
+        //  INICIALIZACIÓN
+        // ============================================================
+        mostrarFechas();
+        cargarPartidos(iso(fechaActual));
+        setInterval(() => cargarPartidos(iso(fechaActual)), 15000);
+    </script>
 </body>
 </html>
