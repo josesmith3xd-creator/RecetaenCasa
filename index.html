@@ -271,6 +271,28 @@
             background: #334155;
             color: #e2e8f0;
         }
+
+        /* Botón recargar */
+        .btn-recargar {
+            background: #1a56db;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: none;
+        }
+        .btn-recargar:hover {
+            background: #2563eb;
+        }
+        .dark .btn-recargar {
+            background: #3b82f6;
+        }
+        .dark .btn-recargar:hover {
+            background: #60a5fa;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gris font-sans min-h-screen transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200">
@@ -579,9 +601,10 @@
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Estadísticas - Líderes 2026</h2>
             <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
                 <!-- Pestañas internas -->
-                <div class="flex gap-2 text-sm font-medium mb-4">
+                <div class="flex gap-2 text-sm font-medium mb-4 flex-wrap items-center">
                     <span class="tab-link-interno active px-3 py-1 rounded-lg cursor-pointer bg-azul text-white" data-tab="bateo">Bateo</span>
                     <span class="tab-link-interno px-3 py-1 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition" data-tab="pitcheo">Pitcheo</span>
+                    <button onclick="recargarLideres()" class="btn-recargar ml-auto">🔄 Recargar líderes</button>
                 </div>
 
                 <!-- Contenedor bateo -->
@@ -914,7 +937,7 @@
         }
 
         // ============================================================
-        //  LÍDERES DE BATEO Y PITCHEO (corregido)
+        //  LÍDERES DE BATEO Y PITCHEO (con múltiples respaldos)
         // ============================================================
         let lideresCargados = false;
 
@@ -926,109 +949,141 @@
             }
         }
 
+        // Función para recargar manualmente
+        function recargarLideres() {
+            cargarLideresBateo();
+            cargarLideresPitcheo();
+        }
+
         async function cargarLideresBateo() {
             const cont = document.getElementById('lideres-bateo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de bateo...</p>`;
-            try {
-                // Obtener hasta 50 jugadores (sin sortStat, para evitar errores)
-                const url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=50';
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('Error en la respuesta de la API');
-                const data = await res.json();
-                const stats = data.stats?.[0]?.splits || [];
 
-                if (!stats.length) {
-                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de bateo disponibles para la temporada 2026.</p>';
-                    return;
+            // Lista de URLs para intentar
+            const urls = [
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportIds=1&group=hitting&stats=season&playerPool=all&limit=50',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=50',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&group=hitting&stats=season&limit=50'
+            ];
+
+            let stats = [];
+            for (const url of urls) {
+                try {
+                    const res = await fetch(url);
+                    if (res.ok) {
+                        const data = await res.json();
+                        const temp = data.stats?.[0]?.splits || [];
+                        if (temp.length) {
+                            stats = temp;
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    // continuar con la siguiente URL
                 }
-
-                // Ordenar por promedio (avg) descendente
-                stats.sort((a, b) => (b.stat?.avg || 0) - (a.stat?.avg || 0));
-                const top10 = stats.slice(0, 10);
-
-                let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
-                    <thead><tr>
-                        <th class="text-left">Jugador</th>
-                        <th>Equipo</th>
-                        <th>AVG</th>
-                        <th>HR</th>
-                        <th>RBI</th>
-                    </tr></thead><tbody>`;
-                for (const item of top10) {
-                    const player = item.player;
-                    const stat = item.stat;
-                    const teamId = item.team?.id;
-                    const teamName = item.team?.name || '—';
-                    const avg = stat.avg ? stat.avg.toFixed(3) : '—';
-                    const hr = stat.homeRuns || 0;
-                    const rbi = stat.rbi || 0;
-                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-6 h-6 inline-block" onerror="this.style.display='none'">` : '';
-                    html += `<tr>
-                        <td class="text-left font-medium">${player?.fullName || '—'}</td>
-                        <td><span class="flex items-center justify-center gap-1">${logo} ${teamName}</span></td>
-                        <td>${avg}</td>
-                        <td>${hr}</td>
-                        <td>${rbi}</td>
-                    </tr>`;
-                }
-                html += '</tbody></table>';
-                cont.innerHTML = html;
-            } catch (error) {
-                console.error('Error en líderes de bateo:', error);
-                cont.innerHTML = `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de bateo. Intenta más tarde.</p>`;
             }
+
+            if (!stats.length) {
+                cont.innerHTML = `<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de bateo disponibles para la temporada 2026. <br> <button onclick="cargarLideresBateo()" class="text-azul dark:text-blue-400 underline text-sm">Intentar de nuevo</button></p>`;
+                return;
+            }
+
+            // Ordenar por avg descendente
+            stats.sort((a, b) => (b.stat?.avg || 0) - (a.stat?.avg || 0));
+            const top10 = stats.slice(0, 10);
+
+            let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
+                <thead><tr>
+                    <th class="text-left">Jugador</th>
+                    <th>Equipo</th>
+                    <th>AVG</th>
+                    <th>HR</th>
+                    <th>RBI</th>
+                </tr></thead><tbody>`;
+            for (const item of top10) {
+                const player = item.player;
+                const stat = item.stat;
+                const teamId = item.team?.id;
+                const teamName = item.team?.name || '—';
+                const avg = stat.avg ? stat.avg.toFixed(3) : '—';
+                const hr = stat.homeRuns || 0;
+                const rbi = stat.rbi || 0;
+                const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-6 h-6 inline-block" onerror="this.style.display='none'">` : '';
+                html += `<tr>
+                    <td class="text-left font-medium">${player?.fullName || '—'}</td>
+                    <td><span class="flex items-center justify-center gap-1">${logo} ${teamName}</span></td>
+                    <td>${avg}</td>
+                    <td>${hr}</td>
+                    <td>${rbi}</td>
+                </tr>`;
+            }
+            html += '</tbody></table>';
+            cont.innerHTML = html;
         }
 
         async function cargarLideresPitcheo() {
             const cont = document.getElementById('lideres-pitcheo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de pitcheo...</p>`;
-            try {
-                const url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=50';
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('Error en la respuesta de la API');
-                const data = await res.json();
-                const stats = data.stats?.[0]?.splits || [];
 
-                if (!stats.length) {
-                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de pitcheo disponibles para la temporada 2026.</p>';
-                    return;
+            const urls = [
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportIds=1&group=pitching&stats=season&playerPool=all&limit=50',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=50',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&group=pitching&stats=season&limit=50'
+            ];
+
+            let stats = [];
+            for (const url of urls) {
+                try {
+                    const res = await fetch(url);
+                    if (res.ok) {
+                        const data = await res.json();
+                        const temp = data.stats?.[0]?.splits || [];
+                        if (temp.length) {
+                            stats = temp;
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    // continuar
                 }
-
-                // Ordenar por ERA ascendente (menor es mejor)
-                stats.sort((a, b) => (a.stat?.era || 999) - (b.stat?.era || 999));
-                const top10 = stats.slice(0, 10);
-
-                let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
-                    <thead><tr>
-                        <th class="text-left">Lanzador</th>
-                        <th>Equipo</th>
-                        <th>EFE</th>
-                        <th>K</th>
-                        <th>W</th>
-                    </tr></thead><tbody>`;
-                for (const item of top10) {
-                    const player = item.player;
-                    const stat = item.stat;
-                    const teamId = item.team?.id;
-                    const teamName = item.team?.name || '—';
-                    const era = stat.era ? stat.era.toFixed(2) : '—';
-                    const k = stat.strikeOuts || 0;
-                    const w = stat.wins || 0;
-                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-6 h-6 inline-block" onerror="this.style.display='none'">` : '';
-                    html += `<tr>
-                        <td class="text-left font-medium">${player?.fullName || '—'}</td>
-                        <td><span class="flex items-center justify-center gap-1">${logo} ${teamName}</span></td>
-                        <td>${era}</td>
-                        <td>${k}</td>
-                        <td>${w}</td>
-                    </tr>`;
-                }
-                html += '</tbody></table>';
-                cont.innerHTML = html;
-            } catch (error) {
-                console.error('Error en líderes de pitcheo:', error);
-                cont.innerHTML = `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de pitcheo. Intenta más tarde.</p>`;
             }
+
+            if (!stats.length) {
+                cont.innerHTML = `<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de pitcheo disponibles para la temporada 2026. <br> <button onclick="cargarLideresPitcheo()" class="text-azul dark:text-blue-400 underline text-sm">Intentar de nuevo</button></p>`;
+                return;
+            }
+
+            // Ordenar por ERA ascendente
+            stats.sort((a, b) => (a.stat?.era || 999) - (b.stat?.era || 999));
+            const top10 = stats.slice(0, 10);
+
+            let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
+                <thead><tr>
+                    <th class="text-left">Lanzador</th>
+                    <th>Equipo</th>
+                    <th>EFE</th>
+                    <th>K</th>
+                    <th>W</th>
+                </tr></thead><tbody>`;
+            for (const item of top10) {
+                const player = item.player;
+                const stat = item.stat;
+                const teamId = item.team?.id;
+                const teamName = item.team?.name || '—';
+                const era = stat.era ? stat.era.toFixed(2) : '—';
+                const k = stat.strikeOuts || 0;
+                const w = stat.wins || 0;
+                const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-6 h-6 inline-block" onerror="this.style.display='none'">` : '';
+                html += `<tr>
+                    <td class="text-left font-medium">${player?.fullName || '—'}</td>
+                    <td><span class="flex items-center justify-center gap-1">${logo} ${teamName}</span></td>
+                    <td>${era}</td>
+                    <td>${k}</td>
+                    <td>${w}</td>
+                </tr>`;
+            }
+            html += '</tbody></table>';
+            cont.innerHTML = html;
         }
 
         // ============================================================
