@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SportVivo360 | MLB en Vivo, Estadísticas y Noticias</title>
-    <meta name="description" content="Resultados MLB en vivo, posiciones actualizadas, líderes de bateo y pitcheo, y las últimas noticias de la temporada 2026. Todo el béisbol en un solo lugar." />
-    <meta name="keywords" content="MLB, béisbol, resultados en vivo, posiciones, estadísticas, líderes, noticias, temporada 2026" />
-    <link rel="canonical" href="https://sportvivo360.com/" />
+    <title>SportVivo360 | MLB</title>
+    <meta name="description" content="SportVivo360: MLB en vivo, posiciones, líderes de bateo y pitcheo. Actualizado en tiempo real." />
     <script src="https://cdn.tailwindcss.com">
     </script>
     <script>
@@ -27,6 +25,7 @@
         }
     </script>
     <style>
+        /* ===== ANIMACIONES ===== */
         .parpadeo {
             animation: parpadeo 1.2s infinite ease-in-out;
         }
@@ -54,6 +53,8 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* ===== DIAMANTE (bases) ===== */
         .diamante-base {
             width: 14px;
             height: 14px;
@@ -75,6 +76,8 @@
             background-color: #94a3b8;
             border-color: #64748b;
         }
+
+        /* ===== TABLA DE ENTRADAS (partidos) ===== */
         .grid-entradas {
             display: grid;
             grid-template-columns: repeat(9, 1.6rem) 2rem 2rem 2rem;
@@ -92,6 +95,8 @@
                 font-size: 0.65rem;
             }
         }
+
+        /* ===== TABLAS DE POSICIONES ===== */
         .tabla-posiciones th {
             background-color: #f1f5f9;
             font-weight: 600;
@@ -123,6 +128,8 @@
         .division-titulo:first-of-type {
             margin-top: 0;
         }
+
+        /* ===== TABLAS DE LÍDERES ===== */
         .tabla-lideres th {
             background-color: #f1f5f9;
             font-weight: 600;
@@ -144,6 +151,8 @@
             font-weight: 700;
             color: #1a56db;
         }
+
+        /* ===== MODO OSCURO ===== */
         .dark .tabla-posiciones th {
             background-color: #1e293b;
         }
@@ -163,6 +172,8 @@
         .dark .tabla-lideres .ranking {
             color: #60a5fa;
         }
+
+        /* ===== PESTAÑAS ===== */
         .tab-link {
             cursor: pointer;
             transition: all 0.2s;
@@ -180,12 +191,15 @@
         .dark .tab-link.active {
             background: #2563eb;
         }
+
         .seccion {
             display: none;
         }
         .seccion.activa {
             display: block;
         }
+
+        /* ===== SUB-PESTAÑAS ESTADÍSTICAS ===== */
         .sub-tab-link {
             cursor: pointer;
             transition: all 0.2s;
@@ -207,6 +221,7 @@
         .dark .sub-tab-link.active {
             background: #3b82f6;
         }
+
         .sub-contenido {
             display: none;
         }
@@ -219,6 +234,8 @@
         .stats-contenido.activo {
             display: block;
         }
+
+        /* ===== TOGGLE OSCURO ===== */
         .theme-toggle {
             cursor: pointer;
             display: flex;
@@ -254,6 +271,8 @@
         .dark .theme-toggle .slider::after {
             transform: translateX(18px);
         }
+
+        /* ===== TARJETAS ===== */
         .card-hover {
             transition: transform 0.2s, box-shadow 0.2s;
         }
@@ -261,6 +280,7 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
+
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
@@ -276,6 +296,7 @@
             width: 100%;
             height: 100%;
         }
+
         .btn-recargar {
             background: #1a56db;
             color: white;
@@ -296,6 +317,7 @@
         .dark .btn-recargar:hover {
             background: #60a5fa;
         }
+
         .noticia-card {
             border-left: 4px solid #1a56db;
         }
@@ -326,6 +348,9 @@
 </head>
 <body class="bg-gray-50 text-gris font-sans min-h-screen transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200">
 
+    <!-- ============================================================ -->
+    <!-- CABECERA                                                     -->
+    <!-- ============================================================ -->
     <header class="bg-mlbAzul text-white py-3 px-4 sticky top-0 z-50 shadow-lg transition-colors dark:bg-gray-800">
         <div class="max-w-4xl mx-auto flex items-center justify-between flex-wrap gap-2">
             <h1 class="font-bold text-xl tracking-wide flex items-center gap-2">
@@ -353,16 +378,22 @@
         </div>
     </header>
 
+    <!-- ============================================================ -->
+    <!-- MAIN                                                         -->
+    <!-- ============================================================ -->
     <main class="max-w-3xl mx-auto px-3 py-4">
 
+        <!-- Indicador de estado -->
         <div class="flex items-center justify-center gap-2 text-xs mb-4">
             <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_#22c55e]"></span>
             <span class="dark:text-gray-400">Actualizado • Lima (UTC‑5)</span>
         </div>
 
-        <!-- INICIO -->
+        <!-- ============================================================ -->
+        <!-- INICIO                                                       -->
+        <!-- ============================================================ -->
         <section id="seccion-inicio" class="seccion activa">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🏠 Resultados MLB en vivo</h2>
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🏠 Inicio - Resultados en vivo</h2>
 
             <div class="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 rounded-xl py-2 px-3 mb-6 border border-grisClaro dark:border-gray-700 shadow-sm">
                 <button onclick="cambiarFecha(-1)" class="text-lg px-3 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">‹</button>
@@ -400,7 +431,9 @@
             </div>
         </section>
 
-        <!-- POSICIONES -->
+        <!-- ============================================================ -->
+        <!-- POSICIONES                                                    -->
+        <!-- ============================================================ -->
         <section id="seccion-posiciones" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📊 Posiciones de equipos</h2>
             <div id="contenedor-posiciones" class="space-y-6">
@@ -408,9 +441,11 @@
             </div>
         </section>
 
-        <!-- NOTICIAS (8) -->
+        <!-- ============================================================ -->
+        <!-- NOTICIAS                                                     -->
+        <!-- ============================================================ -->
         <section id="seccion-noticias" class="seccion">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📰 Últimas noticias MLB</h2>
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📰 Noticias MLB</h2>
             <div class="space-y-4">
                 <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
                     <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
@@ -418,7 +453,7 @@
                         <span class="fecha">25 de junio, 2026</span>
                     </div>
                     <h4 class="font-bold text-base dark:text-white">Aaron Judge conecta su jonrón 40 de la temporada</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El capitán de los Yankees supera a Ohtani en la carrera por el título de jonrones y se afianza como favorito al MVP de la Liga Americana.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El capitán de los Yankees sigue imparable y ya es el favorito al MVP de la Liga Americana.</p>
                     <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
@@ -430,75 +465,25 @@
                     <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El japonés acuerda un contrato de 700 millones por 10 años, el más grande en la historia del deporte.</p>
                     <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
                 </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
-                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <span class="categoria">🏆 Playoffs</span>
-                        <span class="fecha">23 de junio, 2026</span>
-                    </div>
-                    <h4 class="font-bold text-base dark:text-white">Los Orioles se consolidan como el equipo sorpresa</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Baltimore lidera su división con una ofensiva imparable y un pitcheo joven que ilusiona a su afición.</p>
-                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
-                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <span class="categoria">⚾ Pitcheo</span>
-                        <span class="fecha">22 de junio, 2026</span>
-                    </div>
-                    <h4 class="font-bold text-base dark:text-white">Strider, Cole y Cease por debajo de 2.00 de EFE</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El pitcheo está siendo el gran protagonista del mes, con números que no se veían desde la era de Pedro Martínez.</p>
-                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
-                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <span class="categoria">🔄 Cambios</span>
-                        <span class="fecha">21 de junio, 2026</span>
-                    </div>
-                    <h4 class="font-bold text-base dark:text-white">Los Padres despiden a su mánager tras racha negativa</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">San Diego busca un nuevo rumbo después de 10 derrotas consecutivas.</p>
-                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
-                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <span class="categoria">🌟 Novatos</span>
-                        <span class="fecha">20 de junio, 2026</span>
-                    </div>
-                    <h4 class="font-bold text-base dark:text-white">Elly De La Cruz y Ezequiel Tovar lideran la carrera por el Novato del Año</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El dominicano y el venezolano están dando espectáculo en la Liga Nacional.</p>
-                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
-                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <span class="categoria">🏟️ Estadios</span>
-                        <span class="fecha">19 de junio, 2026</span>
-                    </div>
-                    <h4 class="font-bold text-base dark:text-white">Nuevo estadio en Las Vegas: los Athletics harán historia</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">La franquicia de Oakland se muda a la ciudad del juego con un moderno recinto.</p>
-                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all noticia-card">
-                    <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <span class="categoria">📊 Estadísticas</span>
-                        <span class="fecha">18 de junio, 2026</span>
-                    </div>
-                    <h4 class="font-bold text-base dark:text-white">Ronald Acuña Jr. se acerca a la temporada de 40-40</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">El venezolano ya tiene 25 jonrones y 30 bases robadas; podría unirse al selecto club.</p>
-                    <a href="#" class="text-azul dark:text-blue-400 text-xs font-medium hover:underline mt-2 inline-block">Leer más →</a>
-                </div>
             </div>
         </section>
 
-        <!-- ESTADÍSTICAS -->
+        <!-- ============================================================ -->
+        <!-- ESTADÍSTICAS (LÍDERES)                                        -->
+        <!-- ============================================================ -->
         <section id="seccion-estadisticas" class="seccion">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Líderes de bateo y pitcheo 2026</h2>
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Líderes de bateo y pitcheo</h2>
 
             <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
 
+                <!-- Pestañas principales: Bateo / Pitcheo -->
                 <div class="flex gap-2 text-sm font-medium mb-4 flex-wrap items-center border-b border-grisClaro dark:border-gray-700 pb-2">
                     <span class="tab-link-stats active px-3 py-1 rounded-lg cursor-pointer bg-azul text-white" data-tab="bateo">Bateo</span>
                     <span class="tab-link-stats px-3 py-1 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition" data-tab="pitcheo">Pitcheo</span>
                     <button onclick="recargarLideres()" class="btn-recargar ml-auto">🔄 Recargar</button>
                 </div>
 
+                <!-- ===== BATEO ===== -->
                 <div id="stats-bateo" class="stats-contenido activo">
                     <div class="flex flex-wrap gap-1 mb-3 text-xs">
                         <span class="sub-tab-link active" data-sub="avg">Promedio</span>
@@ -507,13 +492,14 @@
                         <span class="sub-tab-link" data-sub="hits">Hits</span>
                         <span class="sub-tab-link" data-sub="sb">Bases robadas</span>
                     </div>
-                    <div id="sub-avg" class="sub-contenido activo"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando líderes de bateo...</p></div>
+                    <div id="sub-avg" class="sub-contenido activo"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-hr" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-rbi" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-hits" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-sb" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                 </div>
 
+                <!-- ===== PITCHEO ===== -->
                 <div id="stats-pitcheo" class="stats-contenido" style="display:none;">
                     <div class="flex flex-wrap gap-1 mb-3 text-xs">
                         <span class="sub-tab-link active" data-sub="era">Efectividad</span>
@@ -522,7 +508,7 @@
                         <span class="sub-tab-link" data-sub="w">Juegos ganados</span>
                         <span class="sub-tab-link" data-sub="qs">Salidas de calidad</span>
                     </div>
-                    <div id="sub-era" class="sub-contenido activo"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando líderes de pitcheo...</p></div>
+                    <div id="sub-era" class="sub-contenido activo"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-sv" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-k" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
                     <div id="sub-w" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
@@ -534,10 +520,13 @@
 
     </main>
 
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                       -->
+    <!-- ============================================================ -->
     <footer class="bg-white dark:bg-gray-800 border-t border-grisClaro dark:border-gray-700 py-6 mt-12 text-center text-xs">
         <div class="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© 2026 <strong>SportVivo360</strong> • Datos MLB API pública</p>
-            <p class="text-gray-500 dark:text-gray-400">Resultados, posiciones y estadísticas actualizadas en tiempo real</p>
+            <p class="text-gray-500 dark:text-gray-400">Posiciones actualizadas en tiempo real</p>
             <div class="flex gap-4 text-gray-500 dark:text-gray-400">
                 <a href="#" class="hover:text-azul transition">Twitter</a>
                 <a href="#" class="hover:text-azul transition">Instagram</a>
@@ -546,6 +535,9 @@
         </div>
     </footer>
 
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                   -->
+    <!-- ============================================================ -->
     <script>
         // ============================================================
         //  MODO OSCURO
@@ -566,7 +558,7 @@
         });
 
         // ============================================================
-        //  NAVEGACIÓN
+        //  NAVEGACIÓN PRINCIPAL
         // ============================================================
         const secciones = document.querySelectorAll('.seccion');
         const tabLinks = document.querySelectorAll('.tab-link');
@@ -591,7 +583,7 @@
         mostrarSeccion('inicio');
 
         // ============================================================
-        //  PESTAÑAS ESTADÍSTICAS
+        //  PESTAÑAS PRINCIPALES DE ESTADÍSTICAS (Bateo / Pitcheo)
         // ============================================================
         const statsTabs = document.querySelectorAll('.tab-link-stats');
         statsTabs.forEach(tab => {
@@ -607,12 +599,16 @@
                 document.querySelectorAll('.stats-contenido').forEach(el => el.classList.remove('activo'));
                 document.getElementById('stats-' + target).classList.add('activo');
 
+                // Activar la primera sub-pestaña del contenedor
                 const contenedor = document.getElementById('stats-' + target);
                 const primeraSub = contenedor.querySelector('.sub-tab-link');
                 if (primeraSub) primeraSub.click();
             });
         });
 
+        // ============================================================
+        //  SUB-PESTAÑAS (categorías específicas)
+        // ============================================================
         document.querySelectorAll('.sub-tab-link').forEach(sub => {
             sub.addEventListener('click', function() {
                 const parent = this.closest('.stats-contenido');
@@ -631,7 +627,7 @@
         });
 
         // ============================================================
-        //  PARTIDOS
+        //  PARTIDOS (con selector de fechas)
         // ============================================================
         const ZONA_LIMA = 'America/Lima';
 
@@ -674,19 +670,23 @@
             cont.innerHTML = html;
         }
 
+        // ---- Funciones auxiliares para partidos ----
         function obtenerTotales(linescore, boxscore, esVisitante) {
+            // Primero intentar desde linescore.teams
             if (linescore && linescore.teams) {
                 const eq = esVisitante ? linescore.teams.away : linescore.teams.home;
                 if (eq && eq.runs !== undefined) {
                     return { runs: eq.runs || 0, hits: eq.hits || 0, errors: eq.errors || 0 };
                 }
             }
+            // Luego desde boxscore
             if (boxscore && boxscore.teams) {
                 const eqBox = esVisitante ? boxscore.teams.away : boxscore.teams.home;
                 if (eqBox && eqBox.stats) {
                     return { runs: eqBox.stats.runs || 0, hits: eqBox.stats.hits || 0, errors: eqBox.stats.errors || 0 };
                 }
             }
+            // Fallback
             return { runs: 0, hits: 0, errors: 0 };
         }
 
@@ -754,6 +754,7 @@
                     const ls = p.linescore || {};
                     const box = p.boxscore || {};
 
+                    // Leer entradas y totales correctamente
                     const v = leerEntradas(ls, box, true);
                     const h = leerEntradas(ls, box, false);
 
@@ -764,6 +765,7 @@
                     const out = ls.outs ?? '-';
                     const tipo = p.seriesDescription || 'Temporada Regular';
 
+                    // Pitchers
                     let lanzA = p.probablePitchers?.away || {};
                     let lanzH = p.probablePitchers?.home || {};
                     if (!lanzA.fullName && box?.teams?.away?.players) {
@@ -779,6 +781,7 @@
                     if (!lanzA.fullName) lanzA.fullName = vivo ? 'En vivo' : 'Por confirmar';
                     if (!lanzH.fullName) lanzH.fullName = vivo ? 'En vivo' : 'Por confirmar';
 
+                    // Estado del partido
                     let estadoTexto = '';
                     let estadoClase = '';
                     if (vivo) {
@@ -792,10 +795,21 @@
                         estadoClase = 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300';
                     }
 
-                    // Mostrar tabla de entradas solo si no es programado
-                    let tablaEntradas = '';
-                    if (!programado) {
-                        tablaEntradas = `
+                    html += `
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 p-4 relative card-hover fade-in transition-all">
+                        ${estadoTexto ? `<span class="absolute top-3 right-3 ${estadoClase} text-white text-[0.7rem] px-2 py-0.5 rounded-full shadow">${estadoTexto}</span>` : ''}
+                        <div class="text-center text-xs text-gray-500 dark:text-gray-400 mb-3">${tipo}</div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                ${idA ? `<img src="https://www.mlbstatic.com/team-logos/${idA}.svg" alt="${nomA}" class="w-10 h-10 object-contain" onerror="this.style.display='none'">` : `<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>`}
+                                <div><div class="font-bold text-base dark:text-white">${nomA}</div><div class="text-xs text-gray-500 dark:text-gray-400">${regA}</div></div>
+                            </div>
+                            <div class="text-3xl font-bold min-w-[4rem] text-center dark:text-white">${v.C} - ${h.C}</div>
+                            <div class="flex items-center gap-3 text-right flex-row-reverse">
+                                ${idH ? `<img src="https://www.mlbstatic.com/team-logos/${idH}.svg" alt="${nomH}" class="w-10 h-10 object-contain" onerror="this.style.display='none'">` : `<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>`}
+                                <div><div class="font-bold text-base dark:text-white">${nomH}</div><div class="text-xs text-gray-500 dark:text-gray-400">${regH}</div></div>
+                            </div>
+                        </div>
                         <div class="overflow-x-auto">
                             <div class="grid grid-entradas gap-x-1 text-xs text-center font-medium text-gray-500 dark:text-gray-400">
                                 ${[1,2,3,4,5,6,7,8,9].map(n => `<span>${n}</span>`).join('')}
@@ -809,25 +823,7 @@
                                 ${h.fila.map(x => `<span>${x}</span>`).join('')}
                                 <span class="font-bold border-l border-grisClaro dark:border-gray-700">${h.C}</span><span class="font-bold">${h.H}</span><span class="font-bold">${h.E}</span>
                             </div>
-                        </div>`;
-                    }
-
-                    html += `
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-grisClaro dark:border-gray-700 p-4 relative card-hover fade-in transition-all">
-                        ${estadoTexto ? `<span class="absolute top-3 right-3 ${estadoClase} text-white text-[0.7rem] px-2 py-0.5 rounded-full shadow">${estadoTexto}</span>` : ''}
-                        <div class="text-center text-xs text-gray-500 dark:text-gray-400 mb-3">${tipo}</div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                ${idA ? `<img src="https://www.mlbstatic.com/team-logos/${idA}.svg" alt="${nomA}" class="w-10 h-10 object-contain" onerror="this.style.display='none'">` : `<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>`}
-                                <div><div class="font-bold text-base dark:text-white">${nomA}</div><div class="text-xs text-gray-500 dark:text-gray-400">${regA}</div></div>
-                            </div>
-                            <div class="text-3xl font-bold min-w-[4rem] text-center dark:text-white">${programado ? '-' : v.C + ' - ' + h.C}</div>
-                            <div class="flex items-center gap-3 text-right flex-row-reverse">
-                                ${idH ? `<img src="https://www.mlbstatic.com/team-logos/${idH}.svg" alt="${nomH}" class="w-10 h-10 object-contain" onerror="this.style.display='none'">` : `<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>`}
-                                <div><div class="font-bold text-base dark:text-white">${nomH}</div><div class="text-xs text-gray-500 dark:text-gray-400">${regH}</div></div>
-                            </div>
                         </div>
-                        ${tablaEntradas}
                         ${vivo ? `
                         <div class="mt-3 flex flex-col sm:flex-row items-center justify-around text-xs bg-gray-50 dark:bg-gray-700/50 rounded-lg py-2 px-3 gap-2">
                             <div class="text-center"><span class="font-medium dark:text-white">B ${bol} • S ${str} • O ${out}</span><div class="text-[0.6rem] text-gray-500 dark:text-gray-400">Bolas • Strikes • Outs</div></div>
@@ -852,7 +848,7 @@
         }
 
         // ============================================================
-        //  POSICIONES
+        //  POSICIONES (API)
         // ============================================================
         async function cargarPosicionesAPI() {
             const cont = document.getElementById('contenedor-posiciones');
@@ -883,8 +879,10 @@
                             <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 ${ligas[leagueId]}</h3>
                             <div class="overflow-x-auto">
                     `;
+                    // Ordenar divisiones por nombre
                     registrosLiga.sort((a, b) => a.division?.name?.localeCompare(b.division?.name || '') || 0);
                     for (const division of registrosLiga) {
+                        // Usar el nombre real de la división
                         const divName = division.division?.name || 'División';
                         const teams = division.teamRecords || [];
                         teams.sort((a, b) => (parseInt(a.divisionRank) || 99) - (parseInt(b.divisionRank) || 99));
@@ -942,7 +940,7 @@
         }
 
         // ============================================================
-        //  LÍDERES (sin filtros)
+        //  LÍDERES – CON FILTRO POR MÍNIMOS (evita jugadores con pocos juegos)
         // ============================================================
         let datosLideres = { bateo: null, pitcheo: null };
         let lideresCargando = false;
@@ -964,9 +962,9 @@
                 return;
             }
             const urls = [
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=hitting&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&limit=100'
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=hitting&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&limit=200'
             ];
             let stats = [];
             for (const url of urls) {
@@ -986,8 +984,10 @@
                 });
                 return;
             }
-            datosLideres.bateo = stats;
-            renderizarBateo(stats);
+            // Filtrar jugadores con al menos 100 apariciones al bate (AB)
+            const filtrados = stats.filter(s => (s.stat?.atBats || 0) >= 100);
+            datosLideres.bateo = filtrados;
+            renderizarBateo(filtrados);
         }
 
         function renderizarBateo(stats) {
@@ -1035,9 +1035,9 @@
                 return;
             }
             const urls = [
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=pitching&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=100',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&limit=100'
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=pitching&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=200',
+                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&limit=200'
             ];
             let stats = [];
             for (const url of urls) {
@@ -1057,8 +1057,10 @@
                 });
                 return;
             }
-            datosLideres.pitcheo = stats;
-            renderizarPitcheo(stats);
+            // Filtrar lanzadores con al menos 50 innings lanzados (IP)
+            const filtrados = stats.filter(s => (s.stat?.inningsPitched || 0) >= 50);
+            datosLideres.pitcheo = filtrados;
+            renderizarPitcheo(filtrados);
         }
 
         function renderizarPitcheo(stats) {
