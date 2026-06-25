@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SportVivo360 | MLB</title>
     <meta name="description" content="SportVivo360: MLB en vivo, posiciones, líderes de bateo y pitcheo. Actualizado en tiempo real." />
-    <script src="https://cdn.tailwindcss.com">
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -26,21 +25,10 @@
     </script>
     <style>
         /* ===== ANIMACIONES ===== */
-        .parpadeo {
-            animation: parpadeo 1.2s infinite ease-in-out;
-        }
-        @keyframes parpadeo {
-            0%,
-            100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-            opacity: 0;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        .parpadeo { animation: parpadeo 1.2s infinite ease-in-out; }
+        @keyframes parpadeo { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { to { opacity: 1; } }
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
             border-left-color: #1a56db;
@@ -50,9 +38,7 @@
             animation: spin 0.8s linear infinite;
             margin: 20px auto;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         /* ===== DIAMANTE (bases) ===== */
         .diamante-base {
@@ -63,26 +49,13 @@
             box-sizing: border-box;
             transition: all 0.2s;
         }
-        .diamante-base.ocupada {
-            background-color: #22c55e;
-            border-color: #16a34a;
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
-        }
-        .diamante-base.vacia {
-            background-color: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-        .diamante-base.plato {
-            background-color: #94a3b8;
-            border-color: #64748b;
-        }
+        .diamante-base.ocupada { background-color: #22c55e; border-color: #16a34a; box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+        .diamante-base.vacia { background-color: #e2e8f0; border-color: #cbd5e1; }
+        .diamante-base.plato { background-color: #94a3b8; border-color: #64748b; }
 
-        /* ===== TABLA DE ENTRADAS (partidos) ===== */
-        .grid-entradas {
-            display: grid;
-            grid-template-columns: repeat(9, 1.6rem) 2rem 2rem 2rem;
-        }
-        .grid-entradas>span {
+        /* ===== TABLA DE ENTRADAS ===== */
+        .grid-entradas { display: grid; grid-template-columns: repeat(9, 1.6rem) 2rem 2rem 2rem; }
+        .grid-entradas > span {
             text-align: center;
             display: flex;
             align-items: center;
@@ -90,10 +63,7 @@
             font-variant-numeric: tabular-nums;
         }
         @media (max-width: 480px) {
-            .grid-entradas {
-                grid-template-columns: repeat(9, 1.2rem) 1.6rem 1.6rem 1.6rem;
-                font-size: 0.65rem;
-            }
+            .grid-entradas { grid-template-columns: repeat(9, 1.2rem) 1.6rem 1.6rem 1.6rem; font-size: 0.65rem; }
         }
 
         /* ===== TABLAS DE POSICIONES ===== */
@@ -105,16 +75,9 @@
             font-size: 0.7rem;
             letter-spacing: 0.5px;
         }
-        .tabla-posiciones td {
-            padding: 6px 8px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .tabla-posiciones tr:hover td {
-            background-color: #f8fafc;
-        }
-        .tabla-posiciones tr:last-child td {
-            border-bottom: none;
-        }
+        .tabla-posiciones td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; }
+        .tabla-posiciones tr:hover td { background-color: #f8fafc; }
+        .tabla-posiciones tr:last-child td { border-bottom: none; }
         .division-titulo {
             background: linear-gradient(to right, #e2e8f0, #f1f5f9);
             font-weight: 700;
@@ -125,9 +88,7 @@
             letter-spacing: 0.5px;
             border-radius: 4px;
         }
-        .division-titulo:first-of-type {
-            margin-top: 0;
-        }
+        .division-titulo:first-of-type { margin-top: 0; }
 
         /* ===== TABLAS DE LÍDERES ===== */
         .tabla-lideres th {
@@ -139,113 +100,42 @@
             letter-spacing: 0.3px;
             text-align: center;
         }
-        .tabla-lideres td {
-            padding: 6px 8px;
-            border-bottom: 1px solid #e2e8f0;
-            text-align: center;
-        }
-        .tabla-lideres tr:hover td {
-            background-color: #f8fafc;
-        }
-        .tabla-lideres .ranking {
-            font-weight: 700;
-            color: #1a56db;
-        }
+        .tabla-lideres td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; text-align: center; }
+        .tabla-lideres tr:hover td { background-color: #f8fafc; }
+        .tabla-lideres .ranking { font-weight: 700; color: #1a56db; }
 
         /* ===== MODO OSCURO ===== */
-        .dark .tabla-posiciones th {
-            background-color: #1e293b;
-        }
-        .dark .tabla-posiciones tr:hover td {
-            background-color: #1e293b;
-        }
-        .dark .division-titulo {
-            background: linear-gradient(to right, #1e293b, #334155);
-            color: #e2e8f0;
-        }
-        .dark .tabla-lideres th {
-            background-color: #1e293b;
-        }
-        .dark .tabla-lideres tr:hover td {
-            background-color: #1e293b;
-        }
-        .dark .tabla-lideres .ranking {
-            color: #60a5fa;
-        }
+        .dark .tabla-posiciones th { background-color: #1e293b; }
+        .dark .tabla-posiciones tr:hover td { background-color: #1e293b; }
+        .dark .division-titulo { background: linear-gradient(to right, #1e293b, #334155); color: #e2e8f0; }
+        .dark .tabla-lideres th { background-color: #1e293b; }
+        .dark .tabla-lideres tr:hover td { background-color: #1e293b; }
+        .dark .tabla-lideres .ranking { color: #60a5fa; }
 
         /* ===== PESTAÑAS ===== */
-        .tab-link {
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        .tab-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .tab-link.active {
-            background: #1a56db;
-            color: white;
-        }
-        .dark .tab-link.active {
-            background: #2563eb;
-        }
+        .tab-link { cursor: pointer; transition: all 0.2s; padding: 4px 10px; border-radius: 6px; font-weight: 500; }
+        .tab-link:hover { background: rgba(255, 255, 255, 0.1); }
+        .tab-link.active { background: #1a56db; color: white; }
+        .dark .tab-link.active { background: #2563eb; }
 
-        .seccion {
-            display: none;
-        }
-        .seccion.activa {
-            display: block;
-        }
+        .seccion { display: none; }
+        .seccion.activa { display: block; }
 
         /* ===== SUB-PESTAÑAS ESTADÍSTICAS ===== */
-        .sub-tab-link {
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        .sub-tab-link:hover {
-            background: #e2e8f0;
-        }
-        .dark .sub-tab-link:hover {
-            background: #334155;
-        }
-        .sub-tab-link.active {
-            background: #1a56db;
-            color: white;
-        }
-        .dark .sub-tab-link.active {
-            background: #3b82f6;
-        }
+        .sub-tab-link { cursor: pointer; transition: all 0.2s; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; }
+        .sub-tab-link:hover { background: #e2e8f0; }
+        .dark .sub-tab-link:hover { background: #334155; }
+        .sub-tab-link.active { background: #1a56db; color: white; }
+        .dark .sub-tab-link.active { background: #3b82f6; }
 
-        .sub-contenido {
-            display: none;
-        }
-        .sub-contenido.activo {
-            display: block;
-        }
-        .stats-contenido {
-            display: none;
-        }
-        .stats-contenido.activo {
-            display: block;
-        }
+        .sub-contenido { display: none; }
+        .sub-contenido.activo { display: block; }
+        .stats-contenido { display: none; }
+        .stats-contenido.activo { display: block; }
 
         /* ===== TOGGLE OSCURO ===== */
-        .theme-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-        }
-        .theme-toggle input {
-            display: none;
-        }
+        .theme-toggle { cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+        .theme-toggle input { display: none; }
         .theme-toggle .slider {
             width: 40px;
             height: 22px;
@@ -265,21 +155,12 @@
             left: 2px;
             transition: transform 0.3s;
         }
-        .dark .theme-toggle .slider {
-            background: #1a56db;
-        }
-        .dark .theme-toggle .slider::after {
-            transform: translateX(18px);
-        }
+        .dark .theme-toggle .slider { background: #1a56db; }
+        .dark .theme-toggle .slider::after { transform: translateX(18px); }
 
         /* ===== TARJETAS ===== */
-        .card-hover {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-        }
+        .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
 
         .video-wrapper {
             position: relative;
@@ -308,29 +189,14 @@
             transition: background 0.2s;
             border: none;
         }
-        .btn-recargar:hover {
-            background: #2563eb;
-        }
-        .dark .btn-recargar {
-            background: #3b82f6;
-        }
-        .dark .btn-recargar:hover {
-            background: #60a5fa;
-        }
+        .btn-recargar:hover { background: #2563eb; }
+        .dark .btn-recargar { background: #3b82f6; }
+        .dark .btn-recargar:hover { background: #60a5fa; }
 
-        .noticia-card {
-            border-left: 4px solid #1a56db;
-        }
-        .dark .noticia-card {
-            border-left-color: #3b82f6;
-        }
-        .noticia-card .fecha {
-            font-size: 0.65rem;
-            color: #64748b;
-        }
-        .dark .noticia-card .fecha {
-            color: #94a3b8;
-        }
+        .noticia-card { border-left: 4px solid #1a56db; }
+        .dark .noticia-card { border-left-color: #3b82f6; }
+        .noticia-card .fecha { font-size: 0.65rem; color: #64748b; }
+        .dark .noticia-card .fecha { color: #94a3b8; }
         .noticia-card .categoria {
             font-size: 0.6rem;
             text-transform: uppercase;
@@ -340,17 +206,12 @@
             border-radius: 12px;
             display: inline-block;
         }
-        .dark .noticia-card .categoria {
-            background: #334155;
-            color: #e2e8f0;
-        }
+        .dark .noticia-card .categoria { background: #334155; color: #e2e8f0; }
     </style>
 </head>
 <body class="bg-gray-50 text-gris font-sans min-h-screen transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200">
 
-    <!-- ============================================================ -->
-    <!-- CABECERA                                                     -->
-    <!-- ============================================================ -->
+    <!-- CABECERA -->
     <header class="bg-mlbAzul text-white py-3 px-4 sticky top-0 z-50 shadow-lg transition-colors dark:bg-gray-800">
         <div class="max-w-4xl mx-auto flex items-center justify-between flex-wrap gap-2">
             <h1 class="font-bold text-xl tracking-wide flex items-center gap-2">
@@ -378,9 +239,7 @@
         </div>
     </header>
 
-    <!-- ============================================================ -->
-    <!-- MAIN                                                         -->
-    <!-- ============================================================ -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="max-w-3xl mx-auto px-3 py-4">
 
         <!-- Indicador de estado -->
@@ -389,9 +248,7 @@
             <span class="dark:text-gray-400">Actualizado • Lima (UTC‑5)</span>
         </div>
 
-        <!-- ============================================================ -->
-        <!-- INICIO                                                       -->
-        <!-- ============================================================ -->
+        <!-- SECCIÓN INICIO -->
         <section id="seccion-inicio" class="seccion activa">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🏠 Inicio - Resultados en vivo</h2>
 
@@ -431,9 +288,7 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- POSICIONES                                                    -->
-        <!-- ============================================================ -->
+        <!-- SECCIÓN POSICIONES -->
         <section id="seccion-posiciones" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📊 Posiciones de equipos</h2>
             <div id="contenedor-posiciones" class="space-y-6">
@@ -441,9 +296,7 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- NOTICIAS                                                     -->
-        <!-- ============================================================ -->
+        <!-- SECCIÓN NOTICIAS -->
         <section id="seccion-noticias" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📰 Noticias MLB</h2>
             <div class="space-y-4">
@@ -468,22 +321,19 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ESTADÍSTICAS (LÍDERES)                                        -->
-        <!-- ============================================================ -->
+        <!-- SECCIÓN ESTADÍSTICAS -->
         <section id="seccion-estadisticas" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Líderes de bateo y pitcheo</h2>
 
             <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
-
-                <!-- Pestañas principales: Bateo / Pitcheo -->
+                <!-- Pestañas principales -->
                 <div class="flex gap-2 text-sm font-medium mb-4 flex-wrap items-center border-b border-grisClaro dark:border-gray-700 pb-2">
                     <span class="tab-link-stats active px-3 py-1 rounded-lg cursor-pointer bg-azul text-white" data-tab="bateo">Bateo</span>
                     <span class="tab-link-stats px-3 py-1 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition" data-tab="pitcheo">Pitcheo</span>
                     <button onclick="recargarLideres()" class="btn-recargar ml-auto">🔄 Recargar</button>
                 </div>
 
-                <!-- ===== BATEO ===== -->
+                <!-- Bateo -->
                 <div id="stats-bateo" class="stats-contenido activo">
                     <div class="flex flex-wrap gap-1 mb-3 text-xs">
                         <span class="sub-tab-link active" data-sub="avg">Promedio</span>
@@ -492,14 +342,14 @@
                         <span class="sub-tab-link" data-sub="hits">Hits</span>
                         <span class="sub-tab-link" data-sub="sb">Bases robadas</span>
                     </div>
-                    <div id="sub-avg" class="sub-contenido activo"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-hr" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-rbi" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-hits" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-sb" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
+                    <div id="sub-avg" class="sub-contenido activo"><div class="spinner"></div></div>
+                    <div id="sub-hr" class="sub-contenido"><div class="spinner"></div></div>
+                    <div id="sub-rbi" class="sub-contenido"><div class="spinner"></div></div>
+                    <div id="sub-hits" class="sub-contenido"><div class="spinner"></div></div>
+                    <div id="sub-sb" class="sub-contenido"><div class="spinner"></div></div>
                 </div>
 
-                <!-- ===== PITCHEO ===== -->
+                <!-- Pitcheo -->
                 <div id="stats-pitcheo" class="stats-contenido" style="display:none;">
                     <div class="flex flex-wrap gap-1 mb-3 text-xs">
                         <span class="sub-tab-link active" data-sub="era">Efectividad</span>
@@ -508,21 +358,17 @@
                         <span class="sub-tab-link" data-sub="w">Juegos ganados</span>
                         <span class="sub-tab-link" data-sub="qs">Salidas de calidad</span>
                     </div>
-                    <div id="sub-era" class="sub-contenido activo"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-sv" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-k" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-w" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
-                    <div id="sub-qs" class="sub-contenido"><div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p></div>
+                    <div id="sub-era" class="sub-contenido activo"><div class="spinner"></div></div>
+                    <div id="sub-sv" class="sub-contenido"><div class="spinner"></div></div>
+                    <div id="sub-k" class="sub-contenido"><div class="spinner"></div></div>
+                    <div id="sub-w" class="sub-contenido"><div class="spinner"></div></div>
+                    <div id="sub-qs" class="sub-contenido"><div class="spinner"></div></div>
                 </div>
-
             </div>
         </section>
-
     </main>
 
-    <!-- ============================================================ -->
-    <!-- FOOTER                                                       -->
-    <!-- ============================================================ -->
+    <!-- PIE DE PÁGINA -->
     <footer class="bg-white dark:bg-gray-800 border-t border-grisClaro dark:border-gray-700 py-6 mt-12 text-center text-xs">
         <div class="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© 2026 <strong>SportVivo360</strong> • Datos MLB API pública</p>
@@ -535,13 +381,9 @@
         </div>
     </footer>
 
-    <!-- ============================================================ -->
-    <!-- JAVASCRIPT                                                   -->
-    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
     <script>
-        // ============================================================
-        //  MODO OSCURO
-        // ============================================================
+        // ---------------------- MODO OSCURO ----------------------
         const themeCheckbox = document.getElementById('themeCheckbox');
         if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.classList.add('dark');
@@ -557,9 +399,7 @@
             }
         });
 
-        // ============================================================
-        //  NAVEGACIÓN PRINCIPAL
-        // ============================================================
+        // ---------------------- NAVEGACIÓN PRINCIPAL ----------------------
         const secciones = document.querySelectorAll('.seccion');
         const tabLinks = document.querySelectorAll('.tab-link');
 
@@ -582,9 +422,7 @@
         });
         mostrarSeccion('inicio');
 
-        // ============================================================
-        //  PESTAÑAS PRINCIPALES DE ESTADÍSTICAS (Bateo / Pitcheo)
-        // ============================================================
+        // ---------------------- PESTAÑAS ESTADÍSTICAS ----------------------
         const statsTabs = document.querySelectorAll('.tab-link-stats');
         statsTabs.forEach(tab => {
             tab.addEventListener('click', function() {
@@ -599,16 +437,16 @@
                 document.querySelectorAll('.stats-contenido').forEach(el => el.classList.remove('activo'));
                 document.getElementById('stats-' + target).classList.add('activo');
 
-                // Activar la primera sub-pestaña del contenedor
+                // Activar la primera sub-pestaña de la sección
                 const contenedor = document.getElementById('stats-' + target);
                 const primeraSub = contenedor.querySelector('.sub-tab-link');
-                if (primeraSub) primeraSub.click();
+                if (primeraSub) {
+                    primeraSub.click();
+                }
             });
         });
 
-        // ============================================================
-        //  SUB-PESTAÑAS (categorías específicas)
-        // ============================================================
+        // Manejo de sub-pestañas (con carga de datos)
         document.querySelectorAll('.sub-tab-link').forEach(sub => {
             sub.addEventListener('click', function() {
                 const parent = this.closest('.stats-contenido');
@@ -622,42 +460,196 @@
                 parent.querySelectorAll('.sub-contenido').forEach(el => el.classList.remove('activo'));
                 const targetId = 'sub-' + this.dataset.sub;
                 const targetEl = parent.querySelector('#' + targetId);
-                if (targetEl) targetEl.classList.add('activo');
+                if (targetEl) {
+                    targetEl.classList.add('activo');
+                    // Si el contenido está vacío (solo tiene spinner), cargamos datos
+                    if (targetEl.children.length === 1 && targetEl.querySelector('.spinner')) {
+                        const tipo = parent.id === 'stats-bateo' ? 'bateo' : 'pitcheo';
+                        const categoria = this.dataset.sub;
+                        if (tipo === 'bateo') {
+                            cargarLideresBateo(categoria, targetId);
+                        } else {
+                            cargarLideresPitcheo(categoria, targetId);
+                        }
+                    }
+                }
             });
         });
 
-        // ============================================================
-        //  PARTIDOS (con selector de fechas)
-        // ============================================================
-        const ZONA_LIMA = 'America/Lima';
+        // ---------------------- FUNCIONES DE ESTADÍSTICAS ----------------------
+        // Mapeo de categorías a sortStat de la API
+        const bateoMap = {
+            'avg': 'avg',
+            'hr': 'homeRuns',
+            'rbi': 'rbi',
+            'hits': 'hits',
+            'sb': 'stolenBases'
+        };
+        const pitcheoMap = {
+            'era': 'era',
+            'sv': 'saves',
+            'k': 'strikeouts',
+            'w': 'wins',
+            'qs': 'qualityStarts'
+        };
 
+        async function cargarLideresBateo(categoria, contenedorId) {
+            const contenedor = document.getElementById(contenedorId);
+            if (!contenedor) return;
+            // Mostrar spinner
+            contenedor.innerHTML = `<div class="spinner"></div>`;
+            const sortStat = bateoMap[categoria] || 'avg';
+            const season = new Date().getFullYear();
+            const url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=hitting&statType=season&playerPool=all&sortStat=${sortStat}&limit=10`;
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                const stats = data.stats?.[0]?.splits || [];
+                if (!stats.length) {
+                    contenedor.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles</p>`;
+                    return;
+                }
+                // Construir tabla
+                let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
+                    <thead><tr>
+                        <th>#</th>
+                        <th class="text-left">Jugador</th>
+                        <th>Equipo</th>
+                        <th>${categoria.toUpperCase()}</th>
+                    </tr></thead><tbody>`;
+                stats.forEach((item, index) => {
+                    const player = item.player;
+                    const stat = item.stat;
+                    const team = item.team;
+                    const valor = stat[sortStat] !== undefined ? stat[sortStat] : '-';
+                    const name = player?.fullName || 'Desconocido';
+                    const teamName = team?.name || '-';
+                    const teamId = team?.id;
+                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'">` : '';
+                    html += `<tr>
+                        <td class="ranking">${index + 1}</td>
+                        <td class="text-left font-medium">${name}</td>
+                        <td>${logo} ${teamName}</td>
+                        <td>${valor}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>`;
+                contenedor.innerHTML = html;
+            } catch (error) {
+                console.error('Error cargando líderes de bateo:', error);
+                contenedor.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar los datos</p>`;
+            }
+        }
+
+        async function cargarLideresPitcheo(categoria, contenedorId) {
+            const contenedor = document.getElementById(contenedorId);
+            if (!contenedor) return;
+            contenedor.innerHTML = `<div class="spinner"></div>`;
+            const sortStat = pitcheoMap[categoria] || 'era';
+            const season = new Date().getFullYear();
+            const url = `https://statsapi.mlb.com/api/v1/stats?season=${season}&gameType=R&group=pitching&statType=season&playerPool=all&sortStat=${sortStat}&limit=10`;
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                const stats = data.stats?.[0]?.splits || [];
+                if (!stats.length) {
+                    contenedor.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos disponibles</p>`;
+                    return;
+                }
+                let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
+                    <thead><tr>
+                        <th>#</th>
+                        <th class="text-left">Jugador</th>
+                        <th>Equipo</th>
+                        <th>${categoria.toUpperCase()}</th>
+                    </tr></thead><tbody>`;
+                stats.forEach((item, index) => {
+                    const player = item.player;
+                    const stat = item.stat;
+                    const team = item.team;
+                    const valor = stat[sortStat] !== undefined ? stat[sortStat] : '-';
+                    const name = player?.fullName || 'Desconocido';
+                    const teamName = team?.name || '-';
+                    const teamId = team?.id;
+                    const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-5 h-5 inline-block mr-1" onerror="this.style.display='none'">` : '';
+                    html += `<tr>
+                        <td class="ranking">${index + 1}</td>
+                        <td class="text-left font-medium">${name}</td>
+                        <td>${logo} ${teamName}</td>
+                        <td>${valor}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>`;
+                contenedor.innerHTML = html;
+            } catch (error) {
+                console.error('Error cargando líderes de pitcheo:', error);
+                contenedor.innerHTML = `<p class="text-center text-red-600 dark:text-red-400">Error al cargar los datos</p>`;
+            }
+        }
+
+        function cargarTodasLasEstadisticas() {
+            // Cargar bateo promedio y pitcheo efectividad por defecto
+            const subActivaBateo = document.querySelector('#stats-bateo .sub-tab-link.active');
+            if (subActivaBateo) {
+                const targetId = 'sub-' + subActivaBateo.dataset.sub;
+                const contenedor = document.getElementById(targetId);
+                if (contenedor && contenedor.children.length === 1 && contenedor.querySelector('.spinner')) {
+                    cargarLideresBateo(subActivaBateo.dataset.sub, targetId);
+                }
+            }
+            const subActivaPitcheo = document.querySelector('#stats-pitcheo .sub-tab-link.active');
+            if (subActivaPitcheo) {
+                const targetId = 'sub-' + subActivaPitcheo.dataset.sub;
+                const contenedor = document.getElementById(targetId);
+                if (contenedor && contenedor.children.length === 1 && contenedor.querySelector('.spinner')) {
+                    cargarLideresPitcheo(subActivaPitcheo.dataset.sub, targetId);
+                }
+            }
+        }
+
+        function recargarLideres() {
+            // Recargar todas las sub-pestañas visibles
+            document.querySelectorAll('.sub-tab-link.active').forEach(sub => {
+                const parent = sub.closest('.stats-contenido');
+                const targetId = 'sub-' + sub.dataset.sub;
+                const contenedor = document.getElementById(targetId);
+                if (contenedor) {
+                    const tipo = parent.id === 'stats-bateo' ? 'bateo' : 'pitcheo';
+                    if (tipo === 'bateo') {
+                        cargarLideresBateo(sub.dataset.sub, targetId);
+                    } else {
+                        cargarLideresPitcheo(sub.dataset.sub, targetId);
+                    }
+                }
+            });
+        }
+
+        // ---------------------- PARTIDOS Y FECHAS ----------------------
+        const ZONA_LIMA = 'America/Lima';
         function hoyLima() {
             const hoy = new Date();
             const fechaStr = hoy.toLocaleDateString('en-CA', { timeZone: ZONA_LIMA });
             return new Date(fechaStr + 'T00:00:00');
         }
         let fechaActual = hoyLima();
-
         function iso(d) { return d.toISOString().split('T')[0]; }
-
         function textoFecha(d) {
             const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
             const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
             return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
         }
-
         function cambiarFecha(delta) {
             fechaActual.setDate(fechaActual.getDate() + delta);
             mostrarFechas();
             cargarPartidos(iso(fechaActual));
         }
-
         function irFecha(fechaStr) {
             fechaActual = new Date(fechaStr + 'T00:00:00');
             mostrarFechas();
             cargarPartidos(fechaStr);
         }
-
         function mostrarFechas() {
             const cont = document.getElementById('selector-fechas');
             let html = '';
@@ -670,46 +662,33 @@
             cont.innerHTML = html;
         }
 
-        // ---- Funciones auxiliares para partidos ----
+        // ---------------------- AUXILIARES PARTIDOS ----------------------
         function obtenerTotales(linescore, boxscore, esVisitante) {
-            // Primero intentar desde linescore.teams
-            if (linescore && linescore.teams) {
+            if (linescore?.teams) {
                 const eq = esVisitante ? linescore.teams.away : linescore.teams.home;
-                if (eq && eq.runs !== undefined) {
-                    return { runs: eq.runs || 0, hits: eq.hits || 0, errors: eq.errors || 0 };
-                }
+                if (eq?.runs !== undefined) return { runs: eq.runs || 0, hits: eq.hits || 0, errors: eq.errors || 0 };
             }
-            // Luego desde boxscore
-            if (boxscore && boxscore.teams) {
+            if (boxscore?.teams) {
                 const eqBox = esVisitante ? boxscore.teams.away : boxscore.teams.home;
-                if (eqBox && eqBox.stats) {
-                    return { runs: eqBox.stats.runs || 0, hits: eqBox.stats.hits || 0, errors: eqBox.stats.errors || 0 };
-                }
+                if (eqBox?.stats) return { runs: eqBox.stats.runs || 0, hits: eqBox.stats.hits || 0, errors: eqBox.stats.errors || 0 };
             }
-            // Fallback
             return { runs: 0, hits: 0, errors: 0 };
         }
-
         function leerEntradas(linescore, boxscore, esVisitante) {
             const innings = linescore?.innings || [];
             const fila = [];
             for (let i = 0; i < 9; i++) {
                 const inn = innings[i];
-                if (!inn) {
-                    fila.push('-');
-                    continue;
-                }
-                const runs = esVisitante ? inn.away?.runs : inn.home?.runs;
-                fila.push(runs !== undefined && runs !== null ? runs : '-');
+                fila.push(inn ? (esVisitante ? inn.away?.runs : inn.home?.runs) ?? '-' : '-');
             }
             const totals = obtenerTotales(linescore, boxscore, esVisitante);
             return { fila, C: totals.runs, H: totals.hits, E: totals.errors };
         }
-
         function dibujarBases(offense) {
-            const b1 = !!offense?.first,
-                b2 = !!offense?.second,
-                b3 = !!offense?.third;
+            // La API usa 'first', 'second', 'third' como booleanos o números
+            const b1 = offense?.first || false;
+            const b2 = offense?.second || false;
+            const b3 = offense?.third || false;
             return `
             <div class="relative w-16 h-16 mx-auto">
                 <div class="diamante-base absolute top-0 left-1/2 -translate-x-1/2 ${b2 ? 'ocupada' : 'vacia'}"></div>
@@ -719,19 +698,18 @@
             </div>`;
         }
 
+        // ---------------------- CARGAR PARTIDOS ----------------------
         async function cargarPartidos(fecha) {
             const cont = document.getElementById('lista-partidos');
             cont.innerHTML = `<div class="flex justify-center py-10"><div class="spinner"></div></div>`;
             try {
-                const url =
-                    `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${fecha}&language=es&hydrate=linescore,probablePitchers,status,linescore.offense,linescore.defense,boxscore,gameDate,plays`;
+                const url = `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${fecha}&language=es&hydrate=linescore,probablePitchers,status,linescore.offense,linescore.defense,boxscore,gameDate,plays`;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const datos = await res.json();
                 const juegos = datos.dates?.[0]?.games || [];
                 if (!juegos.length) {
-                    cont.innerHTML =
-                        `<p class="text-center py-8 text-gray-500 dark:text-gray-400">No hay partidos programados para esta fecha</p>`;
+                    cont.innerHTML = `<p class="text-center py-8 text-gray-500 dark:text-gray-400">No hay partidos programados para esta fecha</p>`;
                     return;
                 }
                 let html = '';
@@ -749,12 +727,11 @@
                     const final = estado.abstractGameState === 'Final';
                     const programado = estado.abstractGameState === 'Preview';
                     const horaUTC = new Date(p.gameDate);
-                    const horaLocal = new Date(horaUTC.getTime() - 5 * 3600000);
-                    const horaTexto = horaLocal.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+                    const horaLocal = new Date(horaUTC.getTime() - 5 * 3600000); // UTC-5 (Lima)
+                    const horaTexto = horaLocal.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: true });
                     const ls = p.linescore || {};
                     const box = p.boxscore || {};
 
-                    // Leer entradas y totales correctamente
                     const v = leerEntradas(ls, box, true);
                     const h = leerEntradas(ls, box, false);
 
@@ -765,25 +742,20 @@
                     const out = ls.outs ?? '-';
                     const tipo = p.seriesDescription || 'Temporada Regular';
 
-                    // Pitchers
                     let lanzA = p.probablePitchers?.away || {};
                     let lanzH = p.probablePitchers?.home || {};
                     if (!lanzA.fullName && box?.teams?.away?.players) {
-                        const players = box.teams.away.players;
-                        const pitcher = Object.values(players).find(pj => pj.position?.code === 'P');
+                        const pitcher = Object.values(box.teams.away.players).find(pj => pj.position?.code === 'P');
                         if (pitcher) lanzA = { fullName: pitcher.person?.fullName, era: pitcher.stats?.era };
                     }
                     if (!lanzH.fullName && box?.teams?.home?.players) {
-                        const players = box.teams.home.players;
-                        const pitcher = Object.values(players).find(pj => pj.position?.code === 'P');
+                        const pitcher = Object.values(box.teams.home.players).find(pj => pj.position?.code === 'P');
                         if (pitcher) lanzH = { fullName: pitcher.person?.fullName, era: pitcher.stats?.era };
                     }
                     if (!lanzA.fullName) lanzA.fullName = vivo ? 'En vivo' : 'Por confirmar';
                     if (!lanzH.fullName) lanzH.fullName = vivo ? 'En vivo' : 'Por confirmar';
 
-                    // Estado del partido
-                    let estadoTexto = '';
-                    let estadoClase = '';
+                    let estadoTexto = '', estadoClase = '';
                     if (vivo) {
                         estadoTexto = `EN VIVO ${actInn}° ${mitad}`;
                         estadoClase = 'bg-rojoVivo';
@@ -842,14 +814,11 @@
                 cont.innerHTML = html;
             } catch (error) {
                 console.error('Error cargando partidos:', error);
-                cont.innerHTML =
-                    `<p class="text-center text-red-600 dark:text-red-400 py-8">Error al cargar los partidos. Intenta de nuevo.</p>`;
+                cont.innerHTML = `<p class="text-center text-red-600 dark:text-red-400 py-8">Error al cargar los partidos. Intenta de nuevo.</p>`;
             }
         }
 
-        // ============================================================
-        //  POSICIONES (API)
-        // ============================================================
+        // ---------------------- POSICIONES ----------------------
         async function cargarPosicionesAPI() {
             const cont = document.getElementById('contenedor-posiciones');
             cont.innerHTML = `<div class="flex justify-center py-10"><div class="spinner"></div></div>`;
@@ -858,15 +827,14 @@
             const dia = String(hoy.getDate()).padStart(2, '0');
             const anio = hoy.getFullYear();
             const fechaStr = `${mes}/${dia}/${anio}`;
-            const url = `https://statsapi.mlb.com/api/v1/standings?season=2026&leagueId=103,104&date=${fechaStr}&division=all`;
+            const url = `https://statsapi.mlb.com/api/v1/standings?season=${anio}&leagueId=103,104&date=${fechaStr}&division=all`;
             try {
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
                 const records = data.records || [];
                 if (!records.length) {
-                    cont.innerHTML =
-                        `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos de posiciones disponibles.</p>`;
+                    cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos de posiciones disponibles.</p>`;
                     return;
                 }
                 const ligas = { '103': 'Liga Americana', '104': 'Liga Nacional' };
@@ -879,10 +847,8 @@
                             <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 ${ligas[leagueId]}</h3>
                             <div class="overflow-x-auto">
                     `;
-                    // Ordenar divisiones por nombre
                     registrosLiga.sort((a, b) => a.division?.name?.localeCompare(b.division?.name || '') || 0);
                     for (const division of registrosLiga) {
-                        // Usar el nombre real de la división
                         const divName = division.division?.name || 'División';
                         const teams = division.teamRecords || [];
                         teams.sort((a, b) => (parseInt(a.divisionRank) || 99) - (parseInt(b.divisionRank) || 99));
@@ -895,7 +861,7 @@
                                     <th class="text-center">P</th>
                                     <th class="text-center">PCT</th>
                                     <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
+                                    <th class="text-center">DIF WC</th>
                                 </tr></thead>
                                 <tbody>
                         `;
@@ -906,12 +872,9 @@
                             const losses = team.leagueRecord?.losses || 0;
                             const pct = team.leagueRecord?.pct ? parseFloat(team.leagueRecord.pct).toFixed(3) : '.000';
                             const gamesBack = team.gamesBack !== undefined && team.gamesBack !== null ? team.gamesBack : '-';
-                            const wcGamesBack = team.wildCardGamesBack !== undefined && team.wildCardGamesBack !== null ? team
-                                .wildCardGamesBack : '-';
-                            const difWC = (team.divisionRank === '1') ? '-' : (wcGamesBack !== '-' ? wcGamesBack : '-');
-                            const logo = teamId ?
-                                `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${name}" class="w-6 h-6 inline-block mr-1" onerror="this.style.display='none'">` :
-                                '';
+                            const wcGamesBack = team.wildCardGamesBack !== undefined && team.wildCardGamesBack !== null ? team.wildCardGamesBack : '-';
+                            const difWC = team.divisionRank === '1' ? '-' : wcGamesBack !== '-' ? wcGamesBack : '-';
+                            const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${name}" class="w-6 h-6 inline-block mr-1" onerror="this.style.display='none'">` : '';
                             html += `
                                 <tr>
                                     <td class="text-left font-medium">${logo} ${name}</td>
@@ -933,217 +896,22 @@
                 cont.innerHTML = `
                     <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6 text-center">
                         <p class="text-red-600 dark:text-red-400">Error al cargar las posiciones.</p>
-                        <button onclick="cargarPosicionesAPI()" class="mt-3 bg-azul text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Reintentar</button>
+                        <button onclick="cargarPosicionesAPI()" class="btn-recargar mt-2">Reintentar</button>
                     </div>
                 `;
             }
         }
 
-        // ============================================================
-        //  LÍDERES – CON FILTRO POR MÍNIMOS (evita jugadores con pocos juegos)
-        // ============================================================
-        let datosLideres = { bateo: null, pitcheo: null };
-        let lideresCargando = false;
-
-        async function cargarTodasLasEstadisticas() {
-            if (lideresCargando) return;
-            lideresCargando = true;
-            await Promise.all([
-                cargarDatosBateo(),
-                cargarDatosPitcheo()
-            ]);
-            lideresCargando = false;
-        }
-
-        // ---- BATEO ----
-        async function cargarDatosBateo() {
-            if (datosLideres.bateo) {
-                renderizarBateo(datosLideres.bateo);
-                return;
-            }
-            const urls = [
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=hitting&stats=season&playerPool=all&limit=200',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=200',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&limit=200'
-            ];
-            let stats = [];
-            for (const url of urls) {
-                try {
-                    const res = await fetch(url);
-                    if (res.ok) {
-                        const data = await res.json();
-                        const temp = data.stats?.[0]?.splits || [];
-                        if (temp.length) { stats = temp; break; }
-                    }
-                } catch (e) { /* continuar */ }
-            }
-            if (!stats.length) {
-                document.querySelectorAll('#stats-bateo .sub-contenido').forEach(el => {
-                    el.innerHTML =
-                        `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos de bateo disponibles. <br> <button onclick="recargarLideres()" class="text-azul dark:text-blue-400 underline text-sm">Reintentar</button></p>`;
-                });
-                return;
-            }
-            // Filtrar jugadores con al menos 100 apariciones al bate (AB)
-            const filtrados = stats.filter(s => (s.stat?.atBats || 0) >= 100);
-            datosLideres.bateo = filtrados;
-            renderizarBateo(filtrados);
-        }
-
-        function renderizarBateo(stats) {
-            const categorias = [
-                { id: 'avg', label: 'AVG', key: 'avg', formatter: v => v ? parseFloat(v).toFixed(3) : '—' },
-                { id: 'hr', label: 'HR', key: 'homeRuns', formatter: v => v || 0 },
-                { id: 'rbi', label: 'RBI', key: 'rbi', formatter: v => v || 0 },
-                { id: 'hits', label: 'H', key: 'hits', formatter: v => v || 0 },
-                { id: 'sb', label: 'SB', key: 'stolenBases', formatter: v => v || 0 }
-            ];
-            for (const cat of categorias) {
-                const sorted = [...stats].sort((a, b) => (b.stat?.[cat.key] || 0) - (a.stat?.[cat.key] || 0)).slice(0, 10);
-                document.getElementById('sub-' + cat.id).innerHTML = generarTablaBateo(sorted, cat.label, cat.key, cat
-                .formatter);
-            }
-        }
-
-        function generarTablaBateo(items, label, key, formatter) {
-            if (!items.length) return `<p class="text-center text-gray-500">Sin datos</p>`;
-            let html =
-                `<table class="w-full text-xs tabla-lideres dark:text-gray-300"><thead><tr><th class="text-center">#</th><th class="text-left">Jugador</th><th>Equipo</th><th>${label}</th></tr></thead><tbody>`;
-            items.forEach((item, idx) => {
-                const player = item.player;
-                const teamId = item.team?.id;
-                const teamName = item.team?.name || '—';
-                const val = item.stat?.[key] !== undefined ? formatter(item.stat[key]) : '—';
-                const logo = teamId ?
-                    `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-5 h-5 inline-block" onerror="this.style.display='none'">` :
-                    '';
-                html += `<tr>
-                    <td class="text-center ranking">${idx + 1}</td>
-                    <td class="text-left font-medium">${player?.fullName || '—'}</td>
-                    <td><span class="flex items-center justify-center gap-1">${logo} ${teamName}</span></td>
-                    <td class="font-bold">${val}</td>
-                </tr>`;
-            });
-            html += '</tbody></table>';
-            return html;
-        }
-
-        // ---- PITCHEO ----
-        async function cargarDatosPitcheo() {
-            if (datosLideres.pitcheo) {
-                renderizarPitcheo(datosLideres.pitcheo);
-                return;
-            }
-            const urls = [
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&gameType=R&group=pitching&stats=season&playerPool=all&limit=200',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=pitching&stats=season&playerPool=all&limit=200',
-                'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&limit=200'
-            ];
-            let stats = [];
-            for (const url of urls) {
-                try {
-                    const res = await fetch(url);
-                    if (res.ok) {
-                        const data = await res.json();
-                        const temp = data.stats?.[0]?.splits || [];
-                        if (temp.length) { stats = temp; break; }
-                    }
-                } catch (e) { /* continuar */ }
-            }
-            if (!stats.length) {
-                document.querySelectorAll('#stats-pitcheo .sub-contenido').forEach(el => {
-                    el.innerHTML =
-                        `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos de pitcheo disponibles. <br> <button onclick="recargarLideres()" class="text-azul dark:text-blue-400 underline text-sm">Reintentar</button></p>`;
-                });
-                return;
-            }
-            // Filtrar lanzadores con al menos 50 innings lanzados (IP)
-            const filtrados = stats.filter(s => (s.stat?.inningsPitched || 0) >= 50);
-            datosLideres.pitcheo = filtrados;
-            renderizarPitcheo(filtrados);
-        }
-
-        function renderizarPitcheo(stats) {
-            const categorias = [
-                { id: 'era', label: 'EFE', key: 'era', formatter: v => v ? parseFloat(v).toFixed(2) : '—', menorMejor: true },
-                { id: 'sv', label: 'SV', key: 'saves', formatter: v => v || 0, menorMejor: false },
-                { id: 'k', label: 'K', key: 'strikeOuts', formatter: v => v || 0, menorMejor: false },
-                { id: 'w', label: 'W', key: 'wins', formatter: v => v || 0, menorMejor: false },
-                { id: 'qs', label: 'QS', key: 'gamesStarted', formatter: v => v || 0, menorMejor: false }
-            ];
-            for (const cat of categorias) {
-                let sorted;
-                if (cat.menorMejor) {
-                    sorted = [...stats].filter(s => s.stat?.[cat.key] !== undefined && s.stat[cat.key] > 0)
-                        .sort((a, b) => (a.stat?.[cat.key] || 999) - (b.stat?.[cat.key] || 999)).slice(0, 10);
-                } else {
-                    sorted = [...stats].sort((a, b) => (b.stat?.[cat.key] || 0) - (a.stat?.[cat.key] || 0)).slice(0, 10);
-                }
-                document.getElementById('sub-' + cat.id).innerHTML = generarTablaPitcheo(sorted, cat.label, cat.key, cat
-                .formatter);
-            }
-        }
-
-        function generarTablaPitcheo(items, label, key, formatter) {
-            if (!items.length) return `<p class="text-center text-gray-500">Sin datos</p>`;
-            let html =
-                `<table class="w-full text-xs tabla-lideres dark:text-gray-300"><thead><tr><th class="text-center">#</th><th class="text-left">Lanzador</th><th>Equipo</th><th>${label}</th></tr></thead><tbody>`;
-            items.forEach((item, idx) => {
-                const player = item.player;
-                const teamId = item.team?.id;
-                const teamName = item.team?.name || '—';
-                const val = item.stat?.[key] !== undefined ? formatter(item.stat[key]) : '—';
-                const logo = teamId ?
-                    `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${teamName}" class="w-5 h-5 inline-block" onerror="this.style.display='none'">` :
-                    '';
-                html += `<tr>
-                    <td class="text-center ranking">${idx + 1}</td>
-                    <td class="text-left font-medium">${player?.fullName || '—'}</td>
-                    <td><span class="flex items-center justify-center gap-1">${logo} ${teamName}</span></td>
-                    <td class="font-bold">${val}</td>
-                </tr>`;
-            });
-            html += '</tbody></table>';
-            return html;
-        }
-
-        // ============================================================
-        //  RECARGAR LÍDERES
-        // ============================================================
-        function recargarLideres() {
-            datosLideres = { bateo: null, pitcheo: null };
-            document.querySelectorAll('#stats-bateo .sub-contenido, #stats-pitcheo .sub-contenido').forEach(el => {
-                el.innerHTML = `<div class="spinner"></div><p class="text-center text-sm text-gray-500">Cargando...</p>`;
-                el.classList.remove('activo');
-            });
-            document.querySelector('#stats-bateo .sub-contenido')?.classList.add('activo');
-            document.querySelector('#stats-pitcheo .sub-contenido')?.classList.add('activo');
-            cargarTodasLasEstadisticas();
-        }
-
-        // ============================================================
-        //  INICIALIZACIÓN
-        // ============================================================
+        // ---------------------- INICIALIZACIÓN ----------------------
         mostrarFechas();
         cargarPartidos(iso(fechaActual));
-        cargarPosicionesAPI();
 
-        setInterval(() => cargarPartidos(iso(fechaActual)), 15000);
-
-        setInterval(() => {
-            const statsSeccion = document.getElementById('seccion-estadisticas');
-            if (statsSeccion.classList.contains('activa')) {
-                if (datosLideres.bateo || datosLideres.pitcheo) {
-                    recargarLideres();
-                } else {
-                    cargarTodasLasEstadisticas();
-                }
-            }
-        }, 60000);
-
-        setInterval(() => {
-            cargarPosicionesAPI();
-        }, 300000);
+        // Al cargar la página, si la pestaña de estadísticas no está activa, no cargamos datos hasta que se active.
+        // Pero la función mostrarSeccion ya llama a cargarTodasLasEstadisticas cuando se activa.
+        // También cargamos datos de estadísticas si la pestaña está activa por defecto (no lo está, es "inicio").
+        // Podemos precargar las estadísticas en segundo plano para que estén listas.
+        // setTimeout(() => cargarTodasLasEstadisticas(), 2000);
+        // Pero mejor esperar a que el usuario haga clic.
     </script>
 </body>
 </html>
