@@ -277,13 +277,13 @@
 
     <!-- Cabecera -->
     <header class="bg-mlbAzul text-white py-3 px-4 sticky top-0 z-50 shadow-lg transition-colors dark:bg-gray-800">
-        <div class="max-w-xl mx-auto flex items-center justify-between flex-wrap gap-2">
+        <div class="max-w-4xl mx-auto flex items-center justify-between flex-wrap gap-2">
             <h1 class="font-bold text-xl tracking-wide flex items-center gap-2">
                 <span class="text-2xl">⚾</span> SportVivo360 <span class="text-sm opacity-80 font-normal">MLB</span>
             </h1>
             <div class="flex items-center gap-4">
                 <nav class="hidden sm:flex gap-3 text-sm font-medium" id="menuPrincipal">
-                    <span class="tab-link active" data-seccion="resultados">Resultados</span>
+                    <span class="tab-link active" data-seccion="inicio">Inicio</span>
                     <span class="tab-link" data-seccion="posiciones">Posiciones</span>
                     <span class="tab-link" data-seccion="noticias">Noticias</span>
                     <span class="tab-link" data-seccion="estadisticas">Estadísticas</span>
@@ -298,14 +298,14 @@
         </div>
         <!-- Menú móvil -->
         <div class="sm:hidden mt-2 flex flex-wrap justify-around gap-1 text-xs border-t border-white/20 pt-2" id="menuMovil">
-            <span class="tab-link active" data-seccion="resultados">Resultados</span>
+            <span class="tab-link active" data-seccion="inicio">Inicio</span>
             <span class="tab-link" data-seccion="posiciones">Posiciones</span>
             <span class="tab-link" data-seccion="noticias">Noticias</span>
             <span class="tab-link" data-seccion="estadisticas">Estadísticas</span>
         </div>
     </header>
 
-    <main class="max-w-xl mx-auto px-3 py-4">
+    <main class="max-w-3xl mx-auto px-3 py-4">
 
         <!-- Indicador de estado -->
         <div class="flex items-center justify-center gap-2 text-xs mb-4">
@@ -314,10 +314,10 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SECCIÓN RESULTADOS (partidos + vídeos)                       -->
+        <!-- SECCIÓN INICIO (resultados + vídeos)                        -->
         <!-- ============================================================ -->
-        <section id="seccion-resultados" class="seccion activa">
-            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📋 Resultados & En vivo</h2>
+        <section id="seccion-inicio" class="seccion activa">
+            <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">🏠 Inicio - Resultados en vivo</h2>
 
             <!-- Selector de fechas -->
             <div class="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 rounded-xl py-2 px-3 mb-6 border border-grisClaro dark:border-gray-700 shadow-sm">
@@ -333,7 +333,7 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN DE VÍDEOS DESTACADOS (dentro de Resultados) -->
+            <!-- SECCIÓN DE VÍDEOS DESTACADOS -->
             <div class="mt-6">
                 <h3 class="text-xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-4 dark:text-white">🎥 Destacados MLB</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -578,7 +578,7 @@
         <section id="seccion-estadisticas" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📈 Estadísticas - Líderes 2026</h2>
             <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
-                <!-- Pestañas internas para bateo / pitcheo -->
+                <!-- Pestañas internas -->
                 <div class="flex gap-2 text-sm font-medium mb-4">
                     <span class="tab-link-interno active px-3 py-1 rounded-lg cursor-pointer bg-azul text-white" data-tab="bateo">Bateo</span>
                     <span class="tab-link-interno px-3 py-1 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition" data-tab="pitcheo">Pitcheo</span>
@@ -606,7 +606,7 @@
 
     <!-- Footer -->
     <footer class="bg-white dark:bg-gray-800 border-t border-grisClaro dark:border-gray-700 py-6 mt-12 text-center text-xs">
-        <div class="max-w-xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© 2026 <strong>SportVivo360</strong> • Datos MLB API pública</p>
             <p class="text-gray-500 dark:text-gray-400">Posiciones manuales actualizadas al 19/06/2026</p>
             <div class="flex gap-4 text-gray-500 dark:text-gray-400">
@@ -637,7 +637,7 @@
         });
 
         // ============================================================
-        //  NAVEGACIÓN POR PESTAÑAS (secciones principales)
+        //  NAVEGACIÓN POR PESTAÑAS
         // ============================================================
         const secciones = document.querySelectorAll('.seccion');
         const tabLinks = document.querySelectorAll('.tab-link');
@@ -650,7 +650,6 @@
             tabLinks.forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll(`.tab-link[data-seccion="${id}"]`).forEach(tab => tab.classList.add('active'));
 
-            // Si es la sección estadísticas, cargar líderes (si no se han cargado aún)
             if (id === 'estadisticas') {
                 cargarLideres();
             }
@@ -663,11 +662,11 @@
             });
         });
 
-        // Por defecto mostrar Resultados
-        mostrarSeccion('resultados');
+        // Por defecto Inicio
+        mostrarSeccion('inicio');
 
         // ============================================================
-        //  PESTAÑAS INTERNAS (bateo / pitcheo) en estadísticas
+        //  PESTAÑAS INTERNAS (bateo / pitcheo)
         // ============================================================
         const tabsInternos = document.querySelectorAll('.tab-link-interno');
         tabsInternos.forEach(tab => {
@@ -689,7 +688,7 @@
         });
 
         // ============================================================
-        //  CONFIGURACIÓN – PARTIDOS EN VIVO (API)
+        //  CONFIGURACIÓN – PARTIDOS EN VIVO
         // ============================================================
         const ZONA_LIMA = 'America/Lima';
 
@@ -786,7 +785,7 @@
         }
 
         // ============================================================
-        //  CARGAR PARTIDOS EN VIVO (API)
+        //  CARGAR PARTIDOS
         // ============================================================
         async function cargarPartidos(fecha) {
             const cont = document.getElementById('lista-partidos');
@@ -915,7 +914,7 @@
         }
 
         // ============================================================
-        //  LÍDERES DE BATEO Y PITCHEO (API)
+        //  LÍDERES DE BATEO Y PITCHEO (con doble intento)
         // ============================================================
         let lideresCargados = false;
 
@@ -931,16 +930,25 @@
             const cont = document.getElementById('lideres-bateo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de bateo...</p>`;
             try {
-                const url =
-                    'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&playerPool=all&sortStat=avg&limit=10';
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('Error al obtener líderes de bateo');
-                const data = await res.json();
-                const stats = data.stats?.[0]?.splits || [];
+                let url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=hitting&stats=season&playerPool=all&sortStat=avg&limit=10';
+                let res = await fetch(url);
+                let data = await res.json();
+                let stats = data.stats?.[0]?.splits || [];
+
                 if (!stats.length) {
-                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos disponibles para la temporada 2026.</p>';
+                    url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&group=hitting&stats=season&playerPool=all&limit=10';
+                    res = await fetch(url);
+                    data = await res.json();
+                    stats = data.stats?.[0]?.splits || [];
+                    stats.sort((a, b) => (b.stat?.avg || 0) - (a.stat?.avg || 0));
+                    stats = stats.slice(0, 10);
+                }
+
+                if (!stats.length) {
+                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de bateo disponibles para la temporada 2026.</p>';
                     return;
                 }
+
                 let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
                     <thead><tr>
                         <th class="text-left">Jugador</th>
@@ -970,8 +978,7 @@
                 cont.innerHTML = html;
             } catch (error) {
                 console.error('Error en líderes de bateo:', error);
-                cont.innerHTML =
-                    `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de bateo. Intenta más tarde.</p>`;
+                cont.innerHTML = `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de bateo. Intenta más tarde.</p>`;
             }
         }
 
@@ -979,16 +986,25 @@
             const cont = document.getElementById('lideres-pitcheo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de pitcheo...</p>`;
             try {
-                const url =
-                    'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&playerPool=all&sortStat=era&limit=10';
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('Error al obtener líderes de pitcheo');
-                const data = await res.json();
-                const stats = data.stats?.[0]?.splits || [];
+                let url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&gameType=R&group=pitching&stats=season&playerPool=all&sortStat=era&limit=10';
+                let res = await fetch(url);
+                let data = await res.json();
+                let stats = data.stats?.[0]?.splits || [];
+
                 if (!stats.length) {
-                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos disponibles para la temporada 2026.</p>';
+                    url = 'https://statsapi.mlb.com/api/v1/stats?season=2026&group=pitching&stats=season&playerPool=all&limit=10';
+                    res = await fetch(url);
+                    data = await res.json();
+                    stats = data.stats?.[0]?.splits || [];
+                    stats.sort((a, b) => (a.stat?.era || 999) - (b.stat?.era || 999));
+                    stats = stats.slice(0, 10);
+                }
+
+                if (!stats.length) {
+                    cont.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de pitcheo disponibles para la temporada 2026.</p>';
                     return;
                 }
+
                 let html = `<table class="w-full text-xs tabla-lideres dark:text-gray-300">
                     <thead><tr>
                         <th class="text-left">Lanzador</th>
@@ -1018,8 +1034,7 @@
                 cont.innerHTML = html;
             } catch (error) {
                 console.error('Error en líderes de pitcheo:', error);
-                cont.innerHTML =
-                    `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de pitcheo. Intenta más tarde.</p>`;
+                cont.innerHTML = `<p class="text-red-500 dark:text-red-400">Error al cargar líderes de pitcheo. Intenta más tarde.</p>`;
             }
         }
 
@@ -1030,7 +1045,7 @@
         cargarPartidos(iso(fechaActual));
         setInterval(() => cargarPartidos(iso(fechaActual)), 15000);
 
-        // Actualizar líderes cada 30 segundos solo si la pestaña Estadísticas está visible
+        // Actualizar líderes cada 30 segundos solo si estadísticas visible
         setInterval(() => {
             const statsSeccion = document.getElementById('seccion-estadisticas');
             if (statsSeccion.classList.contains('activa')) {
