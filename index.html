@@ -384,138 +384,13 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SECCIÓN POSICIONES (solo tablas de equipos)                  -->
+        <!-- SECCIÓN POSICIONES (ahora desde API)                        -->
         <!-- ============================================================ -->
         <section id="seccion-posiciones" class="seccion">
             <h2 class="text-2xl font-bold text-mlbAzul border-l-4 border-azul pl-3 mb-5 dark:text-white">📊 Posiciones de equipos</h2>
-
-            <div class="space-y-6">
-                <!-- Liga Americana -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
-                    <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 Liga Americana</h3>
-                    <div class="overflow-x-auto">
-                        <!-- ESTE -->
-                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">ESTE</div>
-                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
-                            <thead><tr>
-                                    <th class="text-left">Equipo</th>
-                                    <th class="text-center">G</th>
-                                    <th class="text-center">P</th>
-                                    <th class="text-center">PCT</th>
-                                    <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
-                            </tr></thead>
-                            <tbody>
-                                <tr><td>New York Yankees</td><td class="text-center">45</td><td class="text-center">28</td><td class="text-center">.616</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>Tampa Bay Rays</td><td class="text-center">41</td><td class="text-center">30</td><td class="text-center">.577</td><td class="text-center">3.0</td><td class="text-center">+1.0</td></tr>
-                                <tr><td>Toronto Blue Jays</td><td class="text-center">34</td><td class="text-center">38</td><td class="text-center">.472</td><td class="text-center">10.5</td><td class="text-center">6.5</td></tr>
-                                <tr><td>Baltimore Orioles</td><td class="text-center">34</td><td class="text-center">39</td><td class="text-center">.466</td><td class="text-center">11.0</td><td class="text-center">7.0</td></tr>
-                                <tr><td>Boston Red Sox</td><td class="text-center">29</td><td class="text-center">40</td><td class="text-center">.420</td><td class="text-center">14.0</td><td class="text-center">10.0</td></tr>
-                            </tbody>
-                        </table>
-                        <!-- CENTRAL -->
-                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">CENTRAL</div>
-                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
-                            <thead><tr>
-                                    <th class="text-left">Equipo</th>
-                                    <th class="text-center">G</th>
-                                    <th class="text-center">P</th>
-                                    <th class="text-center">PCT</th>
-                                    <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
-                            </tr></thead>
-                            <tbody>
-                                <tr><td>Chicago White Sox</td><td class="text-center">38</td><td class="text-center">32</td><td class="text-center">.543</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>Cleveland Guardians</td><td class="text-center">39</td><td class="text-center">33</td><td class="text-center">.542</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>Minnesota Twins</td><td class="text-center">34</td><td class="text-center">40</td><td class="text-center">.459</td><td class="text-center">6.0</td><td class="text-center">3.0</td></tr>
-                                <tr><td>Detroit Tigers</td><td class="text-center">30</td><td class="text-center">42</td><td class="text-center">.417</td><td class="text-center">9.0</td><td class="text-center">6.0</td></tr>
-                                <tr><td>Kansas City Royals</td><td class="text-center">29</td><td class="text-center">44</td><td class="text-center">.397</td><td class="text-center">10.5</td><td class="text-center">7.5</td></tr>
-                            </tbody>
-                        </table>
-                        <!-- OESTE -->
-                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">OESTE</div>
-                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
-                            <thead><tr>
-                                    <th class="text-left">Equipo</th>
-                                    <th class="text-center">G</th>
-                                    <th class="text-center">P</th>
-                                    <th class="text-center">PCT</th>
-                                    <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
-                            </tr></thead>
-                            <tbody>
-                                <tr><td>Seattle Mariners</td><td class="text-center">37</td><td class="text-center">36</td><td class="text-center">.507</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>Athletics</td><td class="text-center">36</td><td class="text-center">36</td><td class="text-center">.500</td><td class="text-center">0.5</td><td class="text-center">-</td></tr>
-                                <tr><td>Texas Rangers</td><td class="text-center">35</td><td class="text-center">37</td><td class="text-center">.486</td><td class="text-center">1.5</td><td class="text-center">1.0</td></tr>
-                                <tr><td>Houston Astros</td><td class="text-center">33</td><td class="text-center">41</td><td class="text-center">.446</td><td class="text-center">4.5</td><td class="text-center">4.0</td></tr>
-                                <tr><td>Los Angeles Angels</td><td class="text-center">29</td><td class="text-center">44</td><td class="text-center">.397</td><td class="text-center">8.0</td><td class="text-center">7.5</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Liga Nacional -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
-                    <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 Liga Nacional</h3>
-                    <div class="overflow-x-auto">
-                        <!-- ESTE -->
-                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">ESTE</div>
-                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
-                            <thead><tr>
-                                    <th class="text-left">Equipo</th>
-                                    <th class="text-center">G</th>
-                                    <th class="text-center">P</th>
-                                    <th class="text-center">PCT</th>
-                                    <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
-                            </tr></thead>
-                            <tbody>
-                                <tr><td>Atlanta Braves</td><td class="text-center">46</td><td class="text-center">25</td><td class="text-center">.648</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>Philadelphia Phillies</td><td class="text-center">40</td><td class="text-center">34</td><td class="text-center">.541</td><td class="text-center">7.5</td><td class="text-center">+0.5</td></tr>
-                                <tr><td>Washington Nationals</td><td class="text-center">38</td><td class="text-center">37</td><td class="text-center">.507</td><td class="text-center">10.0</td><td class="text-center">2.0</td></tr>
-                                <tr><td>Miami Marlins</td><td class="text-center">36</td><td class="text-center">39</td><td class="text-center">.480</td><td class="text-center">12.0</td><td class="text-center">4.0</td></tr>
-                                <tr><td>New York Mets</td><td class="text-center">34</td><td class="text-center">41</td><td class="text-center">.453</td><td class="text-center">14.0</td><td class="text-center">6.0</td></tr>
-                            </tbody>
-                        </table>
-                        <!-- CENTRAL -->
-                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">CENTRAL</div>
-                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
-                            <thead><tr>
-                                    <th class="text-left">Equipo</th>
-                                    <th class="text-center">G</th>
-                                    <th class="text-center">P</th>
-                                    <th class="text-center">PCT</th>
-                                    <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
-                            </tr></thead>
-                            <tbody>
-                                <tr><td>Milwaukee Brewers</td><td class="text-center">45</td><td class="text-center">27</td><td class="text-center">.625</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>St. Louis Cardinals</td><td class="text-center">39</td><td class="text-center">34</td><td class="text-center">.534</td><td class="text-center">6.5</td><td class="text-center">+1.5</td></tr>
-                                <tr><td>Chicago Cubs</td><td class="text-center">38</td><td class="text-center">36</td><td class="text-center">.514</td><td class="text-center">8.0</td><td class="text-center">-</td></tr>
-                                <tr><td>Pittsburgh Pirates</td><td class="text-center">38</td><td class="text-center">37</td><td class="text-center">.507</td><td class="text-center">8.5</td><td class="text-center">0.5</td></tr>
-                                <tr><td>Cincinnati Reds</td><td class="text-center">35</td><td class="text-center">38</td><td class="text-center">.479</td><td class="text-center">10.5</td><td class="text-center">2.5</td></tr>
-                            </tbody>
-                        </table>
-                        <!-- OESTE -->
-                        <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">OESTE</div>
-                        <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
-                            <thead><tr>
-                                    <th class="text-left">Equipo</th>
-                                    <th class="text-center">G</th>
-                                    <th class="text-center">P</th>
-                                    <th class="text-center">PCT</th>
-                                    <th class="text-center">DIF</th>
-                                    <th class="text-center">DIFWC</th>
-                            </tr></thead>
-                            <tbody>
-                                <tr><td>Los Angeles Dodgers</td><td class="text-center">44</td><td class="text-center">26</td><td class="text-center">.629</td><td class="text-center">-</td><td class="text-center">-</td></tr>
-                                <tr><td>San Diego Padres</td><td class="text-center">38</td><td class="text-center">35</td><td class="text-center">.521</td><td class="text-center">7.5</td><td class="text-center">-</td></tr>
-                                <tr><td>San Francisco Giants</td><td class="text-center">37</td><td class="text-center">36</td><td class="text-center">.507</td><td class="text-center">8.5</td><td class="text-center">1.0</td></tr>
-                                <tr><td>Arizona Diamondbacks</td><td class="text-center">35</td><td class="text-center">39</td><td class="text-center">.473</td><td class="text-center">11.0</td><td class="text-center">3.5</td></tr>
-                                <tr><td>Colorado Rockies</td><td class="text-center">28</td><td class="text-center">47</td><td class="text-center">.373</td><td class="text-center">18.5</td><td class="text-center">11.0</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div id="contenedor-posiciones" class="space-y-6">
+                <div class="flex justify-center py-10">
+                    <div class="spinner"></div>
                 </div>
             </div>
         </section>
@@ -631,7 +506,7 @@
     <footer class="bg-white dark:bg-gray-800 border-t border-grisClaro dark:border-gray-700 py-6 mt-12 text-center text-xs">
         <div class="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© 2026 <strong>SportVivo360</strong> • Datos MLB API pública</p>
-            <p class="text-gray-500 dark:text-gray-400">Posiciones manuales actualizadas al 19/06/2026</p>
+            <p class="text-gray-500 dark:text-gray-400">Posiciones actualizadas en tiempo real</p>
             <div class="flex gap-4 text-gray-500 dark:text-gray-400">
                 <a href="#" class="hover:text-azul transition">Twitter</a>
                 <a href="#" class="hover:text-azul transition">Instagram</a>
@@ -673,6 +548,10 @@
             tabLinks.forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll(`.tab-link[data-seccion="${id}"]`).forEach(tab => tab.classList.add('active'));
 
+            // Cargar posiciones si es la pestaña correspondiente
+            if (id === 'posiciones') {
+                cargarPosicionesAPI();
+            }
             if (id === 'estadisticas') {
                 cargarLideres();
             }
@@ -937,6 +816,121 @@
         }
 
         // ============================================================
+        //  CARGAR POSICIONES DESDE API (en tiempo real)
+        // ============================================================
+        async function cargarPosicionesAPI() {
+            const cont = document.getElementById('contenedor-posiciones');
+            cont.innerHTML = `<div class="flex justify-center py-10"><div class="spinner"></div></div>`;
+
+            // Formato de fecha para la API: MM/DD/YYYY
+            const hoy = new Date();
+            const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+            const dia = String(hoy.getDate()).padStart(2, '0');
+            const anio = hoy.getFullYear();
+            const fechaStr = `${mes}/${dia}/${anio}`;
+
+            const url = `https://statsapi.mlb.com/api/v1/standings?season=2026&leagueId=103,104&date=${fechaStr}&division=all`;
+
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                const records = data.records || [];
+                if (!records.length) {
+                    cont.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">No hay datos de posiciones disponibles.</p>`;
+                    return;
+                }
+
+                // Agrupar por liga (AL y NL)
+                const ligas = { '103': 'Liga Americana', '104': 'Liga Nacional' };
+                let html = '';
+
+                // Procesar cada liga por separado
+                for (const leagueId of ['103', '104']) {
+                    const registrosLiga = records.filter(r => r.league?.id == leagueId);
+                    if (!registrosLiga.length) continue;
+
+                    html += `
+                        <div class="bg-white dark:bg-gray-800 rounded-xl border border-grisClaro dark:border-gray-700 p-4 shadow-sm card-hover transition-all">
+                            <h3 class="font-semibold text-mlbAzul dark:text-white text-lg mb-3 flex items-center gap-2">🏆 ${ligas[leagueId]}</h3>
+                            <div class="overflow-x-auto">
+                    `;
+
+                    // Ordenar divisiones por nombre
+                    registrosLiga.sort((a, b) => a.division?.name?.localeCompare(b.division?.name || '') || 0);
+
+                    for (const division of registrosLiga) {
+                        const divName = division.division?.name || 'División';
+                        const teams = division.teamRecords || [];
+                        // Ordenar por ranking de división
+                        teams.sort((a, b) => (parseInt(a.divisionRank) || 99) - (parseInt(b.divisionRank) || 99));
+
+                        html += `
+                            <div class="division-titulo dark:bg-gray-700 dark:text-gray-300">${divName}</div>
+                            <table class="w-full text-xs tabla-posiciones dark:text-gray-300">
+                                <thead><tr>
+                                    <th class="text-left">Equipo</th>
+                                    <th class="text-center">G</th>
+                                    <th class="text-center">P</th>
+                                    <th class="text-center">PCT</th>
+                                    <th class="text-center">DIF</th>
+                                    <th class="text-center">DIFWC</th>
+                                </tr></thead>
+                                <tbody>
+                        `;
+
+                        // Obtener el primer equipo para calcular gamesBack
+                        const primerEquipo = teams.length ? teams[0] : null;
+                        const primerRecord = primerEquipo ? parseFloat(primerEquipo.gamesBack) || 0 : 0;
+
+                        for (const team of teams) {
+                            const name = team.team?.name || 'Desconocido';
+                            const teamId = team.team?.id;
+                            const wins = team.leagueRecord?.wins || 0;
+                            const losses = team.leagueRecord?.losses || 0;
+                            const pct = team.leagueRecord?.pct ? parseFloat(team.leagueRecord.pct).toFixed(3) : '.000';
+                            const gamesBack = team.gamesBack !== undefined && team.gamesBack !== null ? team.gamesBack : '-';
+                            const wcGamesBack = team.wildCardGamesBack !== undefined && team.wildCardGamesBack !== null ? team.wildCardGamesBack : '-';
+
+                            // Determinar el DIFWC: si es el líder de la división, mostrar '-'
+                            const difWC = (team.divisionRank === '1') ? '-' : (wcGamesBack !== '-' ? wcGamesBack : '-');
+
+                            // Crear el logo si existe teamId
+                            const logo = teamId ? `<img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${name}" class="w-6 h-6 inline-block mr-1" onerror="this.style.display='none'">` : '';
+
+                            html += `
+                                <tr>
+                                    <td class="text-left font-medium">${logo} ${name}</td>
+                                    <td class="text-center">${wins}</td>
+                                    <td class="text-center">${losses}</td>
+                                    <td class="text-center">${pct}</td>
+                                    <td class="text-center">${gamesBack}</td>
+                                    <td class="text-center">${difWC}</td>
+                                </tr>
+                            `;
+                        }
+
+                        html += `</tbody></table>`;
+                    }
+
+                    html += `</div></div>`;
+                }
+
+                cont.innerHTML = html;
+
+            } catch (error) {
+                console.error('Error cargando posiciones:', error);
+                cont.innerHTML = `
+                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6 text-center">
+                        <p class="text-red-600 dark:text-red-400">Error al cargar las posiciones.</p>
+                        <button onclick="cargarPosicionesAPI()" class="mt-3 bg-azul text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Reintentar</button>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================================
         //  LÍDERES DE BATEO Y PITCHEO (con múltiples respaldos)
         // ============================================================
         let lideresCargados = false;
@@ -949,7 +943,6 @@
             }
         }
 
-        // Función para recargar manualmente
         function recargarLideres() {
             cargarLideresBateo();
             cargarLideresPitcheo();
@@ -959,7 +952,6 @@
             const cont = document.getElementById('lideres-bateo');
             cont.innerHTML = `<div class="spinner inline-block"></div><p class="text-sm text-gray-500 dark:text-gray-400">Cargando líderes de bateo...</p>`;
 
-            // Lista de URLs para intentar
             const urls = [
                 'https://statsapi.mlb.com/api/v1/stats?season=2026&sportIds=1&group=hitting&stats=season&playerPool=all&limit=50',
                 'https://statsapi.mlb.com/api/v1/stats?season=2026&sportId=1&group=hitting&stats=season&playerPool=all&limit=50',
@@ -978,17 +970,14 @@
                             break;
                         }
                     }
-                } catch (e) {
-                    // continuar con la siguiente URL
-                }
+                } catch (e) { /* continuar */ }
             }
 
             if (!stats.length) {
-                cont.innerHTML = `<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de bateo disponibles para la temporada 2026. <br> <button onclick="cargarLideresBateo()" class="text-azul dark:text-blue-400 underline text-sm">Intentar de nuevo</button></p>`;
+                cont.innerHTML = `<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de bateo disponibles. <br> <button onclick="cargarLideresBateo()" class="text-azul dark:text-blue-400 underline text-sm">Intentar de nuevo</button></p>`;
                 return;
             }
 
-            // Ordenar por avg descendente
             stats.sort((a, b) => (b.stat?.avg || 0) - (a.stat?.avg || 0));
             const top10 = stats.slice(0, 10);
 
@@ -1043,17 +1032,14 @@
                             break;
                         }
                     }
-                } catch (e) {
-                    // continuar
-                }
+                } catch (e) { /* continuar */ }
             }
 
             if (!stats.length) {
-                cont.innerHTML = `<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de pitcheo disponibles para la temporada 2026. <br> <button onclick="cargarLideresPitcheo()" class="text-azul dark:text-blue-400 underline text-sm">Intentar de nuevo</button></p>`;
+                cont.innerHTML = `<p class="text-gray-500 dark:text-gray-400">No hay datos de líderes de pitcheo disponibles. <br> <button onclick="cargarLideresPitcheo()" class="text-azul dark:text-blue-400 underline text-sm">Intentar de nuevo</button></p>`;
                 return;
             }
 
-            // Ordenar por ERA ascendente
             stats.sort((a, b) => (a.stat?.era || 999) - (b.stat?.era || 999));
             const top10 = stats.slice(0, 10);
 
@@ -1091,9 +1077,12 @@
         // ============================================================
         mostrarFechas();
         cargarPartidos(iso(fechaActual));
+        // Cargar posiciones la primera vez (aunque no esté activa, para que esté lista)
+        cargarPosicionesAPI();
+
         setInterval(() => cargarPartidos(iso(fechaActual)), 15000);
 
-        // Actualizar líderes cada 30 segundos solo si estadísticas visible
+        // Actualizar líderes cada 30 segundos si estadísticas visible
         setInterval(() => {
             const statsSeccion = document.getElementById('seccion-estadisticas');
             if (statsSeccion.classList.contains('activa')) {
@@ -1101,6 +1090,11 @@
                 cargarLideresPitcheo();
             }
         }, 30000);
+
+        // Actualizar posiciones cada 5 minutos (en segundo plano)
+        setInterval(() => {
+            cargarPosicionesAPI();
+        }, 300000);
     </script>
 </body>
 </html>
