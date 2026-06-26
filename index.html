@@ -80,6 +80,7 @@
             transition: var(--transition);
             border-bottom: 2px solid transparent;
             padding-bottom: 4px;
+            cursor: pointer;
         }
         .menu-principal a:hover,
         .menu-principal a.activo {
@@ -351,7 +352,7 @@
             height: 190px;
             object-fit: cover;
             display: block;
-            background: var(--bg);
+            background: #eae5de;
         }
         .tarjeta .info-tarjeta {
             padding: 1.2rem 1.5rem 1.5rem;
@@ -440,32 +441,38 @@
         }
         .sin-resultados i { font-size: 3rem; margin-bottom: 1rem; display: block; opacity: 0.4; }
 
-        /* ===== BLOG ===== */
-        .blog-section {
-            padding: 60px 0;
-            background: var(--card);
-            border-top: 1px solid var(--border);
+        /* ===== BLOG (vista independiente) ===== */
+        .blog-page {
+            display: none; /* oculto por defecto */
+            padding: 50px 0;
+            background: var(--bg);
         }
-        .blog-section .blog-header {
+        .blog-page.activo {
+            display: block;
+        }
+        .blog-page .blog-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 32px;
         }
-        .blog-section .blog-header h2 {
+        .blog-page .blog-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
         }
-        .blog-section .blog-header a {
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-bottom: 1.5px solid transparent;
+        .blog-page .blog-header .volver {
+            background: var(--card);
+            padding: 10px 24px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+            font-weight: 500;
             transition: var(--transition);
+            cursor: pointer;
         }
-        .blog-section .blog-header a:hover {
-            border-bottom-color: var(--gold);
+        .blog-page .blog-header .volver:hover {
+            background: var(--dark);
+            color: #fff;
         }
         .grid-blog {
             display: grid;
@@ -473,7 +480,7 @@
             gap: 32px;
         }
         .articulo {
-            background: var(--bg);
+            background: var(--card);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -488,7 +495,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            background: var(--bg);
+            background: #eae5de;
         }
         .articulo .contenido-articulo {
             padding: 1.5rem;
@@ -530,7 +537,7 @@
             gap: 12px;
         }
 
-        /* ===== VIDEOS ===== */
+        /* ===== VIDEOS (dentro de la vista principal) ===== */
         .videos-section {
             padding: 60px 0;
             background: var(--bg);
@@ -652,6 +659,7 @@
             object-fit: cover;
             border-radius: 16px;
             margin-bottom: 1.2rem;
+            background: #eae5de;
         }
         .modal .modal-titulo {
             font-family: 'Playfair Display', serif;
@@ -721,13 +729,45 @@
         footer ul li { margin-bottom: 6px; }
         footer ul a { transition: var(--transition); font-size: 0.9rem; }
         footer ul a:hover { color: #fff; }
+        footer .seguridad {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+        footer .seguridad i {
+            margin-right: 6px;
+            color: #4caf50;
+        }
         footer .copy {
             grid-column: 1/-1;
             text-align: center;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            margin-top: 20px;
+            padding-top: 16px;
             font-size: 0.8rem;
+            border-top: none;
+        }
+        footer .aviso-cookies {
+            grid-column: 1/-1;
+            text-align: center;
+            background: rgba(255,255,255,0.03);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ===== UTILIDADES ===== */
+        .vista-principal {
+            display: block;
+        }
+        .vista-principal.oculta {
+            display: none;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -775,78 +815,82 @@
             <i class="fas fa-bars"></i>
         </button>
         <nav class="menu-principal" id="menuPrincipal">
-            <a href="#" class="activo">Inicio</a>
-            <a href="#recetas">Recetas</a>
-            <a href="#videos">Videos</a>
-            <a href="#blog">Blog</a>
+            <a class="activo" data-vista="inicio">Inicio</a>
+            <a data-vista="recetas">Recetas</a>
+            <a data-vista="blog">Blog</a>
         </nav>
     </div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-    <div class="container">
-        <div class="estrellas">
-            ★★★★☆ <span>4.8/5 de usuarios</span>
-        </div>
-        <h1>Sabores del <span>mundo</span> en tu cocina</h1>
-        <p>Una colección cuidadosamente seleccionada de recetas auténticas de 17 países, con pasos claros e imágenes inspiradoras.</p>
-        <div class="botones">
-            <a href="#recetas" class="btn btn-primario">Explorar recetas →</a>
-            <a href="#blog" class="btn btn-secundario">Leer blog →</a>
-        </div>
-        <div class="stats">
-            <div class="stat"><strong>17</strong> PAÍSES</div>
-            <div class="stat"><strong>252</strong> RECETAS</div>
-            <div class="stat"><strong>100%</strong> AUTÉNTICO</div>
-        </div>
-    </div>
-</section>
+<!-- ===== VISTA PRINCIPAL (Inicio + Recetas + Videos) ===== -->
+<div class="vista-principal" id="vistaInicio">
 
-<!-- ===== FILTROS ===== -->
-<section class="filtros-section" id="filtros">
-    <div class="container">
-        <input type="text" class="buscador" id="buscador" placeholder="Buscar receta, ingrediente…" />
-        <div class="paises" id="filtroPaises"></div>
-        <div class="tipo-tabs" id="tipoTabs">
-            <button class="tipo-tab activo" data-tipo="plato">Platos</button>
-            <button class="tipo-tab" data-tipo="postre">Postres</button>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="estrellas">
+                ★★★★☆ <span>4.8/5 de usuarios</span>
+            </div>
+            <h1>Sabores del <span>mundo</span> en tu cocina</h1>
+            <p>Una colección cuidadosamente seleccionada de recetas auténticas de 17 países, con pasos claros e imágenes inspiradoras.</p>
+            <div class="botones">
+                <a href="#recetas" class="btn btn-primario">Explorar recetas →</a>
+                <a href="#blog" class="btn btn-secundario" onclick="cambiarVista('blog')">Leer blog →</a>
+            </div>
+            <div class="stats">
+                <div class="stat"><strong>17</strong> PAÍSES</div>
+                <div class="stat"><strong>252</strong> RECETAS</div>
+                <div class="stat"><strong>100%</strong> AUTÉNTICO</div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== RECETAS ===== -->
-<section class="recetas-section" id="recetas">
-    <div class="container">
-        <div class="header-recetas">
-            <h2 id="tituloSeccion">🍽️ Platos principales</h2>
-            <span class="contador" id="contador">Mostrando 0 recetas</span>
+    <!-- FILTROS -->
+    <section class="filtros-section" id="filtros">
+        <div class="container">
+            <input type="text" class="buscador" id="buscador" placeholder="Buscar receta, ingrediente…" />
+            <div class="paises" id="filtroPaises"></div>
+            <div class="tipo-tabs" id="tipoTabs">
+                <button class="tipo-tab activo" data-tipo="plato">Platos</button>
+                <button class="tipo-tab" data-tipo="postre">Postres</button>
+            </div>
         </div>
-        <div class="grid-recetas" id="gridRecetas"></div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== BLOG ===== -->
-<section class="blog-section" id="blog">
+    <!-- RECETAS -->
+    <section class="recetas-section" id="recetas">
+        <div class="container">
+            <div class="header-recetas">
+                <h2 id="tituloSeccion">🍽️ Platos principales</h2>
+                <span class="contador" id="contador">Mostrando 0 recetas</span>
+            </div>
+            <div class="grid-recetas" id="gridRecetas"></div>
+        </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="videos-section" id="videos">
+        <div class="container">
+            <div class="videos-header">
+                <h2>🎥 Videoteca</h2>
+                <p>Aprende técnicas directamente de los chefs</p>
+            </div>
+            <div class="grid-videos" id="gridVideos"></div>
+        </div>
+    </section>
+
+</div>
+
+<!-- ===== VISTA BLOG (independiente) ===== -->
+<div class="blog-page" id="vistaBlog">
     <div class="container">
         <div class="blog-header">
             <h2>📝 Blog culinario</h2>
-            <a href="#">Todos los artículos →</a>
+            <button class="volver" onclick="cambiarVista('inicio')">← Volver al inicio</button>
         </div>
         <div class="grid-blog" id="gridBlog"></div>
     </div>
-</section>
-
-<!-- ===== VIDEOS ===== -->
-<section class="videos-section" id="videos">
-    <div class="container">
-        <div class="videos-header">
-            <h2>🎥 Videoteca</h2>
-            <p>Aprende técnicas directamente de los chefs</p>
-        </div>
-        <div class="grid-videos" id="gridVideos"></div>
-    </div>
-</section>
+</div>
 
 <!-- ===== MODAL ===== -->
 <div class="modal" id="modal">
@@ -874,17 +918,24 @@
         <div>
             <h4>Navegación</h4>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#recetas">Recetas</a></li>
-                <li><a href="#videos">Videos</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#" onclick="cambiarVista('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="cambiarVista('inicio')">Recetas</a></li>
+                <li><a href="#" onclick="cambiarVista('blog')">Blog</a></li>
             </ul>
         </div>
         <div>
             <h4>Países</h4>
             <ul id="footerPaises"></ul>
         </div>
-        <div class="copy">© 2026 CocinaEnCasa · Hecho con ❤️ y mucho sabor</div>
+        <div class="seguridad">
+            <span><i class="fas fa-lock"></i> Conexión segura (SSL)</span>
+            <span><i class="fas fa-shield-alt"></i> Protección de datos</span>
+            <span><i class="fas fa-cookie-bite"></i> Uso de cookies</span>
+        </div>
+        <div class="aviso-cookies">
+            🍪 Este sitio utiliza cookies para mejorar tu experiencia. Al continuar, aceptas nuestra política de privacidad.
+        </div>
+        <div class="copy">© 2026 CocinaEnCasa · Hecho con ❤️ y mucho sabor · Versión 2026</div>
     </div>
 </footer>
 
@@ -1049,7 +1100,7 @@
         ]
     };
 
-    // POSTRES (7 por país, 17 países = 119, completamos hasta 126 con algunos extras)
+    // POSTRES (completos para todos los países, 7 por país)
     const postresData = {
         "Perú": [
             { name: "Suspiro a la Limeña", ingredients: ["Base: 200g leche evaporada, 200g leche condensada, 2 yemas", "Merengue: 2 claras, 150g azúcar, 80ml vino Oporto"], steps: ["Cocinar base.", "Hacer merengue con vino.", "Montar y gratinar."] },
@@ -1078,7 +1129,11 @@
         "Bolivia": [
             { name: "Cocadas", ingredients: ["Coco rallado, leche condensada, azúcar, huevos"], steps: ["Mezclar todos los ingredientes.", "Hornear bolitas."] },
             { name: "Arroz con Leche", ingredients: ["Arroz, leche, canela, azúcar"], steps: ["Cocinar arroz con leche y canela.", "Servir espolvoreado con canela."] },
-            { name: "Pastel de Maní", ingredients: ["Maní molido, harina, huevos, azúcar"], steps: ["Mezclar y hornear."] }
+            { name: "Pastel de Maní", ingredients: ["Maní molido, harina, huevos, azúcar"], steps: ["Mezclar y hornear."] },
+            { name: "Custard de Chirimoya", ingredients: ["Chirimoya, leche, azúcar, canela"], steps: ["Licuar todo y cocinar.", "Servir frío."] },
+            { name: "Helado de Canela", ingredients: ["Leche, canela, azúcar, yemas"], steps: ["Cocinar base, enfriar y batir."] },
+            { name: "Ponche de Chicha", ingredients: ["Chicha, leche, canela, azúcar"], steps: ["Mezclar y calentar."] },
+            { name: "Rosquetes de Anís", ingredients: ["Harina, anís, huevos, aceite"], steps: ["Amasar, freír y espolvorear azúcar."] }
         ],
         "Brasil": [
             { name: "Brigadeiro", ingredients: ["1 lata de leche condensada", "2 cdas de cacao", "1 cda de mantequilla", "Granillo de chocolate"], steps: ["Cocinar ingredientes hasta despegar.", "Dejar enfriar.", "Hacer bolitas y rebozar."] },
@@ -1164,11 +1219,11 @@
     // 2. BLOG – ARTÍCULOS
     // ================================================================
     const articulosBlog = [
-        { titulo: "Marroquíes: un viaje sensorial", categoria: "Tradiciones", fecha: "8 de junio de 2026", autor: "Amina Boussouf", descripcion: "Los zocos de Marrakech huelen a canela, comino, cilantro y ras el hanout. Aprende a usar estas especias en tu cocina.", imagen: "https://picsum.photos/seed/marroqui/600/400" },
-        { titulo: "El umami: el quinto sabor que lo cambia todo", categoria: "Ciencia culinaria", fecha: "17 de mayo de 2026", autor: "Kenji Tanaka", descripcion: "El umami — ese sabor profundo y sabroso — es el secreto detrás de la cocina japonesa y muchos otros platos del mundo.", imagen: "https://picsum.photos/seed/umami/600/400" },
-        { titulo: "El arte del asado argentino: fuego, paciencia y pasión", categoria: "Tradiciones", fecha: "8 de junio de 2026", autor: "Gastón Herrera", descripcion: "En Argentina, el asado es mucho más que una técnica culinaria — es un ritual social que une familias y amigos.", imagen: "https://picsum.photos/seed/asado/600/400" },
-        { titulo: "Por qué la pasta italiana sabe diferente: los secretos de Italia", categoria: "Gastronomía", fecha: "1 de junio de 2026", autor: "Marco Bellini", descripcion: "La pasta italiana auténtica tiene poco que ver con lo que se come fuera de Italia. Descubre sus secretos.", imagen: "https://picsum.photos/seed/pasta/600/400" },
-        { titulo: "Los secretos del ceviche peruano auténtico", categoria: "Técnicas", fecha: "15 de junio de 2026", autor: "Carlos Rivera", descripcion: "El ceviche es mucho más que mezclar pescado con limón. Descubre los secretos que los chefs peruanos guardan con celo.", imagen: "https://picsum.photos/seed/ceviche/600/400" }
+        { titulo: "Marroquíes: un viaje sensorial", categoria: "Tradiciones", fecha: "8 de junio de 2026", autor: "Amina Boussouf", descripcion: "Los zocos de Marrakech huelen a canela, comino, cilantro y ras el hanout. Aprende a usar estas especias en tu cocina.", imagen: "https://loremflickr.com/600/400/moroccan_food" },
+        { titulo: "El umami: el quinto sabor que lo cambia todo", categoria: "Ciencia culinaria", fecha: "17 de mayo de 2026", autor: "Kenji Tanaka", descripcion: "El umami — ese sabor profundo y sabroso — es el secreto detrás de la cocina japonesa y muchos otros platos del mundo.", imagen: "https://loremflickr.com/600/400/umami" },
+        { titulo: "El arte del asado argentino: fuego, paciencia y pasión", categoria: "Tradiciones", fecha: "8 de junio de 2026", autor: "Gastón Herrera", descripcion: "En Argentina, el asado es mucho más que una técnica culinaria — es un ritual social que une familias y amigos.", imagen: "https://loremflickr.com/600/400/argentinian_asado" },
+        { titulo: "Por qué la pasta italiana sabe diferente: los secretos de Italia", categoria: "Gastronomía", fecha: "1 de junio de 2026", autor: "Marco Bellini", descripcion: "La pasta italiana auténtica tiene poco que ver con lo que se come fuera de Italia. Descubre sus secretos.", imagen: "https://loremflickr.com/600/400/italian_pasta" },
+        { titulo: "Los secretos del ceviche peruano auténtico", categoria: "Técnicas", fecha: "15 de junio de 2026", autor: "Carlos Rivera", descripcion: "El ceviche es mucho más que mezclar pescado con limón. Descubre los secretos que los chefs peruanos guardan con celo.", imagen: "https://loremflickr.com/600/400/peruvian_ceviche" }
     ];
 
     // ================================================================
@@ -1198,7 +1253,27 @@
     }
     const todasRecetas = [...platosUnificados, ...postresUnificados];
 
-    // ORDEN DE PAÍSES: Perú y Venezuela primero
+    // Banderas por país (emojis)
+    const banderas = {
+        "Perú": "🇵🇪",
+        "Venezuela": "🇻🇪",
+        "Argentina": "🇦🇷",
+        "Bolivia": "🇧🇴",
+        "Brasil": "🇧🇷",
+        "Chile": "🇨🇱",
+        "Colombia": "🇨🇴",
+        "Ecuador": "🇪🇨",
+        "Estados Unidos": "🇺🇸",
+        "México": "🇲🇽",
+        "Canadá": "🇨🇦",
+        "Reino Unido": "🇬🇧",
+        "España": "🇪🇸",
+        "Francia": "🇫🇷",
+        "Alemania": "🇩🇪",
+        "China": "🇨🇳",
+        "Japón": "🇯🇵"
+    };
+
     const paisesOrdenados = [
         "Perú", "Venezuela", "Argentina", "Bolivia", "Brasil", "Chile",
         "Colombia", "Ecuador", "Estados Unidos", "México", "Canadá",
@@ -1220,12 +1295,13 @@
     const footerPaises = document.getElementById('footerPaises');
 
     function renderizarPaises() {
-        let html = `<button class="pais-btn activo" data-pais="todos">Todos</button>`;
+        let html = `<button class="pais-btn activo" data-pais="todos">🌍 Todos</button>`;
         paisesOrdenados.forEach(p => {
-            html += `<button class="pais-btn" data-pais="${p}">${p}</button>`;
+            const bandera = banderas[p] || '';
+            html += `<button class="pais-btn" data-pais="${p}">${bandera} ${p}</button>`;
         });
         filtroPaises.innerHTML = html;
-        footerPaises.innerHTML = paisesOrdenados.map(p => `<li>${p}</li>`).join('');
+        footerPaises.innerHTML = paisesOrdenados.map(p => `<li>${banderas[p] || ''} ${p}</li>`).join('');
     }
 
     function obtenerFiltradas() {
@@ -1253,13 +1329,14 @@
         let html = '';
         filtradas.forEach(r => {
             const tipoEtiqueta = r.tipo === 'plato' ? 'PLATO' : 'POSTRE';
-            const imagen = `https://picsum.photos/seed/${r.name.replace(/\s/g, '')}/400/300`;
+            // Imagen de comida con loremflickr, fallback a un color
+            const imagen = `https://loremflickr.com/400/300/${encodeURIComponent(r.name)}`; 
             const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(r.name)}+receta`;
             html += `
                 <div class="tarjeta">
-                    <img class="imagen-tarjeta" src="${imagen}" alt="${r.name}" loading="lazy" />
+                    <img class="imagen-tarjeta" src="${imagen}" alt="${r.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
                     <div class="info-tarjeta">
-                        <div class="pais-nombre">${r.pais.toUpperCase()} <span class="tipo-etiqueta">${tipoEtiqueta}</span></div>
+                        <div class="pais-nombre">${banderas[r.pais] || ''} ${r.pais.toUpperCase()} <span class="tipo-etiqueta">${tipoEtiqueta}</span></div>
                         <h3>${r.name}</h3>
                         <p>${r.desc}</p>
                         <div class="acciones">
@@ -1279,11 +1356,12 @@
     function abrirModal(nombre) {
         const receta = todasRecetas.find(r => r.name === nombre);
         if (!receta) return;
-        const imagen = `https://picsum.photos/seed/${receta.name.replace(/\s/g, '')}/800/600`;
+        const imagen = `https://loremflickr.com/800/600/${encodeURIComponent(receta.name)}`;
         const video = `https://www.youtube.com/results?search_query=${encodeURIComponent(receta.name)}+receta`;
         document.getElementById('modalImagen').src = imagen;
+        document.getElementById('modalImagen').onerror = function() { this.style.display = 'none'; };
         document.getElementById('modalTitulo').textContent = receta.name;
-        document.getElementById('modalOrigen').textContent = `${receta.pais} · ${receta.tipo === 'plato' ? 'Plato principal' : 'Postre'}`;
+        document.getElementById('modalOrigen').textContent = `${banderas[receta.pais] || ''} ${receta.pais} · ${receta.tipo === 'plato' ? 'Plato principal' : 'Postre'}`;
         document.getElementById('modalDescripcion').textContent = receta.desc;
         document.getElementById('modalVideo').href = video;
         document.getElementById('modalIngredientes').innerHTML = receta.ingredients.map(i => `<li>${i}</li>`).join('');
@@ -1298,7 +1376,53 @@
     });
 
     // ================================================================
-    // 7. EVENTOS
+    // 7. NAVEGACIÓN ENTRE VISTAS
+    // ================================================================
+    function cambiarVista(vista) {
+        const vistaInicio = document.getElementById('vistaInicio');
+        const vistaBlog = document.getElementById('vistaBlog');
+        const menuLinks = document.querySelectorAll('.menu-principal a');
+
+        if (vista === 'inicio') {
+            vistaInicio.style.display = 'block';
+            vistaBlog.classList.remove('activo');
+            menuLinks.forEach(link => {
+                link.classList.toggle('activo', link.dataset.vista === 'inicio');
+            });
+            // Scroll al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (vista === 'blog') {
+            vistaInicio.style.display = 'none';
+            vistaBlog.classList.add('activo');
+            menuLinks.forEach(link => {
+                link.classList.toggle('activo', link.dataset.vista === 'blog');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    // Eventos de menú
+    document.querySelectorAll('.menu-principal a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const vista = link.dataset.vista;
+            if (vista === 'blog') {
+                cambiarVista('blog');
+            } else {
+                cambiarVista('inicio');
+            }
+            // Cerrar menú móvil
+            document.getElementById('menuPrincipal').classList.remove('abierto');
+        });
+    });
+
+    // Menú hamburguesa
+    document.getElementById('menuHamburguesa').addEventListener('click', () => {
+        document.getElementById('menuPrincipal').classList.toggle('abierto');
+    });
+
+    // ================================================================
+    // 8. EVENTOS DE FILTROS
     // ================================================================
     document.querySelectorAll('.tipo-tab').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1321,12 +1445,9 @@
         busquedaActual = e.target.value;
         renderizarRecetas();
     });
-    document.getElementById('menuHamburguesa').addEventListener('click', () => {
-        document.getElementById('menuPrincipal').classList.toggle('abierto');
-    });
 
     // ================================================================
-    // 8. RENDER BLOG Y VIDEOS
+    // 9. RENDER BLOG Y VIDEOS
     // ================================================================
     function renderizarBlog() {
         const gridBlog = document.getElementById('gridBlog');
@@ -1334,7 +1455,7 @@
         articulosBlog.forEach(a => {
             html += `
                 <div class="articulo">
-                    <img class="imagen-articulo" src="${a.imagen}" alt="${a.titulo}" loading="lazy" />
+                    <img class="imagen-articulo" src="${a.imagen}" alt="${a.titulo}" loading="lazy" onerror="this.style.display='none'" />
                     <div class="contenido-articulo">
                         <div class="categoria">${a.categoria} <span class="fecha">${a.fecha}</span></div>
                         <h3>${a.titulo}</h3>
@@ -1347,6 +1468,7 @@
         });
         gridBlog.innerHTML = html;
     }
+
     function renderizarVideos() {
         const gridVideos = document.getElementById('gridVideos');
         let html = '';
@@ -1368,8 +1490,10 @@
     }
 
     // ================================================================
-    // 9. INICIALIZAR
+    // 10. INICIALIZAR
     // ================================================================
+    // Vista por defecto: inicio
+    cambiarVista('inicio');
     renderizarPaises();
     renderizarRecetas();
     renderizarBlog();
